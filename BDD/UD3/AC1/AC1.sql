@@ -25,18 +25,18 @@ dni_nie varchar (9),
 foreign key (dni_nie) references Empleado(dni_nie)
 );
 
-insert into Departamento (nombre, ubicacion)
+insert into Departamento (id_departamento, nombre, ubicacion)
 values 	(1, 'DPO.mount', 'Edificio C / Bloque 1');
 
 insert into Empleado (dni_nie, nombre, apellido, fecha_de_nacimiento, id_departamento)
-values 	('Y7665863X', 'Pavel', 'Miron', '06-08-2004', 1),
+values 	('Y7665863X', 'Pavel', 'Miron', '2004-08-06', 1),
 		('C4567890C', 'Luis', 'Martínez', '1988-03-10', 1),
 		('Y5678901D', 'Marta', 'Rodríguez', '1992-11-05', 1);
 
 
 insert into Coche (matricula, marca, modelo)
-values 	('ES12345', 'BMW', 'X6', 'Y7665863X'),
-		('YZ67356', 'Toyota', 'Corola', 'Y5678901D');
+values 	('ES12345', 'BMW', 'X6'),
+		('YZ67356', 'Toyota', 'Corola');
         
 update Empleado 
 set nombre = 'David'

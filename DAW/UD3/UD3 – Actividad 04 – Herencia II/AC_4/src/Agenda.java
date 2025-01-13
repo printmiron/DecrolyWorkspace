@@ -7,7 +7,7 @@ public class Agenda {
         this.contactos = new Contacto[100];
         this.indiceActual = 0;
     }
-
+    //clase agenda
     public boolean anadirContacto(Contacto c){
         boolean isAdd = false;
         if (c != null) {
@@ -31,9 +31,9 @@ public class Agenda {
         return isRemove;
     }
 
-    public boolean existeContacto (String nombre){
-        return contactos.exist(nombre);
-    }
+    //public boolean existeContacto (String nombre){
+        //return contactos.exist(nombre);
+    //}
 
     public void listarContactos() {
         if (contactos == null) {
