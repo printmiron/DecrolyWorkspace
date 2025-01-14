@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const estilosIniciales = {
         colorFondo: '#fff',
         tamanoTexto: '24px',
-        tamanoImagen: '100%'
+        tamanoImagen: '50%'
     };
 
     // Estilos actuales (inicialmente iguales a los iniciales)
