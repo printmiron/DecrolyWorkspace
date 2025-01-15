@@ -11,7 +11,7 @@ public class AppAgenda {
         String opcion;
 
         do { 
-            System.out.println("1.Añadir contacto");
+            System.out.println("1.Anadir contacto");
             System.out.println("2.Eliminar contacto");
             System.out.println("3.Indica el nombre del contacto saber si exite o no");
             System.out.println("4.Ver toda la agenda");
