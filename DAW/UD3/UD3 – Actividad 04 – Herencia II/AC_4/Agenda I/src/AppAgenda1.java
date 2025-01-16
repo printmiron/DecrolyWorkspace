@@ -1,12 +1,12 @@
 
 import java.util.Scanner;
 
-public class AppAgenda {
+public class AppAgenda1 {
     public static void main(String[] args) throws Exception {
        
         Scanner scanner = new Scanner(System.in);
 
-        Agenda agenda = new Agenda(null);
+        Agenda1 agenda = new Agenda1(null);
 
         String opcion;
 
@@ -28,7 +28,7 @@ public class AppAgenda {
                         System.out.println("Introduce su numero de telfono: ");
                         String numeroT = scanner.nextLine();
 
-                        Contacto c = new Contacto(nombre, numeroT);
+                        Contacto1 c = new Contacto1(nombre, numeroT);
 
                         //añdir el contacto en agenda con metodo creado en agenda
                         boolean anadirContacto = agenda.anadirContacto(c);
@@ -48,26 +48,43 @@ public class AppAgenda {
 
                         if (eliminarContaco) {
                             System.out.println(nombreEliminar + " ha sido eliminado");
-                        }else{
-                            System.out.println("No se encontro el nombre " + nombreEliminar);
                         }
 
                     break;
 
                 case "3":
-                        
+                        System.out.println("Introduce el contaco para saber si existe o no (true o false): ");
+                        String contacoExiste = scanner.nextLine();
+
+                        boolean existeContacto = agenda.existeContacto(contacoExiste);
+
+                        if (existeContacto) {
+                            System.out.println("Si existe contacto " + contacoExiste);
+                        }else{
+                            System.out.println("No existe " + contacoExiste);
+                        }
                     break;
 
                 case "4":
-                        
+                        agenda.listarContactos();
                     break;
 
                 case "5":
-                        
+                        System.out.println("Introduce el contacto para buscar su poicion: ");
+                        String contactoBusca = scanner.nextLine();
+
+                        int buscaContacto = agenda.buscaContacto(contactoBusca);
+
+                        if (buscaContacto == -1) {
+                            System.out.println("No hay contactos");
+                        }else{
+                            System.out.println("El contacto es en la poicion: " + buscaContacto);
+                        }
+
                     break;
 
                 case "6":
-                        
+                        System.out.println("Hasta luego!");
                     break;
                 default:
                  

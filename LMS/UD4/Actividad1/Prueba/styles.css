@@ -48,12 +48,9 @@ main {
     margin-top: 20px;
 }
 
-.cuerpo{
-    background-color: #007bff00;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
+
+
 
 .container_fotos {  display: grid;
     grid-template-columns: 1fr 1fr;

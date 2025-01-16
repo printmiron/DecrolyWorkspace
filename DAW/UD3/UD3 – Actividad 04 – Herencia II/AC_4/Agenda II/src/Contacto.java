@@ -1,4 +1,4 @@
-public class Contacto {
+public abstract  class Contacto {
 
     private String nombre;
     private String numeroT;
@@ -15,6 +15,16 @@ public class Contacto {
     public String getNumeroT() {
         return this.numeroT;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setnumeroT(String numeroT) {
+        this.numeroT = numeroT;
+    }
+
+    
 
     @Override
     public String toString() {

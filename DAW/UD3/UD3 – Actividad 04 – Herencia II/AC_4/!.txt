@@ -1,0 +1,3 @@
+Hola, los Main son AppAgenda1 y AppAgenda2, tengo nombres diferentes de Main porque si no me da error en Visual Studio, si no
+hago eso todos los (.class) se crean mal, por eso tengo que poner diferentes nombres en cada proyecto si se encuentran todo en el 
+mismo WorkSpace. Y en AgendaI lo hecho con array simple y AgendaII con ArrayList, no sabia con cual hacer la practica.
