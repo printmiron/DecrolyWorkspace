@@ -10,7 +10,7 @@ public class Agenda {
     }
     //clase agenda
     public boolean anadirContacto(Contacto c){
-        if (c != null) {
+        if (c == null) {
             return false;
         }
         contactos.add(c);

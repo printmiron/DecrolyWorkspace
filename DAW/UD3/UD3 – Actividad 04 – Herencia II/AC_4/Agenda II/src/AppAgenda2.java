@@ -78,7 +78,7 @@ public class AppAgenda2 {
                         if (agenda.existeContacto(contacoExiste)) {
                             System.out.println("Si existe contacto " + contacoExiste);
                         }else{
-                            System.out.println("No existe " + contacoExiste);
+                            System.out.println("No existe");
                         }
                     break;
 
