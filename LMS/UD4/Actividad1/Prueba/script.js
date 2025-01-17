@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Cambiar fondo del main al pulsar el botón
+    // cambiar fondo del main al pulsar el boton
     const botonInteractivo = document.getElementById('botonInteractivo');
     const main = document.querySelector('main');
 

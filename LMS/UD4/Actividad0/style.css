@@ -1,0 +1,29 @@
+body {
+    text-align: center;
+    background-color: #f3f4f6;
+    color: #333;
+    padding: 20px;
+}
+
+h1 {
+    color: #000000;
+}
+
+button {
+    background-color: #818181;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0caa2e;
+}
+
+#mensaje {
+    margin-top: 20px;
+    font-size: 18px;
+}
