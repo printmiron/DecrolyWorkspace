@@ -75,36 +75,50 @@ INSERT INTO `dept_emp` VALUES (10001,'d006','2021-06-26','9999-01-01'),
 (10012,'d005','2019-06-26','9999-01-01'),
 (10013,'d010','2025-01-13','9999-01-01'), -- + 
 (10014,'d010','2025-01-13','9999-01-01'); -- + 
--- 1
+-- 1 Mary Sluis ha cambiado su nombre a Helen, actualízalo en la base de datos.
 update empleado
 set nombre = 'Helen'
 where nombre = 'Mary'; 
--- 2
+
+-- 2 Por razones desconocidas, la empresa desea que la fecha actual en la tabla "dept_emp".
+-- ya no sea '9999-01-01' y que se cambie a '9999-02-02'. Ejecutar una actualización que
+-- realice este cambio en TODAS las filas de la tabla "dept_emp"
 update dept_emp
 set fecha_hasta = '9999-02-02'
 where fecha_hasta = '9999-01-01';
--- 4
+
+-- 4 Cambiar el nombre del departamento de TI a "Equipo de Titanes Digitales"
 update departamento
 set nombre_departamento = 'Equipo de Titanes Digitales'
 where nombre_departamento = 'TI';
 
--- 1
+-- 1 Mostrar todos los datos de la tabla "departamento".
 select * from departamento;
--- 2
+
+-- 2 Mostrar solo los nombres de los departamentos de la tabla "departamento"
 select nombre_departamento from departamento;
--- 3
+
+-- 3 Mostrar el nombre, apellido y fecha de nacimiento de los empleados nacidos a partir de
+-- '1990-04-20', incluidos los nacidos ese mismo día
 select nombre, apellido, fecha_nacimiento
 from empleado
 where fecha_nacimiento >= '1990-04-20';
--- 4
+
+-- 4 Mostrar el nombre, apellido y fecha de nacimiento de los empleados nacidos en la
+-- década de 1980.
 select nombre, apellido, fecha_nacimiento
 from empleado
 where fecha_nacimiento between '1980-01-01' and '1989-12-31';
--- 5
+
+-- 5 Mostrar el nombre, apellido y fecha de nacimiento de las empleadas nacidas en las
+-- décadas de 1980 y 1990.
 select nombre, apellido, fecha_nacimiento
 from empleado
 where fecha_nacimiento between '1980-01-01' and '1999-12-31';
--- 6
+
+-- 6 Mostrar el apellido y el nombre (en ese orden) de todos los empleados cuyo apellido
+-- comience con 'P'.
 select apellido, nombre
 from epleado
 where apellido like 'P%';
+
