@@ -114,3 +114,19 @@ Ejercicio7.addEventListener('click', () => {
     convertirMetros(millas);
 
 });
+
+//8
+const Ejercicio8 = document.getElementById('ej8');
+
+Ejercicio8.addEventListener('click', () => {
+
+    function ascendente(num11, num22){
+        
+    }
+
+
+    texto8.textContent = area;
+
+    let num11 = (prompt('Introduce numero 1'));
+    let num22 = (prompt('Introduce numero 2'));
+});
