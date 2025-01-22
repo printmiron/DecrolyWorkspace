@@ -6,7 +6,7 @@ public class Taller {
     private int indiceActual;
 
     public Taller(HashMap<String, Coche> cochesEnTaller) {
-        this.cochesEnTaller = cochesEnTaller;
+        this.cochesEnTaller = new HashMap<>();
         this.indiceActual = 0;
     }
 
@@ -56,7 +56,7 @@ public class Taller {
         }else{
             for (String matricula : cochesEnTaller.keySet()) {
                 Coche coches = cochesEnTaller.get(matricula);
-                System.out.println("Matricula =[" + matricula + "] " + "Coche=[" + coches + "]");
+                System.out.println("Matricula = [" + matricula + "] " + coches);
             }
         }
     }

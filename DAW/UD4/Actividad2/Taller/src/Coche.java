@@ -18,7 +18,7 @@ public class Coche {
 
     @Override
     public String toString() {
-        return "Coches [color=" + color + ", marca=" + marca + "]";
+        return "Coche [color=" + color + ", marca=" + marca + "]";
     }
 
 }

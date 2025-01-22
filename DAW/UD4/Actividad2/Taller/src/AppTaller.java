@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class AppTaller {
     public static void main(String[] args) throws Exception {
         
-        Taller taller = new Taller();
+        Taller taller = new Taller(null);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -41,12 +41,18 @@ public class AppTaller {
                 case "3":
                     System.out.println("Hasta luego!");
                     break;
-                default:
-                 
-                
+                default:   
             }
-
         } while (!"3".equals(opcion));
+
+        System.out.println("Matriculas: ");
+        taller.visualizaMatriculas();
+
+        System.out.println("Coches: ");
+        taller.visualizaCoches();
+
+        System.out.println("Taller: ");
+        taller.visualizaTaller();
 
 
     }
