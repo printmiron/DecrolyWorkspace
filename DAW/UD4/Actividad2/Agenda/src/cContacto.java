@@ -38,7 +38,7 @@ public class cContacto {
 
     @Override
     public String toString() {
-        return "Contacto [nombre=" + nombre + ", telefono=" + telefono + ", correo=" + correo + "]";
+        return "[Contacto  telefono=" + telefono + ", correo=" + correo + "]";
     }
 
 }
