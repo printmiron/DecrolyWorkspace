@@ -83,7 +83,7 @@ Ejercicio6.addEventListener('click', () => {
         
         const descuento = ((pOriginal - pVenta) / pOriginal) * 100;
 
-        texto5.textContent = 'El procentaje de descuento es = ' + descuento;
+        texto6.textContent = 'El procentaje de descuento es = ' + descuento;
 
     }
 
@@ -120,13 +120,108 @@ const Ejercicio8 = document.getElementById('ej8');
 
 Ejercicio8.addEventListener('click', () => {
 
-    function ascendente(num11, num22){
-        
+    let num1 = (prompt('Introduce numero 1'));
+    let num2 = (prompt('Introduce numero 2'));
+
+    if (num1 < num2) {
+        texto8.textContent = 'El orden ascendente es: ' + num1 + '-' + num2;
+    }else{
+        texto8.textContent = 'El orden ascendente es: ' + num2 + '-' + num1;
+    }
+});
+
+//9
+const Ejercicio9 = document.getElementById('ej9');
+
+Ejercicio9.addEventListener('click', () => {
+
+    let num1 = (prompt('Introduce numero 1'));
+    let num2 = (prompt('Introduce numero 2'));
+
+    if (num1 > num2) {
+        texto9.textContent = ("El numero mayor es: " + num1);
+    } else if (num1 < num2) {
+        texto9.textContent = ("El numero mayor es: " + num2);
+    } else {
+        texto9.textContent = ("Los dos numeros son iguales");
+    }
+});
+
+//10
+const Ejercicio10 = document.getElementById('ej10');
+
+Ejercicio10.addEventListener('click', () => {
+
+    let num1 = (prompt('Introduce numero 1'));
+    let num2 = (prompt('Introduce numero 2'));
+    let num3 = (prompt('Introduce numero 3'));
+
+    if (num1 > num2 && num1 > num3) {
+        texto10.textContent = ("El numero mayor es: " + num1);
+    } else if (num2 > num1 && num2 > num3) {
+        texto10.textContent = ("El numero mayor es: " + num2);
+    } else {
+        texto10.textContent = ("El numero mayor es: " + num3);
+    }
+    
+});
+
+
+//11
+const Ejercicio11 = document.getElementById('ej11');
+
+Ejercicio11.addEventListener('click', () => {
+
+    let num1 = (prompt('Introduce primer valor'));
+    let num2 = (prompt('Introduce segundo valor valor'));
+
+    let suma = num1 + num2;
+    let resta = num1 - num2;
+    let producto = num1 * num2;
+    let division = num1 / num2;
+
+    if (num2 !== 0) {
+        division = num1 / num2;
+        texto11.textContent = ("La division es: " + division);
+    } else {
+        texto11.textContent = ('No se puede dividir por cero');
     }
 
+    texto11.textContent = 'Suma = ' + suma +
+                         ' Resta = ' + resta +
+                         ' Producto = ' + producto +
+                         ' Division = ' + division;
+});
 
-    texto8.textContent = area;
 
-    let num11 = (prompt('Introduce numero 1'));
-    let num22 = (prompt('Introduce numero 2'));
+//12
+const Ejercicio12 = document.getElementById('ej12');
+
+Ejercicio12.addEventListener('click', () => {
+
+    let num1 = (prompt('Introduce primer valor'));
+    let num2 = (prompt('Introduce segundo valor valor'));
+
+    if (num1 > num2) {
+        texto12.textContent = ("El numero mayor es: " + num1);
+    } else if (num1 < num2) {
+        texto12.textContent = ("El numero mayor es: " + num2);
+    }
+
+});
+
+//13
+const Ejercicio13 = document.getElementById('ej13');
+
+Ejercicio13.addEventListener('click', () => {
+
+    let num = (prompt('Introduce un valor'));
+    
+    if (num < 0) {
+        texto13.textContent = ("El numero es negativo");
+    }else if (num >= 0){
+        texto13.textContent = ("El numero es positivo");
+    }
+    
+
 });
