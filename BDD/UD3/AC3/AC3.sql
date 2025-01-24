@@ -81,10 +81,14 @@ join Conductor on dni_nie_conductor = dni_nie
 -- 2. Muestra el origen y destino de todos los servicios así como la matrícula del taxi que se
 -- utilizó y si estaba adaptado para clientes discapacitados.
 
-
+select origen, destino, matricula, clientes_descapacitados
+from Carreras
+join 
 
 -- 3. Lista todos los nombres de conductores y DNI/NIE y sus respectivos coches (marca,
 -- modelo, matrícula y número de pasajeros).
+
+select
 
 -- 4. Enumera todos los detalles de todos los taxis y todos los conductores.
 
