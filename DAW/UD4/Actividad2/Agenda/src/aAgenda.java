@@ -21,7 +21,6 @@ public class aAgenda {
             return true;
         }
     }
-//cambiar if y else cotainsKey
 
     public void buscaContacto(String nombre) {
         if (contactosEnAgenda.containsKey(nombre)) {
@@ -52,6 +51,13 @@ public class aAgenda {
             }
         }
     }
+
+    public int size() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'size'");
+    }
+
+    
     
 
 

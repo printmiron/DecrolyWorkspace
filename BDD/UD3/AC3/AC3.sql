@@ -38,9 +38,9 @@ foreign key (dni_nie_conductor) references Conductor(dni_nie)
 
 insert into Taxi (matricula, marca, modelo, numero_de_pasajeros, clientes_descapacitados) values
 ('1234CHB', 'Lexus', 'SC500', '2', false),
-('3243HGF', 'BMW', 'x1', '1', false),
+('3243HGF', 'BMW', 'x1', '1', true),
 ('2345CKD', 'Honda', 'Civic', '3', false),
-('2378FHG', 'Skoda', 'Octavia', '2', false),
+('2378FHG', 'Skoda', 'Octavia', '2', true),
 ('7069DLV', 'Mercedes', 'CLS', '4', false);
 
 insert into Carreras (id_carrera, origen, destino, precio, turno_noche) values
@@ -69,3 +69,23 @@ insert into Carrera_Taxi_Conductor (id_carrera, matricula_taxi, dni_nie_conducto
 (6, '7069DLV', '44444444A'), 
 (7, '7069DLV', '44444444A'), 
 (8, '7069DLV', '55555555B');
+
+-- 1. Muestra la matrícula, marca, modelo, DNI/NIE y nombre de todos los coches que tienen
+-- asignado un conductor (y los datos de los conductores).
+
+select matricula, marca, modelo, dni_nie, nombre
+from Taxi
+join Carrera_Taxi_Conductor on matricula = matricula.taxi
+join Conductor on dni_nie_conductor = dni_nie
+
+-- 2. Muestra el origen y destino de todos los servicios así como la matrícula del taxi que se
+-- utilizó y si estaba adaptado para clientes discapacitados.
+
+
+
+-- 3. Lista todos los nombres de conductores y DNI/NIE y sus respectivos coches (marca,
+-- modelo, matrícula y número de pasajeros).
+
+-- 4. Enumera todos los detalles de todos los taxis y todos los conductores.
+
+-- 5. Muestra todos los detalles de todos los servicios y todos los taxis.
