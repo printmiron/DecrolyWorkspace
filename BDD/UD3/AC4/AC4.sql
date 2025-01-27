@@ -72,3 +72,31 @@ INSERT INTO `dept_emp` VALUES (10001,'d006','2021-06-26','9999-01-01'),
 (10010,'d006','2020-10-12','9999-01-01'),
 (10011,'d005','2018-01-22','2019-09-10'),
 (10012,'d005','2019-06-26','9999-01-01');
+
+-- 1. ¿Cuántos empleados trabajan en el departamento de gestión de calidad?
+select departamento
+
+-- 2. ¿Quién es el empleado mejor pagado del departamento de desarrollo? Aporta su
+-- nombre, apellido y salario.
+
+-- 3. ¿Cuál es el nombre y apellido del último empleado contratado en el departamento de
+-- producción? ¿En qué fecha fue contratado?
+
+-- 4. Calcular el salario medio de los trabajadores del departamento de producción.
+
+-- 5. Mostrar el nombre, apellido y fecha de contratación del empleado que menos gana en
+-- el departamento de producción. También muestra su salario.
+
+-- 6. Muestra el nombre, apellidos, sexo y salario del empleado peor pagado de cada
+-- departamento.
+
+-- 7. Calcula el salario medio por sexo.
+
+-- 8. Calcula el coste salarial total de todos los empleados del departamento de desarrollo.
+
+-- 9. Calcula el coste salarial total de todos los empleados del departamento de producción
+-- que trabajan actualmente en él.
+
+-- 10. Identifica el departamento con el mayor número de empleados actualmente asignados
+-- y muestra el nombre del departamento junto con la cantidad de empleados.
+
