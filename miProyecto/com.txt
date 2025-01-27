@@ -1,0 +1,3 @@
+Una app donde tenemos juegos, y se pueden comprar, el usuario que tiene su profile tine un saldo, para asignar un saldo se 
+debe agregar una tarjeta de debito,  que se puede gastar en los juegos,
+los juegos son sparados por categorias precios etc.. buscar uno en concreto, eliminar o asignar jeugos.

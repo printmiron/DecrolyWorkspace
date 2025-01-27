@@ -12,12 +12,12 @@ public class AppAgendaUd4 {
         String opcion;
 
         do {
-            System.out.println("1.Anadir contacto");
-            System.out.println("2.Buscar contacto");
-            System.out.println("3.Eliminar contacto");
-            System.out.println("4.Visualizar agenda");
-            System.out.println("5.Numero de contactos de mi agenda");
-            System.out.println("6.Salir");
+            System.out.println("1) Anadir contacto");
+            System.out.println("2) Buscar contacto");
+            System.out.println("3) Eliminar contacto");
+            System.out.println("4) Visualizar agenda");
+            System.out.println("5) Numero de contactos de mi agenda");
+            System.out.println("6) Salir");
 
             opcion = scanner.nextLine();
             switch (opcion) {
@@ -25,7 +25,6 @@ public class AppAgendaUd4 {
 
                     //Validar telefono
                     String telefono;
-
                     do {
                         System.out.println("Introduce el telefono: ");
                         telefono = scanner.nextLine();
@@ -91,13 +90,10 @@ public class AppAgendaUd4 {
 
                 case "5":
 
-                    
-                    int tamano = agenda.size();
-
-                    if (tamano == 0) {
+                    if (agenda.size() == 0) {
                         System.out.println("No hay contactos en agenda");
-                    }else{
-                        System.out.println(tamano + " - contactos hay en agenda");
+                    } else {
+                        System.out.println(agenda.size() + " contacto(s) hay en agenda");
                     }
 
                     break;
@@ -106,6 +102,7 @@ public class AppAgendaUd4 {
                     System.out.println("Hasta luego!");
                     break;
                 default:
+                System.out.println("No hay ese tipo de opcion!");
             }
         } while (!"6".equals(opcion));
 

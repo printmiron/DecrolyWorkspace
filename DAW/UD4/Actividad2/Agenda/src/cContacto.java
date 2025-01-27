@@ -1,5 +1,3 @@
-
-
 public class cContacto {
 
     private String nombre;

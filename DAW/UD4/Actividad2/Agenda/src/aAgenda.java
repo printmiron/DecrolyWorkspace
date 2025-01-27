@@ -4,11 +4,9 @@ import java.util.HashMap;
 public class aAgenda {
 
     private HashMap<String, cContacto> contactosEnAgenda;
-    private int indiceActual;
 
     public aAgenda(HashMap<String, cContacto> contactosEnAgenda) {
         this.contactosEnAgenda = new HashMap<>();
-        this.indiceActual = 0;
     }
 
     public boolean anadeContacto(String nombre, cContacto contacto) {
@@ -24,9 +22,8 @@ public class aAgenda {
 
     public void buscaContacto(String nombre) {
         if (contactosEnAgenda.containsKey(nombre)) {
-            for (cContacto contactos : contactosEnAgenda.values()) {
-                System.out.println(contactos);
-            }
+            cContacto contactos = contactosEnAgenda.get(nombre);
+            System.out.println("[Nombre = " + nombre + "] " + contactos);  
         } else {
             System.out.println("No hay contacto en agenda!");
         }
@@ -53,8 +50,7 @@ public class aAgenda {
     }
 
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return contactosEnAgenda.size();
     }
 
     

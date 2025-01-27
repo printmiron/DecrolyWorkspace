@@ -25,7 +25,8 @@ apellido varchar(40) not null,
 direccion varchar(40) not null
 );
 
-create table Carrera_Taxi_Conductor (
+ 
+create table Servicios (
 id_carrera int,
 matricula_taxi varchar(8),
 dni_nie_conductor varchar(9),
@@ -60,7 +61,7 @@ insert into Conductor (dni_nie, nombre, apellido, direccion) values
 ('44444444A', 'Elena', 'Sánchez', 'Plaza Mayor'),
 ('55555555B', 'Javier', 'Torres', ' Calle del Sol');
 
-insert into Carrera_Taxi_Conductor (id_carrera, matricula_taxi, dni_nie_conductor) values
+insert into Servicios (id_carrera, matricula_taxi, dni_nie_conductor) values
 (1, '3243HGF', '11111111H'),
 (2, '2345CKD', '22222222J'),
 (3, '2345CKD', '22222222J'),
@@ -75,21 +76,35 @@ insert into Carrera_Taxi_Conductor (id_carrera, matricula_taxi, dni_nie_conducto
 
 select matricula, marca, modelo, dni_nie, nombre
 from Taxi
-join Carrera_Taxi_Conductor on matricula = matricula.taxi
-join Conductor on dni_nie_conductor = dni_nie
+join Servicios on matricula = matricula_taxi
+join Conductor on dni_nie_conductor = dni_nie;
 
 -- 2. Muestra el origen y destino de todos los servicios así como la matrícula del taxi que se
 -- utilizó y si estaba adaptado para clientes discapacitados.
 
-select origen, destino, matricula, clientes_descapacitados
+select origen, destino, matricula_taxi, clientes_descapacitados
 from Carreras
-join 
+join Servicios on Carreras.id_carrera = Servicios.id_carrera
+join Taxi on Taxi.matricula = Servicios.matricula_taxi;
+
 
 -- 3. Lista todos los nombres de conductores y DNI/NIE y sus respectivos coches (marca,
 -- modelo, matrícula y número de pasajeros).
 
-select
+select nombre, dni_nie, marca, modelo, matricula, numero_de_pasajeros
+from Conductor
+join Servicios on dni_nie = dni_nie_conductor
+join Taxi on matricula_taxi = matricula;
 
 -- 4. Enumera todos los detalles de todos los taxis y todos los conductores.
 
+select * 
+from Taxi
+join Servicios on Taxi.matricula = Servicios.matricula_taxi
+join Conductor on Servicios.dni_nie_conductor = Conductor.dni_nie;
+
+
 -- 5. Muestra todos los detalles de todos los servicios y todos los taxis.
+
+select * from Servicios
+join Taxi on Servicios.matricula_taxi = Taxi.matricula;
