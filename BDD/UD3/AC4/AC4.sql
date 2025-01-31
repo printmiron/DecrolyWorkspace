@@ -24,8 +24,8 @@ CREATE TABLE departamento (
 );
 
 CREATE TABLE dept_emp (
-	salario 	DOUBLE 			NOT NULL,
     cod_empleado      INT             NOT NULL,
+    salario 	DOUBLE 			NOT NULL,
     cod_departamento     CHAR(4)         NOT NULL,
     fecha_desde   DATE            NOT NULL,
     fecha_hasta     DATE            NOT NULL,
@@ -34,7 +34,8 @@ CREATE TABLE dept_emp (
     PRIMARY KEY (cod_empleado,cod_departamento)
 );
 
-INSERT INTO `empleado` VALUES (10001,'1953-09-02','Georgi','Facello','M','2021-06-26'),
+INSERT INTO `empleado` VALUES 
+(10001,'1953-09-02','Georgi','Facello','M','2021-06-26'),
 (10002,'1964-06-02','Bezalel','Simmel','F','2018-11-21'),
 (10003,'1979-12-03','Parto','Bamford','M','2019-08-28'),
 (10004,'1982-05-01','Chirstian','Koblick','M','2022-12-01'),
@@ -59,7 +60,8 @@ INSERT INTO `departamento` VALUES
 ('d009','Customer Service'),
 ('d010','IT');
 
-INSERT INTO `dept_emp` VALUES (10001,'d006','2021-06-26','9999-01-01'),
+INSERT INTO `dept_emp` VALUES 
+(10001,'d006','2021-06-26','9999-01-01'),
 (10002,'d006','2018-11-21','9999-01-01'),
 (10003,'d004','2019-08-28','9999-01-01'),
 (10004,'d004','2022-12-01','9999-01-01'),
@@ -72,6 +74,8 @@ INSERT INTO `dept_emp` VALUES (10001,'d006','2021-06-26','9999-01-01'),
 (10010,'d006','2020-10-12','9999-01-01'),
 (10011,'d005','2018-01-22','2019-09-10'),
 (10012,'d005','2019-06-26','9999-01-01');
+
+update empleado
 
 -- 1. ¿Cuántos empleados trabajan en el departamento de gestión de calidad?
 select departamento
