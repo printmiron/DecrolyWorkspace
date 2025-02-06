@@ -58,7 +58,6 @@ public class CuentaBancaria {
                 isRemove = true;
             }
         }
-
         return isRemove;
     }
 

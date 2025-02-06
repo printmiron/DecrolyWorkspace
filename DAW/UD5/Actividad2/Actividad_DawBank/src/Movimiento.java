@@ -35,4 +35,6 @@ public class Movimiento {
         return String.format("ID: %d, Fecha: %s, Tipo: %s, Cantidad: %.2f",
                 id, fechaMovimiento.format(formatter), tipo, cantidad);
     }
+
+    
 }
