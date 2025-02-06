@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class DawBank {
+public class AppUd5Ac2 {
 
     public static void main(String[] args) throws Exception {
 
