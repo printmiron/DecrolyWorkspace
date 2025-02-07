@@ -9,7 +9,7 @@ public class Movimiento {
 
     private int id;
     private LocalDateTime fechaMovimiento;
-    private String tipo;
+    private String tipo;        
     private double cantidad;
 
     public Movimiento(String tipo, double cantidad) {
