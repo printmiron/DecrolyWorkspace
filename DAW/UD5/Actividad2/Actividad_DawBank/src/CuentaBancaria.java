@@ -1,23 +1,26 @@
+import java.util.ArrayList;
+
 public class CuentaBancaria {
 
     // Atributos
     private String iban;
     private String titular;
     private double saldo;
-    private Movimiento[] movimientos;
+    private ArrayList <Movimiento> movimientos;
     private int nElementosActuales;
 
     // Constructor
-    public CuentaBancaria(String iban, String titular, double saldo) {
+    public CuentaBancaria(String iban, String titular, double saldo, ArrayList<Movimiento> movimientos,
+            int nElementosActuales) {
         this.iban = iban;
         this.titular = titular;
         this.saldo = saldo;
-        this.movimientos = new Movimiento[100]; // Hasta 100 movimientos
-        this.nElementosActuales = 0;
+        this.movimientos = movimientos;
+        this.nElementosActuales = nElementosActuales;
     }
 
-    public Movimiento[] getMovimientos() {
-        return this.movimientos;
+    public ArrayList<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
     public String getIBAN() {
@@ -35,7 +38,7 @@ public class CuentaBancaria {
     public boolean ingresarDinero(Movimiento m1) {
         boolean isAdd = false;
         if (m1 != null) {
-            this.movimientos[nElementosActuales] = m1;
+            movimientos.add(m1);
             this.nElementosActuales++;
             this.saldo += m1.getCantidad();
             isAdd = true;
@@ -52,7 +55,7 @@ public class CuentaBancaria {
             if (this.saldo - m1.getCantidad() < -50) {
                 System.out.println("La cantidad no puede ser inferior de -50");
             } else {
-                this.movimientos[nElementosActuales] = m1;
+                movimientos.add(m1);
                 this.nElementosActuales++;
                 this.saldo -= m1.getCantidad();
                 isRemove = true;

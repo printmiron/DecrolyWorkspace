@@ -31,7 +31,8 @@ public class Movimiento {
         return this.cantidad;
     }
 
-    public String mostrarInfoMovimiento() {
+    @Override
+    public String toString() {
         return String.format("ID: %d, Fecha: %s, Tipo: %s, Cantidad: %.2f",
                 id, fechaMovimiento.format(formatter), tipo, cantidad);
     }

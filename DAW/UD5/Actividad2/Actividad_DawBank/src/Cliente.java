@@ -5,6 +5,7 @@ public class Cliente extends Persona{
     private String telefono;
     private String email;
     private String direccion;
+    
     public Cliente(String nombre, String dni, Date fechaNacimiento, String telefono, String email, String direccion) {
         super(nombre, dni, fechaNacimiento);
         this.telefono = telefono;

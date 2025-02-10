@@ -66,7 +66,7 @@ public class AppUd5Ac2 {
                     System.out.println("Movimientos realizados:");
                     for (Movimiento mov : cuenta.getMovimientos()) {
                         if (mov != null) {
-                            System.out.println(mov.mostrarInfoMovimiento());
+                            System.out.println(mov.toString());
                         }
                     }
                     break;
