@@ -4,16 +4,16 @@ public class CuentaBancaria {
 
     // Atributos
     private String iban;
-    private String titular;
+    private String cliente;
     private double saldo;
     private ArrayList <Movimiento> movimientos;
     private int nElementosActuales;
 
     // Constructor
-    public CuentaBancaria(String iban, String titular, double saldo, ArrayList<Movimiento> movimientos,
+    public CuentaBancaria(String iban, String cliente, double saldo, ArrayList<Movimiento> movimientos,
             int nElementosActuales) {
         this.iban = iban;
-        this.titular = titular;
+        this.cliente = cliente;
         this.saldo = saldo;
         this.movimientos = movimientos;
         this.nElementosActuales = nElementosActuales;
@@ -27,8 +27,8 @@ public class CuentaBancaria {
         return this.iban;
     }
 
-    public String getTitular() {
-        return this.titular;
+    public String getCliente() {
+        return this.cliente;
     }
 
     public double getSaldo() {
@@ -55,8 +55,8 @@ public class CuentaBancaria {
             if (this.saldo - m1.getCantidad() < -50) {
                 System.out.println("La cantidad no puede ser inferior de -50");
             } else {
-                movimientos.add(m1);
-                this.nElementosActuales++;
+                movimientos.remove(m1);
+                this.nElementosActuales--;
                 this.saldo -= m1.getCantidad();
                 isRemove = true;
             }
@@ -65,7 +65,7 @@ public class CuentaBancaria {
     }
 
     public String infoCuentaBancaria() {
-        return String.format("Cuenta - IBAN: %s, Titular: %s, Saldo: %.2f", iban, titular, saldo);
+        return String.format("Cuenta - IBAN: %s, Cliente: %s, Saldo: %.2f", iban, cliente, saldo);
     }
 
     public String infoSaldo() {

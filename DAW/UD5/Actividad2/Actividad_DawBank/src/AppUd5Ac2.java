@@ -14,7 +14,7 @@ public class AppUd5Ac2 {
         String iban = Utils.comprobarPatronRepetidamente(patronIBAN, "Introduce su IBAN (ejemplo: ES1234567890123456789012): ");
 
         // Crear la cuenta bancaria
-        CuentaBancaria cuenta = new CuentaBancaria(iban, titular, 0);
+        CuentaBancaria cuenta = new CuentaBancaria(iban, titular, 0, null, 0);
 
         String opcion;
 
@@ -22,7 +22,7 @@ public class AppUd5Ac2 {
         do {
             System.out.println("1. Datos de la cuenta");
             System.out.println("2. IBAN");
-            System.out.println("3. Titular");
+            System.out.println("3. Cliente");
             System.out.println("4. Saldo");
             System.out.println("5. Ingreso");
             System.out.println("6. Retirada");
@@ -38,7 +38,7 @@ public class AppUd5Ac2 {
                     System.out.println("IBAN: " + cuenta.getIBAN());
                     break;
                 case "3":
-                    System.out.println("Titular: " + cuenta.getTitular());
+                    System.out.println("Cliente: " + cuenta.getCliente());
                     break;
                 case "4":
                     System.out.println(cuenta.infoSaldo());

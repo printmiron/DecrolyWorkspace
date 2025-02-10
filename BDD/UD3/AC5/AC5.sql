@@ -1453,9 +1453,19 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 -- 1. Lista el nombre del departamento actual de cada empleado (mostrando el nombre y
 -- apellido del empleado).
 
-select 
+select	e.first_name, e.last_name, d.dept_name
+from	employees e
+join	dept_emp de	on	e.emp_on = de.emp_no
+join	departments d	on	d.dept_no = d.dept_no
+where	current_date()	between	de.fromdate	and	de.to_date;
 
 -- 2. Muestra el salario actual de cada empleado y su nombre y apellidos.
+
+select	e.first_name, e.last_name, s.salary
+from	employees e
+join	salaries s on e.emp_no = s.emp_no
+where	current_date() between s.from_date and s.to_date;
+
 
 -- 3. Obtén la lista completa de jefes actuales de departamento y sus títulos.
 
