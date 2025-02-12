@@ -46,14 +46,14 @@ public class CuentaBancaria {
         return isAdd;
     }
 
-    public boolean retirarDinero(Movimiento m1) {
+    public boolean retirarDinero(Movimiento m1) throws Exception {
         boolean isRemove = false;
         if (m1 != null) {
             if (this.saldo - m1.getCantidad() < 0) {
-                System.out.println("Aviso! La cantidad es 0");
+                throw new CuentaException("Aviso! La cantidad es 0 ");
             }
             if (this.saldo - m1.getCantidad() < -50) {
-                System.out.println("La cantidad no puede ser inferior de -50");
+                throw new CuentaException("La cantidad no puede ser inferior de -50 ");
             } else {
                 movimientos.remove(m1);
                 this.nElementosActuales--;
