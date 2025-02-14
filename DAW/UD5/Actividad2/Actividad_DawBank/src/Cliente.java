@@ -1,4 +1,3 @@
-import java.sql.Date;
 
 public class Cliente extends Persona{
 
@@ -6,7 +5,7 @@ public class Cliente extends Persona{
     private String email;
     private String direccion;
     
-    public Cliente(String nombre, String dni, Date fechaNacimiento, String telefono, String email, String direccion) {
+    public Cliente(String nombre, String dni, String fechaNacimiento, String telefono, String email, String direccion) {
         super(nombre, dni, fechaNacimiento);
         this.telefono = telefono;
         this.email = email;

@@ -1,12 +1,11 @@
-import java.sql.Date;
 
 public class Persona {
 
     private String nombre;
     private String dni;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
 
-    public Persona(String nombre, String dni, Date fechaNacimiento) {
+    public Persona(String nombre, String dni, String fechaNacimiento) {
         this.nombre = nombre;
         this.dni = dni;
         this.fechaNacimiento = fechaNacimiento;
@@ -20,7 +19,7 @@ public class Persona {
         return dni;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
