@@ -1450,6 +1450,8 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 (10100,74365,'2000-09-17','2001-09-17'),
 (10100,74957,'2001-09-17','9999-01-01');
 
+
+
 -- 1. Lista el nombre del departamento actual de cada empleado (mostrando el nombre y
 -- apellido del empleado).
 
@@ -1469,20 +1471,85 @@ where	current_date() between s.from_date and s.to_date;
 
 -- 3. Obtén la lista completa de jefes actuales de departamento y sus títulos.
 
+select e.first_name, e.last_name, t.title, d.dept_name
+from employees e
+join dept_manager dm on e.emp_no = dm.emp_no
+join departments d on dm.dept_no = d.dept_no
+join titles t on e.emp_no = t.emp_no
+where current_date() between dm.from_date and dm.to_date and current_date() between t.from_date and t.to_date;
+
+
+
  -- 4. Enumera los 3 departamentos con más empleados en la actualidad.
  
+select d.dept_name, count(de.emp_no) as num_employees
+from departments d
+join dept_emp de on d.dept_no = de.dept_no
+where current_date() between de.from_date and de.to_date
+group by d.dept_name
+order by num_employees desc
+limit 3;
+
 -- 5. Enumera a todos los empleados que han trabajado en el mismo departamento durante
 -- más de 2 años.
+
+select e.first_name, e.last_name, d.dept_name, de.from_date, de.to_date
+from employees e
+join dept_emp de on e.emp_no = de.emp_no
+join departments d on de.dept_no = d.dept_no
+where current_date() between de.from_date and de.to_date
+and datediff(current_date(), de.from_date) > 730;  -- 730 dias son aproximadamente 2 años
 
 -- 6. Calcula el salario medio por departamento entre los empleados que actualmente
 -- trabajan en él.
 
+select d.dept_name, avg(s.salary) as avg_salary
+from departments d
+join dept_emp de on d.dept_no = de.dept_no
+join salaries s on de.emp_no = s.emp_no
+where current_date() between de.from_date and de.to_date
+and current_date() between s.from_date and s.to_date
+group by d.dept_name;
+
+
 -- 7. Muestra al empleado mejor pagado de cada departamento entre los que trabajan
 -- actualmente.
 
+select e.first_name, e.last_name, d.dept_name, s.salary
+from employees e
+join dept_emp de on e.emp_no = de.emp_no
+join departments d on de.dept_no = d.dept_no
+join salaries s on e.emp_no = s.emp_no
+where current_date() between de.from_date and de.to_date
+and current_date() between s.from_date and s.to_date
+and s.salary = (select max(salary)
+               from salaries
+               where emp_no = e.emp_no
+               and current_date() between from_date and to_date);
+
+
 -- 8. Muestra los detalles del jefe actual de departamentos con el salario más bajo.
+
+select e.first_name, e.last_name, d.dept_name, s.salary
+from employees e
+join dept_manager dm on e.emp_no = dm.emp_no
+join departments d on dm.dept_no = d.dept_no
+join salaries s on e.emp_no = s.emp_no
+where current_date() between dm.from_date and dm.to_date
+and current_date() between s.from_date and s.to_date
+and s.salary = (select min(salary)
+               from salaries
+               join dept_manager dm2 on salaries.emp_no = dm2.emp_no
+               where current_date() between dm2.from_date and dm2.to_date
+               and current_date() between salaries.from_date and salaries.to_date);
+
 
 -- 9. Muestra el salario, título, nombre y apellido del primer empleado contratado por la
 -- empresa.
 
+select s.salary, t.title, e.first_name, e.last_name
+from employees e
+join titles t on e.emp_no = t.emp_no
+join salaries s on e.emp_no = s.emp_no
+where e.hire_date = (select min(hire_date) from employees);
 
