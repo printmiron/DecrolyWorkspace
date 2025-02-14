@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="complete-button">${task.completed ? 'Desmarcar' : 'Marcar como completo'}</button>
                 <button class="delete-button">Eliminar</button>
             `;
-            taskList.appendChild(li);  // Agregar elemento de tarea a la lista
+            taskList.appendChild(li);  // Agregar elemento de tarea a la list
   
             // Agregar el event listener para marcar la tarea como completa
             li.querySelector('.complete-button').addEventListener('click', function() {
