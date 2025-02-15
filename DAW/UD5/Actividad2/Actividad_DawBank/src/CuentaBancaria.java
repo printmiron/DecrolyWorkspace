@@ -1,16 +1,16 @@
+
 import java.util.ArrayList;
 
-public class CuentaBancaria{
+public class CuentaBancaria {
 
     // Atributos
     private String iban;
     private Cliente cliente;
     private double saldo;
-    private ArrayList <Movimiento> movimientos;
+    private ArrayList<Movimiento> movimientos;
     private int nElementosActuales;
 
     // Constructor
-
     public CuentaBancaria(String nombre, String dni, String fechaNacimiento, String telefono, String email,
             String direccion, String iban, double saldo, ArrayList<Movimiento> movimientos,
             int nElementosActuales) {
@@ -20,7 +20,6 @@ public class CuentaBancaria{
         this.movimientos = movimientos;
         this.nElementosActuales = nElementosActuales;
     }
-
 
     public String getIban() {
         return iban;
@@ -60,17 +59,24 @@ public class CuentaBancaria{
 
     public boolean retirarDinero(Movimiento m1) throws Exception {
         boolean isRemove = false;
+
         if (m1 != null) {
-            if (this.saldo - m1.getCantidad() < 0) {
-                throw new CuentaException("Aviso! La cantidad es 0 ");
+            double sladoMenos50 = this.saldo - m1.getCantidad();
+
+            if (sladoMenos50 < -50) {
+                throw new CuentaException("Error: No puedes retirar esta cantidad, el saldo no puede ser menor a -50.");
             }
-            if (this.saldo - m1.getCantidad() < -50) {
-                throw new CuentaException("La cantidad no puede ser inferior de -50 ");
-            } else {
-                movimientos.remove(m1);
-                this.nElementosActuales--;
-                this.saldo -= m1.getCantidad();
-                isRemove = true;
+            movimientos.add(m1);
+            this.nElementosActuales++;
+            this.saldo = sladoMenos50;
+            isRemove = true;
+
+            if (this.saldo < 0) {
+                System.out.println("Aviso: La cantidad de tu saldo es 0 o menos.");
+            }
+
+            if (m1.getCantidad() > 5000) {
+                throw new AvisarHaciendaException(cliente, iban, "Retiro: " + m1.getCantidad());
             }
         }
         return isRemove;

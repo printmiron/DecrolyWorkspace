@@ -14,7 +14,7 @@ public class AppUd5Ac2 {
 
         //Pide DNI: Y12345678K
         final String patronDni = "[0-9]{8}[A-Za-z]";
-        String dni = Utils.comprobarPatronRepetidamente(patronDni, "Introduce su DNI (Y12345678K): ");
+        String dni = Utils.comprobarPatronRepetidamente(patronDni, "Introduce su DNI (12345678K): ");
 
         //Pide fecha: Ejemplo 12-05-2025
         final String patronFecha = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-[0-9]{4}$";

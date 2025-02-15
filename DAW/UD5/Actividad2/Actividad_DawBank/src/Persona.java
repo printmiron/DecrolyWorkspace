@@ -25,7 +25,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona [nombre=" + nombre + ", dni=" + dni + ", fechaNacimiento=" + fechaNacimiento + "]";
+        return " nombre=" + nombre + ", dni=" + dni + ", fechaNacimiento=" + fechaNacimiento;
     }
     
     
