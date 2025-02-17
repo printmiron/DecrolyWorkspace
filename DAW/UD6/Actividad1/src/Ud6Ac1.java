@@ -71,7 +71,7 @@ public class Ud6Ac1 {
                         case "2":
 
                             //Lectura de fichero Almacen.dat
-                            try (FileReader file = new FileReader("./resources/Almacen.dat"); BufferedReader reader = new BufferedReader(file);) {
+                            try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad1\\resources\\Almacen.dat"); BufferedReader reader = new BufferedReader(file);) {
                                 String linea = reader.readLine();
                                 while (linea != null) {
 
@@ -110,10 +110,12 @@ public class Ud6Ac1 {
                 //case 4: es para guardar todos los productos que has registrado en case 1(LinkedList), guarda todo en Almacen.dat
                 case "4":
 
-                    try (FileWriter file = new FileWriter("./resources/Almacen.dat", false); BufferedWriter writer = new BufferedWriter(file);) {
+                    try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad1\\resources\\Almacen.dat", false); BufferedWriter writer = new BufferedWriter(file);) {
 
-                        writer.write("");
-                        writer.newLine();
+                        for (Producto producto : productos) {
+                            writer.write(producto.getCodigo() + "," + producto.getNombre() + "," + producto.getCantidad() + "," + producto.getPrecio());
+                            writer.newLine();
+                        }
 
                     } catch (IOException e) {
                         System.out.println(e.getMessage());
