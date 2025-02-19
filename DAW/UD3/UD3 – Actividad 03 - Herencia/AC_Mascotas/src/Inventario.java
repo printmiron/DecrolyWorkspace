@@ -1,22 +1,47 @@
 
 import java.time.LocalDate;
 import java.util.Scanner;
-
+/**
+ * Clase que gestiona el inverntario de mascotas
+ * Permite varios acciones como insertar, borrar etc.
+ * 
+ * @author Pavel Miron
+ * @version 1.0.1
+ * @since 19-02-2025
+ *
+ */
 public class Inventario {
-
+	
     private Mascotas[] mascotas;
     private int indiceActual; // numero de animales actuales
 
+    /**
+     *Constructor del inventario
+     * 
+     * @param capacidad Capacidad maxima del inventario
+     */
+    
     public Inventario(int capacidad) {
         mascotas = new Mascotas[capacidad];
         indiceActual = 0;
     }
 
+    /**
+     * Metodo para limpiar el buffer
+     * 
+     * @param scanner
+     */
     //con esto tenia muchas errores hasta que encontro porque se tiene que poner esto
     private void limpiarBuffer(Scanner scanner) {
         scanner.nextLine();
     }
 
+    /**
+     * Insertar una nueva mascota
+     * 
+     * @param scanner Para coger los datos de la mascota
+     */
+    
     // Insertar una mascota
     public void insertarMascota(Scanner scanner) {
         if (indiceActual >= mascotas.length) {
@@ -118,6 +143,12 @@ public class Inventario {
         mascotas[indiceActual++] = mascota;
         System.out.println("Mascota agregada.");
     }
+    
+    /**
+     * Elimina una mascota del inventario por su nombre.
+     * 
+     * @param scanner Para capturar el nombre de la mascota a eliminar.
+     */
 
     // Eliminar una mascota
     public void eliminarMascota(Scanner scanner) {
@@ -135,7 +166,11 @@ public class Inventario {
         }
         System.out.println("No se encontro mascota con nombre: " + nombre);
     }
-
+    
+    /**
+     * Vacia completamente el inventario
+     */
+    
     // Vaciar el inventario
     public void vaciarInventario() {
         for (int i = 0; i < indiceActual; i++) {
@@ -144,7 +179,11 @@ public class Inventario {
         indiceActual = 0;
         System.out.println("Todos las mascotas fueron eliminadas.");
     }
-
+    
+    /**
+     * Muestra la lista de animales en el inventario
+     */
+    
     // Mostrar lista de animales
     public void mostrarListaAnimales() {
         for (int i = 0; i < indiceActual; i++) {
@@ -152,6 +191,7 @@ public class Inventario {
         }
     }
 
+    
     // Mostrar todos los datos de un animal
     public void mostrarDatosAnimal(Scanner scanner) {
         System.out.print("Ingrese el nombre de la mascota: ");
@@ -174,6 +214,12 @@ public class Inventario {
         }
     }
 
+    /**
+     * Metodo principal que ejecuta el programa de inventario de mascotas
+     * 
+     * @param args 
+     */
+    
     // Main
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
