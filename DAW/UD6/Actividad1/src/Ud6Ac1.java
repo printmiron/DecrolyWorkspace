@@ -15,9 +15,10 @@ public class Ud6Ac1 {
         Scanner sc = new Scanner(System.in);
 
         List<Producto> productos = new LinkedList<>();
+        List<Producto> productosAlmacen = new LinkedList<>();
 
         String opcion;
-
+        String opcionAd;
         do {
 
             System.out.println("1. Crear producto");
@@ -50,12 +51,12 @@ public class Ud6Ac1 {
                     break;
 
                 case "2":
-
+                //La idea es que los productos registrados "ahora" son los productos creados despues de arrancar la programa, si se reinicia la programa los productos registrados en LinkedList productos (case1) de borran, pero que se guardan en Alamacen.dat no, y si elegimos mostrar productos de almacen nos enseña solo los productos de almacen.
                     System.out.println("1. Mostrar productos registrados ahora ");
                     System.out.println("2. Mostrar productos desde almacen ");
-                    opcion = sc.nextLine();
+                    opcionAd = sc.nextLine();
 
-                    switch (opcion) {
+                    switch (opcionAd) {
                         case "1":
 
                             if (productos.isEmpty()) {
@@ -70,6 +71,8 @@ public class Ud6Ac1 {
 
                         case "2":
 
+                            productosAlmacen.clear();
+
                             //Lectura de fichero Almacen.dat
                             try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad1\\resources\\Almacen.dat"); BufferedReader reader = new BufferedReader(file);) {
                                 String linea = reader.readLine();
@@ -79,13 +82,17 @@ public class Ud6Ac1 {
 
                                     Producto p2 = new Producto(datos[0], (datos[1]), Integer.parseInt(datos[2]), Double.parseDouble(datos[3]));
 
-                                    productos.add(p2);
+                                    productosAlmacen.add(p2);
 
                                     linea = reader.readLine();
                                 }
 
                             } catch (IOException e) {
                                 System.out.println(e.getMessage());
+                            }
+
+                            for (Producto linea : productosAlmacen) {
+                                System.out.println(linea);
                             }
 
                             break;
@@ -102,6 +109,8 @@ public class Ud6Ac1 {
                         if (producto.getCodigo().equalsIgnoreCase(codigoEliminar)) {
                             productos.remove(producto);
                             System.out.println("Producto con codigo ( " + producto.getCodigo() + ") ha sido eliminado");
+                        }else{
+                            System.out.println("No hay producto con codigo: " + codigoEliminar);
                         }
                     }
 
@@ -110,7 +119,7 @@ public class Ud6Ac1 {
                 //case 4: es para guardar todos los productos que has registrado en case 1(LinkedList), guarda todo en Almacen.dat
                 case "4":
 
-                    try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad1\\resources\\Almacen.dat", false); BufferedWriter writer = new BufferedWriter(file);) {
+                    try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad1\\resources\\Almacen.dat", true); BufferedWriter writer = new BufferedWriter(file);) {
 
                         for (Producto producto : productos) {
                             writer.write(producto.getCodigo() + "," + producto.getNombre() + "," + producto.getCantidad() + "," + producto.getPrecio());
@@ -121,10 +130,12 @@ public class Ud6Ac1 {
                         System.out.println(e.getMessage());
                     }
 
+                    System.out.println("Productos guardados en almacen!");
+
                     break;
 
                 case "5":
-                    System.out.println("Hasta Luego");
+                    System.out.println("Hasta Luego!");
                     break;
 
                 default:
@@ -136,3 +147,6 @@ public class Ud6Ac1 {
 
     }
 }
+
+//como en ejercicio hay ->
+//"Implementa una clase principal con un menú con las siguientes opciones: ... "4. Guardar productos en el fichero" ..., lo entendi que se guardan los productos en programa y despues en Almacen.dat con opcion 4.
