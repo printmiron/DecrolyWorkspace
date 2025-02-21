@@ -52,7 +52,8 @@ public class Ud6Ac2 {
                     break;
 
                 case "2":
-                //La idea es que los productos registrados "ahora" son los productos creados despues de arrancar la programa, si se reinicia la programa los productos registrados en LinkedList productos (case1) de borran, pero que se guardan en Alamacen.dat no, y si elegimos mostrar productos de almacen nos enseña solo los productos de almacen.
+                    //La idea es que los productos registrados "ahora" son los productos creados despues de arrancar la programa, si se reinicia la programa los productos registrados en LinkedList (case1) de borran, pero que se guardan en Alamacen.dat no, y si elegimos mostrar productos de almacen nos enseña solo los productos de almacen.
+
                     System.out.println("1. Mostrar productos registrados ahora ");
                     System.out.println("2. Mostrar productos desde almacen ");
                     opcionAd = sc.nextLine();
@@ -72,45 +73,40 @@ public class Ud6Ac2 {
 
                         case "2":
 
-                           
+                            productosAlmacen.clear();
                             boolean eof = false;
                             //Lectura de fichero binario Almacen.dat
                             try (FileInputStream file = new FileInputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad2\\resources\\Almacen.dat"); DataInputStream reader = new DataInputStream(file);) {
-                               
-                                while(!eof){
+
+                                while (!eof) {
 
                                     String codigo1 = reader.readUTF();
                                     String nombre1 = reader.readUTF();
                                     int cantidad1 = reader.readInt();
                                     double precio1 = reader.readDouble();
-                                    Producto2 p2 = new Producto2(codigo1, nombre1, cantidad1, precio1); 
+                                    Producto2 p2 = new Producto2(codigo1, nombre1, cantidad1, precio1);
                                     productosAlmacen.add(p2);
 
                                 }
 
                             } catch (EOFException e) {
-                                System.out.println(e.getMessage());
                                 eof = true;
-                            }
-                            
-                            catch (IOException e){
-                                System.out.println(e.getMessage());
-                            }
-
-                            for (Producto2 p2 : productosAlmacen) {
-                                System.out.println(p2);
+                                
+                            } catch (IOException e) {
+                                System.out.println(e.getMessage());  
                             }
 
                             if (productosAlmacen.isEmpty()) {
                                 System.out.println("No hay productos en Almacen!");
+                            } else {
+                                for (Producto2 p2 : productosAlmacen) {
+                                    System.out.println(p2);
+                                }
                             }
-
-                            break;
-                        default:
                     }
                     break;
 
-                    case "3":
+                case "3":
 
                     System.out.println("Introduce el codigo del producto que quieres eliminar: ");
                     String codigoEliminar = sc.nextLine();
@@ -119,7 +115,7 @@ public class Ud6Ac2 {
                         if (producto.getCodigo().equalsIgnoreCase(codigoEliminar)) {
                             productos.remove(producto);
                             System.out.println("Producto con codigo ( " + producto.getCodigo() + ") ha sido eliminado");
-                        }else{
+                        } else {
                             System.out.println("No hay producto con codigo: " + codigoEliminar);
                         }
                     }
@@ -129,14 +125,13 @@ public class Ud6Ac2 {
                 //case 4: es para guardar todos los productos que has registrado en case 1(LinkedList), guarda todo en Almacen.dat
                 case "4":
 
-                    try (FileOutputStream  file = new FileOutputStream ("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad2\\resources\\Almacen.dat", true); DataOutputStream writer = new DataOutputStream(file);) {
+                    try (FileOutputStream file = new FileOutputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad2\\resources\\Almacen.dat", true); DataOutputStream writer = new DataOutputStream(file);) {
 
                         for (Producto2 producto : productos) {
                             writer.writeUTF(producto.getCodigo());
                             writer.writeUTF(producto.getNombre());
                             writer.writeInt(producto.getCantidad());
                             writer.writeDouble(producto.getPrecio());
-                            writer.write("\n".getBytes());
                         }
 
                     } catch (IOException e) {
