@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="welcome-popup" class="popup">Bienvenido a VinStyle</div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#carrito">Carrito</a></li>
+                <li><a href="#promociones">Promociones</a></li>
+            </ul>
+            <button id="modoBtn">Oscuro</button>
+
+        </nav>
+    </header>
+
+    <section id="inicio" class="full-screen">
+        <div class="container">
+            <h1 class="nombreTienda">VinStyle</h1>
+            <p class="descripcion">
+                Una tienda de ropa moderna y versátil, <br>
+                con prendas de alta calidad y diseños actuales <br>
+                para todos los estilos. Opciones elegantes, casuales y urbanas. <br>
+                ¡Viste con estilo y comodidad en cada ocasión! <br>
+            </p>
+        </div>
+    </section>
+
+    <section id="productos">
+        <h2>Nuestros Productos</h2>
+        <div class="productos-grid">
+
+            <div class="producto">
+                <img src="img/producto1.webp" alt="Producto 1">
+                <h3>Jako Vintage Track Jacket</h3>
+                <p><strong>$25.00</strong></p>
+                <button class="agregar-carrito" data-precio="25">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto2.webp" alt="Producto 2">
+                <h3>The North Face Zipper Fleece</h3>
+                <p><strong>$66.00</strong></p>
+                <button class="agregar-carrito" data-precio="66">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto3.webp" alt="Producto 3">
+                <h3>Lacoste Navy Blue Jacket</h3>
+                <p><strong>$43.00</strong></p>
+                <button class="agregar-carrito" data-precio="34">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto4.webp" alt="Producto 4">
+                <h3>Adidas Green Vintage Track Jacket</h3>
+                <p><strong>$75.00</strong></p>
+                <button class="agregar-carrito" data-precio="75">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto5.webp" alt="Producto 5">
+                <h3>Baileys Equipe Vintage Sweatshirt</h3>
+                <p><strong>$49.00</strong></p>
+                <button class="agregar-carrito" data-precio="49">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto6.webp" alt="Producto 6">
+                <h3>Alpha Industries Bomber Jacket</h3>
+                <p><strong>$83.00</strong></p>
+                <button class="agregar-carrito" data-precio="83">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto7.webp" alt="Producto 7">
+                <h3>Kappa Black Long Jacket</h3>
+                <p><strong>$99.00</strong></p>
+                <button class="agregar-carrito" data-precio="99">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto8.webp" alt="Producto 8">
+                <h3>Dickies Black Jacket</h3>
+                <p><strong>$51.00</strong></p>
+                <button class="agregar-carrito" data-precio="51">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto9.webp" alt="Producto 9">
+                <h3>Geographical Norway Dry Tech 4000 Long Purple Puffer Jacket</h3>
+                <p><strong>$31.00</strong></p>
+                <button class="agregar-carrito" data-precio="31">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto10.webp" alt="Producto 10">
+                <h3>Alpha Industries Vest Hooded Jacket</h3>
+                <p><strong>$74.00</strong></p>
+                <button class="agregar-carrito" data-precio="74">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto11.webp" alt="Producto 11">
+                <h3>Columbia Omni Tech Jacket</h3>
+                <p><strong>$54.00</strong></p>
+                <button class="agregar-carrito" data-precio="54">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto12.webp" alt="Producto 12">
+                <h3>Belstaff Black Long Jacket</h3>
+                <p><strong>$39.00</strong></p>
+                <button class="agregar-carrito" data-precio="39">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto13.webp" alt="Producto 13">
+                <h3>Savvy Raincoat</h3>
+                <p><strong>$51.00</strong></p>
+                <button class="agregar-carrito" data-precio="51">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto14.webp" alt="Producto 14">
+                <h3>Killtec Long Heavy Jacket</h3>
+                <p><strong>$87.00</strong></p>
+                <button class="agregar-carrito" data-precio="87">Agregar al carrito</button>
+            </div>
+
+            <div class="producto">
+                <img src="img/producto15.webp" alt="Producto 15">
+                <h3>High Power Black Heavy Jacket</h3>
+                <p><strong>$45.00</strong></p>
+                <button class="agregar-carrito" data-precio="45">Agregar al carrito</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="carrito">
+        <h2>Tu Carrito</h2>
+
+        <div class="containerMain">
+
+            
+            <div class="containerPedido">
+                <div class="nombre">
+                    <h1>Mi carrito</h1>
+                    
+                </div>
+
+                <div class="lista">
+                    <div id="lista-carrito">
+                        
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="containerTotal">
+                <div class="nombreTotal">
+                    <h1>Total Productos</h1>
+                    <div class="total">
+                        <p>Total: <span id="total">$0.00</span></p>
+                    </div>
+                </div>
+                
+            </div>
+
+    
+        </div>
+
+    </section>
+
+
+    <section id="promociones">
+        <h2>Ofertas y Promociones</h2>
+        <p>Tiempo restante: <span id="contador">
+            00:00:00
+        </span></p>
+    </section>
+
+    <footer>
+        <section id="contacto">
+            <h2 class="contacto">Contacto</h2>
+            <div class="email">
+                <img src="img/gmail.png" alt="">
+                <p>vintagestyle@gmail.com</p>
+            </div>
+
+            <div class="telefono">
+                <img src="img/telefono.png" alt="">
+                <p>643087425</p>
+            </div>
+
+            <div class="instagram">
+                <img src="img/instagram.png" alt="">
+                <p>vinstyle</p>
+            </div>
+
+            <div class="twitter">
+                <img src="img/twitter.png" alt="">
+                <p>VinStyleee</p>
+            </div>
+
+            <div class="facebook">
+                <img src="img/facebook.png" alt="">
+                <p>VintageStyle</p>
+            </div>
+        </section>
+
+
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

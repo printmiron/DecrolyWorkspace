@@ -1,0 +1,420 @@
+@media (max-width: 700px) {
+   
+    .productos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+    
+}
+
+
+
+
+
+
+/* Estilos generales */
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------*/
+/*NAVBAR*/
+
+/* Modo oscuro */
+body.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Simepre va estar encima de otros elemtos */
+    background: #ffffff;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+body.dark-mode nav{
+    background: #121212;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+body.dark-mode nav ul li a {
+    color: white;
+}
+
+/* Animación al pasar el mouse */
+nav ul li:hover {
+    transform: scale(1.1);
+    color: #b37525;
+}
+
+/* Subrayado animado */
+nav ul li a::after {
+   
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    width: 0%;
+    height: 2px;
+    background-color:#b37525;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+/* Expande el subrayado al hacer hover */
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+
+/* Boton de modo oscuro */
+#modoBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+body.dark-mode #modoBtn{
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------*/
+/*SECCION DE ROPPA*/
+
+/* Secciones */
+.full-screen {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #ffffff 100%), 
+    url('img/fondo.jpg') no-repeat center center/cover;
+    color: white;
+}
+
+body.dark-mode .full-screen {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #121212 100%), 
+    url('img/fondo.jpg') no-repeat center center/cover;
+    color: #ffffff;
+}
+
+.nombreTienda{
+    font-size: 15vh;
+    margin-left: 10vh;
+    margin-bottom: -4vh;
+}
+
+.descripcion{
+    margin-left: 10vh;
+    font-size: 2vh;
+}
+
+h2{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.producto {
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.producto:hover {
+    transform: scale(1.05);
+}
+
+.producto img {
+    width: 100%;
+    height: auto;
+}
+
+.agregar-carrito {
+    background: #b37525;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.agregar-carrito:hover {
+    background: #764d18;
+}
+
+.popup {
+    position: fixed;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-20%);
+    background: #000;
+    color: #fff;
+    padding: 10px 20px;
+    display: none;
+    z-index: 1;
+}
+
+#carrito{
+    margin: 50px;
+}
+
+
+
+
+
+
+
+
+/*--------------------------------------------*/
+/*PRODUCTOS QUE APAREZCAN EN CARRITO*/
+
+.lista {
+    grid-area: lista;
+    width: 100%;
+    display: flex; /* Asegura que los productos se alineen en una fila */
+    flex-wrap: wrap; /* Permite que los productos bajen de línea si no caben */
+    gap: 15px; /* Espaciado entre productos */
+    align-items: center; /* Alinea los productos verticalmente */
+    padding: 20px;
+}
+
+#lista-carrito {
+    display: flex;
+    flex-wrap: wrap; /* Si hay muchos productos, que salten de línea */
+    gap: 15px;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------*/
+/*CARRITO CON LISTA DE PRODUCTOS AÑADIDOS Y EL PRECIO TOTAL*/
+
+.containerMain {  display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-columns: 1fr;
+    gap: 0px 30px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "listaProductos pedido";
+  }
+  
+  .listaProductos { 
+    grid-area: listaProductos; 
+}
+  
+  .pedido { 
+    grid-area: pedido; 
+}
+
+.containerPedido {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 1.5fr;
+    grid-auto-columns: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 20px;
+    grid-template-areas:
+      "nombre"
+      "lista";
+  }
+  
+  .nombre { 
+    grid-area: nombre; 
+    padding: 20px;
+}
+  
+  .lista { 
+    grid-area: lista; 
+}
+  
+  .containerTotal {  display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.9fr 1.1fr;
+    grid-auto-columns: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "nombre"
+      "total";
+  }
+  
+  .nombreTotal { 
+    grid-area: nombre; 
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 130px; 
+    max-height: 100px; 
+   
+}
+  
+  .total { 
+    grid-area: total; 
+}
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------------*/
+/*FOOTER CON CONTACTOS */
+  
+
+footer {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.5) 70%, #ffffff 100%),
+    url('img/fondoFooter.jpg') no-repeat center center/cover;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 20px;
+}
+
+body.dark-mode footer{
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 70%, #121212 100%),
+    url('img/fondoFooter.jpg') no-repeat center center/cover;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 20px;
+}
+
+#contacto{
+    margin: 6vh;
+}
+
+.email, .telefono, .instagram, .twitter, .facebook {
+    font-size: 3vh;
+    display: flex;
+    align-items: center; 
+    gap: 15px; 
+    width: 100%;
+    height: 30px;
+    margin: 30px;
+}
+
+.email img, .telefono img, .instagram img, .twitter img, .facebook img{
+    width: 40px; 
+    height: 40px;
+}
+
+section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
+
+
+/*--------------------------------------------*/
+/*CONTADOR PROMOCIONES*/
+
+
+
+
+#promociones{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#contador {
+    font-size: 24px;
+    font-weight: bold;
+    color: #b37525;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+
