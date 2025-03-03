@@ -222,13 +222,13 @@ public class GestionVideoDaw {
             System.out.println("Primero necesitas registrar un videoclub");
         }
 
-        //devulve la lista de todos los articulos con sus nombres y tipo
+        //devulve la lista de todos los articulos con sus codigos y tipo
         for (Articulo articulos : articulos) {
             System.out.println(articulos.toString());
         }
 
-        System.out.println("Introduce el nombre del articulo que quieres alquilar");
-        String tituloAlquiler = sc.nextLine();
+        System.out.println("Introduce el codigo del articulo que quieres alquilar");
+        String codigoAlquiler = sc.nextLine();
         System.out.println("Introduce el DNI del cliente:");
         String dniAlquiler = sc.nextLine();
 
@@ -237,7 +237,7 @@ public class GestionVideoDaw {
         Videojuego videojuegoAlquilar = null;
 
         for (Articulo articulos : articulos) {
-            if (articulos.getTitulo().trim().equalsIgnoreCase(tituloAlquiler.trim())) {
+            if (articulos.getCod().equalsIgnoreCase(codigoAlquiler)) {
                 if (articulos instanceof Pelicula) {
                     peliculaAlquilar = (Pelicula) articulos;
                 } else if (articulos instanceof Videojuego) {
@@ -255,7 +255,7 @@ public class GestionVideoDaw {
         Cliente clienteAquilier = null;
 
         for (Cliente clientes : clientes) {
-            if (clientes.getDni().trim().equalsIgnoreCase(dniAlquiler.trim())) {
+            if (clientes.getDni().equalsIgnoreCase(dniAlquiler)) {
                 clienteAquilier = clientes;
                 break;
             }
@@ -293,8 +293,8 @@ public class GestionVideoDaw {
             System.out.println(articulos.toString());
         }
 
-        System.out.println("Introduce el nombre del articulo que quieres devolver");
-        String tituloDevolver = sc.nextLine();
+        System.out.println("Introduce el codigo del articulo que quieres devolver");
+        String codigoDevolver = sc.nextLine();
         System.out.println("Introduce el DNI del cliente:");
         String dniDevolver = sc.nextLine();
 
@@ -303,7 +303,7 @@ public class GestionVideoDaw {
         Videojuego videojuegoDevolver = null;
 
         for (Articulo articulos : articulos) {
-            if (articulos.getTitulo().trim().equalsIgnoreCase(tituloDevolver.trim())) {
+            if (articulos.getCod().equalsIgnoreCase(codigoDevolver)) {
                 if (articulos instanceof Pelicula) {
                     peliculaDeolver = (Pelicula) articulos;
                 } else if (articulos instanceof Videojuego) {
@@ -321,7 +321,7 @@ public class GestionVideoDaw {
         Cliente clienteDevolver = null;
 
         for (Cliente clientes : clientes) {
-            if (clientes.getDni().trim().equalsIgnoreCase(dniDevolver.trim())) {
+            if (clientes.getDni().equalsIgnoreCase(dniDevolver)) {
                 clienteDevolver = clientes;
                 break;
             }
@@ -367,7 +367,7 @@ public class GestionVideoDaw {
         // buscar articulo por codigo
         Articulo articuloBaja = null;
         for (Articulo articulos : articulos) {
-            if (articulos != null && articulos.getCod().trim().equalsIgnoreCase(codBaja.trim())) {
+            if (articulos != null && articulos.getCod().equalsIgnoreCase(codBaja)) {
                 articuloBaja = articulos;
                 break;
             }
@@ -408,7 +408,7 @@ public class GestionVideoDaw {
         // buscar cliente por dni
         Cliente clienteBaja = null;
         for (Cliente clientes : videoclubs.get(0).getClientesRegistrados()) {
-            if (clientes != null && clientes.getDni().trim().equalsIgnoreCase(dniBaja.trim())) {
+            if (clientes != null && clientes.getDni().equalsIgnoreCase(dniBaja)) {
                 clienteBaja = clientes;
                 break;
             }

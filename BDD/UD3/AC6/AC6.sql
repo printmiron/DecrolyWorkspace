@@ -354,112 +354,61 @@ INSERT INTO Modulo_de_energia (capacidad, energetica, estado, ubicacion_latitud,
 (475, 85, true, 31.7683, 35.2137);
 
 
--- Actualizar eficiencia de un Robot de Almacenamiento
-UPDATE Robot_de_AL 
-SET eficiencia = 'Muy Alta' 
-WHERE id_robot_almacenamiento = 5;
+-- 1. Actualizar la eficiencia de los robots de almacenamiento con eficiencia 'Baja'
+UPDATE Robot_de_AL
+SET eficiencia = 'Media'
+WHERE eficiencia = 'Baja';
 
--- Actualizar estado de un Drone
-UPDATE Drone 
-SET estado = false 
-WHERE id_drone = 4;
+-- 2. Aumentar el stock de un producto específico
+UPDATE Producto
+SET cantidad_en_inventario = cantidad_en_inventario + 50
+WHERE nombre = 'PlayStation 5';
 
--- Aumentar la cantidad de un producto en inventario
-UPDATE Producto 
-SET cantidad_en_inventario = cantidad_en_inventario + 30 
-WHERE id_producto = 3;
+-- 3. Desactivar drones que han agotado su autonomía
+UPDATE Drone
+SET estado = FALSE
+WHERE autonomia = 0;
 
--- Modificar la capacidad de una estantería
-UPDATE Estanteria 
-SET capacidad_de_almacenamiento = 280 
-WHERE id_estanteria = 1;
+-- 4. Actualizar el estado de pedidos entregados
+UPDATE Pedido
+SET estado_de_pedido = TRUE
+WHERE fecha_de_entrega <= CURDATE();
 
--- Cambiar el estado de un pedido a entregado
-UPDATE Pedido 
-SET estado_de_pedido = true 
-WHERE id_pedido = 4;
-
--- Ajustar la capacidad de carga de un Robot de Empaque
-UPDATE Robot_de_empaque 
-SET capacidad_de_empaque = 50 
-WHERE id_robot_de_empaque = 2;
-
--- Modificar la autonomía de un Drone
-UPDATE Drone 
-SET autonomia = 175 
-WHERE id_drone = 5;
-
--- Cambiar el estado de un módulo de energía
-UPDATE Modulo_de_energia 
-SET estado = true 
-WHERE id_modulo = 3;
-
--- Reducir el nivel de uso de una estantería
-UPDATE Estanteria 
-SET nivel_de_uso = 65 
-WHERE id_estanteria = 4;
-
--- Modificar la fecha estimada de entrega de un pedido
-UPDATE Pedido 
-SET estimada = '5 horas' 
-WHERE id_pedido = 3;
+-- 5. Reducir la capacidad de almacenamiento de estanterías en mal estado
+UPDATE Estanteria
+SET capacidad_de_almacenamiento = capacidad_de_almacenamiento - 20
+WHERE condicion = 'Regular';
 
 
 
+-- 1. Obtener los productos y su ubicación en las estanterías
+SELECT P.nombre, E.id_estanteria, E.ubicacion_latitud, E.ubicacion_longitud
+FROM Producto P
+JOIN Estanteria_Producto EP ON P.id_producto = EP.id_producto
+JOIN Estanteria E ON EP.id_estanteria = E.id_estanteria;
 
+-- 2. Listar los pedidos con los productos que contienen
+SELECT Pe.id_pedido, Pe.cliente, P.nombre, PP.cantidad_pedida
+FROM Pedido Pe
+JOIN Producto_Pedido PP ON Pe.id_pedido = PP.id_pedido
+JOIN Producto P ON PP.id_producto = P.id_producto;
 
--- 1. Obtener todos los pedidos pendientes (no entregados aún)
-SELECT * 
-FROM Pedido 
-WHERE estado_de_pedido = FALSE;
+-- 3. Mostrar los drones que han realizado entregas de pedidos
+SELECT D.id_drone, D.estado, Pe.id_pedido, Pe.fecha_de_pedido
+FROM Drone D
+JOIN Pedido_Drone_Entrega PDE ON D.id_drone = PDE.id_drone
+JOIN Pedido Pe ON PDE.id_pedido = Pe.id_pedido;
 
--- 2. Listar los productos con menos de 100 unidades en inventario
-SELECT * 
-FROM Producto 
-WHERE cantidad_en_inventario < 100;
+-- 4. Obtener el historial de mantenimiento de los robots
+SELECT PH.nombre, PH.apellido, RAL.id_robot_almacenamiento, RE.id_robot_de_empaque, DR.id_drone, PHRE.fecha_mantenimiento
+FROM Personal_humano PH
+JOIN Personal_humano_Robot_AL_EM_DR PHRE ON PH.id_personal = PHRE.id_personal
+LEFT JOIN Robot_de_AL RAL ON PHRE.id_robot_almacenamiento = RAL.id_robot_almacenamiento
+LEFT JOIN Robot_de_empaque RE ON PHRE.id_robot_de_empaque = RE.id_robot_de_empaque
+LEFT JOIN Drone DR ON PHRE.id_drone = DR.id_drone;
 
--- 3. Mostrar los drones disponibles (en estado activo)
-SELECT * 
-FROM Drone 
-WHERE estado = TRUE;
-
--- 4. Obtener los robots de almacenamiento con capacidad mayor a 80 kg
-SELECT * 
-FROM Robot_de_AL 
-WHERE capacidad_de_carga > 80;
-
--- 5. Encontrar las estanterías con un nivel de uso superior al 85%
-SELECT * 
-FROM Estanteria 
-WHERE nivel_de_uso > 85;
-
--- 6. Listar los pedidos junto con los productos asociados a ellos
-SELECT Pedido.id_pedido, Pedido.cliente, Producto.nombre, Producto_Pedido.cantidad_pedida
-FROM Pedido
-JOIN Producto_Pedido ON Pedido.id_pedido = Producto_Pedido.id_pedido
-JOIN Producto ON Producto_Pedido.id_producto = Producto.id_producto;
-
--- 7. Obtener la cantidad total de productos almacenados por cada estantería
-SELECT Estanteria.id_estanteria, SUM(Estanteria_Producto.cantidad_almacenada) AS total_productos
-FROM Estanteria
-JOIN Estanteria_Producto ON Estanteria.id_estanteria = Estanteria_Producto.id_estanteria
-GROUP BY Estanteria.id_estanteria;
-
--- 8. Mostrar los robots de empaque junto con la cantidad de pedidos que han procesado
-SELECT Robot_de_empaque.id_robot_de_empaque, COUNT(Robot_de_empaque_Pedido.id_pedido) AS total_pedidos_procesados
-FROM Robot_de_empaque
-LEFT JOIN Robot_de_empaque_Pedido ON Robot_de_empaque.id_robot_de_empaque = Robot_de_empaque_Pedido.id_robot_de_empaque
-GROUP BY Robot_de_empaque.id_robot_de_empaque;
-
--- 9. Encontrar los módulos de energía en estado activo y su ubicación
-SELECT * FROM Modulo_de_energia WHERE estado = TRUE;
-
--- 10. Obtener la lista de personal humano junto con los robots que han mantenido
-SELECT Personal_humano.id_personal, Personal_humano.nombre, Personal_humano.apellido, 
-       Personal_humano_Robot_AL_EM_DR.id_robot_almacenamiento, 
-       Personal_humano_Robot_AL_EM_DR.id_robot_de_empaque, 
-       Personal_humano_Robot_AL_EM_DR.id_drone
-FROM Personal_humano
-JOIN Personal_humano_Robot_AL_EM_DR ON Personal_humano.id_personal = Personal_humano_Robot_AL_EM_DR.id_personal;
-
-
+-- 5. Obtener la cantidad de productos por estantería
+SELECT E.id_estanteria, E.ubicacion_latitud, E.ubicacion_longitud, SUM(EP.cantidad_almacenada) AS total_productos
+FROM Estanteria E
+JOIN Estanteria_Producto EP ON E.id_estanteria = EP.id_estanteria
+GROUP BY E.id_estanteria, E.ubicacion_latitud, E.ubicacion_longitud;
