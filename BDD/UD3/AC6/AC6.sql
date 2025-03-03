@@ -6,314 +6,460 @@ drop database actividad3;
 create database actividad3;
 use actividad3;
 
-create table Robot_de_AL (
-id_robot_almacenamiento int auto_increment primary key,
-estado boolean,
-ubicacion int not null,
-capacidad_de_carga int,
-eficiencia varchar(50),
-energetica int
-); 
-
-create table Estanteria(
-id_estanteria int auto_increment primary key,
-ubicacion int not null,
-capacidad_de_almacenamiento int,
-nivel_de_uso int,
-condicion varchar(50)
+CREATE TABLE Robot_de_AL (
+    id_robot_almacenamiento INT AUTO_INCREMENT PRIMARY KEY,
+    estado BOOLEAN,
+    ubicacion_latitud DECIMAL(9,6) NOT NULL,
+    ubicacion_longitud DECIMAL(9,6) NOT NULL,
+    capacidad_de_carga INT,
+    eficiencia VARCHAR(50),
+    energetica INT
 );
 
-create table Producto(
-id_producto int auto_increment primary key,
-Nombre varchar(50) not null,
-dimensiones int,
-cantidad_en_inverntario int,
-peso int
+CREATE TABLE Estanteria (
+    id_estanteria INT AUTO_INCREMENT PRIMARY KEY,
+    ubicacion_latitud DECIMAL(9,6) NOT NULL,
+    ubicacion_longitud DECIMAL(9,6) NOT NULL,
+    capacidad_de_almacenamiento INT,
+    nivel_de_uso INT,
+    condicion VARCHAR(50)
 );
 
-create table Pedido(
-id_pedido int auto_increment primary key,
-fecha_de_pedido time not null,
-estado_de_pedido boolean,
-cliente varchar(50),
-fecha_de_entrega time,
-estimada varchar(50)
+CREATE TABLE Producto (
+    id_producto INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    dimensiones INT,
+    cantidad_en_inventario INT,
+    peso INT
 );
 
-create table Drone(
-id_drone int auto_increment primary key,
-estado boolean,
-ubicacion int,
-autonomia int,
-capacidad_de_carga int
+CREATE TABLE Pedido (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_de_pedido DATE NOT NULL,
+    estado_de_pedido BOOLEAN,
+    cliente VARCHAR(50),
+    fecha_de_entrega DATE,
+    estimada VARCHAR(50)
 );
 
-create table Robot_de_empaque (
-id_robot_de_empaque int auto_increment primary key,
-estado boolean,
-ubicacion int,
-capacidad_de_empaque int,
-energetica int
+CREATE TABLE Drone (
+    id_drone INT AUTO_INCREMENT PRIMARY KEY,
+    estado BOOLEAN,
+    ubicacion_latitud DECIMAL(9,6),
+    ubicacion_longitud DECIMAL(9,6),
+    autonomia INT,
+    capacidad_de_carga INT
 );
 
-create table Modulo_de_enegia (
-id_modulo int auto_increment primary key,
-capacidad int,
-energetica int,
-estado boolean,
-ubicacion int
+CREATE TABLE Robot_de_empaque (
+    id_robot_de_empaque INT AUTO_INCREMENT PRIMARY KEY,
+    estado BOOLEAN,
+    ubicacion_latitud DECIMAL(9,6),
+    ubicacion_longitud DECIMAL(9,6),
+    capacidad_de_empaque INT,
+    energetica INT
 );
 
-create table Personal_humano(
-id_personal int auto_increment primary key,
-DNI_NIE varchar(9),
-nombre varchar(40),
-apellido varchar(40),
-rol varchar(50),
-turno boolean,
-especialidad varchar(50)
+CREATE TABLE Modulo_de_energia (
+    id_modulo INT AUTO_INCREMENT PRIMARY KEY,
+    capacidad INT,
+    energetica INT,
+    estado BOOLEAN,
+    ubicacion_latitud DECIMAL(9,6),
+    ubicacion_longitud DECIMAL(9,6)
 );
 
-create table Robot_AL_Estanteria (
-id_robot_al_estanteria int auto_increment primary key,
-fecha_de_opracion time not null,
-duarcion_de_la_operacion time not null,
-id_robot_almacenamiento int,
-id_estanteria int,
-foreign key (id_robot_almacenamiento) references Robot_de_AL(id_robot_almacenamiento),
-foreign key (id_estanteria) references Estanteria(id_estanteria)
+CREATE TABLE Personal_humano (
+    id_personal INT AUTO_INCREMENT PRIMARY KEY,
+    DNI_NIE VARCHAR(9),
+    nombre VARCHAR(40),
+    apellido VARCHAR(40),
+    rol VARCHAR(50),
+    turno BOOLEAN,
+    especialidad VARCHAR(50)
 );
 
-create table Estanteria_Producto (
-id_estanteria_producto int auto_increment primary key,
-cantidad_almacenada int not null,
-id_producto int,
-id_estanteria int,
-foreign key (id_producto) references Producto(id_producto),
-foreign key (id_estanteria) references Estanteria(id_estanteria)
+CREATE TABLE Robot_AL_Estanteria (
+    id_robot_al_estanteria INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_de_operacion TIME NOT NULL,
+    duracion_de_la_operacion TIME NOT NULL,
+    id_robot_almacenamiento INT,
+    id_estanteria INT,
+    FOREIGN KEY (id_robot_almacenamiento) REFERENCES Robot_de_AL(id_robot_almacenamiento),
+    FOREIGN KEY (id_estanteria) REFERENCES Estanteria(id_estanteria)
 );
 
-create table Producto_Pedido (
-id_producto_pedido int auto_increment primary key,
-cantidad_pedida int not null,
-id_producto int,
-id_pedido int,
-foreign key (id_producto) references Producto(id_producto),
-foreign key (id_pedido) references Pedido(id_pedido)
+CREATE TABLE Estanteria_Producto (
+    id_estanteria_producto INT AUTO_INCREMENT PRIMARY KEY,
+    cantidad_almacenada INT NOT NULL,
+    id_producto INT,
+    id_estanteria INT,
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
+    FOREIGN KEY (id_estanteria) REFERENCES Estanteria(id_estanteria)
 );
 
-create table Pedido_Drone_Entrega(
-id_pedido_drone int auto_increment primary key,
-fecha_de_entrega time not null,
-duracion_de_entrega time not null,
-id_pedido int,
-id_drone int,
-foreign key (id_pedido) references Pedido(id_pedido),
-foreign key (id_drone) references Drone(id_drone)
+CREATE TABLE Producto_Pedido (
+    id_producto_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    cantidad_pedida INT NOT NULL,
+    id_producto INT,
+    id_pedido INT,
+    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto),
+    FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido)
 );
 
-create table Robot_de_empaque_Pedido(
-id_robot_de_empaque_pedido int auto_increment primary key,
-fecha_de_empaque time not null,
-tiempo_de_proceso time not null,
-id_robot_de_empaque int,
-id_pedido int,
-foreign key (id_robot_de_empaque) references Robot_de_empaque(id_robot_de_empaque),
-foreign key (id_pedido) references Pedido(id_pedido)
+CREATE TABLE Pedido_Drone_Entrega (
+    id_pedido_drone INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_de_entrega DATE NOT NULL,
+    duracion_de_entrega TIME NOT NULL,
+    id_pedido INT,
+    id_drone INT,
+    FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido),
+    FOREIGN KEY (id_drone) REFERENCES Drone(id_drone)
 );
 
-create table Modulo_de_enegia_Robot_AL_Empaque_Drone(
-id_modulo_robot_AL_EM_DR int auto_increment primary key,
-fecha_recarga time not null,
-duracion_recarga time not null,
-id_modulo int,
-id_robot_almacenamiento int,
-id_robot_de_empaque int,
-id_drone int,
-foreign key (id_modulo) references Modulo_de_enegia(id_modulo),
-foreign key (id_robot_almacenamiento) references Robot_de_AL(id_robot_almacenamiento),
-foreign key (id_robot_de_empaque) references Robot_de_empaque(id_robot_de_empaque),
-foreign key (id_drone) references Drone(id_drone)
+CREATE TABLE Robot_de_empaque_Pedido (
+    id_robot_de_empaque_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_de_empaque DATE NOT NULL,
+    tiempo_de_proceso TIME NOT NULL,
+    id_robot_de_empaque INT,
+    id_pedido INT,
+    FOREIGN KEY (id_robot_de_empaque) REFERENCES Robot_de_empaque(id_robot_de_empaque),
+    FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido)
 );
 
-create table Personal_humano_Robot_AL_Empaque_Drone(
-id_modulo_robot_AL_EM_DR int auto_increment primary key,
-fecha_mantenimiento time not null,
-descripcion_de_la_tarea varchar(100),
-id_personal int,
-id_robot_almacenamiento int,
-id_robot_de_empaque int,
-id_drone int,
-foreign key (id_personal) references Personal_humano(id_personal),
-foreign key (id_robot_almacenamiento) references Robot_de_AL(id_robot_almacenamiento),
-foreign key (id_robot_de_empaque) references Robot_de_empaque(id_robot_de_empaque),
-foreign key (id_drone) references Drone(id_drone)
+CREATE TABLE Modulo_de_energia_Robot_AL_EM_DR (
+    id_modulo_robot_AL_EM_DR INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_recarga DATE NOT NULL,
+    duracion_recarga TIME NOT NULL,
+    id_modulo INT,
+    id_robot_almacenamiento INT,
+    id_robot_de_empaque INT,
+    id_drone INT,
+    FOREIGN KEY (id_modulo) REFERENCES Modulo_de_energia(id_modulo),
+    FOREIGN KEY (id_robot_almacenamiento) REFERENCES Robot_de_AL(id_robot_almacenamiento),
+    FOREIGN KEY (id_robot_de_empaque) REFERENCES Robot_de_empaque(id_robot_de_empaque),
+    FOREIGN KEY (id_drone) REFERENCES Drone(id_drone)
 );
+
+CREATE TABLE Personal_humano_Robot_AL_EM_DR (
+    id_personal_robot_AL_EM_DR INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_mantenimiento DATE NOT NULL,
+    descripcion_de_la_tarea VARCHAR(100),
+    id_personal INT,
+    id_robot_almacenamiento INT,
+    id_robot_de_empaque INT,
+    id_drone INT,
+    FOREIGN KEY (id_personal) REFERENCES Personal_humano(id_personal),
+    FOREIGN KEY (id_robot_almacenamiento) REFERENCES Robot_de_AL(id_robot_almacenamiento),
+    FOREIGN KEY (id_robot_de_empaque) REFERENCES Robot_de_empaque(id_robot_de_empaque),
+    FOREIGN KEY (id_drone) REFERENCES Drone(id_drone)
+);
+
 
 -- Insertar datos en Robot_de_AL
-INSERT INTO Robot_de_AL (estado, ubicacion, capacidad_de_carga, eficiencia, energetica) VALUES
-(true, 101, 50, 'Alta', 90),
-(false, 102, 60, 'Media', 80),
-(true, 103, 70, 'Alta', 95);
+INSERT INTO Robot_de_AL (estado, ubicacion_latitud, ubicacion_longitud, capacidad_de_carga, eficiencia, energetica) VALUES
+(false, -23.5505, -46.6333, 85, 'Alta', 90),
+(true, 48.8566, 2.3522, 75, 'Media', 82),
+(false, 34.6937, 135.5023, 65, 'Baja', 78),
+(true, 55.7558, 37.6173, 70, 'Alta', 88),
+(false, -33.8688, 151.2093, 95, 'Media', 85)
+(true, 28.7041, 77.1025, 90, 'Alta', 95),
+(false, -34.6037, -58.3816, 70, 'Media', 85),
+(true, 59.3293, 18.0686, 80, 'Baja', 78),
+(false, 37.9838, 23.7275, 85, 'Alta', 90),
+(true, 6.5244, 3.3792, 95, 'Media', 88),
+(false, 50.1109, 8.6821, 75, 'Alta', 92),
+(true, -15.7942, -47.8822, 85, 'Media', 80),
+(false, 55.9533, -3.1883, 70, 'Baja', 79),
+(true, 25.7617, -80.1918, 100, 'Alta', 96),
+(false, 35.6895, 51.3890, 65, 'Media', 81)
+(true, 55.7558, 37.6173, 95, 'Alta', 97),
+(false, -33.9249, 18.4241, 85, 'Media', 87),
+(true, 35.6762, 139.6503, 90, 'Baja', 82),
+(false, 19.4326, -99.1332, 100, 'Alta', 95),
+(true, 47.6062, -122.3321, 92, 'Media', 88),
+(false, -25.2744, 133.7751, 80, 'Alta', 91),
+(true, 52.5200, 13.4050, 89, 'Media', 86),
+(false, 41.9028, 12.4964, 78, 'Baja', 80),
+(true, 40.7128, -74.0060, 105, 'Alta', 98),
+(false, 35.6895, 139.6917, 70, 'Media', 83);
 
 -- Insertar datos en Estanteria
-INSERT INTO Estanteria (ubicacion, capacidad_de_almacenamiento, nivel_de_uso, condicion) VALUES
-(201, 200, 80, 'Buena'),
-(202, 150, 60, 'Regular'),
-(203, 180, 90, 'Excelente');
+INSERT INTO Estanteria (ubicacion_latitud, ubicacion_longitud, capacidad_de_almacenamiento, nivel_de_uso, condicion) VALUES
+(37.7749, -122.4194, 240, 80, 'Buena'),
+(51.1657, 10.4515, 170, 65, 'Regular'),
+(19.4326, -99.1332, 200, 75, 'Excelente'),
+(35.6895, 139.6917, 220, 85, 'Buena'),
+(41.9028, 12.4964, 230, 90, 'Regular')
+(41.3851, 2.1734, 260, 85, 'Buena'),
+(-36.8485, 174.7633, 180, 75, 'Regular'),
+(1.3521, 103.8198, 220, 90, 'Excelente'),
+(45.4215, -75.6972, 240, 80, 'Buena'),
+(12.9716, 77.5946, 210, 85, 'Regular'),
+(-4.4419, 15.2663, 200, 78, 'Buena'),
+(60.1695, 24.9354, 230, 92, 'Excelente'),
+(18.5204, 73.8567, 195, 70, 'Regular'),
+(31.2304, 121.4737, 250, 95, 'Buena'),
+(-23.4425, -58.4438, 205, 83, 'Excelente')
+(51.1657, 10.4515, 265, 88, 'Buena'),
+(60.4720, 8.4689, 185, 76, 'Regular'),
+(-14.2350, -51.9253, 225, 93, 'Excelente'),
+(37.7749, -122.4194, 245, 82, 'Buena'),
+(34.0522, -118.2437, 215, 87, 'Regular'),
+(48.8566, 2.3522, 205, 80, 'Buena'),
+(59.9343, 30.3351, 235, 94, 'Excelente'),
+(39.9042, 116.4074, 200, 72, 'Regular'),
+(-33.8688, 151.2093, 255, 97, 'Buena'),
+(55.9533, -3.1883, 210, 85, 'Excelente');
 
 -- Insertar datos en Producto
-INSERT INTO Producto (Nombre, dimensiones, cantidad_en_inverntario, peso) VALUES
-('Producto A', 10, 100, 5),
-('Producto B', 15, 150, 7),
-('Producto C', 20, 200, 10);
+INSERT INTO Producto (nombre, dimensiones, cantidad_en_inventario, peso) VALUES
+('Nintendo Switch OLED', 26, 130, 15),
+('Sony WH-1000XM5', 18, 170, 10),
+('PlayStation 5', 45, 95, 20),
+('Google Pixel 7', 21, 200, 8),
+('Canon EOS R5', 25, 150, 9),
+('Microsoft Surface Pro 9', 29, 150, 12),
+('Bose QuietComfort 45', 19, 180, 9),
+('Oculus Quest 2', 35, 100, 18),
+('Samsung Galaxy Z Fold 4', 22, 190, 7),
+('DJI Mavic Air 2', 26, 160, 8),
+('Garmin Fenix 7X', 13, 175, 6),
+('Asus ROG Zephyrus G14', 39, 140, 15),
+('GoPro HERO11 Black', 20, 130, 5),
+('Xiaomi Mi Band 7', 14, 210, 3),
+('Sony Alpha 7 IV', 28, 120, 11),
+('Dell XPS 15', 32, 140, 13),
+('Beats Studio 3', 18, 175, 10),
+('PS5 DualSense Controller', 25, 120, 7),
+('Google Pixel 7 Pro', 20, 200, 8),
+('Raspberry Pi 4', 15, 180, 5),
+('Sony WH-1000XM5', 17, 190, 9),
+('Lenovo ThinkPad X1', 31, 135, 14),
+('Samsung Odyssey G9', 50, 110, 20),
+('Fitbit Charge 5', 12, 220, 3),
+('Canon EOS R6', 30, 125, 12);
 
 -- Insertar datos en Pedido
 INSERT INTO Pedido (fecha_de_pedido, estado_de_pedido, cliente, fecha_de_entrega, estimada) VALUES
-('08:30:00', true, 'Cliente 1', '10:30:00', '2 horas'),
-('09:00:00', false, 'Cliente 2', '11:00:00', '2 horas'),
-('10:15:00', true, 'Cliente 3', '12:15:00', '2 horas');
+('2024-05-01', true, 'C-112233', '2024-05-03', '2 días'),
+('2024-05-02', false, 'C-445566', '2024-05-04', '2 días'),
+('2024-05-03', true, 'C-778899', '2024-05-05', '2 días'),
+('2024-05-04', false, 'C-990011', '2024-05-06', '2 días'),
+('2024-05-05', true, 'C-223344', '2024-05-07', '2 días'),
+('2024-06-10', true, 'C-334455', '2024-06-12', '2 días'),
+('2024-06-11', false, 'C-556677', '2024-06-13', '2 días'),
+('2024-06-12', true, 'C-778899', '2024-06-14', '2 días'),
+('2024-06-13', false, 'C-990011', '2024-06-15', '2 días'),
+('2024-06-14', true, 'C-112233', '2024-06-16', '2 días'),
+('2024-06-15', false, 'C-223344', '2024-06-17', '2 días'),
+('2024-06-16', true, 'C-334455', '2024-06-18', '2 días'),
+('2024-06-17', false, 'C-445566', '2024-06-19', '2 días'),
+('2024-06-18', true, 'C-556677', '2024-06-20', '2 días'),
+('2024-06-19', false, 'C-667788', '2024-06-21', '2 días'),
+('2024-07-01', true, 'C-998877', '2024-07-03', '2 días'),
+('2024-07-02', false, 'C-776655', '2024-07-04', '2 días'),
+('2024-07-03', true, 'C-554433', '2024-07-05', '2 días'),
+('2024-07-04', false, 'C-332211', '2024-07-06', '2 días'),
+('2024-07-05', true, 'C-112233', '2024-07-07', '2 días'),
+('2024-07-06', false, 'C-221144', '2024-07-08', '2 días'),
+('2024-07-07', true, 'C-334455', '2024-07-09', '2 días'),
+('2024-07-08', false, 'C-556677', '2024-07-10', '2 días'),
+('2024-07-09', true, 'C-778899', '2024-07-11', '2 días'),
+('2024-07-10', false, 'C-990011', '2024-07-12', '2 días');
 
 -- Insertar datos en Drone
-INSERT INTO Drone (estado, ubicacion, autonomia, capacidad_de_carga) VALUES
-(true, 301, 120, 20),
-(false, 302, 100, 15),
-(true, 303, 140, 25);
+INSERT INTO Drone (estado, ubicacion_latitud, ubicacion_longitud, autonomia, capacidad_de_carga) VALUES
+(true, 60.1699, 24.9384, 140, 25),
+(false, -26.2041, 28.0473, 100, 15),
+(true, 39.9042, 116.4074, 160, 30),
+(false, 35.6762, 139.6503, 120, 20),
+(true, 52.5200, 13.4050, 110, 22),
+(true, 49.2827, -123.1207, 135, 26),
+(false, -41.2865, 174.7762, 120, 18),
+(true, 22.3193, 114.1694, 155, 30),
+(false, 59.9139, 10.7522, 110, 22),
+(true, 40.4168, -3.7038, 140, 28),
+(false, -37.8136, 144.9631, 100, 16),
+(true, 24.7136, 46.6753, 145, 27),
+(false, 54.6872, 25.2797, 125, 21),
+(true, 33.6844, 73.0479, 130, 23),
+(false, 43.6511, -79.3470, 105, 19),
+(true, -26.2041, 28.0473, 140, 29),
+(false, 13.7563, 100.5018, 115, 20),
+(true, 41.3851, 2.1734, 160, 33),
+(false, 37.5665, 126.9780, 120, 25),
+(true, 45.5088, -73.5878, 145, 31),
+(false, -22.9068, -43.1729, 105, 18),
+(true, 50.8503, 4.3517, 150, 30),
+(false, 40.4168, -3.7038, 130, 23),
+(true, 1.3521, 103.8198, 135, 27),
+(false, 52.5200, 13.4050, 110, 19);
 
 -- Insertar datos en Robot_de_empaque
-INSERT INTO Robot_de_empaque (estado, ubicacion, capacidad_de_empaque, energetica) VALUES
-(true, 401, 30, 85),
-(false, 402, 25, 80),
-(true, 403, 35, 90);
+INSERT INTO Robot_de_empaque (estado, ubicacion_latitud, ubicacion_longitud, capacidad_de_empaque, energetica) VALUES
+(false, 40.7128, -74.0060, 35, 88),
+(true, 13.7563, 100.5018, 28, 80),
+(false, -22.9068, -43.1729, 40, 92),
+(true, 19.0760, 72.8777, 30, 85),
+(true, 37.5665, 126.9780, 38, 87),
+(false, 52.3676, 4.9041, 32, 86),
+(true, 39.2904, -76.6122, 29, 82),
+(false, 41.2565, -95.9345, 40, 91),
+(true, 30.0444, 31.2357, 31, 89),
+(true, 36.1627, -86.7816, 35, 94),
+(false, 64.1355, -21.8954, 28, 77),
+(true, -29.8587, 31.0218, 38, 92),
+(false, 14.5995, 120.9842, 27, 83),
+(true, 25.2048, 55.2708, 36, 96),
+(false, 37.9838, 23.7275, 30, 81),
+(false, 35.6895, 139.6917, 34, 89),
+(true, -3.745, -73.2472, 31, 84),
+(false, 30.2672, -97.7431, 42, 92),
+(true, 25.2769, 55.2962, 33, 90),
+(true, -23.5505, -46.6333, 37, 95),
+(false, 43.7384, 7.4246, 30, 79),
+(true, 55.7558, 37.6173, 40, 97),
+(false, 12.9716, 77.5946, 29, 85),
+(true, 51.5074, -0.1278, 38, 98),
+(false, -37.8136, 144.9631, 32, 83);
 
--- Insertar datos en Modulo_de_enegia
-INSERT INTO Modulo_de_enegia (capacidad, energetica, estado, ubicacion) VALUES
-(500, 95, true, 501),
-(400, 90, false, 502),
-(450, 92, true, 503);
 
--- Insertar datos en Personal_humano
-INSERT INTO Personal_humano (DNI_NIE, nombre, apellido, rol, turno, especialidad) VALUES
-('12345678A', 'Juan', 'Perez', 'Técnico', true, 'Mantenimiento'),
-('87654321B', 'Ana', 'Gomez', 'Operario', false, 'Logística'),
-('56781234C', 'Luis', 'Martínez', 'Supervisor', true, 'Supervisión');
+-- Insertar datos en Modulo_de_energia
+INSERT INTO Modulo_de_energia (capacidad, energetica, estado, ubicacion_latitud, ubicacion_longitud) VALUES
+(480, 92, true, -1.2921, 36.8219),
+(420, 89, false, 55.7558, 37.6173),
+(500, 97, true, -35.2809, 149.1300),
+(550, 95, true, 25.276987, 55.296249),
+(430, 85, false, 31.2304, 121.4737),
+(470, 94, true, -8.4095, 115.1889),
+(430, 89, false, 32.0853, 34.7818),
+(520, 98, true, 45.7640, 4.8357),
+(550, 97, true, 23.6345, -102.5528),
+(480, 88, false, -12.0464, -77.0428),
+(510, 92, true, 37.5665, 126.9780),
+(460, 85, false, 55.7558, 37.6173),
+(490, 95, true, 19.0758, 72.8777),
+(530, 90, false, -22.9068, -43.1729),
+(495, 87, true, 34.0522, -118.2437),
+(460, 96, true, 10.8231, 106.6297),
+(420, 88, false, 3.1390, 101.6869),
+(540, 99, true, -35.2820, 149.1287),
+(570, 100, true, 48.2082, 16.3738),
+(490, 91, false, -4.4419, 15.2663),
+(530, 94, true, 59.3293, 18.0686),
+(510, 90, false, 28.6139, 77.2090),
+(500, 89, true, -33.4489, -70.6693),
+(520, 97, false, 35.6762, 139.6503),
+(475, 85, true, 31.7683, 35.2137);
 
--- Insertar datos en Robot_AL_Estanteria
-INSERT INTO Robot_AL_Estanteria (fecha_de_opracion, duarcion_de_la_operacion, id_robot_almacenamiento, id_estanteria) VALUES
-('08:45:00', '00:30:00', 1, 1),
-('09:15:00', '00:25:00', 2, 2),
-('10:00:00', '00:35:00', 3, 3);
-
--- Insertar datos en Estanteria_Producto
-INSERT INTO Estanteria_Producto (cantidad_almacenada, id_producto, id_estanteria) VALUES
-(50, 1, 1),
-(75, 2, 2),
-(100, 3, 3);
-
--- Insertar datos en Producto_Pedido
-INSERT INTO Producto_Pedido (cantidad_pedida, id_producto, id_pedido) VALUES
-(10, 1, 1),
-(20, 2, 2),
-(30, 3, 3);
-
--- Insertar datos en Pedido_Drone_Entrega
-INSERT INTO Pedido_Drone_Entrega (fecha_de_entrega, duracion_de_entrega, id_pedido, id_drone) VALUES
-('10:45:00', '00:15:00', 1, 1),
-('11:30:00', '00:30:00', 2, 2),
-('12:45:00', '00:20:00', 3, 3);
-
--- Insertar datos en Robot_de_empaque_Pedido
-INSERT INTO Robot_de_empaque_Pedido (fecha_de_empaque, tiempo_de_proceso, id_robot_de_empaque, id_pedido) VALUES
-('08:50:00', '00:10:00', 1, 1),
-('09:20:00', '00:15:00', 2, 2),
-('10:30:00', '00:20:00', 3, 3);
-
--- Insertar datos en Modulo_de_enegia_Robot_AL_Empaque_Drone
-INSERT INTO Modulo_de_enegia_Robot_AL_Empaque_Drone (fecha_recarga, duracion_recarga, id_modulo, id_robot_almacenamiento, id_robot_de_empaque, id_drone) VALUES
-('07:00:00', '00:40:00', 1, 1, 1, 1),
-('08:00:00', '00:35:00', 2, 2, 2, 2),
-('09:30:00', '00:45:00', 3, 3, 3, 3);
-
--- Insertar datos en Personal_humano_Robot_AL_Empaque_Drone
-INSERT INTO Personal_humano_Robot_AL_Empaque_Drone (fecha_mantenimiento, descripcion_de_la_tarea, id_personal, id_robot_almacenamiento, id_robot_de_empaque, id_drone) VALUES
-('07:30:00', 'Revisión general', 1, 1, 1, 1),
-('08:30:00', 'Reparación de sistema', 2, 2, 2, 2),
-('09:45:00', 'Mantenimiento preventivo', 3, 3, 3, 3);
 
 -- Actualizar eficiencia de un Robot de Almacenamiento
 UPDATE Robot_de_AL 
 SET eficiencia = 'Muy Alta' 
-WHERE id_robot_almacenamiento = 1;
+WHERE id_robot_almacenamiento = 5;
 
 -- Actualizar estado de un Drone
 UPDATE Drone 
-SET estado = true 
-WHERE id_drone = 2;
+SET estado = false 
+WHERE id_drone = 4;
 
 -- Aumentar la cantidad de un producto en inventario
 UPDATE Producto 
-SET cantidad_en_inverntario = cantidad_en_inverntario + 50 
-WHERE id_producto = 1;
+SET cantidad_en_inventario = cantidad_en_inventario + 30 
+WHERE id_producto = 3;
 
 -- Modificar la capacidad de una estantería
 UPDATE Estanteria 
-SET capacidad_de_almacenamiento = 220 
-WHERE id_estanteria = 3;
+SET capacidad_de_almacenamiento = 280 
+WHERE id_estanteria = 1;
 
 -- Cambiar el estado de un pedido a entregado
 UPDATE Pedido 
 SET estado_de_pedido = true 
-WHERE id_pedido = 2;
+WHERE id_pedido = 4;
 
 -- Ajustar la capacidad de carga de un Robot de Empaque
 UPDATE Robot_de_empaque 
-SET capacidad_de_empaque = 40 
-WHERE id_robot_de_empaque = 3;
+SET capacidad_de_empaque = 50 
+WHERE id_robot_de_empaque = 2;
 
 -- Modificar la autonomía de un Drone
 UPDATE Drone 
-SET autonomia = 160 
-WHERE id_drone = 1;
+SET autonomia = 175 
+WHERE id_drone = 5;
 
--- Cambiar el turno de un empleado
-UPDATE Personal_humano 
-SET turno = false 
-WHERE id_personal = 3;
+-- Cambiar el estado de un módulo de energía
+UPDATE Modulo_de_energia 
+SET estado = true 
+WHERE id_modulo = 3;
 
 -- Reducir el nivel de uso de una estantería
 UPDATE Estanteria 
-SET nivel_de_uso = 70 
-WHERE id_estanteria = 2;
+SET nivel_de_uso = 65 
+WHERE id_estanteria = 4;
 
 -- Modificar la fecha estimada de entrega de un pedido
 UPDATE Pedido 
-SET estimada = '3 horas' 
-WHERE id_pedido = 1;
+SET estimada = '5 horas' 
+WHERE id_pedido = 3;
 
--- Consultar los productos en una estanteria especifica
-SELECT Producto.Nombre, Estanteria.ubicacion 
-FROM Estanteria_Producto
-JOIN Producto ON Estanteria_Producto.id_producto = Producto.id_producto
-JOIN Estanteria ON Estanteria_Producto.id_estanteria = Estanteria.id_estanteria
-WHERE Estanteria.id_estanteria = 2;
 
--- Listar los pedidos con sus productos asociados
-SELECT Pedido.id_pedido, Pedido.cliente, Producto.Nombre, Producto_Pedido.cantidad_pedida 
+
+
+
+-- 1. Obtener todos los pedidos pendientes (no entregados aún)
+SELECT * 
+FROM Pedido 
+WHERE estado_de_pedido = FALSE;
+
+-- 2. Listar los productos con menos de 100 unidades en inventario
+SELECT * 
+FROM Producto 
+WHERE cantidad_en_inventario < 100;
+
+-- 3. Mostrar los drones disponibles (en estado activo)
+SELECT * 
+FROM Drone 
+WHERE estado = TRUE;
+
+-- 4. Obtener los robots de almacenamiento con capacidad mayor a 80 kg
+SELECT * 
+FROM Robot_de_AL 
+WHERE capacidad_de_carga > 80;
+
+-- 5. Encontrar las estanterías con un nivel de uso superior al 85%
+SELECT * 
+FROM Estanteria 
+WHERE nivel_de_uso > 85;
+
+-- 6. Listar los pedidos junto con los productos asociados a ellos
+SELECT Pedido.id_pedido, Pedido.cliente, Producto.nombre, Producto_Pedido.cantidad_pedida
 FROM Pedido
 JOIN Producto_Pedido ON Pedido.id_pedido = Producto_Pedido.id_pedido
 JOIN Producto ON Producto_Pedido.id_producto = Producto.id_producto;
 
--- Obtener la cantidad de productos almacenados en cada estantería
-SELECT Estanteria.id_estanteria, SUM(Estanteria_Producto.cantidad_almacenada) AS total_almacenado 
-FROM Estanteria_Producto
-JOIN Estanteria ON Estanteria_Producto.id_estanteria = Estanteria.id_estanteria
+-- 7. Obtener la cantidad total de productos almacenados por cada estantería
+SELECT Estanteria.id_estanteria, SUM(Estanteria_Producto.cantidad_almacenada) AS total_productos
+FROM Estanteria
+JOIN Estanteria_Producto ON Estanteria.id_estanteria = Estanteria_Producto.id_estanteria
 GROUP BY Estanteria.id_estanteria;
 
--- Consultar los robots de empaque con su ubicación y estado
-SELECT id_robot_de_empaque, ubicacion, estado 
-FROM Robot_de_empaque;
+-- 8. Mostrar los robots de empaque junto con la cantidad de pedidos que han procesado
+SELECT Robot_de_empaque.id_robot_de_empaque, COUNT(Robot_de_empaque_Pedido.id_pedido) AS total_pedidos_procesados
+FROM Robot_de_empaque
+LEFT JOIN Robot_de_empaque_Pedido ON Robot_de_empaque.id_robot_de_empaque = Robot_de_empaque_Pedido.id_robot_de_empaque
+GROUP BY Robot_de_empaque.id_robot_de_empaque;
 
--- Obtener el tiempo total de operacion de cada Robot de Almacenamiento
-SELECT id_robot_almacenamiento, SUM(TIME_TO_SEC(duarcion_de_la_operacion)) / 60 AS minutos_totales 
-FROM Robot_AL_Estanteria
-GROUP BY id_robot_almacenamiento;
+-- 9. Encontrar los módulos de energía en estado activo y su ubicación
+SELECT * FROM Modulo_de_energia WHERE estado = TRUE;
+
+-- 10. Obtener la lista de personal humano junto con los robots que han mantenido
+SELECT Personal_humano.id_personal, Personal_humano.nombre, Personal_humano.apellido, 
+       Personal_humano_Robot_AL_EM_DR.id_robot_almacenamiento, 
+       Personal_humano_Robot_AL_EM_DR.id_robot_de_empaque, 
+       Personal_humano_Robot_AL_EM_DR.id_drone
+FROM Personal_humano
+JOIN Personal_humano_Robot_AL_EM_DR ON Personal_humano.id_personal = Personal_humano_Robot_AL_EM_DR.id_personal;
+
+
