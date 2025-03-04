@@ -75,8 +75,7 @@ CREATE TABLE Personal_humano (
     nombre VARCHAR(40),
     apellido VARCHAR(40),
     rol VARCHAR(50),
-    turno BOOLEAN,
-    especialidad VARCHAR(50)
+    turno BOOLEAN
 );
 
 CREATE TABLE Robot_AL_Estanteria (
@@ -162,7 +161,7 @@ INSERT INTO Robot_de_AL (estado, ubicacion_latitud, ubicacion_longitud, capacida
 (true, 48.8566, 2.3522, 75, 'Media', 82),
 (false, 34.6937, 135.5023, 65, 'Baja', 78),
 (true, 55.7558, 37.6173, 70, 'Alta', 88),
-(false, -33.8688, 151.2093, 95, 'Media', 85)
+(false, -33.8688, 151.2093, 95, 'Media', 85),
 (true, 28.7041, 77.1025, 90, 'Alta', 95),
 (false, -34.6037, -58.3816, 70, 'Media', 85),
 (true, 59.3293, 18.0686, 80, 'Baja', 78),
@@ -172,7 +171,7 @@ INSERT INTO Robot_de_AL (estado, ubicacion_latitud, ubicacion_longitud, capacida
 (true, -15.7942, -47.8822, 85, 'Media', 80),
 (false, 55.9533, -3.1883, 70, 'Baja', 79),
 (true, 25.7617, -80.1918, 100, 'Alta', 96),
-(false, 35.6895, 51.3890, 65, 'Media', 81)
+(false, 35.6895, 51.3890, 65, 'Media', 81),
 (true, 55.7558, 37.6173, 95, 'Alta', 97),
 (false, -33.9249, 18.4241, 85, 'Media', 87),
 (true, 35.6762, 139.6503, 90, 'Baja', 82),
@@ -190,7 +189,7 @@ INSERT INTO Estanteria (ubicacion_latitud, ubicacion_longitud, capacidad_de_alma
 (51.1657, 10.4515, 170, 65, 'Regular'),
 (19.4326, -99.1332, 200, 75, 'Excelente'),
 (35.6895, 139.6917, 220, 85, 'Buena'),
-(41.9028, 12.4964, 230, 90, 'Regular')
+(41.9028, 12.4964, 230, 90, 'Regular'),
 (41.3851, 2.1734, 260, 85, 'Buena'),
 (-36.8485, 174.7633, 180, 75, 'Regular'),
 (1.3521, 103.8198, 220, 90, 'Excelente'),
@@ -200,7 +199,7 @@ INSERT INTO Estanteria (ubicacion_latitud, ubicacion_longitud, capacidad_de_alma
 (60.1695, 24.9354, 230, 92, 'Excelente'),
 (18.5204, 73.8567, 195, 70, 'Regular'),
 (31.2304, 121.4737, 250, 95, 'Buena'),
-(-23.4425, -58.4438, 205, 83, 'Excelente')
+(-23.4425, -58.4438, 205, 83, 'Excelente'),
 (51.1657, 10.4515, 265, 88, 'Buena'),
 (60.4720, 8.4689, 185, 76, 'Regular'),
 (-14.2350, -51.9253, 225, 93, 'Excelente'),
@@ -352,6 +351,105 @@ INSERT INTO Modulo_de_energia (capacidad, energetica, estado, ubicacion_latitud,
 (500, 89, true, -33.4489, -70.6693),
 (520, 97, false, 35.6762, 139.6503),
 (475, 85, true, 31.7683, 35.2137);
+
+INSERT INTO Personal_humano (DNI_NIE, nombre, apellido, rol, turno) VALUES 
+('12345678A', 'Carlos', 'Gomez', 'mecánico', true),
+('23456789B', 'Ana', 'Martínez', 'eléctrico', false),
+('34567890C', 'Luis', 'Fernández', 'mantenimiento', true),
+('45678901D', 'María', 'Lopez', 'servicios', false),
+('56789012E', 'Pedro', 'Hernández', 'mecánico', true),
+('67890123F', 'Laura', 'García', 'eléctrico', false),
+('78901234G', 'José', 'Ramírez', 'mantenimiento', true),
+('89012345H', 'Isabel', 'Sánchez', 'servicios', false),
+('90123456I', 'Carlos', 'Pérez', 'mecánico', true),
+('11223344J', 'Elena', 'Méndez', 'eléctrico', false),
+('22334455K', 'Miguel', 'Romero', 'mantenimiento', true),
+('33445566L', 'Julia', 'Vázquez', 'servicios', false),
+('44556677M', 'Antonio', 'Jiménez', 'mecánico', true),
+('55667788N', 'Sofía', 'Álvarez', 'eléctrico', false),
+('66778899O', 'Juan', 'Moreno', 'mantenimiento', true),
+('77889900P', 'Patricia', 'Diaz', 'servicios', false),
+('88990011Q', 'Alberto', 'Gil', 'mecánico', true),
+('99001122R', 'Raquel', 'Hidalgo', 'eléctrico', false),
+('10111233S', 'Luis', 'Castro', 'mantenimiento', true),
+('11121344T', 'Carmen', 'Vega', 'servicios', false),
+('12131455U', 'Fernando', 'Ramos', 'mecánico', true),
+('13141566V', 'Sofía', 'Torres', 'eléctrico', false),
+('14151677W', 'Marcos', 'López', 'mantenimiento', true),
+('15161788X', 'Nuria', 'Serrano', 'servicios', false),
+('16171899Y', 'Javier', 'Gómez', 'mecánico', true);
+
+INSERT INTO Robot_AL_Estanteria (fecha_de_operacion, duracion_de_la_operacion, id_robot_almacenamiento, id_estanteria) VALUES
+('12:30:00', '00:15:00', 1, 3),
+('14:45:00', '00:30:00', 2, 6),
+('09:15:00', '00:20:00', 3, 9),
+('11:00:00', '00:10:00', 4, 12),
+('13:30:00', '00:25:00', 5, 15),
+('16:00:00', '00:35:00', 6, 18),
+('17:20:00', '00:30:00', 7, 21),
+('08:50:00', '00:40:00', 8, 24);
+
+INSERT INTO Estanteria_Producto (cantidad_almacenada, id_producto, id_estanteria) VALUES
+(50, 1, 3),
+(100, 2, 6),
+(70, 3, 9),
+(80, 4, 12),
+(60, 5, 15),
+(150, 6, 18),
+(200, 7, 21),
+(180, 8, 24),
+(90, 9, 3),
+(110, 10, 6);
+
+INSERT INTO Producto_Pedido (cantidad_pedida, id_producto, id_pedido) VALUES
+(2, 1, 3),
+(1, 2, 6),
+(3, 3, 9),
+(4, 4, 12),
+(5, 5, 15),
+(6, 6, 18),
+(2, 7, 21),
+(1, 8, 24);
+
+INSERT INTO Pedido_Drone_Entrega (fecha_de_entrega, duracion_de_entrega, id_pedido, id_drone) VALUES
+('2024-05-03', '00:45:00', 1, 2),
+('2024-05-04', '01:00:00', 2, 4),
+('2024-05-05', '00:55:00', 3, 5),
+('2024-05-06', '01:10:00', 4, 6),
+('2024-05-07', '01:15:00', 5, 7),
+('2024-06-12', '00:50:00', 6, 8),
+('2024-06-13', '00:30:00', 7, 3),
+('2024-06-14', '01:00:00', 8, 1);
+
+INSERT INTO Robot_de_empaque_Pedido (fecha_de_empaque, tiempo_de_proceso, id_robot_de_empaque, id_pedido) VALUES
+('2024-05-03', '00:20:00', 1, 3),
+('2024-05-04', '00:25:00', 2, 6),
+('2024-05-05', '00:30:00', 3, 9),
+('2024-05-06', '00:35:00', 4, 12),
+('2024-05-07', '00:40:00', 5, 15),
+('2024-06-12', '00:45:00', 6, 18),
+('2024-06-13', '00:50:00', 7, 21),
+('2024-06-14', '00:55:00', 8, 24);
+
+INSERT INTO Modulo_de_energia_Robot_AL_EM_DR (fecha_recarga, duracion_recarga, id_modulo, id_robot_almacenamiento, id_robot_de_empaque, id_drone) VALUES
+('2024-05-03', '00:30:00', 1, 1, 1, 1),
+('2024-05-04', '00:40:00', 2, 2, 2, 2),
+('2024-05-05', '00:50:00', 3, 3, 3, 3),
+('2024-05-06', '00:35:00', 4, 4, 4, 4),
+('2024-05-07', '00:45:00', 5, 5, 5, 5),
+('2024-06-12', '00:50:00', 6, 6, 6, 6),
+('2024-06-13', '01:00:00', 7, 7, 7, 7),
+('2024-06-14', '01:10:00', 8, 8, 8, 8);
+
+INSERT INTO Personal_humano_Robot_AL_EM_DR (fecha_mantenimiento, descripcion_de_la_tarea, id_personal, id_robot_almacenamiento, id_robot_de_empaque, id_drone) VALUES
+('2024-05-03', 'Mantenimiento de batería', 1, 1, 1, 1),
+('2024-05-04', 'Revisión de sensores', 2, 2, 2, 2),
+('2024-05-05', 'Inspección de motores', 3, 3, 3, 3),
+('2024-05-06', 'Limpieza general', 4, 4, 4, 4),
+('2024-05-07', 'Actualización de software', 5, 5, 5, 5),
+('2024-06-12', 'Reemplazo de piezas', 6, 6, 6, 6),
+('2024-06-13', 'Verificación de carga', 7, 7, 7, 7),
+('2024-06-14', 'Prueba de movilidad', 8, 8, 8, 8);
 
 
 -- 1. Actualizar la eficiencia de los robots de almacenamiento con eficiencia 'Baja'

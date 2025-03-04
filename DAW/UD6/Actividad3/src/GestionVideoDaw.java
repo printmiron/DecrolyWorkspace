@@ -461,7 +461,7 @@ public class GestionVideoDaw {
     }
 
     private static void guardarVideoclub() {
-        try (FileWriter file = new FileWriter("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Videoclubs.dat"); BufferedWriter writer = new BufferedWriter(file);) {
+        try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Videoclubs.dat"); BufferedWriter writer = new BufferedWriter(file);) {
             for (VideoDaw v : videoclubs) {
                 writer.write(v.getCif() + "," + v.getDireccion() + "," + v.getFechaAlta());
                 writer.newLine();
@@ -473,7 +473,7 @@ public class GestionVideoDaw {
     }
 
     private static void guardarClientes() {
-        try (FileWriter file = new FileWriter("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Clientes.dat"); BufferedWriter writer = new BufferedWriter(file);) {
+        try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Clientes.dat"); BufferedWriter writer = new BufferedWriter(file);) {
             for (Cliente c : clientes) {
                 writer.write(c.getFechaBaja() + "," + c.getNumSocio() + "," + c.getDireccion() + "," + c.getDni() + "," + c.getFechaNacimiento() + "," + c.getNombre());
                 writer.newLine();
@@ -484,7 +484,7 @@ public class GestionVideoDaw {
     }
 
     private static void guardarArticulos() {
-        try (FileWriter file = new FileWriter("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Articulos.dat"); BufferedWriter writer = new BufferedWriter(file);) {
+        try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Articulos.dat"); BufferedWriter writer = new BufferedWriter(file);) {
             for (Articulo a : articulos) {
                 writer.write(a.getCod() + "," + a.getTitulo() + "," + a.getFechaRegistro() + "," + a.getFechaBaja());
                 writer.newLine();
@@ -503,7 +503,7 @@ public class GestionVideoDaw {
     }
 
     private static void cargarVideoclub() {
-        try (FileReader file = new FileReader("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Videoclubs.dat"); BufferedReader reader = new BufferedReader(file);) {
+        try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Videoclubs.dat"); BufferedReader reader = new BufferedReader(file);) {
             String linea = reader.readLine();
             while (linea != null) {
 
@@ -520,7 +520,7 @@ public class GestionVideoDaw {
     }
 
     private static void cargarClientes() {
-        try (FileReader file = new FileReader("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Clientes.dat"); BufferedReader reader = new BufferedReader(file);) {
+        try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Clientes.dat"); BufferedReader reader = new BufferedReader(file);) {
             String linea = reader.readLine();
             while (linea != null) {
 
@@ -539,7 +539,7 @@ public class GestionVideoDaw {
     }
 
     private static void cargarArticulos() {
-        try (FileReader file = new FileReader("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Articulos.dat"); BufferedReader reader = new BufferedReader(file);) {
+        try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad3\\resources\\Articulos.dat"); BufferedReader reader = new BufferedReader(file);) {
             String linea = reader.readLine();
             while (linea != null) {
 
