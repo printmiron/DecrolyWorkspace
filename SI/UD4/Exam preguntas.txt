@@ -1,0 +1,61 @@
+¿Cuál de las siguientes tecnologías de almacenamiento utiliza un láser para leer/escribir sobre
+la superficie de un disco óptico? 
+
+c) Lectura/escritura óptica
+
+¿Qué tecnología de almacenamiento se basa en la capacidad de algunos materiales de
+reaccionar a la inducción de campos magnéticos? 
+
+b) Lectura/escritura magnética
+
+¿Cuál es una característica clave de la interfaz de transferencia SATA en comparación con PATA?
+
+b) Permite la conexión de múltiples dispositivos sin necesidad de
+configuración como maestro/esclavo
+
+¿Qué característica distingue a la interfaz de transferencia SAS de las anteriores interfaces SCSI?
+
+c) Inserción en caliente de dispositivos.
+
+¿Qué tipo de identificador único posee cada dispositivo SAS?
+
+c) WWN (World Wide Name)
+
+¿Cuál es una característica distintiva de la estructura GPT en comparación con MBR? 
+
+c) Asocia a cada partición un identificador único global (GUID)
+
+¿Cuál es una limitación del MBR en cuanto al número de particiones primarias?
+
+c) Permite un máximo de 4 particiones primarias
+
+¿Cuál es una ventaja de la estructura GPT en comparación con MBR en términos de fiabilidad?
+
+a) GPT almacena la tabla de particiones de forma redundante en varios sitios.
+
+¿Cuál es una desventaja común de los sistemas de archivos FAT en comparación con NTFS?
+
+d) Deja fragmentos residuales que pueden hacer más lento el dispositivo con
+el tiempo.
+
+¿Cuál es una característica distintiva del sistema de archivos NTFS en comparación con FAT?
+
+d) Utiliza direccionamiento de bloques de 64 bits.
+
+¿Cuál es el tamaño máximo teórico de una partición FAT32 según el documento?
+
+c) 8 TiB
+
+¿Cuál es una característica de los sistemas de archivos ext4 en Linux?
+
+c) Es más eficiente y proporciona más rendimiento que sus versiones
+anteriores.
+
+¿Cuál es una característica común de los sistemas de archivos Unix File System (UFS)?
+
+c) Utilización de metadatos para almacenar información sobre los archivos.
+
+
+
+
+
