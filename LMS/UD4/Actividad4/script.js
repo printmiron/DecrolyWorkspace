@@ -92,7 +92,7 @@ function actualizarCarrito() {
 
 
 
-// Ejemplo de cómo llamar a la función cuando un botón es presionado:
+// Llamar a la funcion cuando un boton es presionado:
 document.querySelectorAll(".agregar-carrito").forEach(boton => {
     boton.addEventListener("click", (e) => {
         const producto = e.target.closest(".producto");
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// Funcion para mostrar secciones con animación al hacer scroll
+// Funcion para mostrar secciones con animacion al hacer scroll
 function mostrarSecciones() {
     const secciones = document.querySelectorAll("section");
     secciones.forEach(seccion => {
@@ -177,6 +177,8 @@ document.addEventListener("DOMContentLoaded", mostrarSecciones);
 
 
 
+
+
 // Agregar efecto al botn de agregar al carrito
 const botonesCarrito = document.querySelectorAll(".agregar-carrito");
 botonesCarrito.forEach(boton => {
@@ -187,10 +189,15 @@ botonesCarrito.forEach(boton => {
 });
 
 
-// Cambio de tamaño de texto al pasar el mouse
+
+
+
+
+
+//Cambio de tamano de texto al pasar el mouse
 document.querySelectorAll("h2, p").forEach(elemento => {
     elemento.addEventListener("mouseover", () => {
-        elemento.style.fontSize = "larger";
+        elemento.style.fontSize = "5vh";
     });
     elemento.addEventListener("mouseout", () => {
         elemento.style.fontSize = "";
