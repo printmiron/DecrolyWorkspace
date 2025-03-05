@@ -33,8 +33,6 @@ public class Articulo {
     
 
 
-
-
     @Override
     public String toString() {
         return "Articulo [cod=" + cod + ", titulo=" + titulo + ", fechaRegistro=" + fechaRegistro + ", fechaBaja="

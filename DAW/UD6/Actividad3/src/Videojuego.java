@@ -37,6 +37,8 @@ public class Videojuego extends Articulo {
         this.fechaAlquilier = fechaAlquilier;
     }
 
+    
+
     @Override
     public String toString() {
         return "VideoJuego [genero=" + generoJuego + ", fechaAlquilier=" + fechaAlquilier + ", isAlquilada=" + isAlquilada

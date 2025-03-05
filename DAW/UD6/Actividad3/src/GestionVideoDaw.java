@@ -1,13 +1,11 @@
 
 //
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,20 +14,19 @@ import java.util.regex.Pattern;
 
 public class GestionVideoDaw {
 
-     private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     private static List<VideoDaw> videoclubs = new ArrayList<>();
     private static List<Cliente> clientes = new ArrayList<>();
     private static List<Articulo> articulos = new ArrayList<>();
 
-    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 
     public static void main(String[] args) throws Exception {
         //carga los datos al principio al iniciar la programa
         cargarDatos();
         Scanner sc = new Scanner(System.in);
 
-        
         System.out.println("Videoclubs cargados: " + videoclubs.size());
         System.out.println("Clientes cargados: " + clientes.size());
         System.out.println("Articulos cargados: " + articulos.size());
@@ -37,17 +34,8 @@ public class GestionVideoDaw {
 
 
 
-
-
-
-
 //------------------------------------------------------------
 //MENU PRINCIPAL
-
-
-
-
-
 
 
 
@@ -65,31 +53,31 @@ public class GestionVideoDaw {
 
             switch (opcion) {
                 case "1":
-                    registrarVideoClub(sc, videoclubs);
+                    registrarVideoClub(videoclubs);
                     break;
 
                 case "2":
-                    registrarArticulo(sc);
+                    registrarArticulo();
                     break;
 
                 case "3":
-                    registrarCliente(sc);
+                    registrarCliente();
                     break;
 
                 case "4":
-                    alquilarArticulo(sc);
+                    alquilarArticulo();
                     break;
 
                 case "5":
-                    devolverArticulo(sc);
+                    devolverArticulo();
                     break;
 
                 case "6":
-                    darBajaCliente(sc);
+                    darBajaCliente();
                     break;
 
                 case "7":
-                    darBajaArticulo(sc);
+                    darBajaArticulo();
                     break;
 
                 case "8":
@@ -111,6 +99,12 @@ public class GestionVideoDaw {
 
 
 
+
+
+
+
+
+
 //------------------------------------------------------------
 //METODOS PARA REGISTRAR VIDEOCLUB, ARTICULOS Y CLIENTES
 
@@ -122,8 +116,10 @@ public class GestionVideoDaw {
 
 
 
+
+
     //registro videoclub
-    public static void registrarVideoClub(Scanner sc, List<VideoDaw> franquicia) {
+    public static void registrarVideoClub(List<VideoDaw> franquicia) {
 
         System.out.println("Introduce el CIF del Videoclub (Ej: A12345678): ");
         String cif = validarEntrada("[A-HJNP-SUVW][0-9]{8}");
@@ -141,7 +137,7 @@ public class GestionVideoDaw {
     }
 
     //crear peli o videojuego ()
-    public static void registrarArticulo(Scanner sc) {
+    public static void registrarArticulo() {
 
         if (videoclubs.isEmpty()) {
             System.out.println("Primero necesitas registrar un videoclub");
@@ -166,7 +162,7 @@ public class GestionVideoDaw {
     }
 
     //crear peli o videojuego ()
-    public static void registrarCliente(Scanner sc) {
+    public static void registrarCliente() {
 
         if (videoclubs.isEmpty()) {
             System.out.println("Primero necesitas registrar un videoclub");
@@ -205,8 +201,6 @@ public class GestionVideoDaw {
 
 
 
-
-
 //------------------------------------------------------------
 //METODOS PARA ALQUILAR, DEVOLVER Y DAR DE BAJA CLIENTES Y ARTICULOS
 
@@ -218,7 +212,12 @@ public class GestionVideoDaw {
 
 
 
-    public static void alquilarArticulo(Scanner sc) {
+
+
+
+
+
+    public static void alquilarArticulo() {
 
         if (videoclubs.isEmpty()) {
             System.out.println("Primero necesitas registrar un videoclub");
@@ -234,7 +233,7 @@ public class GestionVideoDaw {
         System.out.println("Introduce el DNI del cliente:");
         String dniAlquiler = sc.nextLine();
 
-        //buscar articulo y si es una peli o videojueo
+        //buscar articulo por codigo y si es una peli o videojueo
         Pelicula peliculaAlquilar = null;
         Videojuego videojuegoAlquilar = null;
 
@@ -265,14 +264,15 @@ public class GestionVideoDaw {
 
         if (clienteAquilier == null) {
             System.out.println("Cliente no encontrado!");
+            return;
         }
 
         //alquilar si se encuaentra el articulo y el cliente
+        //porque utlizo ".get(index:0)": los metodos (alquilarPelicula/alquilarJuego desde VideoDaw) necesitan un objeto especifico para llamarles,
+        //por eso como tenemos una lista de VideoClubs tenemos que elegir uno en concreto, por eso hago ".get(index:0)" coge simpre el primer videoclub
         boolean alquilado = false;
-        if (peliculaAlquilar != null) {
-            //qui tenia el error porque los metodos (alquilarPelicula/alquilarJuego desde VideoDaw) necesitan un objeto especifico para llamarles,
-            //por eso como tenemos una lista de VideoClubs tenemos que elegir uno en concreto, por eso hago ".get(index:0)" coge simpre el primer videoclub
 
+        if (peliculaAlquilar != null) {
             alquilado = videoclubs.get(0).alquilarPelicula(peliculaAlquilar, clienteAquilier);
         } else if (videojuegoAlquilar != null) {
             alquilado = videoclubs.get(0).alquilarJuego(videojuegoAlquilar, clienteAquilier);
@@ -285,7 +285,7 @@ public class GestionVideoDaw {
         }
     }
 
-    public static void devolverArticulo(Scanner sc) throws TiempoExcendidoEx {
+    public static void devolverArticulo() throws TiempoExcendidoEx {
         if (videoclubs.isEmpty()) {
             System.out.println("Primero necesitas registrar un videoclub");
         }
@@ -300,7 +300,6 @@ public class GestionVideoDaw {
         System.out.println("Introduce el DNI del cliente:");
         String dniDevolver = sc.nextLine();
 
-        //buscar articulo y si es una peli o videojueo
         Pelicula peliculaDeolver = null;
         Videojuego videojuegoDevolver = null;
 
@@ -353,7 +352,7 @@ public class GestionVideoDaw {
 
     }
 
-    public static void darBajaArticulo(Scanner sc) {
+    public static void darBajaArticulo() {
         if (videoclubs.isEmpty()) {
             System.out.println("Primero necesitas registrar un videoclub");
         }
@@ -393,7 +392,7 @@ public class GestionVideoDaw {
 
     }
 
-    public static void darBajaCliente(Scanner sc) {
+    public static void darBajaCliente() {
 
         if (videoclubs.isEmpty()) {
             System.out.println("Primero necesitas registrar un videoclub");
@@ -401,7 +400,7 @@ public class GestionVideoDaw {
 
         for (Cliente clientes : clientes) {
             System.out.println(clientes.toString());
-            
+
         }
 
         System.out.println("Introduce el DNI del cliente que quieres dar de baja:");
@@ -441,10 +440,20 @@ public class GestionVideoDaw {
 
 
 
+
+
+
+
+
+
 //------------------------------------------------------------
 //GUARDAR - CARGAR FIHCEROS
     //guardar datos en los ficheros, no me vale las rutas relativas por eso utilizo las absolutas, para copiar hago click derecho sobre 
     //Fichero.dat y "Copy Path" y lo escribo en la linea correspondiente
+
+
+
+
 
 
 
@@ -528,7 +537,6 @@ public class GestionVideoDaw {
 
                 String[] datos = linea.split(",");
 
-
                 LocalDate fechaBaja = datos[0].equals("null") ? null : LocalDate.parse(datos[0]);
                 clientes.add(new Cliente(fechaBaja, datos[1], datos[2], datos[3], LocalDate.parse(datos[4]), datos[5]));
 
@@ -547,7 +555,6 @@ public class GestionVideoDaw {
 
                 String[] datos = linea.split(",");
 
-
                 // Aseguramos que hay al menos 4 elementos antes de acceder a datos[3]
                 LocalDate fechaAlta = datos.length > 2 ? LocalDate.parse(datos[2]) : null;
                 LocalDate fechaBaja = (datos.length > 3 && !datos[3].equals("null")) ? LocalDate.parse(datos[3]) : null;
@@ -562,8 +569,23 @@ public class GestionVideoDaw {
         }
     }
 
+
+
+
+
+
+
+
+
 //------------------------------------------------------------
 //VALIDAR LOS DATOS INTRODUCIDOS
+
+
+
+
+
+
+
 
     private static String validarEntrada(String regex) {
         String entrada;

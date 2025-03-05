@@ -38,6 +38,7 @@ public class Pelicula extends Articulo {
         this.fechaAlquilier = fechaAlquilier;
     }
 
+    
     @Override
     public String toString() {
         return "Pelicula [genero=" + generoPeli + ", fechaAlquilier=" + fechaAlquilier + ", isAlquilada=" + isAlquilada

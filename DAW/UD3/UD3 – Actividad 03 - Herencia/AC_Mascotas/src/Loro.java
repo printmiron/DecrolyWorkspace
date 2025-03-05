@@ -1,6 +1,12 @@
 
 import java.time.LocalDate;
-
+/**
+ * Representa un loro, una subclase de Aves.
+ * 
+ * @author Pavel Miron
+ * @version 1.0
+ * @since 19-02-2025
+ */
 public class Loro extends Aves{
 
     String origen;

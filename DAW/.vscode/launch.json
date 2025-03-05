@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "GestionVideoDaw",
+            "request": "launch",
+            "mainClass": "GestionVideoDaw",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Ud2Ac2",
+            "request": "launch",
+            "mainClass": "Ud2Ac2",
+            "projectName": ""
+        },
+        {
+            "name": "Attach by com.sun.jdi.SharedMemoryListen",
+            "type": "jdk",
+            "request": "attach",
+            "listen": "${command:jdk.java.attachDebugger.connector.com.sun.jdi.SharedMemoryListen.listen}"
+        }
+    ]
+}
