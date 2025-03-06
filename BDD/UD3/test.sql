@@ -1709,11 +1709,11 @@ LIMIT 1;
 
 
 
-SELECT d.departments,e.first_name, e.last_name, MAX (s.salary) AS max_salary
+SELECT d.dept_name,e.first_name, e.last_name, MAX(s.salary) AS max_salary
 FROM employees e
 JOIN dept_emp de ON e.emp_no = de.emp_no
 JOIN salaries s ON de.emp_no = s.emp_no
-JOIN departments d ON de.dept_no = d.dept_no
+JOIN departments d ON de.emp_no = d.emp_no
 WHERE current_date BETWEEN de.from_date AND de.to_date
     AND current_date BETWEEN s.from_date AND s.to_date
 GROUP BY d.dept_name, e.first_name, e.last_name
