@@ -4,7 +4,7 @@ public class AvisarHaciendaException extends Exception {
     private String iban;
     private String operacion;
 
-    public AvisarHaciendaException(Cliente cliente2, String iban, String operacion) {
+    public AvisarHaciendaException(Libro cliente2, String iban, String operacion) {
             super("Aviso a hacienda. Cliente: " + cliente2 + ", Iban: " + iban + ", Operacion: " + operacion);
         this.cliente = cliente;
         this.iban = iban;

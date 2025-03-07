@@ -71,7 +71,7 @@ public class Ud2Ac2 {
                     System.out.println("Introduce su direccion: ");
                     String direccion = sc.nextLine();
 
-                    Cliente regCliente = new Cliente(dni, nombre, direccion);
+                    Libro regCliente = new Libro(dni, nombre, direccion);
 
                     videoClub.registrarCliente(regCliente);
                     System.out.println("Cliente registrado correctamente");
@@ -101,8 +101,8 @@ public class Ud2Ac2 {
                         break;
                     }
                     // Buscar el cliente por DNI
-                    Cliente clienteAlquiler = null;
-                    for (Cliente c : videoClub.getClientes()) {
+                    Libro clienteAlquiler = null;
+                    for (Libro c : videoClub.getClientes()) {
                         if (c != null && c.getDni().equalsIgnoreCase(dniAlquiler)) {
                             clienteAlquiler = c;
                             break;
@@ -147,8 +147,8 @@ public class Ud2Ac2 {
                         break;
                     }
                     // Buscar el cliente por DNI
-                    Cliente clienteDevolucion = null;
-                    for (Cliente c : videoClub.getClientes()) {
+                    Libro clienteDevolucion = null;
+                    for (Libro c : videoClub.getClientes()) {
                         if (c != null && c.getDni().equalsIgnoreCase(dniDevolucion)) {
                             clienteDevolucion = c;
                             break;
@@ -180,8 +180,8 @@ public class Ud2Ac2 {
                     String dniBaja = sc.nextLine();
 
                     // Buscar cliente por DNI
-                    Cliente clienteBaja = null;
-                    for (Cliente c : videoClub.getClientes()) {
+                    Libro clienteBaja = null;
+                    for (Libro c : videoClub.getClientes()) {
                         if (c != null && c.getDni().equalsIgnoreCase(dniBaja)) {
                             clienteBaja = c;
                             break;
@@ -244,11 +244,11 @@ public class Ud2Ac2 {
                     break;
                 }
 
-                Cliente[] clientes = videoClub.getClientes();
+                Libro[] clientes = videoClub.getClientes();
                 System.out.println("Clientes registrados en el videoclub:");
                 boolean hayClientes = false;
             
-                for (Cliente cliente : clientes) {
+                for (Libro cliente : clientes) {
                     if (cliente != null) {
                         hayClientes = true;
                         System.out.println(cliente.mostrarInfoCliente());

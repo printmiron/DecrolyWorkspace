@@ -5,7 +5,7 @@ public class CuentaBancaria {
 
     // Atributos
     private String iban;
-    private Cliente cliente;
+    private Libro cliente;
     private double saldo;
     private ArrayList<Movimiento> movimientos;
     private int nElementosActuales;
@@ -15,7 +15,7 @@ public class CuentaBancaria {
             String direccion, String iban, double saldo, ArrayList<Movimiento> movimientos,
             int nElementosActuales) {
         this.iban = iban;
-        this.cliente = new Cliente(nombre, dni, fechaNacimiento, telefono, email, direccion);
+        this.cliente = new Libro(nombre, dni, fechaNacimiento, telefono, email, direccion);
         this.saldo = saldo;
         this.movimientos = movimientos;
         this.nElementosActuales = nElementosActuales;
@@ -25,7 +25,7 @@ public class CuentaBancaria {
         return iban;
     }
 
-    public Cliente getCliente() {
+    public Libro getCliente() {
         return cliente;
     }
 

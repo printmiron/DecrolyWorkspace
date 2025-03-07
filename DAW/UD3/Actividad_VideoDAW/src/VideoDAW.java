@@ -15,7 +15,7 @@ public class VideoDAW {
     private LocalDate fechaAlta;
 
     private Pelicula[] peliculas;
-    private Cliente[] clientes;
+    private Libro[] clientes;
     private int PeliculasActuales = 0;
     private int ClientesActuales = 0;
 
@@ -25,7 +25,7 @@ public class VideoDAW {
         this.direccionCV = direccionCV;
         this.fechaAlta = LocalDate.now();
         this.peliculas = new Pelicula[100];
-        this.clientes = new Cliente[100];
+        this.clientes = new Libro[100];
         this.PeliculasActuales = 0;
         this.ClientesActuales = 0;
     }
@@ -46,7 +46,7 @@ public class VideoDAW {
         return this.peliculas;
     }
 
-    public Cliente[] getClientes() {
+    public Libro[] getClientes() {
         return this.clientes;
     }
 
@@ -64,7 +64,7 @@ public class VideoDAW {
         return String.format("Clientes Registrados: %s /n", this.clientes);
     }
 
-    public boolean alquilarPelicula(Pelicula p, Cliente c) {
+    public boolean alquilarPelicula(Pelicula p, Libro c) {
         if (p != null && c != null && !p.getAlquilada()) {
             p.setAlquilada(true);
             System.out.println("Pelicula alquilada a " + c.getNombre());
@@ -73,7 +73,7 @@ public class VideoDAW {
         return false;
     }
 
-    public boolean devolverPelicula(Pelicula p, Cliente c) {
+    public boolean devolverPelicula(Pelicula p, Libro c) {
         if (p != null && c != null && p.getAlquilada()) {
             p.setAlquilada(false);
             System.out.println("Pelicula devuelta por " + c.getNombre());
@@ -82,7 +82,7 @@ public class VideoDAW {
         return false;
     }
 
-    public boolean darBajaCliente(Cliente c) {
+    public boolean darBajaCliente(Libro c) {
         for (int i = 0; i < ClientesActuales; i++) {
             if (clientes[i].equals(c)) {
                 clientes[i] = null;
@@ -108,7 +108,7 @@ public class VideoDAW {
         return false;
     }
 
-    public boolean registrarCliente(Cliente c) {
+    public boolean registrarCliente(Libro c) {
         if (ClientesActuales < clientes.length) {
             clientes[ClientesActuales] = c;
             ClientesActuales++;

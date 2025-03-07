@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS ud3_ac5;
-CREATE DATABASE IF NOT EXISTS ud3_ac5;
-USE ud3_ac5;
+DROP DATABASE IF EXISTS ud3_ex;
+CREATE DATABASE IF NOT EXISTS ud3_ex;
+USE ud3_ex;
 
 DROP TABLE IF EXISTS dept_emp,
                      dept_manager,
@@ -66,6 +66,18 @@ CREATE TABLE salaries (
     PRIMARY KEY (emp_no, from_date)
 )
 ;
+
+CREATE TABLE homenaje (
+	emp_no      INT             NOT NULL,
+	lugar     	VARCHAR(40)     NOT NULL,
+    regalo      VARCHAR(40)     NOT NULL,
+    from_date   DATE            NOT NULL,
+    to_date     DATE            NOT NULL,
+    FOREIGN KEY (emp_no) REFERENCES employees (emp_no) ON DELETE CASCADE,
+    PRIMARY KEY (emp_no)
+)
+;
+
 INSERT INTO `departments` VALUES 
 ('d001','Marketing'),
 ('d002','Finance'),
@@ -1450,538 +1462,100 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 (10100,74365,'2000-09-17','2001-09-17'),
 (10100,74957,'2001-09-17','9999-01-01');
 
--- 1. Actualiza el salario de un empleado específico.
-UPDATE salaries
-SET salary = 60000
-WHERE emp_no = 101 AND current_date BETWEEN from_date AND to_date;
+INSERT INTO `homenaje` VALUES (10001,'Santander','Ordenador Portátil', '2024-02-10', '9999-01-01'),
+(10002,'Murcia','iPhone 15', '2024-02-10', '9999-01-01'),
+(10003,'Valecia','Ordenador Sobremesa', '2024-02-10', '9999-01-01'),
+(10004,'Bilbao','iPad 12', '2024-02-10', '9999-01-01'),
+(10005,'Barcelona','Reloj', '2024-02-10', '9999-01-01');
 
--- 2. Cambia el departamento de un empleado específico.
-UPDATE dept_emp
-SET dept_no = 'D002', to_date = '2025-03-31'
-WHERE emp_no = 103 AND current_date BETWEEN from_date AND to_date;
+DELETE 
+FROM homenaje 
+WHERE emp_no = '10001';
 
--- 3. Actualiza el título de un empleado.
-UPDATE titles
-SET title = 'Senior Engineer'
-WHERE emp_no = 104 AND current_date BETWEEN from_date AND to_date;
-
--- 4. Cambia la fecha de contratación de un empleado.
-UPDATE employees
-SET hire_date = '2024-05-01'
-WHERE emp_no = 105;
-
--- 5. Actualiza el género de un empleado específico.
-UPDATE employees
-SET gender = 'F'
-WHERE emp_no = 106;
-
--- 6. Aumenta el salario de todos los empleados en un 10%.
-UPDATE salaries
-SET salary = salary * 1.10
+UPDATE homenaje
+SET lugar = 'Santander'
 WHERE current_date BETWEEN from_date AND to_date;
 
--- 7. Asigna un nuevo jefe de departamento (actualiza las fechas).
-UPDATE dept_manager
-SET emp_no = 107, from_date = '2025-04-01', to_date = '2026-04-01'
-WHERE dept_no = 'D003' AND current_date BETWEEN from_date AND to_date;
 
--- 8. Actualiza el nombre de un departamento.
-UPDATE departments
-SET dept_name = 'Research and Development'
-WHERE dept_no = 'D005';
 
--- 9. Cambia el estado de un empleado (por ejemplo, si ha dejado la empresa).
-UPDATE dept_emp
-SET to_date = '2025-03-01'
-WHERE emp_no = 108 AND current_date BETWEEN from_date AND to_date;
-
--- 10. Modifica la fecha de finalización de un salario para un empleado.
-UPDATE salaries
-SET to_date = '2025-12-31'
-WHERE emp_no = 109 AND current_date BETWEEN from_date AND to_date;
+SELECT e.first_name, e.last_name
+FROM dept_emp de
+JOIN employers e ON de.emp_no = dm.emp_no
+WHERE current_date BETWEEN dm.from_date AND dm.to_date;
 
 
 
--- --------------------------------------
+
+SELECT e.first_name, e.last_name, s.salary
+FROM employees e
+JOIN dept_manager dm ON e.emp_no = dm.emp_no
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE current_date BETWEEN s.from_date AND s.to_date;
 
 
 
--- 1. lista el nombre del departamento actual de cada empleado.
-select e.first_name, e.last_name, d.dept_name
-from employees e
-join dept_emp de on e.emp_no = de.emp_no
-join departments d on de.dept_no = d.dept_no
-where current_date between de.from_date and de.to_date;
 
--- 2. muestra el salario actual de cada empleado y su nombre y apellidos.
+SELECT AVG(s.salary) AS avg_salary
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE current_date BETWEEN s.from_date AND s.to_date
+AND current_date BETWEEN t.from_date AND t.to_date
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT e.first_name, e.last_name, COUNT(DISTINCT de.dept_no) AS num_departamentos
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+GROUP BY e.emp_no
+HAVING num_departamentos > 0;
+
+-- 1
+SELECT e.first_name, e.last_name , e.hire_date
+FROM employees e
+JOIN homenaje h ON e.emp_no = h.emp_no
+where current_date between h.from_date and h.to_date;
+
+
+-- 2
+SELECT e.first_name, e.last_name, s.salary
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.demp_no
+JOIN dept_manager dm ON de.emp_no = dm.emp_no
+JOIN salaries s ON de.emp_no = s.emp_no 
+where current_date between dm.from_date and dm.to_date;
+
+-- 3
+
 select e.first_name, e.last_name, s.salary
 from employees e
 join salaries s on e.emp_no = s.emp_no
 where current_date between s.from_date and s.to_date;
 
--- 3. obtén la lista completa de jefes actuales de departamento y sus títulos.
-select e.first_name, e.last_name, t.title, d.dept_name
-from employees e
-join dept_manager dm on e.emp_no = dm.emp_no
-join departments d on dm.dept_no = d.dept_no
-join titles t on e.emp_no = t.emp_no
-where current_date between dm.from_date and dm.to_date
-and current_date between t.from_date and t.to_date;
 
--- 4. enumera los 3 departamentos con más empleados en la actualidad.
-select d.dept_name, count(de.emp_no) as num_employees
-from departments d
-join dept_emp de on d.dept_no = de.dept_no
-where current_date between de.from_date and de.to_date
-group by d.dept_name
-order by num_employees desc
-limit 3;
-
--- 5. enumera a todos los empleados que han trabajado en el mismo departamento durante más de 2 años.
-select e.first_name, e.last_name, d.dept_name, de.from_date, de.to_date
-from employees e
-join dept_emp de on e.emp_no = de.emp_no
-join departments d on de.dept_no = d.dept_no
-where current_date between de.from_date and de.to_date
-and datediff(current_date, de.from_date) > 730;  -- 730 días ≈ 2 años
-
--- 6. calcula el salario medio por departamento entre los empleados que actualmente trabajan en él.
-select d.dept_name, avg(s.salary) as avg_salary
-from departments d
-join dept_emp de on d.dept_no = de.dept_no
-join salaries s on de.emp_no = s.emp_no
-where current_date between de.from_date and de.to_date
-and current_date between s.from_date and s.to_date
-group by d.dept_name;
-
--- 7. muestra al empleado mejor pagado de cada departamento entre los que trabajan actualmente.
-select e.first_name, e.last_name, d.dept_name, s.salary
-from employees e
-join dept_emp de on e.emp_no = de.emp_no
-join departments d on de.dept_no = d.dept_no
-join salaries s on e.emp_no = s.emp_no
-where current_date between de.from_date and de.to_date
-and current_date between s.from_date and s.to_date
-and s.salary = (select max(s1.salary)
-                from salaries s1
-                where s1.emp_no = e.emp_no
-                and current_date between s1.from_date and s1.to_date);
-
--- 8. muestra los detalles del jefe actual de departamentos con el salario más bajo.
-select e.first_name, e.last_name, d.dept_name, s.salary
-from employees e
-join dept_manager dm on e.emp_no = dm.emp_no
-join departments d on dm.dept_no = d.dept_no
-join salaries s on e.emp_no = s.emp_no
-where current_date between dm.from_date and dm.to_date
-and current_date between s.from_date and s.to_date
-and s.salary = (select min(s2.salary)
-                from salaries s2
-                join dept_manager dm2 on s2.emp_no = dm2.emp_no
-                where current_date between dm2.from_date and dm2.to_date
-                and current_date between s2.from_date and s2.to_date);
-
--- 9. muestra el salario, título, nombre y apellido del primer empleado contratado por la empresa.
-select s.salary, t.title, e.first_name, e.last_name
-from employees e
-join titles t on e.emp_no = t.emp_no
-join salaries s on e.emp_no = s.emp_no
-where e.hire_date = (select min(hire_date) from employees)
-and current_date between s.from_date and s.to_date
-and current_date between t.from_date and t.to_date;
+-- 4
 
 
 
+-- 5
 
-
-
-
-
-
--- -----------------------------------------------------
-
-
-
-
-
-
-
--- 1. Lista el nombre y apellido de los empleados que han trabajado en más de un departamento
 SELECT e.first_name, e.last_name, COUNT(DISTINCT de.dept_no) AS num_departamentos
 FROM employees e
 JOIN dept_emp de ON e.emp_no = de.emp_no
 GROUP BY e.emp_no
-HAVING num_departamentos > 1;
+HAVING num_departamentos > 0;
 
--- 2. Encuentra el título actual de cada empleado junto con su nombre y apellido
-SELECT e.first_name, e.last_name, t.title
-FROM employees e
-JOIN titles t ON e.emp_no = t.emp_no
-WHERE CURRENT_DATE BETWEEN t.from_date AND t.to_date;
 
--- 3. Lista los empleados cuyo salario ha aumentado más de 5000 en los últimos 5 años
-SELECT e.first_name, e.last_name, s1.salary AS salario_antiguo, s2.salary AS salario_actual
-FROM employees e
-JOIN salaries s1 ON e.emp_no = s1.emp_no
-JOIN salaries s2 ON e.emp_no = s2.emp_no
-WHERE s1.from_date = DATE_SUB(CURRENT_DATE, INTERVAL 5 YEAR)
-AND CURRENT_DATE BETWEEN s2.from_date AND s2.to_date
-AND (s2.salary - s1.salary) > 5000;
 
--- 4. Encuentra el salario más alto en cada departamento y muestra el nombre del departamento
-SELECT d.dept_name, MAX(s.salary) AS salario_maximo
-FROM departments d
-JOIN dept_emp de ON d.dept_no = de.dept_no
-JOIN salaries s ON de.emp_no = s.emp_no
-WHERE CURRENT_DATE BETWEEN de.from_date AND de.to_date
-AND CURRENT_DATE BETWEEN s.from_date AND s.to_date
-GROUP BY d.dept_name;
-
--- 5. Lista los empleados que nunca han sido gerentes de departamento
-SELECT e.first_name, e.last_name
-FROM employees e
-LEFT JOIN dept_manager dm ON e.emp_no = dm.emp_no
-WHERE dm.emp_no IS NULL;
-
--- 6. Encuentra el nombre del departamento con el salario promedio más alto
-SELECT d.dept_name
-FROM departments d
-JOIN dept_emp de ON d.dept_no = de.dept_no
-JOIN salaries s ON de.emp_no = s.emp_no
-WHERE CURRENT_DATE BETWEEN de.from_date AND de.to_date
-AND CURRENT_DATE BETWEEN s.from_date AND s.to_date
-GROUP BY d.dept_name
-ORDER BY AVG(s.salary) DESC
-LIMIT 1;
-
--- 7. Lista los empleados que han trabajado más tiempo en la empresa
-SELECT e.first_name, e.last_name, e.hire_date, DATEDIFF(CURRENT_DATE, e.hire_date) AS dias_trabajados
-FROM employees e
-ORDER BY dias_trabajados DESC
-LIMIT 5;
-
--- 8. Encuentra el número total de empleados por año de contratación
-SELECT YEAR(e.hire_date) AS anio_contratacion, COUNT(*) AS total_empleados
-FROM employees e
-GROUP BY anio_contratacion
-ORDER BY anio_contratacion;
-
--- 9. Muestra los departamentos que no tienen empleados actualmente
-SELECT d.dept_name
-FROM departments d
-LEFT JOIN dept_emp de ON d.dept_no = de.dept_no
-AND CURRENT_DATE BETWEEN de.from_date AND de.to_date
-WHERE de.emp_no IS NULL;
-
--- 10. Muestra la duración promedio en años que los empleados han trabajado en la empresa
-SELECT AVG(DATEDIFF(CURRENT_DATE, e.hire_date) / 365) AS promedio_anios
-FROM employees e;
-
--- Selección de datos (SELECT): Qué información queremos ver.
--- Unión de tablas (JOIN): De dónde sacamos la información.
--- Condición de unión (ON): Cómo conectamos las tablas.
--- Filtro (WHERE): Para obtener solo los datos actuales.
-
-
-
-
-
--- -----------------------------------------------------------------------
-
-
-
-
-
-
--- 1. Lista los empleados que tienen el mismo salario que el promedio general
-SELECT e.first_name, e.last_name, s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE CURRENT_DATE BETWEEN s.from_date AND s.to_date
-AND s.salary = (SELECT AVG(salary) FROM salaries WHERE CURRENT_DATE BETWEEN from_date AND to_date);
-
--- 2. Encuentra los empleados que han trabajado en al menos 3 departamentos diferentes
-SELECT e.first_name, e.last_name, COUNT(DISTINCT de.dept_no) AS num_departamentos
-FROM employees e
-JOIN dept_emp de ON e.emp_no = de.emp_no
-GROUP BY e.emp_no
-HAVING num_departamentos >= 3;
-
--- 3. Lista los empleados cuyo primer salario fue menor al 10% del salario actual
-SELECT e.first_name, e.last_name, MIN(s.salary) AS salario_inicial, MAX(s.salary) AS salario_actual
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-GROUP BY e.emp_no
-HAVING salario_inicial < salario_actual * 0.1;
-
--- 4. Encuentra el título más común entre los empleados actuales
-SELECT t.title, COUNT(*) AS cantidad
-FROM titles t
-WHERE CURRENT_DATE BETWEEN t.from_date AND t.to_date
-GROUP BY t.title
-ORDER BY cantidad DESC
-LIMIT 1;
-
--- 5. Lista los empleados que fueron gerentes de departamento al menos 2 veces
-SELECT e.first_name, e.last_name, COUNT(dm.dept_no) AS veces_gerente
-FROM employees e
-JOIN dept_manager dm ON e.emp_no = dm.emp_no
-GROUP BY e.emp_no
-HAVING veces_gerente >= 2;
-
--- 6. Encuentra el salario promedio de los empleados contratados en los últimos 3 años
-SELECT AVG(s.salary) AS salario_promedio
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE YEAR(e.hire_date) >= YEAR(CURRENT_DATE) - 3
-AND CURRENT_DATE BETWEEN s.from_date AND s.to_date;
-
--- 7. Encuentra los departamentos con la mayor diferencia entre el salario más alto y el más bajo
-SELECT d.dept_name, MAX(s.salary) - MIN(s.salary) AS diferencia_salarial
-FROM departments d
-JOIN dept_emp de ON d.dept_no = de.dept_no
-JOIN salaries s ON de.emp_no = s.emp_no
-WHERE CURRENT_DATE BETWEEN de.from_date AND de.to_date
-AND CURRENT_DATE BETWEEN s.from_date AND s.to_date
-GROUP BY d.dept_name
-ORDER BY diferencia_salarial DESC;
-
--- 8. Encuentra los empleados cuyo salario nunca ha disminuido
-SELECT e.first_name, e.last_name
-FROM employees e
-WHERE NOT EXISTS (
-    SELECT 1 FROM salaries s1
-    JOIN salaries s2 ON s1.emp_no = s2.emp_no
-    WHERE s1.emp_no = e.emp_no
-    AND s2.from_date > s1.to_date
-    AND s2.salary < s1.salary
-);
-
--- 9. Encuentra el porcentaje de empleados actuales en cada departamento
-SELECT d.dept_name, COUNT(de.emp_no) * 100.0 / (SELECT COUNT(*) FROM dept_emp WHERE CURRENT_DATE BETWEEN from_date AND to_date) AS porcentaje
-FROM departments d
-JOIN dept_emp de ON d.dept_no = de.dept_no
-WHERE CURRENT_DATE BETWEEN de.from_date AND de.to_date
-GROUP BY d.dept_name;
-
--- 10. Encuentra el empleado con el período más largo sin un cambio de salario
-SELECT e.first_name, e.last_name, MAX(DATEDIFF(s.to_date, s.from_date)) AS dias_sin_cambio
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-GROUP BY e.emp_no
-ORDER BY dias_sin_cambio DESC
-LIMIT 1;
-
-
--- ----------------------------------------------------
-
-
-
-SELECT d.departments,e.first_name, e.last_name, MAX (s.salary) AS max_salary
-FROM employees e
-JOIN dept_emp de ON e.emp_no = de.emp_no
-JOIN salaries s ON de.emp_no = s.emp_no
-JOIN departments d ON de.dept_no = d.dept_no
-WHERE current_date BETWEEN de.from_date AND de.to_date
-    AND current_date BETWEEN s.from_date AND s.to_date
-GROUP BY d.dept_name, e.first_name, e.last_name
-ORDER BY max_salary DESC;
-
-
-
-
--- ----------------------------------------------------------------
-
-
-
-
-
--- 1. Muestra el nombre y apellido de los empleados que no tienen un salario registrado actualmente.
-SELECT e.first_name, e.last_name
-FROM employees e
-LEFT JOIN salaries s ON e.emp_no = s.emp_no AND current_date BETWEEN s.from_date AND s.to_date
-WHERE s.salary IS NULL;
-
--- 2. Enumera los departamentos que no tienen empleados trabajando actualmente.
-SELECT d.dept_name
-FROM departments d
-LEFT JOIN dept_emp de ON d.dept_no = de.dept_no AND current_date BETWEEN de.from_date AND de.to_date
-WHERE de.emp_no IS NULL;
-
--- 3. Muestra el nombre, apellido, título y salario de los empleados con un salario superior a la media de todos los empleados.
-SELECT e.first_name, e.last_name, t.title, s.salary
-FROM employees e
-JOIN titles t ON e.emp_no = t.emp_no
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE current_date BETWEEN s.from_date AND s.to_date
-AND current_date BETWEEN t.from_date AND t.to_date
-AND s.salary > (SELECT AVG(salary) FROM salaries WHERE current_date BETWEEN from_date AND to_date);
-
--- 4. Muestra el nombre y apellido de los empleados que han trabajado en más de 2 departamentos diferentes.
-SELECT e.first_name, e.last_name
-FROM employees e
-JOIN dept_emp de ON e.emp_no = de.emp_no
-WHERE current_date BETWEEN de.from_date AND de.to_date
-GROUP BY e.emp_no
-HAVING COUNT(DISTINCT de.dept_no) > 2;
-
--- 5. Muestra el salario más alto registrado para cada empleado durante su tiempo en la empresa.
-SELECT e.first_name, e.last_name, MAX(s.salary) AS max_salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE current_date BETWEEN s.from_date AND s.to_date
-GROUP BY e.emp_no;
-
--- 6. Obtén el número de empleados que han trabajado en el departamento 'Sales' durante más de 1 año.
-SELECT COUNT(e.emp_no) AS num_employees
-FROM employees e
-JOIN dept_emp de ON e.emp_no = de.emp_no
-JOIN departments d ON de.dept_no = d.dept_no
-WHERE d.dept_name = 'Sales'
-AND current_date BETWEEN de.from_date AND de.to_date
-AND DATEDIFF(current_date, de.from_date) > 365;
-
--- 7. Muestra el título y salario de todos los empleados que tienen el título de 'Manager' y un salario superior al promedio de los empleados con el mismo título.
-SELECT e.first_name, e.last_name, t.title, s.salary
-FROM employees e
-JOIN titles t ON e.emp_no = t.emp_no
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE t.title = 'Manager'
-AND current_date BETWEEN s.from_date AND s.to_date
-AND current_date BETWEEN t.from_date AND t.to_date
-AND s.salary > (SELECT AVG(salary) FROM salaries s1
-                JOIN titles t1 ON s1.emp_no = t1.emp_no
-                WHERE t1.title = 'Manager'
-                AND current_date BETWEEN s1.from_date AND s1.to_date);
-
--- 8. Muestra el nombre, apellido y salario de los empleados cuyo salario ha sido ajustado recientemente (en los últimos 3 meses).
-SELECT e.first_name, e.last_name, s.salary
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE current_date BETWEEN s.from_date AND s.to_date
-AND s.to_date >= CURRENT_DATE - INTERVAL 3 MONTH;
-
--- 9. Muestra el nombre y apellido de los empleados que han trabajado en el mismo departamento por más de 5 años.
-SELECT e.first_name, e.last_name, d.dept_name, de.from_date, de.to_date
-FROM employees e
-JOIN dept_emp de ON e.emp_no = de.emp_no
-JOIN departments d ON de.dept_no = d.dept_no
-WHERE current_date BETWEEN de.from_date AND de.to_date
-AND DATEDIFF(current_date, de.from_date) > 1825;  -- 1825 días ≈ 5 años
-
--- 10. Obtén el salario promedio de los empleados que han trabajado en el departamento de 'Engineering' durante más de 1 año.
-SELECT AVG(s.salary) AS avg_salary
-FROM employees e
-JOIN dept_emp de ON e.emp_no = de.emp_no
-JOIN departments d ON de.dept_no = d.dept_no
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE d.dept_name = 'Engineering'
-AND current_date BETWEEN de.from_date AND de.to_date
-AND DATEDIFF(current_date, de.from_date) > 365
-AND current_date BETWEEN s.from_date AND s.to_date;
-
-
-
-
-
-
-
-
-
--- --------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
--- 1. Actualiza el salario de todos los empleados que pertenecen al departamento 'Engineering'.
-UPDATE salaries
-SET salary = salary + 5000
-WHERE emp_no IN (
-    SELECT emp_no
-    FROM dept_emp de
-    JOIN departments d ON de.dept_no = d.dept_no
-    WHERE d.dept_name = 'Engineering'
-    AND current_date BETWEEN de.from_date AND de.to_date
-)
-AND current_date BETWEEN from_date AND to_date;
-
--- 2. Cambia el título de todos los empleados que han sido promovidos a 'Manager'.
-UPDATE titles
-SET title = 'Manager'
-WHERE emp_no IN (
-    SELECT emp_no
-    FROM titles
-    WHERE title = 'Senior Engineer'
-    AND current_date BETWEEN from_date AND to_date
-)
-AND current_date BETWEEN from_date AND to_date;
-
--- 3. Modifica la fecha de finalización de todos los empleados que tienen un salario superior a $70,000.
-UPDATE salaries
-SET to_date = '2025-12-31'
-WHERE salary > 70000
-AND current_date BETWEEN from_date AND to_date;
-
--- 4. Actualiza el departamento de todos los empleados que han trabajado más de 5 años en el mismo departamento.
-UPDATE dept_emp
-SET dept_no = 'D008', to_date = '2025-12-31'
-WHERE emp_no IN (
-    SELECT emp_no
-    FROM dept_emp
-    WHERE DATEDIFF(current_date, from_date) > 1825  -- 5 años
-    AND current_date BETWEEN from_date AND to_date
-);
-
--- 5. Cambia el nombre del departamento 'Sales' por 'Global Sales'.
-UPDATE departments
-SET dept_name = 'Global Sales'
-WHERE dept_name = 'Sales';
-
--- 6. Modifica el salario de los empleados cuyo salario es inferior al promedio de todos los empleados.
-UPDATE salaries
-SET salary = (SELECT AVG(salary) FROM salaries)
-WHERE salary < (SELECT AVG(salary) FROM salaries)
-AND current_date BETWEEN from_date AND to_date;
-
--- 7. Asigna un nuevo jefe de departamento para el departamento 'Marketing', actualizando las fechas.
-UPDATE dept_manager
-SET emp_no = 110, from_date = '2025-04-01', to_date = '2026-04-01'
-WHERE dept_no = 'D009' AND current_date BETWEEN from_date AND to_date;
-
--- 8. Modifica la fecha de contratación de los empleados con el título de 'Engineer' a '2023-06-15'.
-UPDATE employees
-SET hire_date = '2023-06-15'
-WHERE emp_no IN (
-    SELECT emp_no
-    FROM titles
-    WHERE title = 'Engineer'
-    AND current_date BETWEEN from_date AND to_date
-);
-
--- 9. Aumenta el salario de todos los empleados que tienen el título de 'Junior Developer' en un 15%.
-UPDATE salaries
-SET salary = salary * 1.15
-WHERE emp_no IN (
-    SELECT emp_no
-    FROM titles
-    WHERE title = 'Junior Developer'
-    AND current_date BETWEEN from_date AND to_date
-)
-AND current_date BETWEEN from_date AND to_date;
-
--- 10. Cambia la fecha de finalización de todos los registros de salario para los empleados de la empresa que ya no trabajan.
-UPDATE salaries
-SET to_date = '2025-01-01'
-WHERE emp_no IN (
-    SELECT emp_no
-    FROM dept_emp
-    WHERE to_date < current_date
-)
-AND current_date BETWEEN from_date AND to_date;
