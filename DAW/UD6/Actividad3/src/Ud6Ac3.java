@@ -6,12 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class App {
+public class Ud6Ac3 {
 
     private static final Scanner sc = new Scanner(System.in);
 
@@ -24,7 +23,7 @@ public class App {
 
         String opcion = null;
         do {
-            System.out.println("1) Crear Libro y registrarlo en la Biblioteca (ISBN único)");
+            System.out.println("1) Crear Libro y registrarlo en la Biblioteca (ISBN unico)");
             System.out.println("2) Mostrar Libros existentes por (ISBN, titulo, Autor, Fecha)");
             System.out.println("3) Eliminar Libro por ISBN");
             System.out.println("4) Guardar Libros en el fichero.");
@@ -41,14 +40,15 @@ public class App {
                     break;
 
                 case "3":
-
+                    eliminarLibro();
                     break;
 
                 case "4":
-
+                    guardarLibros();
                     break;
 
                 case "5":
+                    guardarLibros();
                     System.out.println("Hasta luego!");
 
                     break;
@@ -62,10 +62,17 @@ public class App {
 
 // -------------------------
 // CREAR LIBRO
-
-    public static void crearLibro(){
+    public static void crearLibro() {
         System.out.println("Introduce el ISBN del libro: ");
         String isbn = sc.nextLine();
+
+        //verificamos si el isbn ya existe
+        for (Libro li : libros) {
+            if (li.getIsbn().equals(isbn)) {
+                System.out.println("El isbn ya existe");
+                return;
+            }
+        }
 
         System.out.println("Introduce el titulo: ");
         String titulo = sc.nextLine();
@@ -81,113 +88,76 @@ public class App {
 
     }
 
-
-
-
 // -------------------------
 // MONSTRAR LIBRO
+    public static void monstrarLibro() {
 
-    public static void monstrarLibro(){
+        if (libros.isEmpty()) {
+            System.out.println("No hay libros!");
+        }
+
         for (Libro libros : libros) {
             System.out.println(libros.toString());
         }
     }
 
-
-
-
 // -------------------------
 // ELIMINAR LIBRO
-
-    public static void eliminarLibro(){
+    public static void eliminarLibro() {
         System.out.println("Introduce el ISBN del libro que quieres eliminar: ");
         String isbnEliminar = sc.nextLine();
 
-       
+        Libro eliminarLibro = null;
+        for (Libro li : libros) {
+            if (li.getIsbn().equals(isbnEliminar)) {
+                eliminarLibro = li;
+            }
+        }
 
+        if (eliminarLibro != null) {
+            libros.remove(eliminarLibro);
+            System.out.println("Libro eliminado!");
+        }else{
+            System.out.println("Libro no encontrado");
+        }
 
     }
-
-    
-
-
-
-
-
 
 // -------------------------
 // GUARDAR LIBROS EN FICHERO
-
-
-
-
     public static void guardarLibros() {
         try (FileOutputStream file = new FileOutputStream("src\\resources\\Biblioteca.dat", false); ObjectOutputStream writer = new ObjectOutputStream(file)) {
-            for (Libro li : libros) {
 
-                writer.writeUTF(li.getIsbn());
-                writer.writeUTF(li.getTitulo());
-                writer.writeUTF(li.getAutor());
-                writer.writeLong(li.getFechaPublicacion());   
-
-            }
-            
+            writer.writeObject(libros);
 
         } catch (IOException e) {
-            System.out.println("Se ha producido un error: " + e.getMessage());
+            System.out.println("Se ha producido un error al guardar: " + e.getMessage());
         }
     }
 
-
-
-
-
 // -------------------------
 // CARGAR LIBROS EN FICHERO
-
-
-
-
-
-
     public static void cargarLibros() {
         boolean eof = false;
-        try (FileInputStream file = new FileInputStream("src\\resources\\Biblioteca.dat"); ObjectInputStream reader = new ObjectInputStream(file)){
-            while(!eof){
-                Libro lLeido = (Libro) reader.readObject();
-                libros.add(lLeido);
+        try (FileInputStream file = new FileInputStream("src\\resources\\Biblioteca.dat"); ObjectInputStream reader = new ObjectInputStream(file)) {
+            while (!eof) {
+                
+                libros = (List<Libro>) reader.readObject();
+
             }
         } catch (EOFException e) {
             eof = true;
             System.out.println("Se ha leido el fichero completo");
         } catch (IOException e) {
-            System.out.println("Se ha producido un error: "+e.getMessage());
+            System.out.println("Se ha producido un error: " + e.getMessage());
         } catch (ClassNotFoundException e) {
-            System.out.println("Se ha producido un error: "+e.getMessage());
+            System.out.println("Se ha producido un error: " + e.getMessage());
         }
 
-        for (Libro al : libros) {
-            System.out.println(al);
+        for (Libro li : libros) {
+            System.out.println(li);
         }
     }
-
-
-
-
-
-
-// -------------------------
-// LECTURA DEL OBJETO CON EL METODO AVAILABLE 
-
-    
-    public static void lecturaLibro(){
-        
-    }
-
-
-
-
-
 
 
 

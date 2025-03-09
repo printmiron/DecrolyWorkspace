@@ -1,7 +1,9 @@
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Libro {
+public class Libro implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private String isbn;
     private String titulo;
@@ -9,9 +11,9 @@ public class Libro {
     private LocalDate fechaPublicacion;
     
     public Libro(String iSBN, String titulo, String autor, LocalDate fechaPublicacion) {
-        isbn = iSBN;
+        this.isbn = iSBN;
         this.titulo = titulo;
-        autor = autor;
+        this.autor = autor;
         this.fechaPublicacion = fechaPublicacion;
     }
 
