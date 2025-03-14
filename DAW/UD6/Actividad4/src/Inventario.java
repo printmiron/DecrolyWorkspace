@@ -22,17 +22,15 @@ public class Inventario {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
-        cargarProductoUNICODE();
-        cargarProductoBINARIO();
-        
+    
+        leerProductoBINARIO();
 
         String opcion = null;
         do {
             System.out.println("1) Mostrar Productos en el Inventario");
             System.out.println("2) Eliminar Producto por referencia");
             System.out.println("3) Guardar y Salir");
-            System.out.println("4) Guardar Libros en el fichero");
-            System.out.println("5) Crear producto");
+            System.out.println("4) Crear producto");
             opcion = sc.nextLine();
 
             switch (opcion) {
@@ -45,17 +43,12 @@ public class Inventario {
                     break;
 
                 case "3":
-                    guardarProductoUNICODE();
-                    guardarProductoBINARIO();
+                    escribirProductoBINARIO();
+                    escribirProductoUNICODE();
                     System.out.println("Hasta luego!");
                     break;
 
                 case "4":
-                    guardarProductoUNICODE();
-                    guardarProductoBINARIO();
-                    break;
-
-                case "5": 
                     System.out.println("Intoduce la referencia del producto: ");
                     String referencia = sc.nextLine();
 
@@ -79,9 +72,11 @@ public class Inventario {
 
                     System.out.println("Aplicar Dto?: ");
                     boolean aplicarDto = sc.nextBoolean();
-                   
-                    
 
+                    Producto p1 = new Producto(referencia, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
+                    productos.add(p1);
+
+                    System.out.println("Producto almacenado bien!");
                     break;
                 default:
                     System.out.println("Opcion no valido!");
@@ -121,50 +116,74 @@ public class Inventario {
 
     }
 
-    // -------------------------
-// GUARDAR PRODUCTOS EN FICHERO UNICODE
-    public static void guardarProductoUNICODE() {
-        try (FileWriter file = new FileWriter("src\\resources\\productos.scv", false); BufferedWriter writer = new BufferedWriter(file)) {
+    public static void leerProductoUNICODE() {
+        LinkedList<Producto> lineas = null;
+        lineas = new LinkedList<Producto>();
 
+        try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv"); BufferedReader buffer = new BufferedReader(file);) {
+            String linea = null;
+            do {
+                linea = buffer.readLine();
+
+                if (linea != null) {
+
+                    String[] datos = linea.split("/");
+                    Producto p = new Producto(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Integer.parseInt(datos[5]), Integer.parseInt(datos[6]), Boolean.parseBoolean(datos[7]));
+
+                    lineas.add(p);
+                }
+
+            } while (linea != null);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void escribirProductoUNICODE() {
+        try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv", false); BufferedWriter writer = new BufferedWriter(file)) {
             for (Producto pro : productos) {
-                writer.write(pro.getReferencia() + "," + pro.getDescripcion() + "," + pro.getTipo() + "," + pro.getCantidad() + "," + pro.getPrecio() + "," + pro.getDescuento() + "," + pro.getIva() + "," + pro.isAplicarDto());
+                writer.write(pro.getReferencia() + "/" + pro.getDescripcion() + "/" + pro.getTipo() + "/" + pro.getCantidad() + "/" + pro.getPrecio() + "/" + pro.getDescuento() + "/" + pro.getIva() + "/" + pro.isAplicarDto());
                 writer.newLine();
             }
-
         } catch (IOException e) {
             System.out.println("Se ha producido un error al guardar: " + e.getMessage());
         }
     }
 
-    // -------------------------
-// CARGAR PRODUCTOS DESDE FICHERO UNICODE
-    public static void cargarProductoUNICODE() {
-        try (FileReader file = new FileReader("src\\resources\\productos.scv"); BufferedReader reader = new BufferedReader(file);) {
-            String linea = reader.readLine();
-            while (linea != null) {
+    public static void leerProductoBINARIO() {
+        boolean eof = false;
+        //Lectura de fichero binario
+        try (FileInputStream file = new FileInputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat"); DataInputStream reader = new DataInputStream(file);) {
+            while (!eof) {
+                String referencia = reader.readUTF();
+                String descripcion = reader.readUTF();
+                String tipo = reader.readUTF();
+                int cantidad = reader.readInt();
+                double precio = reader.readDouble();
+                int descuento = reader.readInt();
+                int iva = reader.readInt();
+                boolean aplicarDto = reader.readBoolean();
 
-                String[] datos = linea.split(",");
-
-                Producto pro = new Producto(linea, linea, linea, 0, 0, 0, 0, false);
-
+                Producto pro = new Producto(referencia, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
                 productos.add(pro);
-
-                linea = reader.readLine();
             }
-
+        } catch (EOFException e) {
+            eof = true;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        for (Producto linea : productos) {
-            System.out.println(linea);
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos en Almacen!");
+        } else {
+            for (Producto pro : productos) {
+                System.out.println(pro);
+            }
         }
     }
 
-    // -------------------------
-// GUARDAR PRODUCTOS EN FICHERO BINARIO
-    public static void guardarProductoBINARIO() {
-        try (FileOutputStream file = new FileOutputStream("src\\resources\\almacen.dat", true); DataOutputStream writer = new DataOutputStream(file);) {
+    public static void escribirProductoBINARIO() {
+        try (FileOutputStream file = new FileOutputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat", false); DataOutputStream writer = new DataOutputStream(file);) {
 
             for (Producto pro : productos) {
                 writer.writeUTF(pro.getReferencia());
@@ -179,46 +198,6 @@ public class Inventario {
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-
-        // -------------------------
-// CARGAR PRODUCTOS EN FICHERO BINARIO
-    public static void cargarProductoBINARIO() {
-        productos.clear();
-        boolean eof = false;
-        //Lectura de fichero binario
-        try (FileInputStream file = new FileInputStream("src\\resources\\almacen.dat"); DataInputStream reader = new DataInputStream(file);) {
-
-            while (!eof) {
-
-                String referencia = reader.readUTF();
-                String descripcion = reader.readUTF();
-                String tipo = reader.readUTF();
-                int cantidad = reader.readInt();
-                double precio = reader.readDouble();
-                int descuento = reader.readInt();
-                int iva = reader.readInt();
-                boolean aplicarDto = reader.readBoolean();
-                Producto pro = new Producto(referencia, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
-                productos.add(pro);
-
-            }
-
-        } catch (EOFException e) {
-            eof = true;
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-        if (productos.isEmpty()) {
-            System.out.println("No hay productos en Almacen!");
-        } else {
-            for (Producto pro : productos) {
-                System.out.println(pro);
-            }
         }
     }
 
