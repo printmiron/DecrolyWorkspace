@@ -1473,8 +1473,8 @@ INSERT INTO `homenaje` VALUES (10001,'Santander','Ordenador Portátil', '2024-02
 
 SELECT h.emp_no, e.first_name, e.last_name, h.regalo, p.first_name, p.last_name
 FROM homenaje h
-JOIN employees e ON h.emp_no = e.emp_no  -- Une homenajeado con employees
-JOIN employees p ON h.presentador = p.emp_no; -- Une presentador con employees
+JOIN employees e ON h.emp_no = e.emp_no  
+JOIN employees p ON h.presentador = p.emp_no; 
 
 
 
