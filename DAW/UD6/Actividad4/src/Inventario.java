@@ -22,7 +22,7 @@ public class Inventario {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
-    
+        leerProductoUNICODE();
         leerProductoBINARIO();
 
         String opcion = null;
@@ -60,18 +60,26 @@ public class Inventario {
 
                     System.out.println("Intoduce su cantidad: ");
                     int cantidad = sc.nextInt();
+                    sc.nextLine();
 
                     System.out.println("Intoduce su prcio: ");
                     double precio = sc.nextDouble();
+                    sc.nextLine();
+
 
                     System.out.println("Intoduce descuento si tiene: ");
                     int descuento = sc.nextInt();
+                    sc.nextLine();
+
 
                     System.out.println("Intoduce la iva: ");
                     int iva = sc.nextInt();
+                    sc.nextLine();
 
-                    System.out.println("Aplicar Dto?: ");
-                    boolean aplicarDto = sc.nextBoolean();
+
+                    System.out.println("Aplicar Descuento (si/no)?: ");
+                    String aplicarDtoString = sc.nextLine().trim().toLowerCase();
+                    boolean aplicarDto = aplicarDtoString.equals("si");
 
                     Producto p1 = new Producto(referencia, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
                     productos.add(p1);
@@ -89,9 +97,13 @@ public class Inventario {
 // -------------------------
 // MONSTRAR PRODUCTO
     public static void monstrarProducto() {
-        for (Producto pro : productos) {
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos en almacen!");
+        }else{
             System.out.println(productos.toString());
         }
+           
+       
     }
 
 // -------------------------
@@ -117,33 +129,31 @@ public class Inventario {
     }
 
     public static void leerProductoUNICODE() {
-        LinkedList<Producto> lineas = null;
-        lineas = new LinkedList<Producto>();
 
-        try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv"); BufferedReader buffer = new BufferedReader(file);) {
-            String linea = null;
-            do {
-                linea = buffer.readLine();
+        try (FileReader file = new FileReader("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv"); BufferedReader buffer = new BufferedReader(file);) {
+            String linea;
+            while ((linea = buffer.readLine()) != null) {
+                String[] datos = linea.split("/");
 
-                if (linea != null) {
+                boolean aplicarDto = datos[7].equalsIgnoreCase("si");
 
-                    String[] datos = linea.split("/");
-                    Producto p = new Producto(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Integer.parseInt(datos[5]), Integer.parseInt(datos[6]), Boolean.parseBoolean(datos[7]));
+                Producto p = new Producto(datos[0], datos[1], datos[2],Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Integer.parseInt(datos[5]), Integer.parseInt(datos[6]), aplicarDto);
 
-                    lineas.add(p);
+                if (!productos.contains(p)) { //ara evitar dublicados
+                    productos.add(p);
                 }
-
-            } while (linea != null);
-
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void escribirProductoUNICODE() {
-        try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv", false); BufferedWriter writer = new BufferedWriter(file)) {
+        try (FileWriter file = new FileWriter("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv", false); BufferedWriter writer = new BufferedWriter(file)) {
             for (Producto pro : productos) {
-                writer.write(pro.getReferencia() + "/" + pro.getDescripcion() + "/" + pro.getTipo() + "/" + pro.getCantidad() + "/" + pro.getPrecio() + "/" + pro.getDescuento() + "/" + pro.getIva() + "/" + pro.isAplicarDto());
+                String aplicarDtoStr = pro.isAplicarDto() ? "si" : "no";
+
+                writer.write(pro.getReferencia() + "/" + pro.getDescripcion() + "/" + pro.getTipo() + "/" + pro.getCantidad() + "/" + pro.getPrecio() + "/" + pro.getDescuento() + "/" + pro.getIva() + "/" + aplicarDtoStr);
                 writer.newLine();
             }
         } catch (IOException e) {
@@ -154,41 +164,42 @@ public class Inventario {
     public static void leerProductoBINARIO() {
         boolean eof = false;
         //Lectura de fichero binario
-        try (FileInputStream file = new FileInputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat"); DataInputStream reader = new DataInputStream(file);) {
+        try (FileInputStream file = new FileInputStream("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat"); DataInputStream reader = new DataInputStream(file);) {
+            int i = 0;
             while (!eof) {
-                String referencia = reader.readUTF();
-                String descripcion = reader.readUTF();
-                String tipo = reader.readUTF();
-                int cantidad = reader.readInt();
-                double precio = reader.readDouble();
-                int descuento = reader.readInt();
-                int iva = reader.readInt();
-                boolean aplicarDto = reader.readBoolean();
+                try {
+                    
 
-                Producto pro = new Producto(referencia, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
-                productos.add(pro);
+                    int cantidad = reader.readInt();
+                    double precio = reader.readDouble();
+                    int descuento = reader.readInt();
+                    int iva = reader.readInt();
+                    boolean aplicarDto = reader.readBoolean();
+    
+                    
+                    productos.get(i).setCantidad(cantidad);
+                    productos.get(i).setPrecio(precio);
+                    productos.get(i).setDescuento(descuento);
+                    productos.get(i).setIva(iva);
+                    productos.get(i).setAplicarDto(aplicarDto);
+    
+                    i++;
+                } catch (EOFException e) {
+                    break;
+                }
             }
-        } catch (EOFException e) {
-            eof = true;
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        }
-        if (productos.isEmpty()) {
-            System.out.println("No hay productos en Almacen!");
-        } else {
-            for (Producto pro : productos) {
-                System.out.println(pro);
-            }
-        }
+        } 
+            
+        
     }
 
     public static void escribirProductoBINARIO() {
-        try (FileOutputStream file = new FileOutputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat", false); DataOutputStream writer = new DataOutputStream(file);) {
+        try (FileOutputStream file = new FileOutputStream("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat", false); DataOutputStream writer = new DataOutputStream(file);) {
 
             for (Producto pro : productos) {
-                writer.writeUTF(pro.getReferencia());
-                writer.writeUTF(pro.getDescripcion());
-                writer.writeUTF(pro.getTipo());
+
                 writer.writeInt(pro.getCantidad());
                 writer.writeDouble(pro.getPrecio());
                 writer.writeInt(pro.getDescuento());

@@ -89,7 +89,7 @@ public class Producto {
     public String toString() {
         return "Producto [referencia=" + referencia + ", descripcion=" + descripcion + ", tipo=" + tipo + ", cantidad="
                 + cantidad + ", precio=" + precio + ", descuento=" + descuento + ", iva=" + iva + ", aplicarDto="
-                + aplicarDto + "]";
+                + aplicarDto + "]" + "\n";
     }
 
     

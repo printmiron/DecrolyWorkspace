@@ -194,12 +194,12 @@ botonesCarrito.forEach(boton => {
 
 
 
-//Cambio de tamano de texto al pasar el mouse
-document.querySelectorAll("h2, p").forEach(elemento => {
-    elemento.addEventListener("mouseover", () => {
-        elemento.style.fontSize = "5vh";
-    });
-    elemento.addEventListener("mouseout", () => {
-        elemento.style.fontSize = "";
-    });
-});
+// //Cambio de tamano de texto al pasar el mouse
+// document.querySelectorAll("h2, p").forEach(elemento => {
+//     elemento.addEventListener("mouseover", () => {
+//         elemento.style.fontSize = "5vh";
+//     });
+//     elemento.addEventListener("mouseout", () => {
+//         elemento.style.fontSize = "";
+//     });
+// });
