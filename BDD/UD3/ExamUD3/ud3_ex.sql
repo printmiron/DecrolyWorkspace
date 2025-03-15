@@ -1469,64 +1469,13 @@ INSERT INTO `homenaje` VALUES (10001,'Santander','Ordenador Portátil', '2024-02
 (10005,'Barcelona','Reloj', '2024-02-10', '9999-01-01');
 
 
-DELETE 
-FROM homenaje 
-WHERE emp_no = '10001';
-
-UPDATE homenaje
-SET lugar = 'Santander'
-WHERE current_date BETWEEN from_date AND to_date;
-
--- 1
-SELECT e.first_name, e.last_name , e.hire_date
-FROM employees e
-JOIN homenaje h ON e.emp_no = h.emp_no
-where current_date between h.from_date and h.to_date;
-
--- 2
-SELECT e.first_name, e.last_name, s.salary
-FROM employees e
-JOIN dept_manager dm ON e.emp_no = dm.emp_no
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE current_date BETWEEN s.from_date AND s.to_date;
-
--- 3
-SELECT e.first_name, e.last_name, s.salary, de.dept_no,  d.dept_name, de.from_date, de.to_date
-FROM employees e
-JOIN salaries s ON e.emp_no = s.emp_no
-JOIN dept_emp de ON e.emp_no = de.emp_no
-JOIN departments d ON de.dept_no = d.dept_no
-WHERE e.hire_date = (
-	SELECT hire_date
-    FROM employees
-    ORDER BY hire_date
-    LIMIT 1)
-ORDER BY de.from_date;
 
 
--- 4
-SELECT e.first_name, e.last_name, m.first_name, m.last_name
-FROM employees e
-LEFT JOIN dept_manager dm ON e.emp_no = dm.emp_no
-LEFT JOIN employees m ON dm.emp_no = m.emp_no
-WHERE dm.to_date > CURRENT_DATE OR dm.to_date IS NULL;
+SELECT h.emp_no, e.first_name, e.last_name, h.regalo, p.first_name, p.last_name
+FROM homenaje h
+JOIN employees e ON h.emp_no = e.emp_no  -- Une homenajeado con employees
+JOIN employees p ON h.presentador = p.emp_no; -- Une presentador con employees
 
-
--- 5
-SELECT e.first_name, e.last_name, COUNT(DISTINCT de.dept_no) AS num_departamentos
-FROM employees e
-JOIN dept_emp de ON e.emp_no = de.emp_no
-GROUP BY e.emp_no
-HAVING num_departamentos > 0;
-
--- 6
-SELECT AVG(s.salary) AS salario_medio
-FROM employees e 
-JOIN titles t ON e.emp_no = t.emp_no
-JOIN salaries s ON e.emp_no = s.emp_no
-WHERE t.title LIKE '%Senior%'
-	AND t.to_date IS NULL
-    AND s.to_date > CURRENT_DATE;
 
 
 
