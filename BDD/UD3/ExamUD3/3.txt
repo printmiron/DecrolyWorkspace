@@ -1,0 +1,108 @@
+-- Creación de la tabla "proyecto"
+CREATE TABLE proyecto (
+    proyecto_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_proyecto VARCHAR(255) NOT NULL,
+    fecha_inicio DATE NOT NULL
+);
+
+-- Creación de la tabla "empleado_proyecto" (relación muchos a muchos)
+CREATE TABLE empleado_proyecto (
+    emp_no INT NOT NULL,
+    proyecto_id INT NOT NULL,
+    rol VARCHAR(100),
+    PRIMARY KEY (emp_no, proyecto_id),
+    FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+    FOREIGN KEY (proyecto_id) REFERENCES proyecto(proyecto_id)
+);
+
+-- Insertar cinco empleados en dos proyectos diferentes cada uno
+INSERT INTO proyecto (nombre_proyecto, fecha_inicio) VALUES
+    ('Sistema de Gestión', '2024-02-01'),
+    ('Desarrollo de API', '2023-06-15');
+
+INSERT INTO empleado_proyecto (emp_no, proyecto_id, rol) VALUES
+    (1, 1, 'Desarrollador'),
+    (1, 2, 'Analista'),
+    (2, 1, 'Tester'),
+    (2, 2, 'Desarrollador'),
+    (3, 1, 'Gerente'),
+    (3, 2, 'Desarrollador'),
+    (4, 1, 'Diseñador'),
+    (5, 2, 'Administrador de BD');
+
+-- Consultas SQL
+
+-- 1. Nombre del proyecto, número total de empleados y fecha de inicio
+SELECT p.nombre_proyecto, COUNT(ep.emp_no) AS total_empleados, p.fecha_inicio 
+FROM proyecto p
+LEFT JOIN empleado_proyecto ep ON p.proyecto_id = ep.proyecto_id
+GROUP BY p.proyecto_id;
+
+-- 2. Tres empleados con más proyectos asignados
+SELECT ep.emp_no, e.first_name, e.last_name, COUNT(ep.proyecto_id) AS num_proyectos
+FROM empleado_proyecto ep
+JOIN employees e ON ep.emp_no = e.emp_no
+GROUP BY ep.emp_no
+ORDER BY num_proyectos DESC
+LIMIT 3;
+
+-- 3. Empleados en proyectos iniciados después de 2023-01-01
+SELECT e.first_name, e.last_name, p.nombre_proyecto
+FROM employees e
+JOIN empleado_proyecto ep ON e.emp_no = ep.emp_no
+JOIN proyecto p ON ep.proyecto_id = p.proyecto_id
+WHERE p.fecha_inicio > '2023-01-01';
+
+-- 4. Cantidad de proyectos en los que están involucrados los empleados
+SELECT e.first_name, e.last_name, COUNT(ep.proyecto_id) AS total_proyectos
+FROM employees e
+JOIN empleado_proyecto ep ON e.emp_no = ep.emp_no
+GROUP BY e.emp_no;
+
+-- 5. Empleados sin ningún proyecto asignado
+SELECT e.first_name, e.last_name
+FROM employees e
+LEFT JOIN empleado_proyecto ep ON e.emp_no = ep.emp_no
+WHERE ep.emp_no IS NULL;
+
+-- 6. Salario promedio de empleados en más de un proyecto
+SELECT AVG(s.salary) AS salario_promedio
+FROM salaries s
+JOIN (
+    SELECT ep.emp_no FROM empleado_proyecto ep
+    GROUP BY ep.emp_no
+    HAVING COUNT(ep.proyecto_id) > 1
+) empleados_con_multiples_proyectos
+ON s.emp_no = empleados_con_multiples_proyectos.emp_no;
+
+-- Modificaciones en la base de datos
+
+-- 1. Agregar columna "estado" a la tabla "proyecto"
+ALTER TABLE proyecto ADD COLUMN estado ENUM('En progreso', 'Finalizado') DEFAULT 'En progreso';
+
+-- 2. Actualizar estado de proyectos con más de 5 empleados a "Finalizado"
+UPDATE proyecto SET estado = 'Finalizado'
+WHERE proyecto_id IN (
+    SELECT proyecto_id FROM empleado_proyecto
+    GROUP BY proyecto_id
+    HAVING COUNT(emp_no) > 5
+);
+
+-- 3. Asignar a cada proyecto un "gerente de proyecto"
+UPDATE empleado_proyecto ep
+JOIN (
+    SELECT ep.proyecto_id, ep.emp_no
+    FROM empleado_proyecto ep
+    JOIN salaries s ON ep.emp_no = s.emp_no
+    WHERE s.salary = (SELECT MAX(s2.salary) FROM salaries s2 WHERE s2.emp_no = ep.emp_no)
+) gerentes
+ON ep.proyecto_id = gerentes.proyecto_id
+SET ep.rol = 'Gerente de Proyecto';
+
+-- 4. Mostrar el nombre del proyecto, gerente asignado y cantidad de empleados por proyecto
+SELECT p.nombre_proyecto, e.first_name AS gerente_nombre, e.last_name AS gerente_apellido, COUNT(ep.emp_no) AS total_empleados
+FROM proyecto p
+JOIN empleado_proyecto ep ON p.proyecto_id = ep.proyecto_id
+JOIN employees e ON ep.emp_no = e.emp_no
+WHERE ep.rol = 'Gerente de Proyecto'
+GROUP BY p.proyecto_id;
