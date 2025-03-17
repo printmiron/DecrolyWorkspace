@@ -8,3 +8,10 @@ CREATE	TABLE	Alumno	(
 	fecha_de_nacimiento	 	DATE			NOT NULL
 );
 
+INSERT	INTO	Alumno	(nombre, apellido, fecha_de_nacimiento)	VALUES 
+('Pavel', 'Miron', '2004-08-06'),
+('Victor', 'Fernandez', '2005-12-05'),
+('Pepe', 'Grande', '2002-04-26');
+
+
+CREATE	USER	'decroly'@'localhost'	IDENTIFIED	BY	'decoly';
