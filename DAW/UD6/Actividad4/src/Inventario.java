@@ -130,14 +130,14 @@ public class Inventario {
 
     public static void leerProductoUNICODE() {
 
-        try (FileReader file = new FileReader("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv"); BufferedReader buffer = new BufferedReader(file);) {
+        try (FileReader file = new FileReader("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv"); BufferedReader buffer = new BufferedReader(file);) {
             String linea;
             while ((linea = buffer.readLine()) != null) {
                 String[] datos = linea.split("/");
 
                 boolean aplicarDto = datos[7].equalsIgnoreCase("si");
 
-                Producto p = new Producto(datos[0], datos[1], datos[2],Integer.parseInt(datos[3]), Double.parseDouble(datos[4]), Integer.parseInt(datos[5]), Integer.parseInt(datos[6]), aplicarDto);
+                Producto p = new Producto(datos[0], datos[1], datos[2]);
 
                 if (!productos.contains(p)) { //ara evitar dublicados
                     productos.add(p);
@@ -149,7 +149,7 @@ public class Inventario {
     }
 
     public static void escribirProductoUNICODE() {
-        try (FileWriter file = new FileWriter("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv", false); BufferedWriter writer = new BufferedWriter(file)) {
+        try (FileWriter file = new FileWriter("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\productos.scv", false); BufferedWriter writer = new BufferedWriter(file)) {
             for (Producto pro : productos) {
                 String aplicarDtoStr = pro.isAplicarDto() ? "si" : "no";
 
@@ -164,7 +164,7 @@ public class Inventario {
     public static void leerProductoBINARIO() {
         boolean eof = false;
         //Lectura de fichero binario
-        try (FileInputStream file = new FileInputStream("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat"); DataInputStream reader = new DataInputStream(file);) {
+        try (FileInputStream file = new FileInputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat"); DataInputStream reader = new DataInputStream(file);) {
             int i = 0;
             while (!eof) {
                 try {
@@ -196,7 +196,7 @@ public class Inventario {
     }
 
     public static void escribirProductoBINARIO() {
-        try (FileOutputStream file = new FileOutputStream("C:\\Users\\cloud\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat", false); DataOutputStream writer = new DataOutputStream(file);) {
+        try (FileOutputStream file = new FileOutputStream("C:\\Users\\daw1\\Documents\\DecrolyWorkspace\\DAW\\UD6\\Actividad4\\src\\resources\\almacen.dat", false); DataOutputStream writer = new DataOutputStream(file);) {
 
             for (Producto pro : productos) {
 

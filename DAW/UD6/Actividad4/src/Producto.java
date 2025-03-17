@@ -21,6 +21,12 @@ public class Producto {
         this.aplicarDto = aplicarDto;
     }
 
+    public Producto(String referencia, String descripcion, String tipo) {
+        this.referencia = referencia;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+    }
+
     public String getReferencia() {
         return referencia;
     }

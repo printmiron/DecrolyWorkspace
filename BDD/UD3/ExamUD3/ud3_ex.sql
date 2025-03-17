@@ -1469,18 +1469,262 @@ INSERT INTO `homenaje` VALUES (10001,'Santander','Ordenador Portátil', '2024-02
 (10005,'Barcelona','Reloj', '2024-02-10', '9999-01-01');
 
 
+-- ---------------------------------------------------------------------------
+DELETE 
+FROM homenaje 
+WHERE emp_no = '10001';
+
+UPDATE homenaje
+SET lugar = 'Santander'
+WHERE current_date BETWEEN from_date AND to_date;
+
+-- 1
+SELECT e.first_name, e.last_name , e.hire_date
+FROM employees e
+JOIN homenaje h ON e.emp_no = h.emp_no
+where current_date between h.from_date and h.to_date;
+
+-- 2
+SELECT e.first_name, e.last_name, s.salary
+FROM employees e
+JOIN dept_manager dm ON e.emp_no = dm.emp_no
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE current_date BETWEEN s.from_date AND s.to_date;
+
+-- 3
+SELECT e.first_name, e.last_name, s.salary, de.dept_no,  d.dept_name, de.from_date, de.to_date
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+WHERE e.hire_date = (
+	SELECT hire_date
+    FROM employees
+    ORDER BY hire_date
+    LIMIT 1)
+ORDER BY de.from_date;
 
 
-SELECT h.emp_no, e.first_name, e.last_name, h.regalo, p.first_name, p.last_name
-FROM homenaje h
-JOIN employees e ON h.emp_no = e.emp_no  
-JOIN employees p ON h.presentador = p.emp_no; 
+-- 4
+SELECT e.first_name, e.last_name, m.first_name, m.last_name
+FROM employees e;
 
 
 
+-- ---------------------------------------------------------------
+-- Creación de la tabla "certificación"
+CREATE TABLE certificacion (
+    cert_id INT AUTO_INCREMENT PRIMARY KEY,
+    emp_no INT NOT NULL,
+    nombre_certificacion VARCHAR(100) NOT NULL,
+    fecha_obtencion DATE NOT NULL,
+    FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+);
+
+-- Insertar registros para los cinco primeros empleados
+INSERT INTO certificacion (emp_no, nombre_certificacion, fecha_obtencion) 
+VALUES 
+    (1, 'Certificación en SQL', '2024-03-15'),
+    (2, 'Certificación en Administración de BD', '2024-03-15'),
+    (3, 'Certificación en Modelado de Datos', '2024-03-15'),
+    (4, 'Certificación en SQL', '2024-03-15'),
+    (5, 'Certificación en Administración de BD', '2024-03-15');
+
+-- Eliminar la certificación del primer empleado y actualizar fechas
+DELETE FROM certificacion WHERE emp_no = 1;
+UPDATE certificacion SET fecha_obtencion = '2024-03-20';
+
+-- Consultas SQL
+
+-- Nombre, apellidos y departamento actual de empleados con certificaciones
+SELECT e.first_name, e.last_name, d.dept_name 
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+JOIN certificacion c ON e.emp_no = c.emp_no
+WHERE de.to_date = '9999-01-01';
+
+-- Salario más alto y más bajo por departamento
+SELECT d.dept_name, MAX(s.salary) AS salario_max, MIN(s.salary) AS salario_min
+FROM salaries s
+JOIN dept_emp de ON s.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+WHERE de.to_date = '9999-01-01'
+GROUP BY d.dept_name;
+
+-- Nombre del departamento, total de empleados y salario promedio
+SELECT d.dept_name, COUNT(e.emp_no) AS total_empleados, AVG(s.salary) AS salario_promedio
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+WHERE de.to_date = '9999-01-01'
+GROUP BY d.dept_name;
+
+-- Nombres y apellidos de empleados y sus supervisores directos
+SELECT e.first_name AS empleado_nombre, e.last_name AS empleado_apellido, 
+       m.first_name AS gerente_nombre, m.last_name AS gerente_apellido
+FROM employees e
+JOIN dept_manager dm ON e.emp_no = dm.emp_no
+JOIN employees m ON dm.emp_no = m.emp_no
+WHERE dm.to_date = '9999-01-01';
+
+-- Empleados que han cambiado de departamento más de dos veces
+SELECT emp_no, COUNT(dept_no) AS cambios_departamento
+FROM dept_emp
+GROUP BY emp_no
+HAVING COUNT(dept_no) > 2;
+
+-- Salario promedio de empleados con el título "Manager"
+SELECT AVG(s.salary) AS salario_promedio
+FROM salaries s
+JOIN titles t ON s.emp_no = t.emp_no
+WHERE t.title LIKE '%Manager%'
+AND t.to_date = '9999-01-01';
+
+-- Modificaciones en la base de datos
+
+-- Agregar columna "institución" a la tabla certificación
+ALTER TABLE certificacion ADD COLUMN institucion_id INT;
+
+-- Crear tabla "instituciones_certificadoras" y agregar clave foránea
+CREATE TABLE instituciones_certificadoras (
+    institucion_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
+
+ALTER TABLE certificacion 
+ADD FOREIGN KEY (institucion_id) REFERENCES instituciones_certificadoras(institucion_id);
+
+-- Asignar certificaciones a la institución con más empleados certificados
+UPDATE certificacion 
+SET institucion_id = (
+    SELECT institucion_id 
+    FROM certificacion 
+    GROUP BY institucion_id 
+    ORDER BY COUNT(emp_no) DESC 
+    LIMIT 1
+);
+
+-- Mostrar empleados con certificaciones y su institución
+SELECT e.first_name, e.last_name, c.nombre_certificacion, i.nombre AS institucion
+FROM employees e
+JOIN certificacion c ON e.emp_no = c.emp_no
+JOIN instituciones_certificadoras i ON c.institucion_id = i.institucion_id;
+
+
+-- ------------------------------------------------------------
 
 
 
+-- Creación de la tabla "proyecto"
+CREATE TABLE proyecto (
+    proyecto_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_proyecto VARCHAR(255) NOT NULL,
+    fecha_inicio DATE NOT NULL
+);
+
+-- Creación de la tabla "empleado_proyecto" (relación muchos a muchos)
+CREATE TABLE empleado_proyecto (
+    emp_no INT NOT NULL,
+    proyecto_id INT NOT NULL,
+    rol VARCHAR(100),
+    PRIMARY KEY (emp_no, proyecto_id),
+    FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+    FOREIGN KEY (proyecto_id) REFERENCES proyecto(proyecto_id)
+);
+
+-- Insertar cinco empleados en dos proyectos diferentes cada uno
+INSERT INTO proyecto (nombre_proyecto, fecha_inicio) VALUES
+    ('Sistema de Gestión', '2024-02-01'),
+    ('Desarrollo de API', '2023-06-15');
+
+INSERT INTO empleado_proyecto (emp_no, proyecto_id, rol) VALUES
+    (1, 1, 'Desarrollador'),
+    (1, 2, 'Analista'),
+    (2, 1, 'Tester'),
+    (2, 2, 'Desarrollador'),
+    (3, 1, 'Gerente'),
+    (3, 2, 'Desarrollador'),
+    (4, 1, 'Diseñador'),
+    (5, 2, 'Administrador de BD');
+
+-- Consultas SQL
+
+-- 1. Nombre del proyecto, número total de empleados y fecha de inicio
+SELECT p.nombre_proyecto, COUNT(ep.emp_no) AS total_empleados, p.fecha_inicio 
+FROM proyecto p
+LEFT JOIN empleado_proyecto ep ON p.proyecto_id = ep.proyecto_id
+GROUP BY p.proyecto_id;
+
+-- 2. Tres empleados con más proyectos asignados
+SELECT ep.emp_no, e.first_name, e.last_name, COUNT(ep.proyecto_id) AS num_proyectos
+FROM empleado_proyecto ep
+JOIN employees e ON ep.emp_no = e.emp_no
+GROUP BY ep.emp_no
+ORDER BY num_proyectos DESC
+LIMIT 3;
+
+-- 3. Empleados en proyectos iniciados después de 2023-01-01
+SELECT e.first_name, e.last_name, p.nombre_proyecto
+FROM employees e
+JOIN empleado_proyecto ep ON e.emp_no = ep.emp_no
+JOIN proyecto p ON ep.proyecto_id = p.proyecto_id
+WHERE p.fecha_inicio > '2023-01-01';
+
+-- 4. Cantidad de proyectos en los que están involucrados los empleados
+SELECT e.first_name, e.last_name, COUNT(ep.proyecto_id) AS total_proyectos
+FROM employees e
+JOIN empleado_proyecto ep ON e.emp_no = ep.emp_no
+GROUP BY e.emp_no;
+
+-- 5. Empleados sin ningún proyecto asignado
+SELECT e.first_name, e.last_name
+FROM employees e
+LEFT JOIN empleado_proyecto ep ON e.emp_no = ep.emp_no
+WHERE ep.emp_no IS NULL;
+
+-- 6. Salario promedio de empleados en más de un proyecto
+SELECT AVG(s.salary) AS salario_promedio
+FROM salaries s
+JOIN (
+    SELECT ep.emp_no FROM empleado_proyecto ep
+    GROUP BY ep.emp_no
+    HAVING COUNT(ep.proyecto_id) > 1
+) empleados_con_multiples_proyectos
+ON s.emp_no = empleados_con_multiples_proyectos.emp_no;
+
+-- Modificaciones en la base de datos
+
+-- 1. Agregar columna "estado" a la tabla "proyecto"
+ALTER TABLE proyecto ADD COLUMN estado ENUM('En progreso', 'Finalizado') DEFAULT 'En progreso';
+
+-- 2. Actualizar estado de proyectos con más de 5 empleados a "Finalizado"
+UPDATE proyecto SET estado = 'Finalizado'
+WHERE proyecto_id IN (
+    SELECT proyecto_id FROM empleado_proyecto
+    GROUP BY proyecto_id
+    HAVING COUNT(emp_no) > 5
+);
+
+-- 3. Asignar a cada proyecto un "gerente de proyecto"
+UPDATE empleado_proyecto ep
+JOIN (
+    SELECT ep.proyecto_id, ep.emp_no
+    FROM empleado_proyecto ep
+    JOIN salaries s ON ep.emp_no = s.emp_no
+    WHERE s.salary = (SELECT MAX(s2.salary) FROM salaries s2 WHERE s2.emp_no = ep.emp_no)
+) gerentes
+ON ep.proyecto_id = gerentes.proyecto_id
+SET ep.rol = 'Gerente de Proyecto';
+
+-- 4. Mostrar el nombre del proyecto, gerente asignado y cantidad de empleados por proyecto
+SELECT p.nombre_proyecto, e.first_name AS gerente_nombre, e.last_name AS gerente_apellido, COUNT(ep.emp_no) AS total_empleados
+FROM proyecto p
+JOIN empleado_proyecto ep ON p.proyecto_id = ep.proyecto_id
+JOIN employees e ON ep.emp_no = e.emp_no
+WHERE ep.rol = 'Gerente de Proyecto'
+GROUP BY p.proyecto_id;
 
 
 
