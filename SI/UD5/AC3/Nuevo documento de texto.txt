@@ -1,0 +1,12 @@
+¿Cómo se podría haber evitado con herramientas de monitorización adecuadas?
+El uso de herramientas de monitorización adecuadas podría haber evitado este tipo de fallos al permitir una detección temprana de problemas antes de que afectaran masivamente a los sistemas. Algunas posibles acciones preventivas incluyen:
+
+Monitorización proactiva de actualizaciones: Herramientas que monitoreen y prueben las actualizaciones en entornos de prueba antes de su despliegue masivo hubieran podido identificar errores en los controladores.
+
+Análisis de la estabilidad del sistema en tiempo real: Plataformas que proporcionan monitoreo en tiempo real del rendimiento del sistema y la identificación de fallos en los controladores pueden alertar a los administradores antes de que los problemas se conviertan en críticos.
+
+Automatización de correcciones y parches: Herramientas que detecten y apliquen parches automáticos para problemas de compatibilidad en los controladores hubieran podido evitar que la actualización defectuosa afectara a los usuarios.
+
+Pruebas de integridad continua: Implementar pruebas de integridad y validación continua de los sistemas, alertando de cualquier anomalía antes de que cause un impacto mayor.
+
+Estas medidas hubieran permitido detectar fallos de forma más temprana, minimizando el impacto en los usuarios finales y en la operatividad global.
