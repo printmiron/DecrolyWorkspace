@@ -14,6 +14,14 @@ INSERT	INTO	alumno	(nombre, apellido, f_nac)	VALUES
 ('Pepe', 'Grande', '2002-04-26'),
 ('Fernando', 'Alonso', '1981-07-29'); 
 
+USE mysql;
+
+SELECT * FROM ud4_ac1.alumno WHERE apellido = 'Alonso';
+
+
+-- SELECT * FROM user WHERE user = 'decroly';
+
+
 -- GRANT ALL PRIVILEGES ON ud4_ac1.* TO 'usuarios';
 
 -- REVOKE usuarios FROM 'alumno'@'localhost';
@@ -38,13 +46,13 @@ INSERT	INTO	alumno	(nombre, apellido, f_nac)	VALUES
 
 -- GRANT	UPDATE	(f_nac)	ON	alumno	TO  'decroly'@'localhost';
 
-use ud4_ac1; 
+-- use ud4_ac1; 
 
-UPDATE alumno SET f_nac='1990-04-20' WHERE nombre='Fernando'; 
-UPDATE alumno SET apellido='Alonso' WHERE nombre='Fernando'; 
+-- UPDATE alumno SET f_nac='1990-04-20' WHERE nombre='Fernando'; 
+-- UPDATE alumno SET apellido='Alonso' WHERE nombre='Fernando'; 
 
 
-SELECT * FROM alumno; 
+-- SELECT * FROM alumno; 
 
 -- SHOW DATABASES;
 
