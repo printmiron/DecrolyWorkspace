@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class ConexionMySQL {
 
     public final String DRIVER = "com.mysql.jdbc.Driver";
-    public final String URL = "jdbc:mysql://localhost:3306/";
-    public final String USER = "root";
-    public final String PASS = "";
+    public final String URL = "jdbc:mysql://localhost:3306/DAWprog";
+    public final String USER = "developer";
+    public final String PASS = "developer";
 
     public Connection ConexionMySQL() {
         Connection con = null;

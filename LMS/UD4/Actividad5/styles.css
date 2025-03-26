@@ -10,6 +10,7 @@ body{
     flex-direction: column;
 }
 
+
 .containerMain {  display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -18,17 +19,24 @@ body{
     grid-template-areas:
       ".";
   }
-  
+
   h1{
     padding: 4vh;
   }
 
+  #img_jugador1, #img_jugador2{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    transition: transform 0.3s ease;
+  }
+
   .containerMap {  display: grid;
-   
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
+    background: #a29bfe;
     grid-template-areas:
       ". c31 c32 c33 . c37 c38 c39"
       ". c30 . c34 c35 c36 . ."
@@ -39,139 +47,171 @@ body{
       ". c3 . c11 c12 c13 c16 ."
       "c1 c2 . . . c14 c15 .";
   }
-  
 
-  .c1 { grid-area: c1;border: 1px solid;
+
+  .c1 { grid-area: c1; border: 1px solid;
     padding: 4vh;}
-  
+
   .c2 { grid-area: c2; border: 1px solid;
     padding: 4vh;}
-  
+
   .c3 { grid-area: c3; border: 1px solid;
     padding: 4vh;}
-  
+
   .c4 { grid-area: c4; border: 1px solid;
     padding: 4vh;}
-  
+
   .c5 { grid-area: c5; border: 1px solid;
     padding: 4vh;}
-  
+
   .c6 { grid-area: c6; border: 1px solid;
     padding: 4vh;}
-  
+
   .c7 { grid-area: c7; border: 1px solid;
     padding: 4vh;}
-  
+
   .c8 { grid-area: c8; border: 1px solid;
     padding: 4vh;}
-  
+
   .c9 { grid-area: c9; border: 1px solid;
     padding: 4vh;}
-  
+
   .c10 { grid-area: c10; border: 1px solid;
     padding: 4vh;}
-  
+
   .c11 { grid-area: c11; border: 1px solid;
     padding: 4vh;}
-  
+
   .c12 { grid-area: c12; border: 1px solid;
     padding: 4vh;}
-  
+
   .c13 { grid-area: c13; border: 1px solid;
     padding: 4vh;}
-  
+
   .c14 { grid-area: c14; border: 1px solid;
     padding: 4vh;}
-  
+
   .c15 { grid-area: c15; border: 1px solid;
     padding: 4vh;}
-  
+
   .c16 { grid-area: c16; border: 1px solid;
     padding: 4vh;}
-  
+
   .c17 { grid-area: c17; border: 1px solid;
     padding: 4vh;}
-  
+
   .c18 { grid-area: c18; border: 1px solid;
     padding: 4vh;}
-  
+
   .c19 { grid-area: c19; border: 1px solid;
     padding: 4vh;}
-  
+
   .c20 { grid-area: c20; border: 1px solid;
     padding: 4vh;}
-  
+
   .c21 { grid-area: c21; border: 1px solid;
     padding: 4vh;}
-  
+
   .c22 { grid-area: c22; border: 1px solid;
     padding: 4vh;}
-  
+
   .c23 { grid-area: c23; border: 1px solid;
     padding: 4vh;}
-  
+
   .c24 { grid-area: c24; border: 1px solid;
     padding: 4vh;}
-  
+
   .c25 { grid-area: c25; border: 1px solid;
     padding: 4vh;}
-  
+
   .c26 { grid-area: c26; border: 1px solid;
     padding: 4vh;}
-  
+
   .c27 { grid-area: c27; border: 1px solid;
     padding: 4vh;}
-  
+
   .c28 { grid-area: c28; border: 1px solid;
     padding: 4vh;}
-  
+
   .c29 { grid-area: c29; border: 1px solid;
     padding: 4vh;}
-  
+
   .c30 { grid-area: c30; border: 1px solid;
     padding: 4vh;}
-  
+
   .c31 { grid-area: c31; border: 1px solid;
     padding: 4vh;}
-  
+
   .c32 { grid-area: c32; border: 1px solid;
     padding: 4vh;}
-  
+
   .c33 { grid-area: c33; border: 1px solid;
     padding: 4vh;}
-  
+
   .c34 { grid-area: c34; border: 1px solid;
     padding: 4vh;}
-  
+
   .c35 { grid-area: c35; border: 1px solid;
     padding: 4vh;}
-  
+
   .c36 { grid-area: c36; border: 1px solid;
     padding: 4vh;}
-  
+
   .c37 { grid-area: c37; border: 1px solid;
     padding: 4vh;}
-  
+
   .c38 { grid-area: c38; border: 1px solid;
     padding: 4vh;}
-  
+
   .c39 { grid-area: c39; border: 1px solid;
     padding: 4vh;}
-  
 
-    .containerDados {  display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        gap: 0px 0px;
-        grid-auto-flow: row;
-        grid-template-areas:
-          "Dados Historia"
-          "Buton Historia";
-      }
-      
-      .Historia { grid-area: Historia; }
-      
-      .Dados { grid-area: Dados; }
-      
-      .Buton { grid-area: Buton; }
-      
+#mensajeVictoria{
+  margin: 3vh;
+}
+#mensaje{
+  margin: 2vh;
+}
+
+
+#butonT, #reiniciarJuego {
+  margin: 2vh;
+  border: none;
+  outline: none;
+  background-color: #6c5ce7;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 5px;
+  transition: all ease 0.1s;
+  box-shadow: 0px 5px 0px 0px #a29bfe;
+}
+
+#butonT:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #a29bfe;
+}
+
+#reiniciarJuego:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #a29bfe;
+}
+
+
+/* Mensaje de victoria */
+#mensajeVictoria {
+  background-color: #fff;
+  border: 2px solid #6c5ce7;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#mensajeVictoria h2 {
+  font-size: 1.5em;
+  color: #a29bfe;
+}
+

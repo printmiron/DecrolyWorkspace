@@ -1450,6 +1450,8 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 (10100,74365,'2000-09-17','2001-09-17'),
 (10100,74957,'2001-09-17','9999-01-01');
 
+CREATE	USER	'developer'@'localhost'	IDENTIFIED	BY	'developer';
+
 
 CREATE	VIEW empleados_1995	
 AS		SELECT first_name, last_name, hire_date
