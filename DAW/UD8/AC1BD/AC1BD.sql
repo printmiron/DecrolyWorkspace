@@ -1,0 +1,7 @@
+
+CREATE	TABLE	Producto (
+id			INT 	AUTO_INCREMENT	NOT NULL,
+referencia	VARCHAR(40)				NOT NULL,
+nombre		VARCHAR(40)				NOT NULL,
+
+);

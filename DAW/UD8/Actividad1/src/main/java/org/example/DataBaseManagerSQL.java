@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConexionMySQL {
+public class DataBaseManagerSQL {
 
     public final String DRIVER = "com.mysql.jdbc.Driver";
     public final String URL = "jdbc:mysql://localhost:3306/DAWprog";

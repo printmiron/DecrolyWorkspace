@@ -1450,28 +1450,28 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 (10100,74365,'2000-09-17','2001-09-17'),
 (10100,74957,'2001-09-17','9999-01-01');
 
-CREATE	VIEW empleados_1995	
-AS		SELECT first_name, last_name, hire_date
+-- CREATE	VIEW empleados_1995	
+		SELECT first_name, last_name, hire_date
 FROM	employees
 WHERE	EXTRACT(YEAR FROM hire_date) = 1995;
 
-CREATE 	VIEW manager_departamento
-AS		SELECT e.first_name, e.last_name, d.dept_name
+-- CREATE 	VIEW manager_departamento
+		SELECT e.first_name, e.last_name, d.dept_name
 FROM	employees e
 JOIN 	dept_manager dm ON e.emp_no = dm.emp_no
 JOIN 	departments d ON dm.dept_no = d.dept_no
 WHERE 	CURRENT_DATE BETWEEN dm.from_date AND dm.to_date;
 
-CREATE 	VIEW manager_dep_titulo
-AS		SELECT e.first_name, e.last_name, d.dept_name, t.title
+-- CREATE 	VIEW manager_dep_titulo
+		SELECT e.first_name, e.last_name, d.dept_name, t.title
 FROM	employees e
 JOIN 	dept_manager dm ON e.emp_no = dm.emp_no
 JOIN 	departments d ON dm.dept_no = d.dept_no
 JOIN	titles t ON e.emp_no = t.emp_no
 WHERE 	CURRENT_DATE BETWEEN dm.from_date AND dm.to_date;
 
-CREATE 	VIEW sueldo_neto_empleados
-AS		SELECT e.emp_no, e.first_name, e.last_name, s.salary,
+-- CREATE 	VIEW sueldo_neto_empleados
+		SELECT e.emp_no, e.first_name, e.last_name, s.salary,
 		ROUND(salary * 0.82, 2) AS salario_neto_anual,
 		ROUND(salary * 0.82 / 12, 2) AS salario_neto_mensual
 FROM	employees e 
