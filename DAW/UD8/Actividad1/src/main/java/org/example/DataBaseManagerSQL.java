@@ -6,20 +6,23 @@ import java.sql.SQLException;
 
 public class DataBaseManagerSQL {
 
-    public final String DRIVER = "com.mysql.jdbc.Driver";
-    public final String URL = "jdbc:mysql://localhost:3306/DAWprog";
-    public final String USER = "developer";
-    public final String PASS = "developer";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/";
+    private static final String SCHEMA = "dawbd";
+    private static final String USER = "developer";
+    private static final String PASS = "developer";
 
-    public Connection ConexionMySQL() {
+    public Connection getConnection() {
         Connection con = null;
+
         try {
             Class.forName(DRIVER);
-            con = DriverManager.getConnection(URL, USER, PASS);
+            con = DriverManager.getConnection(URL+SCHEMA, USER, PASS);
+
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Fallo de acceso: " + e.getMessage());
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("Fallo en SQL: " + e.getMessage());
         }
 
         return con;

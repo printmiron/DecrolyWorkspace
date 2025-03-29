@@ -67,6 +67,46 @@ public class Producto {
         return aplicarDto;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+    }
+
+    public void setIva(int iva) {
+        this.iva = iva;
+    }
+
+    public void setAplicarDto(boolean aplicarDto) {
+        this.aplicarDto = aplicarDto;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
