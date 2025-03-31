@@ -8,6 +8,7 @@ public class Tipo {
     //!!! cuando creamos nuevos tipos y asignamos algun producto a este nueve tipo durante la session, despues de reiniar,
     //la programa no encuantra el nuevo tipo por eso creo un archivo con "tipos.dat" para que despues de
     //reinicar pueda encontrar y leer bien los productos sin errores
+
     private static Map<Integer, String> tipos = new TreeMap<>();
 
     private int id_tipo;
@@ -82,7 +83,7 @@ public class Tipo {
         try (FileWriter file = new FileWriter("src/main/resources/tipos.dat", false); BufferedWriter writer = new BufferedWriter(file)) {
             for (Map.Entry<Integer, String> entry : tipos.entrySet()) {
 
-                writer.write(entry.getKey() + ": " + entry.getValue() );
+                writer.write(entry.getKey() + "/" + entry.getValue() );
                 writer.newLine();
             }
         } catch (IOException e) {

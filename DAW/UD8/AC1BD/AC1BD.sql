@@ -15,4 +15,12 @@ iva 		int,
 aplicarDto 	boolean
 );
 
+create table tipo(
+id		int auto_increment primary key,
+nombre	varchar(40)
+);
 
+-- insert into producto (referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto) value
+-- ('ref-01', 'Monitor', 'Monitor 144hz', '1', '7', '230.50', '0', '21', false);
+
+Select * from producto;
