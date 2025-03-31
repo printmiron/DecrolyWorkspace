@@ -127,7 +127,7 @@ public class Inventario {
         for (Producto producto : productos) {
             System.out.println(producto.toString());
         }
-        
+
         if (productos.isEmpty()) {
             System.out.println("No hay productos en el Inventario");
         }
