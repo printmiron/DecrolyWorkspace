@@ -1511,11 +1511,15 @@ ORDER	BY e.first_name;
 
 -- CREATE	USER	'DeptContabilidad'@'localhost'	IDENTIFIED	BY	'contra';
 
-CREATE ROLE 'Administracion';
+-- CREATE ROLE 'Administracion';
 
-GRANT 'Administracion' TO 'DeptRRHH'@'localhost';
-GRANT 'Administracion' TO 'DeptContabilidad'@'localhost';
+-- GRANT 'Administracion' TO 'DeptRRHH'@'localhost';
+-- GRANT 'Administracion' TO 'DeptContabilidad'@'localhost';
 
+GRANT SELECT ON emp_tiempo_empresa TO 'DeptRRHH'@'localhost';
 
+GRANT SELECT ON emp_historial_titulos TO 'DeptContabilidad'@'localhost';
+
+GRANT SELECT ON emp_cambio_salario TO 'Administracion'@'%';
 
 
