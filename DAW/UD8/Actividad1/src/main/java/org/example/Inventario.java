@@ -50,15 +50,15 @@ public class Inventario {
                     break;
 
                 case "6":
-
+                    eliminarProducto();
                     break;
 
                 case "7":
-
+                    actualizarProducto();
                     break;
 
                 case "8":
-
+                    insertarTipo();
                     break;
 
                 case "9":
@@ -169,20 +169,63 @@ public class Inventario {
         System.out.println("El producto se ha registrado");
 
 
+    }
+
+    public static void eliminarProducto() {
+        System.out.println("Ingrese el referencia del producto: ");
+        String referenciaEliminar = sc.nextLine();
+
+        BD.eliminarProducto(referenciaEliminar);
+        System.out.println("El producto se ha eliminado");
+    }
 
 
+    public static void actualizarProducto() {
 
+        monstrarProductos();
+
+        List<Producto> productos = BD.getProductos();
+
+        System.out.println("Elige que producto quieres modificar por id:");
+        int id = sc.nextInt();
+
+        Producto seleccionarProducto = null;
+
+        for (Producto producto : productos) {
+            if (producto.getId() == id) {
+                seleccionarProducto = producto;
+            }
+        }
+
+
+        System.out.println("Introduce la descripcion modificada: ");
+        String descripcionMod = sc.nextLine();
+
+        System.out.println("Introduce la cantidad modificada: ");
+        int cantidadMod = sc.nextInt();
+
+        System.out.println("Introduce la precio modificada: ");
+        double precioMod = sc.nextDouble();
+
+        System.out.println("Introduce la descuento modificada: ");
+        int descuentoMod = sc.nextInt();
+
+        System.out.println("Introduce la aplicar DTO modificada: ");
+        boolean aplicarDtoMod = sc.nextBoolean();
+
+        Producto p = new Producto(descripcionMod, cantidadMod, precioMod, descuentoMod, aplicarDtoMod);
+        BD.actualizarProducto(seleccionarProducto);
+
+        System.out.println("Producto actualizado!");
     }
 
 
 
 
 
+    public static void insertarTipo(){
 
-
-
-
-
+    }
 
 
 

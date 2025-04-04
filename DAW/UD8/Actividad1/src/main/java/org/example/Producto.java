@@ -27,7 +27,13 @@ public class Producto {
         this.aplicarDto = aplicarDto;
     }
 
-
+    public Producto(String descripcion, int cantidad, double precio, int descuento, boolean aplicarDto) {
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.aplicarDto = aplicarDto;
+    }
 
     public int getId() {
         return id;

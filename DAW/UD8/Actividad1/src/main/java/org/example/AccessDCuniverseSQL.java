@@ -150,7 +150,7 @@ public class AccessDCuniverseSQL {
     public int insertarProducto(Producto producto) {
         int response = -1;
 
-        String sqlStatement = "INSERT INTO characters (referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlStatement = "INSERT INTO producto (referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -163,6 +163,51 @@ public class AccessDCuniverseSQL {
             statement.setInt(7, producto.getDescuento());
             statement.setInt(8, producto.getIva());
             statement.setBoolean(9, producto.isAplicarDto());
+
+            response = statement.executeUpdate();
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return response;
+    }
+
+
+    //eliminar producto
+    public int eliminarProducto(String referencia) {
+        int response = -1;
+
+        String sqlStatement = "DELETE FROM producto where referencia = ?";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+            statement.setString(1, referencia);
+
+            response = statement.executeUpdate();
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return response;
+    }
+
+
+    //actualizar producto
+    public int actualizarProducto(Producto producto) {
+        int response = -1;
+
+        String sqlStatement = "UPDATE producto set descripcion = ?, cantidad = ?, precio = ?, descuento = ?, aplicarDto = ? where id = ?";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
+
+            statement.setString(1, producto.getDescripcion());
+            statement.setInt(2, producto.getCantidad());
+            statement.setDouble(3, producto.getPrecio());
+            statement.setInt(4, producto.getDescuento());
+            statement.setBoolean(5, producto.isAplicarDto());
+            statement.setInt(6, producto.getId());
+
+            response = statement.executeUpdate();
 
         }catch (Exception e) {
             System.out.println(e.getMessage());

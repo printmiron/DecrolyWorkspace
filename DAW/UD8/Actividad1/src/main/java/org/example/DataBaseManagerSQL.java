@@ -8,7 +8,7 @@ public class DataBaseManagerSQL {
 
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/";
-    private static final String SCHEMA = "dawbd";
+    private static final String SCHEMA = "schema_ac1";
     private static final String USER = "developer";
     private static final String PASS = "developer";
 
