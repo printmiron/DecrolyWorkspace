@@ -145,8 +145,15 @@ public class Inventario {
         System.out.println("Ingrese el descripcion de producto: ");
         String descripcion = sc.nextLine();
 
-        System.out.println("Ingrese el tipo de producto: ");
-        int tipo = sc.nextInt();
+        List<Tipo> tipos = BD.getTipos();
+        System.out.println("Tipos disponibles:");
+        for (Tipo tipo : tipos) {
+            System.out.println(tipo.getId() + " - " + tipo.getNombre());
+        }
+
+        System.out.println("Ingrese el id del tipo de producto: ");
+        int tipoId = Integer.parseInt(sc.nextLine());
+        Tipo tipo = BD.getTipoPorId(tipoId);
 
         System.out.println("Ingrese el cantidad de producto: ");
         int cantidad = sc.nextInt();
@@ -221,18 +228,26 @@ public class Inventario {
 
 
 
+    public static void insertarTipo() {
+        System.out.println("Introduce el nombre del nuevo tipo:");
+        String nombreTipo = sc.nextLine();
 
+        Tipo tipo = new Tipo(-1, nombreTipo);
+        tipo.setNombre(nombreTipo);
 
-    public static void insertarTipo(){
-
-    }
-
-
-
-
-
+        BD.insertarTipo(tipo);
 
     }
+
+
+
+
+
+
+
+
+
+}
 
 
 

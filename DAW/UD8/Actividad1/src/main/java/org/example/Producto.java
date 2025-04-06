@@ -6,15 +6,14 @@ public class Producto {
     private String referencia;
     private String nombre;
     private String descripcion;
-    private int tipo;
+    private Tipo tipo;
     private int cantidad;
     private double precio;
     private int descuento;
     private int iva;
     private boolean aplicarDto;
 
-    public Producto(int id, String referencia, String nombre, String descripcion,
-                    int tipo, int cantidad, double precio, int descuento, int iva, boolean aplicarDto) {
+    public Producto(int id, String referencia, String nombre, String descripcion, Tipo tipo, int cantidad, double precio, int descuento, int iva, boolean aplicarDto) {
         this.id = id;
         this.referencia = referencia;
         this.nombre = nombre;
@@ -51,7 +50,7 @@ public class Producto {
         return descripcion;
     }
 
-    public int getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
@@ -91,7 +90,7 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 

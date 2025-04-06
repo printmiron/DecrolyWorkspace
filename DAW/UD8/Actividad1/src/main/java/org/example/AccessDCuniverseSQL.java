@@ -23,14 +23,14 @@ public class AccessDCuniverseSQL {
                 String referencia = dataSet.getString(2);
                 String nombre = dataSet.getString(3);
                 String descripcion = dataSet.getString(4);
-                int tipo = dataSet.getInt(5);
+                int tipoId = dataSet.getInt(5);
                 int cantidad = dataSet.getInt(6);
                 double precio = dataSet.getDouble(7);
                 int descuento = dataSet.getInt(8);
                 int iva = dataSet.getInt(9);
                 boolean aplicarDto =dataSet.getBoolean(10);
 
-
+                Tipo tipo = getTipoPorId(tipoId);
                 Producto p =  new Producto(id, referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
                 productos.add(p);
             }
@@ -60,13 +60,14 @@ public class AccessDCuniverseSQL {
                 String referencia = dataSet.getString(2);
                 String nombre = dataSet.getString(3);
                 String descripcion = dataSet.getString(4);
-                int tipo = dataSet.getInt(5);
+                int tipoId = dataSet.getInt(5);
                 int cantidad = dataSet.getInt(6);
                 double precio = dataSet.getDouble(7);
                 int descuento = dataSet.getInt(8);
                 int iva = dataSet.getInt(9);
                 boolean aplicarDto =dataSet.getBoolean(10);
 
+                Tipo tipo = getTipoPorId(tipoId);
                 Producto p =  new Producto(id, referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
                 productos.add(p);
             }
@@ -94,13 +95,14 @@ public class AccessDCuniverseSQL {
                 String referencia = dataSet.getString(2);
                 String nombre = dataSet.getString(3);
                 String descripcion = dataSet.getString(4);
-                int tipo = dataSet.getInt(5);
+                int tipoId = dataSet.getInt(5);
                 int cantidad = dataSet.getInt(6);
                 double precio = dataSet.getDouble(7);
                 int descuento = dataSet.getInt(8);
                 int iva = dataSet.getInt(9);
                 boolean aplicarDto =dataSet.getBoolean(10);
 
+                Tipo tipo = getTipoPorId(tipoId);
                 Producto p =  new Producto(id, referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
                 productos.add(p);
             }
@@ -128,13 +130,14 @@ public class AccessDCuniverseSQL {
                 String referencia = dataSet.getString(2);
                 String nombre = dataSet.getString(3);
                 String descripcion = dataSet.getString(4);
-                int tipo = dataSet.getInt(5);
+                int tipoId = dataSet.getInt(5);
                 int cantidad = dataSet.getInt(6);
                 double precio = dataSet.getDouble(7);
                 int descuento = dataSet.getInt(8);
                 int iva = dataSet.getInt(9);
                 boolean aplicarDto =dataSet.getBoolean(10);
 
+                Tipo tipo = getTipoPorId(tipoId);
                 Producto p =  new Producto(id, referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto);
                 productos.add(p);
             }
@@ -157,7 +160,7 @@ public class AccessDCuniverseSQL {
             statement.setString(1, producto.getReferencia());
             statement.setString(2, producto.getNombre());
             statement.setString(3, producto.getDescripcion());
-            statement.setInt(4, producto.getTipo());
+            statement.setInt(4, producto.getTipo().getId());
             statement.setInt(5, producto.getCantidad());
             statement.setDouble(6, producto.getPrecio());
             statement.setInt(7, producto.getDescuento());
@@ -216,6 +219,67 @@ public class AccessDCuniverseSQL {
     }
 
 
+    // obtener todos los tipos
+    public List<Tipo> getTipos() {
+        List<Tipo> tipos = new LinkedList<>();
+        String sql = "SELECT * FROM tipo";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String nombre = resultSet.getString("nombre");
+                tipos.add(new Tipo(id, nombre));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener tipos: " + e.getMessage());
+        }
+
+        return tipos;
+    }
+
+    // obtener tipo por id
+    public Tipo getTipoPorId(int idTipo) {
+        Tipo tipo = null;
+        String sql = "SELECT * FROM tipo WHERE id = ?";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, idTipo);
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                tipo = new Tipo(rs.getInt("id"), rs.getString("nombre"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener tipo por ID: " + e.getMessage());
+        }
+
+        return tipo;
+    }
+
+    // insertar tipo
+    public int insertarTipo(Tipo tipo) {
+        int response = -1;
+        String sql = "INSERT INTO tipo (nombre) " + "VALUES (?)";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, tipo.getNombre());
+            response = statement.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Error al insertar tipo: " + e.getMessage());
+        }
+
+        return response;
+    }
 
 
 

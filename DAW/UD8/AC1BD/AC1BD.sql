@@ -16,13 +16,11 @@ aplicarDto 	boolean
 );
 
 create table tipo(
-id			int,
 id_tipo		int auto_increment primary key,
 nombre		varchar(40),
+id			int,
 foreign key (id) references producto (id) on delete cascade
 );
 
-insert into producto (referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto) value
-('ref-01', 'Monitor', 'Monitor 144hz', '1', '7', '230.50', '0', '21', false);
 
 -- Select * from producto;
