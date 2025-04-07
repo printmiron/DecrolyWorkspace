@@ -2,21 +2,21 @@ package org.example;
 
 public class Tipo {
 
-    private int id;
+    private int id_tipo;
     private String nombre;
 
 
-    public Tipo(int id, String nombre) {
-        this.id = id;
+    public Tipo(int id_tipo, String nombre) {
+        this.id_tipo = id_tipo;
         this.nombre = nombre;
     }
 
-    public int getId() {
-        return id;
+    public int getId_tipo() {
+        return id_tipo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId_tipo(int id_tipo) {
+        this.id_tipo = id_tipo;
     }
 
     public String getNombre() {
@@ -30,7 +30,7 @@ public class Tipo {
     @Override
     public String toString() {
         return "Tipo{" +
-                "id=" + id +
+                "id_tipo=" + id_tipo +
                 ", nombre='" + nombre + '\'' +
                 '}';
     }

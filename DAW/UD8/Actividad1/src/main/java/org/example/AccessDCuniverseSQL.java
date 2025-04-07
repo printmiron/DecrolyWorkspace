@@ -13,10 +13,10 @@ public class AccessDCuniverseSQL {
     public List<Producto> getProductos() {
         List<Producto> productos = new LinkedList<>();
 
-        String getChNames = "SELECT * FROM producto";
+        String prod = "SELECT * FROM Producto";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); Statement statement = connection.createStatement();
-             ResultSet dataSet = statement.executeQuery(getChNames);) {
+             ResultSet dataSet = statement.executeQuery(prod);) {
             while(dataSet.next()){
 
                 int id = dataSet.getInt(1);
@@ -47,7 +47,7 @@ public class AccessDCuniverseSQL {
     public List<Producto> getProductoPorRef(String productoReferencia){
         List<Producto> productos = new LinkedList<>();
 
-        String sqlStatement = "SELECT * FROM producto where referencia = ?";
+        String sqlStatement = "SELECT * FROM Producto where referencia = ?";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -82,7 +82,7 @@ public class AccessDCuniverseSQL {
     public List<Producto> getProductoPorTipo(String productoTipo){
         List<Producto> productos = new LinkedList<>();
 
-        String sqlStatement = "SELECT * FROM producto where tipo = ?";
+        String sqlStatement = "SELECT * FROM Producto where id_tipo = ?";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -117,7 +117,7 @@ public class AccessDCuniverseSQL {
     public List<Producto> getProductoPorCant(String productoCantidad){
         List<Producto> productos = new LinkedList<>();
 
-        String sqlStatement = "SELECT * FROM producto where cantidad = ?";
+        String sqlStatement = "SELECT * FROM Producto where cantidad = ?";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -153,14 +153,14 @@ public class AccessDCuniverseSQL {
     public int insertarProducto(Producto producto) {
         int response = -1;
 
-        String sqlStatement = "INSERT INTO producto (referencia, nombre, descripcion, tipo, cantidad, precio, descuento, iva, aplicarDto)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlStatement = "INSERT INTO Producto (referencia, nombre, descripcion, id_tipo, cantidad, precio, descuento, iva, aplicarDto)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
             statement.setString(1, producto.getReferencia());
             statement.setString(2, producto.getNombre());
             statement.setString(3, producto.getDescripcion());
-            statement.setInt(4, producto.getTipo().getId());
+            statement.setInt(4, producto.getTipo().getId_tipo());
             statement.setInt(5, producto.getCantidad());
             statement.setDouble(6, producto.getPrecio());
             statement.setInt(7, producto.getDescuento());
@@ -180,7 +180,7 @@ public class AccessDCuniverseSQL {
     public int eliminarProducto(String referencia) {
         int response = -1;
 
-        String sqlStatement = "DELETE FROM producto where referencia = ?";
+        String sqlStatement = "DELETE FROM Producto where referencia = ?";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -199,7 +199,7 @@ public class AccessDCuniverseSQL {
     public int actualizarProducto(Producto producto) {
         int response = -1;
 
-        String sqlStatement = "UPDATE producto set descripcion = ?, cantidad = ?, precio = ?, descuento = ?, aplicarDto = ? where id = ?";
+        String sqlStatement = "UPDATE Producto set descripcion = ?, cantidad = ?, precio = ?, descuento = ?, aplicarDto = ? where id = ?";
 
         try (Connection connection = DataBaseManagerSQL.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);) {
 
@@ -210,7 +210,7 @@ public class AccessDCuniverseSQL {
             statement.setBoolean(5, producto.isAplicarDto());
             statement.setInt(6, producto.getId());
 
-            response = statement.executeUpdate();
+            statement.executeUpdate();
 
         }catch (Exception e) {
             System.out.println(e.getMessage());
@@ -219,19 +219,37 @@ public class AccessDCuniverseSQL {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // obtener todos los tipos
     public List<Tipo> getTipos() {
         List<Tipo> tipos = new LinkedList<>();
-        String sql = "SELECT * FROM tipo";
+        String sqlStatement = "SELECT * FROM Tipo";
 
-        try (Connection connection = DataBaseManagerSQL.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)) {
+        try (Connection connection = DataBaseManagerSQL.getConnection(); Statement statement = connection.createStatement();
+             ResultSet dataSet = statement.executeQuery(sqlStatement);) {
+            while(dataSet.next()){
 
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String nombre = resultSet.getString("nombre");
-                tipos.add(new Tipo(id, nombre));
+                int id_tipo = dataSet.getInt(1);
+                String nombre = dataSet.getString(2);
+
+                Tipo t = new Tipo(id_tipo, nombre);
+                tipos.add(t);
             }
 
         } catch (Exception e) {
@@ -244,16 +262,16 @@ public class AccessDCuniverseSQL {
     // obtener tipo por id
     public Tipo getTipoPorId(int idTipo) {
         Tipo tipo = null;
-        String sql = "SELECT * FROM tipo WHERE id = ?";
+        String sqlStatement = "SELECT * FROM Tipo WHERE id_tipo = ?";
 
         try (Connection connection = DataBaseManagerSQL.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
 
             statement.setInt(1, idTipo);
-            ResultSet rs = statement.executeQuery();
+            ResultSet dataSet = statement.executeQuery();
 
-            if (rs.next()) {
-                tipo = new Tipo(rs.getInt("id"), rs.getString("nombre"));
+            if (dataSet.next()) {
+                tipo = new Tipo(dataSet.getInt(1), dataSet.getString(2));
             }
 
         } catch (Exception e) {
@@ -266,10 +284,10 @@ public class AccessDCuniverseSQL {
     // insertar tipo
     public int insertarTipo(Tipo tipo) {
         int response = -1;
-        String sql = "INSERT INTO tipo (nombre) " + "VALUES (?)";
+        String sqlStatement = "INSERT INTO Tipo (nombre) " + "VALUES (?)";
 
         try (Connection connection = DataBaseManagerSQL.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sqlStatement)) {
 
             statement.setString(1, tipo.getNombre());
             response = statement.executeUpdate();

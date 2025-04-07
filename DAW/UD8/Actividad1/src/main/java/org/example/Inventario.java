@@ -15,6 +15,8 @@ public class Inventario {
 
     public static void main(String[] args) {
 
+
+
         String opcion = null;
         do {
             System.out.println("1) Mostrar todos los Productos en el Inventario");
@@ -120,9 +122,9 @@ public class Inventario {
 
     public static void productoCant() {
         System.out.println("Ingrese la cantidad del producto: ");
-        String tipo = sc.nextLine();
+        String cant = sc.nextLine();
 
-        List<Producto> productos = BD.getProductoPorTipo(tipo);
+        List<Producto> productos = BD.getProductoPorCant(cant);
 
         for (Producto producto : productos) {
             System.out.println(producto.toString());
@@ -148,7 +150,7 @@ public class Inventario {
         List<Tipo> tipos = BD.getTipos();
         System.out.println("Tipos disponibles:");
         for (Tipo tipo : tipos) {
-            System.out.println(tipo.getId() + " - " + tipo.getNombre());
+            System.out.println(tipo.getId_tipo() + " - " + tipo.getNombre());
         }
 
         System.out.println("Ingrese el id del tipo de producto: ");
@@ -204,9 +206,11 @@ public class Inventario {
             }
         }
 
+        sc.nextLine();
 
         System.out.println("Introduce la descripcion modificada: ");
         String descripcionMod = sc.nextLine();
+
 
         System.out.println("Introduce la cantidad modificada: ");
         int cantidadMod = sc.nextInt();
@@ -220,7 +224,11 @@ public class Inventario {
         System.out.println("Introduce la aplicar DTO modificada: ");
         boolean aplicarDtoMod = sc.nextBoolean();
 
-        Producto p = new Producto(descripcionMod, cantidadMod, precioMod, descuentoMod, aplicarDtoMod);
+        seleccionarProducto.setDescripcion(descripcionMod);
+        seleccionarProducto.setCantidad(cantidadMod);
+        seleccionarProducto.setPrecio(precioMod);
+        seleccionarProducto.setDescuento(descuentoMod);
+        seleccionarProducto.setAplicarDto(aplicarDtoMod);
         BD.actualizarProducto(seleccionarProducto);
 
         System.out.println("Producto actualizado!");
@@ -229,6 +237,12 @@ public class Inventario {
 
 
     public static void insertarTipo() {
+
+        List<Tipo> tipos = BD.getTipos();
+            for (Tipo t : tipos) {
+                System.out.println(t.toString());
+            }
+
         System.out.println("Introduce el nombre del nuevo tipo:");
         String nombreTipo = sc.nextLine();
 
