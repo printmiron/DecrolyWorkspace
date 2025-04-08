@@ -8,6 +8,9 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #dfe6e9, #b2bec3);
+    min-height: 100vh;
 }
 
 
@@ -36,7 +39,6 @@ body{
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
-    background: #a29bfe;
     grid-template-areas:
       ". c31 c32 c33 . c37 c38 c39"
       ". c30 . c34 c35 c36 . ."
@@ -173,6 +175,42 @@ body{
   margin: 2vh;
 }
 
+.jugador1, .jugador2 {
+  animation: bounce 0.3s ease;
+}
+
+@keyframes bounce {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+#img_jugador1, #img_jugador2 {
+  border-radius: 50%;
+  border: 2px solid black;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+#img_jugador1 {
+  transform: translate(-10px, -10px);
+}
+
+#img_jugador2 {
+  transform: translate(10px, 10px);
+}
+.containerMap div {
+  background-color: #ffeaa7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-weight: bold;
+  color: #2d3436;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease;
+}
+
+
 
 #butonT, #reiniciarJuego {
   margin: 2vh;
@@ -208,10 +246,17 @@ body{
   width: 300px;
   text-align: center;
   margin-top: 20px;
+  animation: popIn 0.5s ease;
 }
 
 #mensajeVictoria h2 {
   font-size: 1.5em;
   color: #a29bfe;
 }
+
+@keyframes popIn {
+  0%   { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 
