@@ -10,86 +10,108 @@ public class AccessDCuniverseSQL {
 
 
         // 1) Crear y registrar VideoClub en la franquicia
-        public void registrarVideoclub(String nombre, String direccion) {
-            String sql = "INSERT INTO videoclub (nombre, direccion) VALUES (?, ?)";
+        public int registrarVideoclub(VideoDaw vd) {
+            int response = -1;
+
+            String sql = "INSERT INTO videoclub (cif, direccion)" + " VALUES (?, ?)";
 
             try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
 
-                ps.setString(1, nombre);
-                ps.setString(2, direccion);
-                ps.executeUpdate();
+                statement.setString(1, vd.getCif());
+                statement.setString(2, vd.getDireccion());
+                statement.executeUpdate();
+
+                response = statement.executeUpdate();
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+            return response;
         }
 
-        // 2) Registrar artículo (película o videojuego) en videoclub
-        public void registrarArticulo(String tipo, String titulo, int cod, int año, int precio, int edadMinima) {
-            String sql = "INSERT INTO articulo (tipo, titulo, cod, año, precio, edad_minima) VALUES (?, ?, ?, ?, ?, ?)";
+        // 2) Registrar articulo (película o videojuego) en videoclub
+        public int registrarArticulo(Articulo a) {
+            int response = -1;
+
+            String sql = "INSERT INTO articulo (cod, titulo) VALUES (?, ?)";
 
             try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
 
-                ps.setString(1, tipo);
-                ps.setString(2, titulo);
-                ps.setInt(3, cod);
-                ps.setInt(4, año);
-                ps.setInt(5, precio);
-                ps.setInt(6, edadMinima);
-                ps.executeUpdate();
+                statement.setString(1, a.getCod());
+                statement.setString(2, a.getTitulo());
+
+                response = statement.executeUpdate();
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+            return response;
         }
 
         // 3) Crear y registrar cliente en videoclub
-        public void registrarCliente(String dni, String nombre, String direccion, LocalDate fechaNacimiento, String numSocio) {
+        public int registrarCliente(Cliente c) {
+            int response = -1;
+
             String sqlPersona = "INSERT INTO persona (dni, nombre, direccion, fecha_nacimiento) VALUES (?, ?, ?, ?)";
             String sqlCliente = "INSERT INTO cliente (dni, num_socio) VALUES (?, ?)";
 
             try (Connection connection = DataBaseManagerSQL.getConnection()) {
 
                 PreparedStatement psPersona = connection.prepareStatement(sqlPersona);
-                psPersona.setString(1, dni);
-                psPersona.setString(2, nombre);
-                psPersona.setString(3, direccion);
-                psPersona.setDate(4, Date.valueOf(fechaNacimiento));
+                psPersona.setString(1, c.getDni());
+                psPersona.setString(2, c.getNombre());
+                psPersona.setString(3, c.getDireccion());
+                psPersona.setDate(4, Date.valueOf(c.getFechaNacimiento()));
                 psPersona.executeUpdate();
 
                 PreparedStatement psCliente = connection.prepareStatement(sqlCliente);
-                psCliente.setString(1, dni);
-                psCliente.setString(2, numSocio);
+                psCliente.setString(1, c.getDni());
+                psCliente.setString(2, c.getNumSocio());
                 psCliente.executeUpdate();
+
+                response = psPersona.executeUpdate();
+                response = psCliente.executeUpdate();
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+            return response;
         }
 
+
+        //---------------------------------------------
+
+
         // 4) Alquilar
-        public void alquilar(String dniCliente, int codArticulo) {
+        public int alquilar(String dniCliente, int codArticulo) {
+            int response = -1;
+
             String sql = "INSERT INTO alquiler (dni_cliente, cod_articulo, fecha_alquiler) VALUES (?, ?, NOW())";
 
             try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
 
-                ps.setString(1, dniCliente);
-                ps.setInt(2, codArticulo);
-                ps.executeUpdate();
+                statement.setString(1, dniCliente);
+                statement.setInt(2, codArticulo);
 
-                // marcar artículo como alquilado (opcional)
+                response = statement.executeUpdate();
+
+                // marcar artículo como alquilado
                 String sqlUpdate = "UPDATE articulo SET is_alquilada = 1 WHERE cod = ?";
-                try (PreparedStatement ps2 = connection.prepareStatement(sqlUpdate)) {
-                    ps2.setInt(1, codArticulo);
-                    ps2.executeUpdate();
+
+                try (PreparedStatement statement2 = connection.prepareStatement(sqlUpdate)) {
+                    statement2.setInt(1, codArticulo);
+                    statement2.executeUpdate();
+
+                    response = statement2.executeUpdate();
                 }
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             }
+            return response;
         }
 
         // 5) Devolver

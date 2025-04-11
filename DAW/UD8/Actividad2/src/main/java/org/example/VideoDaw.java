@@ -18,7 +18,7 @@ public class VideoDaw {
             List<Cliente> clientesRegistrados) {
         this.cif = cif;
         this.direccion = direccion;
-        this.fechaAlta = fechaAlta;
+        this.fechaAlta = LocalDate.now();
         this.articulosRegistrados = articulosRegistrados;
         this.clientesRegistrados = clientesRegistrados;
     }

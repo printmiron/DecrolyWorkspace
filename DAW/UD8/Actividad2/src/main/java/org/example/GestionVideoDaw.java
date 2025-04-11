@@ -153,7 +153,7 @@ public class GestionVideoDaw {
         LocalDate fechaAlta = LocalDate.now();
 
         Articulo a1 = new Articulo(cod, titulo, fechaAlta, null);
-        articulos.add(a1);
+        BD.registrarArticulo(a1);
 
 
         System.out.println("Pelicula o Videojuego registrado bien!");
@@ -182,7 +182,7 @@ public class GestionVideoDaw {
         String numSocio = validarEntrada("^S-\\d{3}$");
 
         Cliente c1 = new Cliente(null, numSocio, direccion, dni, fechaNacimiento, nombre);
-        clientes.add(c1);
+        BD.registrarCliente(c1);
 
 
         System.out.println("Cliente registrado bien!");

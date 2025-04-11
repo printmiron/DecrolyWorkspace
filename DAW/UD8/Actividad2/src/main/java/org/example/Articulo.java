@@ -13,7 +13,7 @@ public class Articulo {
     public Articulo(String cod, String titulo, LocalDate fechaRegistro, LocalDate fechaBaja) {
         this.cod = cod;
         this.titulo = titulo;
-        this.fechaRegistro = fechaRegistro;
+        this.fechaRegistro = LocalDate.now();
         this.fechaBaja = fechaBaja;
     }
 
