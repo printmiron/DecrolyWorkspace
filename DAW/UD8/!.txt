@@ -1,0 +1,50 @@
+public int devolver(String dniCliente, String codArticulo, boolean esPelicula) {
+    int response = -1;
+
+    // Verifica si el artículo está alquilado
+    String sqlCheck = "SELECT is_alquilada FROM " + (esPelicula ? "pelicula" : "videojuego") + " WHERE cod = ?";
+    
+    try (Connection connection = DataBaseManagerSQL.getConnection();
+         PreparedStatement checkStatement = connection.prepareStatement(sqlCheck)) {
+        
+        checkStatement.setString(1, codArticulo);
+        ResultSet rs = checkStatement.executeQuery();
+
+        if (rs.next()) {
+            boolean isAlquilada = rs.getBoolean(1);
+            
+            if (!isAlquilada) {
+                System.out.println("Este artículo no está alquilado.");
+                return response; // No es posible devolver un artículo que no está alquilado
+            }
+
+            // Si el artículo está alquilado, proceder con la devolución
+            String sqlUpdate = "UPDATE " + (esPelicula ? "pelicula" : "videojuego") + 
+                               " SET is_alquilada = 0, fecha_devolucion = NOW() WHERE cod = ?";
+
+            try (PreparedStatement updateStatement = connection.prepareStatement(sqlUpdate)) {
+                updateStatement.setString(1, codArticulo);
+                response = updateStatement.executeUpdate();
+
+                // También puedes registrar la devolución en una tabla de "alquileres" si es necesario
+                String sqlDevolucion = "UPDATE alquileres SET fecha_devolucion = NOW() WHERE dni_cliente = ? AND cod_articulo = ? AND fecha_devolucion IS NULL";
+                
+                try (PreparedStatement devolucionStatement = connection.prepareStatement(sqlDevolucion)) {
+                    devolucionStatement.setString(1, dniCliente);
+                    devolucionStatement.setString(2, codArticulo);
+                    devolucionStatement.executeUpdate();
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error al devolver el artículo: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Error: No se encontró el artículo.");
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error al verificar el artículo: " + e.getMessage());
+    }
+
+    return response;
+}

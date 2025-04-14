@@ -57,19 +57,19 @@ public class GestionVideoDaw {
                     break;
 
                 case "4":
-                    alquilarArticulo();
+                    alquilarArticulo(); //v
                     break;
 
                 case "5":
-                    devolverArticulo();
+                    devolverArticulo(); //v
                     break;
 
                 case "6":
-                    darBajaCliente();
+                    darBajaCliente(); //main cor
                     break;
 
                 case "7":
-                    darBajaArticulo();
+                    darBajaArticulo(); //main cor
                     break;
 
                 case "8":
@@ -250,10 +250,10 @@ public class GestionVideoDaw {
 
             monstrarArticulos();
 
-            System.out.println("Introduce el código del artículo:");
+            System.out.println("Introduce el codigo del artículo:");
             String cod = sc.nextLine();
 
-            System.out.println("Es una película (P) o un videojuego (V)?");
+            System.out.println("Es una pelicula (P) o un videojuego (V)?");
             String tipo = sc.nextLine().toUpperCase();
 
             System.out.println("Introduce el DNI del cliente:");
@@ -275,9 +275,9 @@ public class GestionVideoDaw {
                     }
                 }
 
-                System.out.println("Artículo alquilado con éxito.");
+                System.out.println("Artículo alquilado!");
             } else {
-                System.out.println("Error al alquilar el artículo.");
+                System.out.println("Error al alquilar el articulo.");
             }
 
 
@@ -287,10 +287,10 @@ public class GestionVideoDaw {
     public static void devolverArticulo() throws TiempoExcendidoEx {
         monstrarArticulos();
 
-        System.out.println("Introduce el código del artículo:");
+        System.out.println("Introduce el codigo del artículo:");
         String cod = sc.nextLine();
 
-        System.out.println("Es una película (P) o un videojuego (V)?");
+        System.out.println("Es una pelicula (P) o un videojuego (V)?");
         String tipo = sc.nextLine().toUpperCase();
 
         System.out.println("Introduce el DNI del cliente:");
@@ -312,12 +312,26 @@ public class GestionVideoDaw {
                 }
             }
 
-            System.out.println("Artículo alquilado con éxito.");
+            System.out.println("Articulo devuelto!");
         } else {
-            System.out.println("Error al alquilar el artículo.");
+            System.out.println("Error al devolver el articulo.");
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void darBajaArticulo() {
         if (videoclubs.isEmpty()) {

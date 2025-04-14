@@ -145,9 +145,44 @@ public class AccessDCuniverseSQL {
 
         //---------------------------------------------
 
-
+    // 4) alquilar articulo
     public int alquilar(String dniCliente, String codArticulo, boolean esPelicula) {
         int response = -1;
+
+        // verificar si el cliente esta dado de baja
+        String verificarClienteSQL = "SELECT fecha_baja FROM cliente WHERE dni = ?";
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement psCliente = connection.prepareStatement(verificarClienteSQL)) {
+
+            psCliente.setString(1, dniCliente);
+            ResultSet rsCliente = psCliente.executeQuery();
+
+            if (rsCliente.next() && rsCliente.getDate("fecha_baja") != null) {
+                System.out.println("El cliente esta dado de baja y no puede alquilar artículos.");
+                return response;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al verificar cliente: " + e.getMessage());
+        }
+
+        // verificar si el articulo está dado de baja
+        String verificarArticuloSQL = "SELECT fecha_baja, is_disponible FROM articulo WHERE cod = ?";
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement psArticulo = connection.prepareStatement(verificarArticuloSQL)) {
+
+            psArticulo.setString(1, codArticulo);
+            ResultSet rsArticulo = psArticulo.executeQuery();
+
+            if (rsArticulo.next() && rsArticulo.getDate("fecha_baja") != null || rsArticulo.getBoolean("is_disponible") == false) {
+                System.out.println("el articulo esta dado de baja o no esta disponible para alquiler.");
+                return response;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al verificar artículo: " + e.getMessage());
+        }
+
 
         String sql = "INSERT INTO alquileres (dni_cliente, cod_articulo, fecha_alquiler) VALUES (?, ?, NOW())";
 
@@ -175,79 +210,131 @@ public class AccessDCuniverseSQL {
     }
 
 
-    // 5) Devolver
-        public int devolver(String dniCliente, String codArticulo, boolean esPelicula) {
-            int response = -1;
+    // 5) devolver
+    public int devolver(String dniCliente, String codArticulo, boolean esPelicula) {
+        int response = -1;
 
-            //verificar si el articulo esta alquilado
-            String sqlVerficar = "SELECT is_alquilada FROM " + (esPelicula ? "pelicula" : "videojuego") + " WHERE cod = ?";
+        // Verifica si el artículo está alquilado
+        String sqlVerificar = "SELECT is_alquilada FROM " + (esPelicula ? "pelicula" : "videojuego") + " WHERE cod = ?";
 
-            try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement statementVerificar = connection.prepareStatement(sqlVerficar)) {
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement verificarStatement = connection.prepareStatement(sqlVerificar)) {
 
-                statementVerificar.setInt(1, codArticulo);
+            verificarStatement.setString(1, codArticulo);
+            ResultSet rs = verificarStatement.executeQuery();
 
-                ResultSet rs = statementVerificar.executeQuery();
+            if (rs.next()) {
+                boolean isAlquilada = rs.getBoolean(1);
 
-                if (rs.next()) {
-                    boolean verificar = rs.getBoolean(1);
+                if (!isAlquilada) {
+                    System.out.println("Este artículo no está alquilado.");
+                    return response; // no es posible devolver un artículo que no esta alquilado
+                }
 
-                    if (!verificar) {
-                        System.out.println("Este articulo no esta alquilado");
-                        return response;
+
+                String sqlActualizar = "UPDATE " + (esPelicula ? "pelicula" : "videojuego") +
+                        " SET is_alquilada = 0, fecha_alquiler = NULL WHERE cod = ?";
+
+                try (PreparedStatement actualizarStatement = connection.prepareStatement(sqlActualizar)) {
+                    actualizarStatement.setString(1, codArticulo);
+                    response = actualizarStatement.executeUpdate();
+
+                    // También puedes registrar la devolución en la tabla "alquileres" si es necesario
+                    String sqlDevolucion = "UPDATE alquileres SET fecha_devolucion = NOW() WHERE dni_cliente = ? AND cod_articulo = ? AND fecha_devolucion IS NULL";
+
+                    try (PreparedStatement devolucionStatement = connection.prepareStatement(sqlDevolucion)) {
+                        devolucionStatement.setString(1, dniCliente);
+                        devolucionStatement.setString(2, codArticulo);
+                        devolucionStatement.executeUpdate();
                     }
 
+                } catch (SQLException e) {
+                    System.out.println("Error al devolver el artículo: " + e.getMessage());
                 }
-
-
-
-
-
-
-
-
-
-                // marcar artículo como disponible
-                String sqlUpdate = "UPDATE articulo SET is_alquilada = 0 WHERE cod = ?";
-                try (PreparedStatement ps2 = connection.prepareStatement(sqlUpdate)) {
-                    ps2.setInt(1, codArticulo);
-                    ps2.executeUpdate();
-                }
-
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
+            } else {
+                System.out.println("Error: No se encontró el artículo.");
             }
+
+        } catch (SQLException e) {
+            System.out.println("Error al verificar el artículo: " + e.getMessage());
         }
 
-        // 6) Dar de baja cliente
-        public void darDeBajaCliente(String dni) {
-            String sql = "UPDATE cliente SET fecha_baja = NOW() WHERE dni = ?";
+        return response;
+    }
+
+
+    // 6) Dar de baja articulo
+        public void darDeBajaArticulo(String codArticulo) {
+
+            String verificarAlquilerSql = "SELECT COUNT(*) FROM alquileres WHERE cod_articulo = ? AND fecha_devolucion IS NULL";
 
             try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+                 PreparedStatement verificarStatement = connection.prepareStatement(verificarAlquilerSql)) {
 
-                ps.setString(1, dni);
-                ps.executeUpdate();
+                verificarStatement.setString(1, codArticulo);
+                ResultSet rs = verificarStatement.executeQuery();
+
+                if (rs.next() && rs.getInt(1) > 0) {
+                    System.out.println("El articulo esta alquilado y no puede ser dado de baja hasta ser devuelto.");
+                    return;
+                }
+
+                // si el articulo no esta alquilado, proceder a dar de baja
+                String sql = "UPDATE articulo SET fecha_baja = NOW(), is_disponible = 0 WHERE cod = ?";
+                try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                    statement.setString(1, codArticulo);
+                    statement.executeUpdate();
+
+                    //  si es una pelicula o videojuego, se actualiza la tabla correspondiente
+                    String sqlActualizar = "UPDATE pelicula SET is_alquilada = 0 WHERE cod = ?";
+                    try (PreparedStatement actualizarStatement = connection.prepareStatement(sqlActualizar)) {
+                        actualizarStatement.setString(1, codArticulo);
+                        actualizarStatement.executeUpdate();
+                    }
+
+                    String sqlActualizarVideojuego = "UPDATE videojuego SET is_alquilada = 0 WHERE cod = ?";
+                    try (PreparedStatement actualizarStatement = connection.prepareStatement(sqlActualizarVideojuego)) {
+                        actualizarStatement.setString(1, codArticulo);
+                        actualizarStatement.executeUpdate();
+                    }
+
+                    System.out.println("Articulo dado de baja correctamente.");
+                }
 
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                System.out.println("Error al dar de baja el articulo: " + e.getMessage());
             }
         }
 
         // 7) Dar de baja artículo
-        public void darDeBajaArticulo(int cod) {
-            String sql = "UPDATE articulo SET is_disponible = 0 WHERE cod = ?";
+        public void darDeBajaCliente(String dni) {
+            // verificar si el cliente tiene alquileres activos antes de dar de baja
+            String verificarAlquileresSql = "SELECT COUNT(*) FROM alquileres WHERE dni_cliente = ? AND fecha_devolucion IS NULL";
 
             try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+                 PreparedStatement verificarStatement = connection.prepareStatement(verificarAlquileresSql)) {
 
-                ps.setInt(1, cod);
-                ps.executeUpdate();
+                verificarStatement.setString(1, dni);
+                ResultSet rs = verificarStatement.executeQuery();
+
+                if (rs.next() && rs.getInt(1) > 0) {
+                    System.out.println("El cliente tiene alquileres activos y no puede ser dado de baja hasta devolver los articulos.");
+                    return;
+                }
+
+                // no tiene alquileres activos, proceder a dar de baja
+                String sql = "UPDATE cliente SET fecha_baja = NOW() WHERE dni = ?";
+                try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                    statement.setString(1, dni);
+                    statement.executeUpdate();
+                    System.out.println("Cliente dado de baja correctamente.");
+                }
 
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                System.out.println("Error al dar de baja el cliente: " + e.getMessage());
             }
         }
+
 
 
 
