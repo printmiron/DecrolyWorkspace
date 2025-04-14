@@ -7,6 +7,32 @@ import java.util.List;
 
 public class AccessDCuniverseSQL {
 
+    //acceder a todos los articulos
+    public List<Articulo> getArticulos() {
+        List<Articulo> productos = new LinkedList<>();
+
+        String prod = "SELECT * FROM articulo";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection(); Statement statement = connection.createStatement();
+             ResultSet dataSet = statement.executeQuery(prod);) {
+            while(dataSet.next()){
+
+                String cod = dataSet.getString(1);
+                String titulo = dataSet.getString(2);
+                java.sql.Date sqlDate = dataSet.getDate(3);
+
+                //convertir DATA de sql en LocalDate java
+                LocalDate fecha_reg = sqlDate.toLocalDate();
+
+                Articulo a =  new Articulo(cod, titulo, fecha_reg);
+                productos.add(a);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return productos;
+    }
 
 
         // 1) Crear y registrar VideoClub en la franquicia
@@ -31,26 +57,62 @@ public class AccessDCuniverseSQL {
         }
 
         // 2) Registrar articulo (película o videojuego) en videoclub
-        public int registrarArticulo(Articulo a) {
-            int response = -1;
+        public static void registrarArticulo(Articulo articulo) {
 
-            String sql = "INSERT INTO articulo (cod, titulo) VALUES (?, ?)";
+            String sql = "INSERT INTO articulo (cod, titulo, fecha_registro) VALUES (?, ?, NOW())";
 
             try (Connection connection = DataBaseManagerSQL.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
 
-                statement.setString(1, a.getCod());
-                statement.setString(2, a.getTitulo());
+                statement.setString(1, articulo.getCod());
+                statement.setString(2, articulo.getTitulo());
 
-                response = statement.executeUpdate();
+                statement.executeUpdate();
 
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
+                System.out.println("Error al registrar artículo base: " + e.getMessage());
             }
-            return response;
         }
 
-        // 3) Crear y registrar cliente en videoclub
+    public static void registrarPelicula(Pelicula peli) {
+
+        String sql = "INSERT INTO pelicula (cod, genero, is_alquilada, fecha_alquiler) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, peli.getCod());
+            statement.setString(2, peli.getGenero().name());
+            statement.setBoolean(3, false);//por defecto
+            statement.setTimestamp(4, null);//por defecto
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Error al registrar película: " + e.getMessage());
+        }
+    }
+
+    public static void registrarVideojuego(Videojuego juego) {
+
+        String sql = "INSERT INTO videojuego (cod, genero, is_alquilada, fecha_alquiler) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, juego.getCod());
+            statement.setString(2, juego.getGeneroJuego().name());
+            statement.setBoolean(3, false); //por defecto
+            statement.setTimestamp(4, null); //por defecto
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error al registrar videojuego: " + e.getMessage());
+        }
+    }
+
+
+    // 3) Crear y registrar cliente en videoclub
         public int registrarCliente(Cliente c) {
             int response = -1;
 
@@ -84,45 +146,66 @@ public class AccessDCuniverseSQL {
         //---------------------------------------------
 
 
-        // 4) Alquilar
-        public int alquilar(String dniCliente, int codArticulo) {
-            int response = -1;
+    public int alquilar(String dniCliente, String codArticulo, boolean esPelicula) {
+        int response = -1;
 
-            String sql = "INSERT INTO alquiler (dni_cliente, cod_articulo, fecha_alquiler) VALUES (?, ?, NOW())";
+        String sql = "INSERT INTO alquileres (dni_cliente, cod_articulo, fecha_alquiler) VALUES (?, ?, NOW())";
 
-            try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = DataBaseManagerSQL.getConnection();
+             PreparedStatement insertStatement = connection.prepareStatement(sql)) {
 
-                statement.setString(1, dniCliente);
-                statement.setInt(2, codArticulo);
+            insertStatement.setString(1, dniCliente);
+            insertStatement.setString(2, codArticulo);
+            response = insertStatement.executeUpdate();
 
-                response = statement.executeUpdate();
+            // Aquí actualizamos la tabla correspondiente
+            String tabla = esPelicula ? "pelicula" : "videojuego";
+            String sqlUpdate = "UPDATE " + tabla + " SET is_alquilada = 1, fecha_alquiler = NOW() WHERE cod = ?";
 
-                // marcar artículo como alquilado
-                String sqlUpdate = "UPDATE articulo SET is_alquilada = 1 WHERE cod = ?";
-
-                try (PreparedStatement statement2 = connection.prepareStatement(sqlUpdate)) {
-                    statement2.setInt(1, codArticulo);
-                    statement2.executeUpdate();
-
-                    response = statement2.executeUpdate();
-                }
-
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
+            try (PreparedStatement updateStatement = connection.prepareStatement(sqlUpdate)) {
+                updateStatement.setString(1, codArticulo);
+                updateStatement.executeUpdate();
             }
-            return response;
+
+        } catch (SQLException e) {
+            System.out.println("Error al alquilar: " + e.getMessage());
         }
 
-        // 5) Devolver
-        public void devolver(int codArticulo) {
-            String sql = "UPDATE alquiler SET fecha_devolucion = NOW() WHERE cod_articulo = ? AND fecha_devolucion IS NULL";
+        return response;
+    }
+
+
+    // 5) Devolver
+        public int devolver(String dniCliente, String codArticulo, boolean esPelicula) {
+            int response = -1;
+
+            //verificar si el articulo esta alquilado
+            String sqlVerficar = "SELECT is_alquilada FROM " + (esPelicula ? "pelicula" : "videojuego") + " WHERE cod = ?";
 
             try (Connection connection = DataBaseManagerSQL.getConnection();
-                 PreparedStatement ps = connection.prepareStatement(sql)) {
+                 PreparedStatement statementVerificar = connection.prepareStatement(sqlVerficar)) {
 
-                ps.setInt(1, codArticulo);
-                ps.executeUpdate();
+                statementVerificar.setInt(1, codArticulo);
+
+                ResultSet rs = statementVerificar.executeQuery();
+
+                if (rs.next()) {
+                    boolean verificar = rs.getBoolean(1);
+
+                    if (!verificar) {
+                        System.out.println("Este articulo no esta alquilado");
+                        return response;
+                    }
+
+                }
+
+
+
+
+
+
+
+
 
                 // marcar artículo como disponible
                 String sqlUpdate = "UPDATE articulo SET is_alquilada = 0 WHERE cod = ?";

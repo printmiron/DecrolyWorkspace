@@ -11,12 +11,11 @@ public class Pelicula extends Articulo {
 
     
 
-    public Pelicula(String cod, String titulo, LocalDate fechaRegistro, LocalDate fechaBaja,
-                    GeneroPeli generoPeli, LocalDateTime fechaAlquilier, boolean isAlquilada) {
-        super(cod, titulo, fechaRegistro, fechaBaja);
+    public Pelicula(String cod, GeneroPeli generoPeli) {
+        super(cod);
         this.generoPeli = generoPeli;
-        this.fechaAlquilier = fechaAlquilier;
-        this.isAlquilada = isAlquilada;
+        this.fechaAlquilier = LocalDateTime.now();
+        this.isAlquilada = false;
     }
 
     public GeneroPeli getGenero() {

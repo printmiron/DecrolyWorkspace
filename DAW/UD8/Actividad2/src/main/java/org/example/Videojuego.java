@@ -11,12 +11,11 @@ public class Videojuego extends Articulo {
 
     
 
-    public Videojuego(String cod, String titulo, LocalDate fechaRegistro, LocalDate fechaBaja,
-                      GeneroJuego generoJuego, LocalDateTime fechaAlquilier, boolean isAlquilada) {
-        super(cod, titulo, fechaRegistro, fechaBaja);
+    public Videojuego(String cod, GeneroJuego generoJuego) {
+        super(cod);
         this.generoJuego = generoJuego;
-        this.fechaAlquilier = fechaAlquilier;
-        this.isAlquilada = isAlquilada;
+        this.fechaAlquilier = LocalDateTime.now();
+        this.isAlquilada = false;
     }
 
     public GeneroJuego getGeneroJuego() {

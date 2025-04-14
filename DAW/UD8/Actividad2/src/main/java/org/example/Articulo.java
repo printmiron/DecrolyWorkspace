@@ -17,6 +17,16 @@ public class Articulo {
         this.fechaBaja = fechaBaja;
     }
 
+    public Articulo(String cod, String titulo, LocalDate fechaRegistro) {
+        this.cod = cod;
+        this.titulo = titulo;
+    }
+
+
+    public Articulo(String cod) {
+        this.cod = cod;
+    }
+
     public String getCod() {
         return cod;
     }

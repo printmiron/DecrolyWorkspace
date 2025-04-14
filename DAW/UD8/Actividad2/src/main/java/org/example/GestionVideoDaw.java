@@ -25,12 +25,6 @@ public class GestionVideoDaw {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Videoclubs cargados: " + videoclubs.size());
-        System.out.println("Clientes cargados: " + clientes.size());
-        System.out.println("Articulos cargados: " + articulos.size());
-        System.out.println("Videoclubs cargados: " + videoclubs.size());
-
-
 
 //------------------------------------------------------------
 //MENU PRINCIPAL
@@ -51,15 +45,15 @@ public class GestionVideoDaw {
 
             switch (opcion) {
                 case "1":
-                    registrarVideoClub(videoclubs);
+                    registrarVideoClub(videoclubs); //v
                     break;
 
                 case "2":
-                    registrarArticulo();
+                    registrarArticulo(); //v
                     break;
 
                 case "3":
-                    registrarCliente();
+                    registrarCliente(); //v
                     break;
 
                 case "4":
@@ -130,34 +124,71 @@ public class GestionVideoDaw {
         VideoDaw v1 = new VideoDaw(cif, direccion, fechaAlta, new LinkedList<>(), new LinkedList<>());
         BD.registrarVideoclub(v1);
 
+        franquicia.add(v1);
 
         System.out.println("Videoclub registrado bien!");
     }
 
-    //crear peli o videojuego ()
+    //crear peli o videojuego
     public static void registrarArticulo() {
-
         if (videoclubs.isEmpty()) {
             System.out.println("Primero necesitas registrar un videoclub");
+            return;
         }
 
-        System.out.println("Que quieres registar pelicula o videojuego (p/v)?");
+        System.out.println("¿Qué quieres registrar: Película (p) o Videojuego (v)?");
         char tipo = validarEntrada("^[pPvV]$").toUpperCase().charAt(0);
 
-        System.out.println("Introduce el codigo del articulo (P-001 o V-001): ");
+        System.out.println("Introduce el código del artículo (P-001 o V-001): ");
         String cod = validarEntrada(tipo == 'P' ? "^P-\\d{3}$" : "^V-\\d{3}$");
 
-        System.out.println("Introduce el titulo del articulo: ");
+        System.out.println("Introduce el título del artículo: ");
         String titulo = sc.nextLine();
 
         LocalDate fechaAlta = LocalDate.now();
 
-        Articulo a1 = new Articulo(cod, titulo, fechaAlta, null);
-        BD.registrarArticulo(a1);
+        // primero se registra como Articulo
+        Articulo articuloBase = new Articulo(cod, titulo, fechaAlta, null);
+        BD.registrarArticulo(articuloBase); // debe insertar en la tabla "articulo"
+
+        //registrar según tipo con género y estado inicial
+        if (tipo == 'P') {
+            System.out.println("Elige el género de la película:");
+
+            GeneroPeli[] generos = GeneroPeli.values();
+
+            System.out.println("Elige el género de la película:");
+            for (int i = 0; i < generos.length; i++) {
+                System.out.println((i + 1) + ". " + generos[i].name());
+            }
+
+            int opcion = Integer.parseInt(validarEntrada("^[1 " + generos.length + "]$"));
+            GeneroPeli genero = generos[opcion - 1];
+
+            Pelicula pelicula = new Pelicula(cod, genero);
+            BD.registrarPelicula(pelicula); // inserta en la tabla "pelicula"
+
+        } else if (tipo == 'V') {
+            System.out.println("Elige el género del videojuego:");
+
+            GeneroJuego[] generos = GeneroJuego.values();
+
+            System.out.println("Elige el género de la película:");
+            for (int i = 0; i < generos.length; i++) {
+                System.out.println((i + 1) + ". " + generos[i].name());
+            }
+
+            int opcion = Integer.parseInt(validarEntrada("^[1-" + generos.length + "]$"));
+            GeneroJuego genero = generos[opcion - 1];
 
 
-        System.out.println("Pelicula o Videojuego registrado bien!");
+            Videojuego videojuego = new Videojuego(cod, genero);
+            BD.registrarVideojuego(videojuego); // inserta en la tabla "videojuego"
+        }
+
+        System.out.println("Artículo registrado correctamente.");
     }
+
 
     //crear peli o videojuego ()
     public static void registrarCliente() {
@@ -217,135 +248,73 @@ public class GestionVideoDaw {
 
     public static void alquilarArticulo() {
 
-        if (videoclubs.isEmpty()) {
-            System.out.println("Primero necesitas registrar un videoclub");
-        }
+            monstrarArticulos();
 
-        //devulve la lista de todos los articulos con sus codigos y tipo
-        for (Articulo articulos : articulos) {
-            System.out.println(articulos.toString());
-        }
+            System.out.println("Introduce el código del artículo:");
+            String cod = sc.nextLine();
 
-        System.out.println("Introduce el codigo del articulo que quieres alquilar");
-        String codigoAlquiler = sc.nextLine();
-        System.out.println("Introduce el DNI del cliente:");
-        String dniAlquiler = sc.nextLine();
+            System.out.println("Es una película (P) o un videojuego (V)?");
+            String tipo = sc.nextLine().toUpperCase();
 
-        //buscar articulo por codigo y si es una peli o videojueo
-        Pelicula peliculaAlquilar = null;
-        Videojuego videojuegoAlquilar = null;
+            System.out.println("Introduce el DNI del cliente:");
+            String dni = sc.nextLine();
 
-        for (Articulo articulos : articulos) {
-            if (articulos.getCod().equalsIgnoreCase(codigoAlquiler)) {
-                if (articulos instanceof Pelicula) {
-                    peliculaAlquilar = (Pelicula) articulos;
-                } else if (articulos instanceof Videojuego) {
-                    videojuegoAlquilar = (Videojuego) articulos;
+            boolean esPelicula = tipo.equals("P");
+
+            int result = BD.alquilar(dni, cod, esPelicula);
+
+            if (result > 0) {
+                for (Articulo a : articulos) {
+                    if (a.getCod().equalsIgnoreCase(cod)) {
+                        if (esPelicula && a instanceof Pelicula) {
+                            ((Pelicula) a).setIsAlquilada(true);
+                        } else if (!esPelicula && a instanceof Videojuego) {
+                            ((Videojuego) a).setIsAlquilada(true);
+                        }
+                        break;
+                    }
                 }
-                break;
+
+                System.out.println("Artículo alquilado con éxito.");
+            } else {
+                System.out.println("Error al alquilar el artículo.");
             }
-        }
 
-        if (peliculaAlquilar == null || videojuegoAlquilar == null) {
-            System.out.println("Pelicula o Videojuego no encontrado!");
-        }
 
-        //buscar cliente por dni
-        Cliente clienteAquilier = null;
-
-        for (Cliente clientes : clientes) {
-            if (clientes.getDni().equalsIgnoreCase(dniAlquiler)) {
-                clienteAquilier = clientes;
-                break;
-            }
-        }
-
-        if (clienteAquilier == null) {
-            System.out.println("Cliente no encontrado!");
-            return;
-        }
-
-        //alquilar si se encuaentra el articulo y el cliente
-        //porque utlizo ".get(index:0)": los metodos (alquilarPelicula/alquilarJuego desde VideoDaw) necesitan un objeto especifico para llamarles,
-        //por eso como tenemos una lista de VideoClubs tenemos que elegir uno en concreto, por eso hago ".get(index:0)" coge simpre el primer videoclub
-        boolean alquilado = false;
-
-        if (peliculaAlquilar != null) {
-            alquilado = videoclubs.get(0).alquilarPelicula(peliculaAlquilar, clienteAquilier);
-        } else if (videojuegoAlquilar != null) {
-            alquilado = videoclubs.get(0).alquilarJuego(videojuegoAlquilar, clienteAquilier);
-        }
-
-        if (alquilado) {
-            System.out.println("Articulo alquilado bien!");
-        } else {
-            System.out.println("Error al alquilar articulo!");
-        }
     }
 
+
     public static void devolverArticulo() throws TiempoExcendidoEx {
-        if (videoclubs.isEmpty()) {
-            System.out.println("Primero necesitas registrar un videoclub");
-        }
+        monstrarArticulos();
 
-        //devulve la lista de todos los articulos con sus parametros
-        for (Articulo articulos : articulos) {
-            System.out.println(articulos.toString());
-        }
+        System.out.println("Introduce el código del artículo:");
+        String cod = sc.nextLine();
 
-        System.out.println("Introduce el codigo del articulo que quieres devolver");
-        String codigoDevolver = sc.nextLine();
+        System.out.println("Es una película (P) o un videojuego (V)?");
+        String tipo = sc.nextLine().toUpperCase();
+
         System.out.println("Introduce el DNI del cliente:");
-        String dniDevolver = sc.nextLine();
+        String dni = sc.nextLine();
 
-        Pelicula peliculaDeolver = null;
-        Videojuego videojuegoDevolver = null;
+        boolean esPelicula = tipo.equals("P");
 
-        for (Articulo articulos : articulos) {
-            if (articulos.getCod().equalsIgnoreCase(codigoDevolver)) {
-                if (articulos instanceof Pelicula) {
-                    peliculaDeolver = (Pelicula) articulos;
-                } else if (articulos instanceof Videojuego) {
-                    videojuegoDevolver = (Videojuego) articulos;
+        int result = BD.devolver(dni, cod, esPelicula);
+
+        if (result > 0) {
+            for (Articulo a : articulos) {
+                if (a.getCod().equalsIgnoreCase(cod)) {
+                    if (esPelicula && a instanceof Pelicula) {
+                        ((Pelicula) a).setIsAlquilada(true);
+                    } else if (!esPelicula && a instanceof Videojuego) {
+                        ((Videojuego) a).setIsAlquilada(true);
+                    }
+                    break;
                 }
-                break;
-            }
-        }
-
-        if (peliculaDeolver == null || videojuegoDevolver == null) {
-            System.out.println("Pelicula o Videojuego no encontrado!");
-        }
-
-        //buscar cliente por dni
-        Cliente clienteDevolver = null;
-
-        for (Cliente clientes : clientes) {
-            if (clientes.getDni().equalsIgnoreCase(dniDevolver)) {
-                clienteDevolver = clientes;
-                break;
-            }
-        }
-
-        if (clienteDevolver == null) {
-            System.out.println("Cliente no encontrado!");
-        }
-
-        //devolver si se encuaentra el articulo y el cliente
-        boolean devuelta = false;
-        try {
-            if (peliculaDeolver != null) {
-                devuelta = videoclubs.get(0).devolverPelicula(peliculaDeolver, clienteDevolver);
-            } else if (videojuegoDevolver != null) {
-                devuelta = videoclubs.get(0).devolverJuego(videojuegoDevolver, clienteDevolver);
             }
 
-            if (devuelta) {
-                System.out.println("Articulo devuelto bien!");
-            } else {
-                System.out.println("Error al devolver articulo!");
-            }
-        } catch (TiempoExcendidoEx e) {
-            System.out.println("Aviso! El tiempo de alquiler ha sido excedido. No se puede devolver el articulo!");
+            System.out.println("Artículo alquilado con éxito.");
+        } else {
+            System.out.println("Error al alquilar el artículo.");
         }
 
     }
@@ -451,7 +420,7 @@ public class GestionVideoDaw {
 
 
 //------------------------------------------------------------
-//VALIDAR LOS DATOS INTRODUCIDOS
+//VALIDAR LOS DATOS INTRODUCIDOS Y MONSTRAR LOS ARTICULOS
 
 
 
@@ -471,5 +440,24 @@ public class GestionVideoDaw {
         } while (!pattern.matcher(entrada).matches());
         return entrada;
     }
+
+
+
+
+    public static void monstrarArticulos() {
+        List<Articulo> articulos = BD.getArticulos();
+        for (Articulo articulo : articulos) {
+            System.out.println(articulo.toString());
+        }
+
+        if (articulos.isEmpty()) {
+            System.out.println("No hay articulos en el Inventario");
+        }
+    }
+
+
+
+
+
 
 }
