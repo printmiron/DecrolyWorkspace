@@ -136,13 +136,13 @@ public class GestionVideoDaw {
             return;
         }
 
-        System.out.println("¿Qué quieres registrar: Película (p) o Videojuego (v)?");
+        System.out.println("Que quieres registrar -> Pelicula (p) o Videojuego (v)?");
         char tipo = validarEntrada("^[pPvV]$").toUpperCase().charAt(0);
 
-        System.out.println("Introduce el código del artículo (P-001 o V-001): ");
+        System.out.println("Introduce el codigo del articulo (P-001 o V-001): ");
         String cod = validarEntrada(tipo == 'P' ? "^P-\\d{3}$" : "^V-\\d{3}$");
 
-        System.out.println("Introduce el título del artículo: ");
+        System.out.println("Introduce el titulo del articulo: ");
         String titulo = sc.nextLine();
 
         LocalDate fechaAlta = LocalDate.now();
@@ -153,11 +153,11 @@ public class GestionVideoDaw {
 
         //registrar según tipo con género y estado inicial
         if (tipo == 'P') {
-            System.out.println("Elige el género de la película:");
+            System.out.println("Elige el genero de la película:");
 
             GeneroPeli[] generos = GeneroPeli.values();
 
-            System.out.println("Elige el género de la película:");
+            System.out.println("Elige el genero de la película:");
             for (int i = 0; i < generos.length; i++) {
                 System.out.println((i + 1) + ". " + generos[i].name());
             }
@@ -169,11 +169,11 @@ public class GestionVideoDaw {
             BD.registrarPelicula(pelicula); // inserta en la tabla "pelicula"
 
         } else if (tipo == 'V') {
-            System.out.println("Elige el género del videojuego:");
+            System.out.println("Elige el genero del videojuego:");
 
             GeneroJuego[] generos = GeneroJuego.values();
 
-            System.out.println("Elige el género de la película:");
+            System.out.println("Elige el genero de la película:");
             for (int i = 0; i < generos.length; i++) {
                 System.out.println((i + 1) + ". " + generos[i].name());
             }
@@ -186,7 +186,7 @@ public class GestionVideoDaw {
             BD.registrarVideojuego(videojuego); // inserta en la tabla "videojuego"
         }
 
-        System.out.println("Artículo registrado correctamente.");
+        System.out.println("Articulo registrado correctamente.");
     }
 
 
@@ -250,7 +250,7 @@ public class GestionVideoDaw {
 
             monstrarArticulos();
 
-            System.out.println("Introduce el codigo del artículo:");
+            System.out.println("Introduce el codigo del articulo:");
             String cod = sc.nextLine();
 
             System.out.println("Es una pelicula (P) o un videojuego (V)?");
@@ -275,7 +275,7 @@ public class GestionVideoDaw {
                     }
                 }
 
-                System.out.println("Artículo alquilado!");
+                System.out.println("Articulo alquilado!");
             } else {
                 System.out.println("Error al alquilar el articulo.");
             }

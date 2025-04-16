@@ -17,9 +17,8 @@ public class Cliente extends Persona {
         this.articulosAlquilados = new LinkedList<>();
     }
 
-    public Cliente(LocalDate fechaBaja, String numSocio, String dni) {
+    public Cliente(String dni, String numSocio) {
         super(dni);
-        this.fechaBaja = fechaBaja;
         this.numSocio = numSocio;
     }
 

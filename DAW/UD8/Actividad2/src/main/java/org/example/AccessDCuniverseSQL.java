@@ -46,12 +46,9 @@ public class AccessDCuniverseSQL {
 
                 String dni = dataSet.getString(1);
                 String num_socio = dataSet.getString(2);
-                java.sql.Date sqlDate = dataSet.getDate(3);
 
-                //convertir DATA de sql en LocalDate java
-                LocalDate fecha_baja = sqlDate.toLocalDate();
 
-                Cliente c = new Cliente(fecha_baja, num_socio, dni);
+                Cliente c = new Cliente(dni, num_socio);
                 clientes.add(c);
             }
 
@@ -96,7 +93,7 @@ public class AccessDCuniverseSQL {
                 statement.executeUpdate();
 
             } catch (SQLException e) {
-                System.out.println("Error al registrar artículo base: " + e.getMessage());
+                System.out.println("Error al registrar articulo base: " + e.getMessage());
             }
         }
 
@@ -115,7 +112,7 @@ public class AccessDCuniverseSQL {
             statement.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("Error al registrar película: " + e.getMessage());
+            System.out.println("Error al registrar pelicula: " + e.getMessage());
         }
     }
 
@@ -184,7 +181,7 @@ public class AccessDCuniverseSQL {
             ResultSet rsCliente = psCliente.executeQuery();
 
             if (rsCliente.next() && rsCliente.getDate("fecha_baja") != null) {
-                System.out.println("El cliente esta dado de baja y no puede alquilar artículos.");
+                System.out.println("El cliente esta dado de baja y no puede alquilar articulos.");
                 return response;
             }
 
@@ -206,7 +203,7 @@ public class AccessDCuniverseSQL {
             }
 
         } catch (SQLException e) {
-            System.out.println("Error al verificar artículo: " + e.getMessage());
+            System.out.println("Error al verificar articulo: " + e.getMessage());
         }
 
 
@@ -253,7 +250,7 @@ public class AccessDCuniverseSQL {
                 boolean isAlquilada = rs.getBoolean(1);
 
                 if (!isAlquilada) {
-                    System.out.println("Este artículo no está alquilado.");
+                    System.out.println("Este articulo no esta alquilado.");
                     return response; // no es posible devolver un artículo que no esta alquilado
                 }
 
@@ -275,10 +272,10 @@ public class AccessDCuniverseSQL {
                     }
 
                 } catch (SQLException e) {
-                    System.out.println("Error al devolver el artículo: " + e.getMessage());
+                    System.out.println("Error al devolver el articulo: " + e.getMessage());
                 }
             } else {
-                System.out.println("Error: No se encontró el artículo.");
+                System.out.println("Error: No se encontro el articulo.");
             }
 
         } catch (SQLException e) {
