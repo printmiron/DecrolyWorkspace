@@ -109,16 +109,16 @@ VALUES
 ('12345678A', 'P-001', '2025-04-01 10:00:00', NULL),
 ('98765432B', 'V-001', '2025-04-05 12:00:00', NULL);
 
-select * from videoclub;
+-- select * from videoclub;
 
-select * from articulo;
+-- select * from articulo;
 
-select * from pelicula;
+-- select * from pelicula;
 
-select * from videojuego;
+-- select * from videojuego;
 
-select * from persona;
+-- select * from persona;
 
-select * from cliente;
+-- select * from cliente;
 
-select * from alquileres;
+-- select * from alquileres;

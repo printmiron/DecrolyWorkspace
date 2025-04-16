@@ -287,7 +287,7 @@ public class GestionVideoDaw {
     public static void devolverArticulo() throws TiempoExcendidoEx {
         monstrarArticulos();
 
-        System.out.println("Introduce el codigo del artículo:");
+        System.out.println("Introduce el codigo del articulo:");
         String cod = sc.nextLine();
 
         System.out.println("Es una pelicula (P) o un videojuego (V)?");
@@ -334,82 +334,23 @@ public class GestionVideoDaw {
 
 
     public static void darBajaArticulo() {
-        if (videoclubs.isEmpty()) {
-            System.out.println("Primero necesitas registrar un videoclub");
-        }
-
-        //devulve la lista de todos los articulos con sus parametros
-        for (Articulo articulos : articulos) {
-            System.out.println(articulos.toString());
-        }
+        monstrarArticulos();
 
         System.out.println("Introduce el codigo del articulo que quieres dar de baja:");
-        String codBaja = sc.nextLine();
+        String cod = sc.nextLine();
 
-        // buscar articulo por codigo
-        Articulo articuloBaja = null;
-        for (Articulo articulos : articulos) {
-            if (articulos != null && articulos.getCod().equalsIgnoreCase(codBaja)) {
-                articuloBaja = articulos;
-                break;
-            }
-        }
-
-        if (codBaja == null) {
-            System.out.println("Articulo no encontrado!");
-            return;
-        }
-
-        if (articuloBaja != null) {
-            boolean baja = videoclubs.get(0).darBajaArticulo(articuloBaja);
-            if (baja) {
-                System.out.println("Articulo dado de baja correctamente");
-            } else {
-                System.out.println("No se pudo dar de baja al articulo");
-            }
-        } else {
-            System.out.println("Articulo no encontrado");
-        }
+        BD.darDeBajaArticulo(cod);
 
     }
 
     public static void darBajaCliente() {
 
-        if (videoclubs.isEmpty()) {
-            System.out.println("Primero necesitas registrar un videoclub");
-        }
+        monstrarClientes();
 
-        for (Cliente clientes : clientes) {
-            System.out.println(clientes.toString());
+        System.out.println("Introduce el dni del cliente que quieres dar de baja:");
+        String dni = sc.nextLine();
 
-        }
-
-        System.out.println("Introduce el DNI del cliente que quieres dar de baja:");
-        String dniBaja = sc.nextLine();
-
-        // buscar cliente por dni
-        Cliente clienteBaja = null;
-        for (Cliente clientes : videoclubs.get(0).getClientesRegistrados()) {
-            if (clientes != null && clientes.getDni().equalsIgnoreCase(dniBaja)) {
-                clienteBaja = clientes;
-                break;
-            }
-        }
-        if (dniBaja == null) {
-            System.out.println("Cliente no encontrado");
-            return;
-        }
-        //dar de baja al cliente
-        if (clienteBaja != null) {
-            boolean baja = videoclubs.get(0).darBajaCliente(clienteBaja);
-            if (baja) {
-                System.out.println("Cliente dado de baja correctamente");
-            } else {
-                System.out.println("No se pudo dar de baja al cliente");
-            }
-        } else {
-            System.out.println("Cliente no encontrado");
-        }
+        BD.darDeBajaCliente(dni);
 
     }
 
@@ -465,6 +406,17 @@ public class GestionVideoDaw {
         }
 
         if (articulos.isEmpty()) {
+            System.out.println("No hay articulos en el Inventario");
+        }
+    }
+
+    public static void monstrarClientes() {
+        List<Cliente> clientes = BD.getClientes();
+        for (Cliente cliente : clientes) {
+            System.out.println(cliente.toString());
+        }
+
+        if (clientes.isEmpty()) {
             System.out.println("No hay articulos en el Inventario");
         }
     }

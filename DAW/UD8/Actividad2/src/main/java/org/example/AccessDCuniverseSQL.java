@@ -34,6 +34,32 @@ public class AccessDCuniverseSQL {
         return productos;
     }
 
+    //acceder a todos los clientes
+    public List<Cliente> getClientes() {
+        List<Cliente> clientes = new LinkedList<>();
+
+        String prod = "SELECT * FROM cliente";
+
+        try (Connection connection = DataBaseManagerSQL.getConnection(); Statement statement = connection.createStatement();
+             ResultSet dataSet = statement.executeQuery(prod);) {
+            while(dataSet.next()){
+
+                String dni = dataSet.getString(1);
+                String num_socio = dataSet.getString(2);
+                java.sql.Date sqlDate = dataSet.getDate(3);
+
+                //convertir DATA de sql en LocalDate java
+                LocalDate fecha_baja = sqlDate.toLocalDate();
+
+                Cliente c = new Cliente(fecha_baja, num_socio, dni);
+                clientes.add(c);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return clientes;
+    }
 
         // 1) Crear y registrar VideoClub en la franquicia
         public int registrarVideoclub(VideoDaw vd) {
