@@ -303,7 +303,7 @@ public class AccessDCuniverseSQL {
                 }
 
                 // si el articulo no esta alquilado, proceder a dar de baja
-                String sql = "UPDATE articulo SET fecha_baja = NOW(), is_disponible = 0 WHERE cod = ?";
+                String sql = "UPDATE articulo SET fecha_baja = NOW() WHERE cod = ?";
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
                     statement.setString(1, codArticulo);
                     statement.executeUpdate();
