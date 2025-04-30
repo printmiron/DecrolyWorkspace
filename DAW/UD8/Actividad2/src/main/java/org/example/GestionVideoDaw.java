@@ -65,11 +65,11 @@ public class GestionVideoDaw {
                     break;
 
                 case "6":
-                    darBajaCliente(); //main cor
+                    darBajaCliente(); //v
                     break;
 
                 case "7":
-                    darBajaArticulo(); //main cor
+                    darBajaArticulo(); //v
                     break;
 
                 case "8":
