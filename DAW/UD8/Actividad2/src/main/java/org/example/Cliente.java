@@ -37,8 +37,7 @@ public class Cliente extends Persona {
 
     @Override
     public String toString() {
-        return "Cliente [numSocio=" + numSocio + ", fechaBaja=" + fechaBaja + ", articulosAlquilados="
-                + articulosAlquilados + "]";
+        return "Cliente [numSocio=" + numSocio + ", fechaBaja=" + fechaBaja + ", dni=" + super.getDni() + "]";
     }
     
     public String mostrarArticulosAlquilados() {
