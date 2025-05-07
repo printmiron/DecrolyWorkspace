@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercadona - Supermercados</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <!--NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="img/logo-mercadona.png" height="60">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Productos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Ofertas</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tiendas
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Santander</a></li>
+                  <li><a class="dropdown-item" href="#">Maliaño</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Otras</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"/>
+              <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+    <!-- BANNER -->
+    <div class="container-fluid p-0 mb-4">
+        <div class="row g-0">
+            <div class="col-md-12">
+                <img src="img/banner-mercadona.jpg" class="img-fluid w-100 banner-img" alt="Ofertas Mercadona">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 bg-white p-5 text-center mt-n5 ">
+                            <h2 class="text-success">Bienvenidos a Mercadona</h2>
+                            <p class="lead">Mercadona es una cadena de supermercados española con más de 1.600 tiendas. Nos dedicamos a ofrecer productos de calidad a precios competitivos, con especial atención a los productos frescos y de proximidad.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="container mb-5">
+        <h2 class="text-center mb-4">Nuestros productos destacados</h2>
+        <div class="row g-4">
+            <!-- PRODUCTO1 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="img/producto-1.png" class="card-img-top product-img p-3" alt="Producto alimentación">
+                    <div class="card-body">Pizza Margarita</h5>
+                        <p class="card-text">Mejor pizza en mercadona, con mejor precio que nunca.</p>
+                        <a href="" class="btn btn-success">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PRODUCTO2 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="img/producto-2.png" class="card-img-top product-img" alt="Producto limpieza">
+                    <div class="card-body">
+                        <h5 class="card-title">Limpiador de cristales</h5>
+                        <p class="card-text">Producto de limpieza, que ayuda a limpiar cualquier supercicie no solo cristales.</p>
+                        <a href="" class="btn btn-success">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            
+           <!-- PRODUCTO3 -->
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="img/producto-3.png" class="card-img-top product-img p-3" alt="Producto higiene">
+                    <div class="card-body">
+                        <h5 class="card-title">Bebida Monster</h5>
+                        <p class="card-text">Mejor bebida para una energia pura y fuerte.</p>
+                        <a href="" class="btn btn-success">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--ALERTA PROMOCIONAL -->
+    <div class="container mb-5">
+        <div class="alert text-center" role="alert">
+            <h4 class="alert-heading text-center">¡Oferta especial!</h4>
+            <p>Esta semana, 2x1 en todos los productos de nuestra marca Hacendado. ¡Aprovecha ahora!</p>
+            <hr>
+            <p class="mb-1">Válido hasta el 30 de mayo o hasta agotar existencias.</p>
+        </div>
+    </div>
+
+    <!--REDES SOCIALES Y MAPA -->
+    <div class="container mb-5">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h3>Síguenos en redes sociales</h3>
+                <div class="d-flex gap-3">
+                    <a href="" class="btn btn-outline-primary"><i class="bi bi-facebook"></i> Facebook</a>
+                    <a href="" class="btn btn-outline-danger"><i class="bi bi-instagram"></i> Instagram</a>
+                    <a href="" class="btn btn-outline-dark"><i class="bi bi-twitter-x"></i> Twitter/X</a>
+                </div>
+                <p class="mt-3">Mantente al día de nuestras últimas ofertas y novedades.</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Encuentra tu tienda más cercana</h3>
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2900.632982052629!2d-3.8219926!3d43.4540418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd494a2be7f93a9f%3A0xf05d7ccfa0699c5c!2sMercadona!5e0!3m2!1ses!2ses!4v1698765432105!5m2!1ses!2ses"loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--FOOTER -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Mercadona</h5>
+                    <p>Supermercados de confianza desde 1977</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        
+                        <li><a href="" class="text-white">Politica de privacidad</a></li>
+                        <li><a href="" class="text-white">Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-telephone"></i> 123 456 789</li>
+                        <li><i class="bi bi-envelope"></i> info@mercadona.es</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">© 2023 Mercadona.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--JS BOOT-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

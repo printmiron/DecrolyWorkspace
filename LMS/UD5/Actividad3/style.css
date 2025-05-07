@@ -1,0 +1,8 @@
+.banner-img {
+    height: 300px;
+    object-fit: cover;
+}
+.product-img {
+    height: 200px;
+    object-fit: contain;
+}
