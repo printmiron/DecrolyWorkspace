@@ -1,0 +1,21 @@
+.btn-search{
+    background-color: #fb7800;
+    border: none;
+}
+
+.form-control{
+    border-radius: 0;
+}
+
+.categories{
+    background-color: #fb7800;
+    padding: 2px;
+    color: white;
+}
+
+.container-categorias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

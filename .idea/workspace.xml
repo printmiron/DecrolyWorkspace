@@ -42,7 +42,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -64,6 +64,7 @@
       <updated>1742980614408</updated>
       <workItem from="1742980616119" duration="591000" />
       <workItem from="1746793130869" duration="1819000" />
+      <workItem from="1746876723966" duration="10346000" />
     </task>
     <servers />
   </component>
