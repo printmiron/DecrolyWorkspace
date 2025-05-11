@@ -12,9 +12,11 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+
 <!--NAVBAR -->
 <nav class="navbar navbar-expand-lg bg-white sticky-top shadow-sm">
     <div class="container">
+
         <!-- LOGO -->
         <a class="navbar-brand fw-bold fs-3 text-danger" href="#">
             <img src="img/Temu_logo.svg.png" height="60">
@@ -26,6 +28,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
             <!-- BUSQUEDA -->
             <form class="d-flex mx-auto col-md-6" role="search">
                 <div class="input-group">
@@ -71,14 +74,16 @@
 
 <!-- MAIN -->
 <div class="container-fluid px-3 px-lg-5">
-    <div class="row gx-1">
+    <div class="row ">
 
         <!-- CONTAINER IZQUIERDO -->
         <div class="col-lg-3 d-none d-lg-block">
             <div class="d-flex flex-column align-items-center">
                 <div class="card w-70" style="width: 17rem;">
                     <div class="card-body">
-                        <i class="bi bi-list-task fs-5"> Todas las categorías</i>
+                        <h5 class="fw-bold mb-0">
+                            <i class="bi bi-list-task fst-normal fw-normal"> Todas las categorías</i>
+                        </h5>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item border-0">
@@ -124,13 +129,320 @@
         <!-- CONTAINER CENTRAL -->
         <div class="col-lg-6 col-md-8">
             <div class="card mb-4">
-                <img src="img/Temu_banner.webp" class="card-img-top" alt="Banner promocional">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Ofertas especiales</h5>
-                    <p class="card-text">Compra ahora y obtén envío gratis en pedidos superiores a 20$</p>
-                </div>
+                <img src="img/Temu_banner.png" class="card-img-top" alt="Banner promocional">
             </div>
 
+            <!-- SECCION PRODUCTOS-->
+            <div class="container mt-4 px-0">
+                <div class="row ">
+                    <div class="col-12 px-3 px-lg-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="fw-bold mb-0">Productos Destacados</h2>
+                        </div>
+
+                        <!-- GRID PRODUCTOS-->
+                        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+                            <!-- PROD 1-->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <div class="badge position-absolute m-2">-30%</div>
+                                    <img src="img/Prod-1.avif" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Camiseta Básica</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Variedad de colores</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold">$12.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$18.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 2 -->
+                            <div class="col">
+                                <div class="card product-card h-100">
+                                    <img src="img/Prod-2.avif" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Auriculares Bluetooth</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">5.0, 20h duración</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold">$24.99</span>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 3 -->
+                            <div class="col">
+                                <div class="card product-card h-100">
+                                    <div class="badge position-absolute m-2">-50%</div>
+                                    <img src="img/Prod-3.avif" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Reloj Inteligente</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Monitor actividad</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold text-danger">$35.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$71.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 4 -->
+                            <div class="col">
+                                <div class="card product-card h-100">
+                                    <img src="img/Prod-4.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Juego de Sábanas</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Algodón 100%</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold">$19.99</span>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 5 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <div class="badge position-absolute m-2">-25%</div>
+                                    <img src="img/Prod-5.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Camiseta Algodón</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Variedad de colores</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold text-danger">$14.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$19.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 6-->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <div class="badge position-absolute m-2">-15%</div>
+                                    <img src="img/Prod-6.avif" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Auriculares Inalámbricos</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Cancelación de ruido</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold text-danger">$59.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$69.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 7 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <img src="img/Prod-7.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Smartwatch Pro</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Pantalla AMOLED</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold">$129.99</span>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 8 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <div class="badge position-absolute m-2">-40%</div>
+                                    <img src="img/Prod-8.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Sábanas de Lino</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Juego de 4 piezas</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold text-danger">$39.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$66.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 8 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <div class="badge position-absolute m-2">-20%</div>
+                                    <img src="img/Prod-9.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Mochila Antirrobo</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Impermeable</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold text-danger">$47.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$59.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 10 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <img src="img/Prod-10.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Zapatillas Running</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">Amortiguación Air</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold">$89.99</span>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 11 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <div class="badge position-absolute m-2">-30%</div>
+                                    <img src="img/Prod-11.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Cámara Compacta</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">4K, 20MP</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold text-danger">$139.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$199.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 12 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <img src="img/Prod-12.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Altavoz Bluetooth</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">20h autonomía</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold">$34.99</span>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 13 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <div class="badge position-absolute m-2">-50%</div>
+                                    <img src="img/Prod-13.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Tablet 10"</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">128GB almacenamiento</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="fw-bold text-danger">$149.99</span>
+                                                <span class="text-decoration-line-through text-muted small ms-2">$299.99</span>
+                                            </div>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PROD 14 -->
+                            <div class="col">
+                                <div class="card product-card h-100 border">
+                                    <img src="img/Prod-14.jpg" class="card-img-top p-3" alt="Producto">
+                                    <div class="card-body pt-0">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <h5 class="card-title mb-0">Cargador Rápido</h5>
+                                        </div>
+                                        <p class="card-text small text-muted mb-2">30W USB-C</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span class="fw-bold">$19.99</span>
+                                            <button class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Añadir al carrito">
+                                                <i class="bi bi-cart-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -138,34 +450,51 @@
         <div class="col-lg-3 d-none d-lg-block">
             <div class="d-flex flex-column align-items-center">
                 <div class="card w-70" style="width: 17rem;">
+
                     <div class="card-header bg-white">
-                        <h5 class="fw-bold mb-0">Ofertas flash</h5>
+                        <h5 class="fw-bold mb-0">
+                            <i class="bi bi-patch-exclamation fst-normal fw-normal"> Promociones</i>
+                        </h5>
                     </div>
+
                     <div class="card-body">
-                        <div class="d-flex mb-3">
-                            <img src="https://via.placeholder.com/80x80" class="rounded me-3" alt="Producto">
-                            <div>
-                                <h6 class="fw-bold mb-1">Cargador portátil</h6>
-                                <div class="text-danger fw-bold">$15.99</div>
-                                <small class="text-muted">Quedan 3</small>
+
+                        <div class="card h-100 mb-2">
+                            <div class="overflow-hidden" style="height: 220px;">
+                                <img src="img/Promo-producto3.avif" class="w-100 h-100 rounded" alt="Producto">
+                            </div>
+                            <div class="card-body ">
+                                <h5 class="card-title">Camiseta Essential</h5>
+                                <p class="text-danger fw-bold mb-2">$14.99</p>
+                                <button class="btn btn-sm w-100 ">Añadir al carrito</button>
+                                <small>Qedan 5</small>
                             </div>
                         </div>
-                        <div class="d-flex mb-3">
-                            <img src="https://via.placeholder.com/80x80" class="rounded me-3" alt="Producto">
-                            <div>
-                                <h6 class="fw-bold mb-1">Set de maquillaje</h6>
-                                <div class="text-danger fw-bold">$22.50</div>
-                                <small class="text-muted">Quedan 5</small>
+
+                        <div class="card h-100 mb-2">
+                            <div class="overflow-hidden" style="height: 220px;">
+                                <img src="img/Promo-producto1.avif" class="w-100 h-100 rounded" alt="Producto">
+                            </div>
+                            <div class="card-body ">
+                                <h5 class="card-title">Set de maquillaje</h5>
+                                <p class="text-danger fw-bold mb-2">$22.50</p>
+                                <button class="btn btn-sm w-100">Añadir al carrito</button>
+                                <small>Qedan 2</small>
                             </div>
                         </div>
-                        <div class="d-flex">
-                            <img src="https://via.placeholder.com/80x80" class="rounded me-3" alt="Producto">
-                            <div>
-                                <h6 class="fw-bold mb-1">Zapatillas deportivas</h6>
-                                <div class="text-danger fw-bold">$29.99</div>
-                                <small class="text-muted">Quedan 2</small>
+
+                        <div class="card h-100 ">
+                            <div class="overflow-hidden" style="height: 220px;">
+                                <img src="img/Promo-producto2.avif" class="w-100 h-100 rounded" alt="Producto">
+                            </div>
+                            <div class="card-body ">
+                                <h5 class="card-title">Zapatillas deportivas</h5>
+                                <p class="text-danger fw-bold mb-2">$44.99</p>
+                                <button class="btn btn-sm w-100">Añadir al carrito</button>
+                                <small>Qedan 3</small>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -173,12 +502,248 @@
     </div>
 </div>
 
+<!-- SUSCRIPCION -->
+<section class="py-5 mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 text-center">
+                <h3 class="fw-bold mb-4">Suscríbete a nuestras ofertas</h3>
+                <form class="row g-2 justify-content-center">
+                    <div class="col-12 col-md-8">
+                        <input type="email" class="form-control" placeholder="Tu email" required>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <button type="submit" class="btn btn-sm w-100">Suscribirse</button>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="conditions" required>
+                            <label class="form-check-label small" for="conditions">
+                                Acepto las <a href="#" data-bs-toggle="modal" data-bs-target="#conditionsModal">condiciones de privacidad</a>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 
+<footer class="pt-5 pb-4" style="background-color: #fb7800;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 mb-4">
+                <img src="img/Temu_logo.svg.png" alt="TEMU" height="40" class="mb-3">
+                <p class="small text-white mb-3">Compra inteligente, vive mejor.</p>
+                <div class="d-flex">
+                    <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-twitter-x fs-5"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-tiktok fs-5"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="text-white fw-bold mb-3">PREGUNTAS FRECUENTES</h6>
+                <div class="accordion accordion-flush" id="faqAccordion">
+
+                    <!-- Pregunta 1 -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <h2 class="accordion-header border-bottom border-white-10">
+                            <button class="accordion-button collapsed bg-transparent text-white py-2 px-0 small"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq1"
+                                    aria-expanded="false">
+                                ¿Cómo realizo un pedido?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white small p-0 pt-2">
+                                Selecciona los productos, haz clic en "Añadir al carrito", luego ve a tu carrito y completa el proceso de pago con tus datos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 2 -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <h2 class="accordion-header border-bottom border-white-10">
+                            <button class="accordion-button collapsed bg-transparent text-white py-2 px-0 small"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq2"
+                                    aria-expanded="false">
+                                ¿Cuáles son los plazos de entrega?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white small p-0 pt-2">
+                                Los envíos estándar tardan 3-5 días laborables. Envíos express disponibles en 24-48h.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 3 -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <h2 class="accordion-header border-bottom border-white-10">
+                            <button class="accordion-button collapsed bg-transparent text-white py-2 px-0 small"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq3"
+                                    aria-expanded="false">
+                                ¿Puedo devolver un producto?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white small p-0 pt-2">
+                                Sí, aceptamos devoluciones dentro de los 30 días posteriores a la recepción. El producto debe estar en su estado original.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 4 -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <h2 class="accordion-header border-bottom border-white-10">
+                            <button class="accordion-button collapsed bg-transparent text-white py-2 px-0 small"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq4"
+                                    aria-expanded="false">
+                                ¿Qué métodos de pago aceptan?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white small p-0 pt-2">
+                                Aceptamos tarjetas Visa, Mastercard, PayPal y pagos contra reembolso.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pregunta 5 -->
+                    <div class="accordion-item bg-transparent border-0">
+                        <h2 class="accordion-header border-bottom border-white-10">
+                            <button class="accordion-button collapsed bg-transparent text-white py-2 px-0 small"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#faq5"
+                                    aria-expanded="false">
+                                ¿Cómo contacto con el servicio al cliente?
+                            </button>
+                        </h2>
+                        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-white small p-0 pt-2">
+                                Puedes escribirnos a cliente@temu.com o llamar al +34 900 000 000 de lunes a viernes de 9h a 18h.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="text-white fw-bold mb-3">AYUDA</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Centro de ayuda</a></li>
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Contacto</a></li>
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Guía de tallas</a></li>
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Devoluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="text-white fw-bold mb-3">LEGAL</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Términos y condiciones</a></li>
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Política de privacidad</a></li>
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Cookies</a></li>
+                    <li class="mb-2"><a href="#" class="text-white small text-decoration-none">Aviso legal</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="border-white opacity-50 my-4">
+
+        <div class="row">
+            <div class="col-md-6 mb-3 mb-md-0">
+                <p class="small text-white mb-0">© 2023 TEMU. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+</footer>
 
 
+<!-- PARTE NO VISIBLE -->
 
-<!-- BOOTSTRAP 5 JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- CONDICIONES DE PRIVACIDAD -->
+
+<div class="modal fade" id="conditionsModal" tabindex="-1" aria-labelledby="conditionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="conditionsModalLabel">Condiciones de privacidad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <h6 class="fw-bold">1. Responsable del tratamiento</h6>
+                <p class="small">TEMU (en adelante, "nosotros" o "el Sitio") es responsable del tratamiento de tus datos personales conforme al Reglamento General de Protección de Datos (RGPD) y la legislación aplicable.</p>
+
+                <h6 class="fw-bold">2. Datos que recopilamos</h6>
+                <p class="small">Al suscribirte o realizar compras, podemos recopilar: Información de contacto (email, dirección) Datos de transacciones (historial de compras) Preferencias de navegación (cookies)</p>
+
+                <h6 class="fw-bold">3. Finalidad del tratamiento</h6>
+                <p class="small">Tus datos se utilizan para: Gestionar tu cuenta y pedidos. Enviar ofertas personalizadas (si aceptas marketing). Mejorar nuestros servicios</p>
+
+                <h6 class="fw-bold">4. Base legal</h6>
+                <p class="small">El tratamiento se basa en: Ejecución de contrato (para compras). Consentimiento explícito. (para newsletters). Interés legítimo (análisis de seguridad)</p>
+
+                <h6 class="fw-bold">ETC...</h6>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm w-100" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- MENSAJE AL AÑADIR EN CARRITO -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">TEMU</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Producto añadido al carrito
+        </div>
+    </div>
+</div>
+
+<!--JS BOOT-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    //ACTIVAR TOOLTIP
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+
+    // AÑADIR PRODUCTO MENSAJE
+    document.querySelectorAll('.btn[data-bs-toggle="tooltip"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const toast = new bootstrap.Toast(document.getElementById('liveToast'))
+            toast.show()
+        })
+    })
+</script>
+
 </body>
 </html>
