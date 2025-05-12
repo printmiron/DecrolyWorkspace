@@ -77,3 +77,16 @@ CREATE TABLE dept_name_changes (
     PRIMARY KEY (dept_no, change_date),
     FOREIGN KEY (dept_no) REFERENCES departments (dept_no) ON DELETE CASCADE
 );
+
+DELIMITER $$
+create procedure suma (in num1 int,
+in num2 int, out resultado int)
+begin 
+	set resultado = num1 + num2;
+END $$
+
+call suma (2, 2, @resultado);
+
+select @resultado;
+
+
