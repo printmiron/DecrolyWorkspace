@@ -1,0 +1,11 @@
+1. 	crear usuario
+	crear vistas 
+	asignar usuario a vistas
+
+2.		2 triggers
+	5 ej.	1 proc.		se hacen solo 3
+		2 funcciones
+
+				justificae que usamos
+3.	se plantea una problema
+				implementar
