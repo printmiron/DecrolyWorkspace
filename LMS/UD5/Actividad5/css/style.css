@@ -1,0 +1,17 @@
+.tema-generico {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.tema-generico h2 {
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+.tema-generico p {
+    font-size: 1.1rem;
+}

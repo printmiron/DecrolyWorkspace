@@ -116,7 +116,29 @@ select dia_semana(2) as dia;
 
 
 
+-- 6
+DELIMITER $$
+create function calculadora (
+	num1 decimal (10,2),
+    num2 decimal (10,2),
+    opracion varchar (10)
+) returns decimal (10,2)
+deterministic
+begin
+	declare resultado decimal (10,2);
+    
+    case operacion
+		when 'suma' then set resultado = num1 + num2;
+        when 'resta' then set resultado = num1 - num2;
+        when 'mult' then set resultado = num1 * num2;
+        when 'div' then set resultado = num1 / num2;
+	end case;
+    
+    return resultado;
+END$$
 
+--
+select calculadora(10, 2) as resultado;
 
 
 

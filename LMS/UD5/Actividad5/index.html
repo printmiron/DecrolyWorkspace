@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Online</title>
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- BOOTSTRAP ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- LINK CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<!--NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand mx-auto" href="#">BibliotecaOnline</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <form class="d-flex mx-auto col-md-6">
+                <input class="form-control me-2" type="search" placeholder="Buscar libro...">
+                <button class="btn btn-light" type="submit">Buscar</button>
+            </form>
+
+            <ul class="navbar-nav mx-auto me-auto mb-2 mb-lg-0 ">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-journal"></i>
+                        <span>Catalogo</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-person-fill"></i>
+                        <span>Mi cuenta</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<!-- HERO/BANNER -->
+<div class="container mt-4">
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Explora nuestro catalogo digital</h1>
+            <p class="col-md-8 fs-4">Miles de libros a tu disposicion cuando quieras y donde quieras.</p>
+            <button class="btn btn-primary btn-lg" type="button">Registrate gratis</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- LIBROS -->
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Libros destacados</h2>
+    <div class="row">
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="img/libro1.jpg" class="card-img-top" alt="Portada libro 1" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Cien años de soledad</h5>
+                    <p class="card-text">Gabriel García Márquez</p>
+                    <a href="#" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="img/libro2.jpg" class="card-img-top" alt="Portada libro 2" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Don Quijote de la Mancha</h5>
+                    <p class="card-text">Miguel de Cervantes</p>
+                    <a href="#" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="img/libro3.jpg" class="card-img-top" alt="Portada libro 3" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">La sombra del viento</h5>
+                    <p class="card-text">Carlos Ruiz Zafón</p>
+                    <a href="#" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="img/libro4.jpg" class="card-img-top" alt="Portada libro 4" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Rayuela</h5>
+                    <p class="card-text">Julio Cortazar</p>
+                    <a href="#" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="img/libro5.jpg" class="card-img-top" alt="Portada libro 5" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">1984</h5>
+                    <p class="card-text">George Orwel</p>
+                    <a href="#" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="img/libro6.jpg" class="card-img-top" alt="Portada libro 6" style="height: 300px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">El principito</h5>
+                    <p class="card-text">Antoine de Saint-Exupery</p>
+                    <a href="#" class="btn btn-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- SECCION CON CLASE PERSONALIZADA -->
+<div class="container mt-4">
+
+    <div class="tema-generico text-center">
+        <h2>¿Por qué elegir nuestra biblioteca?</h2>
+        <p>Acceso ilimitado desde cualquier dispositivo y en cualquier momento.</p>
+    </div>
+
+</div>
+
+<!-- FORMULARIO -->
+<div class="container mt-4 mb-5">
+    <h2 class="text-center mb-4">Contacta con nosotros</h2>
+
+    <form class="row g-3">
+
+        <div class="col-md-6">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" required>
+        </div>
+
+        <div class="col-md-6">
+
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+
+        <div class="col-12">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="mensaje" rows="3" required></textarea>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        </div>
+
+    </form>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-dark text-white py-4">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h5>Enlaces legales</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Aviso legal</a></li>
+                    <li><a href="#" class="text-white">Política de privacidad</a></li>
+                    <li><a href="#" class="text-white">Cookies</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Redes sociales</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white">Facebook</a></li>
+                    <li><a href="#" class="text-white">Twitter</a></li>
+                    <li><a href="#" class="text-white">Instagram</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Idioma</h5>
+                <select class="form-select">
+                    <option selected>Español</option>
+                    <option>English</option>
+                    <option>Français</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-3">
+            <p class="mb-0">© 2025 Biblioteca Online</p>
+        </div>
+
+    </div>
+</footer>
+
+<!--JS BOOT-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
