@@ -118,34 +118,85 @@ select dia_semana(2) as dia;
 
 -- 6
 DELIMITER $$
-create function calculadora (
-	num1 decimal (10,2),
-    num2 decimal (10,2),
-    opracion varchar (10)
-) returns decimal (10,2)
+create function calculadora(
+    num1 decimal(10,2),
+    num2 decimal(10,2),
+    operacion varchar(10)
+) returns decimal(10,2)
 deterministic
-begin
-	declare resultado decimal (10,2);
+begin 
+    declare resultado decimal(10,2);
     
     case operacion
-		when 'suma' then set resultado = num1 + num2;
+        when 'suma' then set resultado = num1 + num2;
         when 'resta' then set resultado = num1 - num2;
         when 'mult' then set resultado = num1 * num2;
-        when 'div' then set resultado = num1 / num2;
-	end case;
+        when 'div' then 
+            if num2 = 0 then
+                signal sqlstate '45000' set message_text = 'división por cero no permitida';
+            else
+                set resultado = num1 / num2;
+            end if;
+        else
+            signal sqlstate '45000' set message_text = 'operación no válida';
+    end case;
     
     return resultado;
-END$$
+END $$
 
---
-select calculadora(10, 2) as resultado;
-
-
+-- 
+select calculadora(10, 2, 'div') as resultado;
 
 
+-- 7
+DELIMITER $$
+create procedure calcular_factorial(
+    in n int,
+    out resultado int
+)
+begin 
+    declare i int;
+    set resultado = 1;
+    set i = 1;
+    
+    while i <= n do
+        set resultado = resultado * i;
+        set i = i + 1;
+    end while;
+END $$
+
+-- 
+call calcular_factorial(5, @factorial);
+select @factorial as '5!';
 
 
 
+
+
+-- 8
+DELIMITER $$
+create procedure impares()
+begin
+	declare contador int default 1;
+    declare num_impar int default 1;
+    
+    create table if not exists impares (
+        id int primary key,
+        num_impar int
+    );
+    
+    truncate table impares;
+    
+    while contador <= 50 do
+        insert into impares values (contador, num_impar);
+        set contador = contador + 1;
+        set num_impar = num_impar + 2;
+    end while;
+END $$
+
+-- 
+call impares();
+select count(*) as total_impares from impares;
 
 
 
