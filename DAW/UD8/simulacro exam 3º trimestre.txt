@@ -1,0 +1,4 @@
+una clase producto
+tipo de producto
+en fx ver todos los productos insertar eliminar modificar
+en fx un boton para exportar todos los datos en un fichero
