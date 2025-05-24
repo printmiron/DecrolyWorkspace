@@ -1,0 +1,12 @@
+.my-button {
+    -fx-background-color: #1495db;  /* Color de fondo del botón */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-padding: 15, 15, 15 15;
+}
+
+.my-button-cancel {
+    -fx-background-color: #b01a2c;  /* Color de fondo del botón */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-padding: 15, 15, 15 15;
+}
+

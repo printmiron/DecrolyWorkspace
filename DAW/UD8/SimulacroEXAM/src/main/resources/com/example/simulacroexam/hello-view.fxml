@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" styleClass="my-background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simulacroexam.HelloController">
+
+    <VBox fx:id="mainPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+      <children>
+         <Label fx:id="welcomeText" alignment="CENTER" contentDisplay="BOTTOM" text="Bienvenido!" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="36.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Label>
+         <Separator prefWidth="200.0" />
+         <Button fx:id="btnOnInsertPersona" mnemonicParsing="false" onAction="#btnOnInsertPersonaOnAction" prefWidth="250.0" styleClass="my-button" text="Insertar Persona" textAlignment="CENTER">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+         <Button fx:id="btnOnVerEliminar" mnemonicParsing="false" onAction="#btnBtnOnVerEliminarOnAction" prefWidth="250.0" styleClass="my-button" text="Ver - Eliminar" textAlignment="CENTER">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+         <Button fx:id="btnOnExportPersonas" mnemonicParsing="false" onAction="#btnOnExportPersonasOnAction" prefWidth="250.0" styleClass="my-button" text="Exportar Personas" textAlignment="CENTER">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+         <Button fx:id="btnOnExitApp" mnemonicParsing="false" onAction="#btnOnExitAppOnAction" prefWidth="250.0" styleClass="my-button" text="Salir" textAlignment="CENTER">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Button>
+      </children></VBox>
+   
+   <VBox fx:id="FormularioPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css">
+      <children>
+         <Label fx:id="InsertPersonaText" alignment="CENTER" contentDisplay="BOTTOM" text="Insertar Persona" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="36.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Label>
+
+
+         <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+               <ColumnConstraints halignment="RIGHT"/>
+               <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+
+            <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="nombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+
+            <Label text="Apellido:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="apellido" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+
+            <Label text="DNI:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="dni" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+
+            <Label text="Edad:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="edad" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+
+            <Label text="Sexo:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="sexo" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+
+            <Label text="Fecha Nacimiento:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="fechaNacimiento" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+
+            <Label text="Teléfono:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="telefono" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+
+            <Label text="Correo:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+            <TextField fx:id="correo" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+
+            <Label text="Dirección:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
+            <TextField fx:id="direccion" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+         </GridPane>
+
+         <GridPane prefHeight="67.0" prefWidth="640.0">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+      
+               <Button fx:id="btnOnSavePersona" mnemonicParsing="false" onAction="#btnOnSavePersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Guardar" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnOnExitInsertPersona" mnemonicParsing="false" onAction="#btnOnExitInsertPersonaOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+                  <styleClass>
+                     <String fx:value="my-button" />
+                     <String fx:value="my-button-cancel" />
+                  </styleClass>
+               </Button>
+            </children>
+         </GridPane>
+
+      </children>
+   </VBox>
+   <VBox fx:id="ListPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+      <children>
+         <Label fx:id="VerEliminarText" alignment="CENTER" contentDisplay="BOTTOM" text="Ver / Eliminar" textAlignment="CENTER">
+            <font>
+               <Font name="System Bold" size="36.0" />
+            </font>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Label>
+         <ListView fx:id="ListView" prefHeight="293.0" prefWidth="640.0" />
+         <GridPane prefHeight="43.0" prefWidth="640.0">
+           <columnConstraints>
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+            <children>
+               <Button fx:id="btnOnEliminarPersona" mnemonicParsing="false" onAction="#btnOnEliminarPersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Eliminar" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnOnExitList" mnemonicParsing="false" onAction="#btnOnExitLisOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+                  <styleClass>
+                     <String fx:value="my-button" />
+                     <String fx:value="my-button-cancel" />
+                  </styleClass>
+               </Button>
+            </children>
+         </GridPane>
+      </children>
+   </VBox>
+
+
+
+</AnchorPane>
