@@ -50,7 +50,7 @@
          </Button>
       </children></VBox>
    
-   <VBox fx:id="FormularioPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css">
+   <VBox fx:id="FormularioPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
       <children>
          <Label fx:id="InsertPersonaText" alignment="CENTER" contentDisplay="BOTTOM" text="Insertar Persona" textAlignment="CENTER">
             <font>
@@ -170,21 +170,19 @@
          <GridPane prefHeight="67.0" prefWidth="640.0">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            </columnConstraints>
            <rowConstraints>
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
       
-               <Button fx:id="btnOnSavePersona" mnemonicParsing="false" onAction="#btnOnSavePersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Guardar" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="btnOnSavePersona" mnemonicParsing="false" onAction="#btnOnSavePersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Guardar" textAlignment="CENTER" GridPane.halignment="CENTER">
                   <font>
                      <Font size="15.0" />
                   </font>
                </Button>
-               <Button fx:id="btnOnExitInsertPersona" mnemonicParsing="false" onAction="#btnOnExitInsertPersonaOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="btnOnExitInsertPersona" mnemonicParsing="false" onAction="#btnOnExitInsertPersonaOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                   <font>
                      <Font size="15.0" />
                   </font>
@@ -198,7 +196,7 @@
 
       </children>
    </VBox>
-   <VBox fx:id="ListPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+   <VBox fx:id="ListPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css">
       <children>
          <Label fx:id="VerEliminarText" alignment="CENTER" contentDisplay="BOTTOM" text="Ver / Eliminar" textAlignment="CENTER">
             <font>
@@ -213,19 +211,23 @@
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
            </columnConstraints>
            <rowConstraints>
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-               <Button fx:id="btnOnEliminarPersona" mnemonicParsing="false" onAction="#btnOnEliminarPersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Eliminar" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="btnOnEliminarPersona" mnemonicParsing="false" onAction="#btnOnEliminarPersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Eliminar" textAlignment="CENTER" GridPane.halignment="CENTER">
                   <font>
                      <Font size="15.0" />
                   </font>
                </Button>
-               <Button fx:id="btnOnExitList" mnemonicParsing="false" onAction="#btnOnExitLisOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="btnOnEditPersona1" mnemonicParsing="false" onAction="#btnOnEditPersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Edit" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </Button>
+               <Button fx:id="btnOnExitList" mnemonicParsing="false" onAction="#btnOnExitLisOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                   <font>
                      <Font size="15.0" />
                   </font>
