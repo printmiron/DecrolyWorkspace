@@ -1,9 +1,12 @@
 package Module;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Persona {
+public class Persona implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String nombre;
     private String apellido;
     private String dni;
@@ -29,6 +32,18 @@ public class Persona {
 
     public Persona() {
 
+    }
+
+    public Persona(PersonaBuilder personaBuilder) {
+        this.nombre = personaBuilder.getNombre();
+        this.apellido = personaBuilder.getApellido();
+        this.dni = personaBuilder.getDni();
+        this.edad = personaBuilder.getEdad();
+        this.sexo = personaBuilder.getSexo();
+        this.fechaNacimiento = personaBuilder.getFechaNacimiento();
+        this.telefono = personaBuilder.getTelefono();
+        this.correo = personaBuilder.getCorreo();
+        this.direccion = personaBuilder.getDireccion();
     }
 
 
@@ -118,6 +133,10 @@ public class Persona {
                 ", correo='" + correo + '\'' +
                 ", direccion='" + direccion + '\'' +
                 '}';
+    }
+
+    public static PersonaBuilder builder(){
+        return new PersonaBuilder();
     }
 
 }

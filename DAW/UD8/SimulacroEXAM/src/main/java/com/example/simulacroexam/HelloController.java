@@ -5,14 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import Module.Persona;
+import Module.GuardarPersFile;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
+
 
 public class HelloController {
 
@@ -58,15 +56,45 @@ public class HelloController {
     private TextField direccion;
 
     //Lista de personas
-    
+
     @FXML
-    private ListView<Persona> personasListView;
+    private ListView<Persona> ListViewPersonas;
+
+
+
+
+    @FXML
+    public void initialize() {
+        selectPanelVisible(0);
+        ListViewPersonas.setItems(personas);
+
+        List<Persona> cargados = GuardarPersFile.readFile("Personas.dat");
+        if (cargados != null) {
+            personas.addAll(cargados);
+        }
+
+
+    }
+
+
 
 
     @FXML
     protected void btnOnExportPersonasOnAction(){
+        try {
+            GuardarPersFile.saveInFile("Personas.dat", personas);
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Las personas fueron exportadas correctamente.");
+            alert.showAndWait();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("No se pudo exportar: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
+
+
 
     @FXML
     protected void btnOnSavePersonaOnAction() {
@@ -83,9 +111,7 @@ public class HelloController {
                 .build();
 
         personas.add(persona);
-        personasListView.setItems(personas); // Actualizar lista
 
-        Module.GuardarPersFile.
 
         clearForm();
         selectPanelVisible(2);
@@ -93,12 +119,11 @@ public class HelloController {
 
     @FXML
     protected void btnOnEliminarPersonaOnAction(){
-        Persona seleccionada = personasListView.getSelectionModel().getSelectedItem();
+        Persona seleccionada = ListViewPersonas.getSelectionModel().getSelectedItem();
         if (seleccionada != null) {
             personas.remove(seleccionada);
-            personasListView.setItems(personas);
-            guardarPersonasEnFichero();
         }
+        GuardarPersFile.saveInFile("Personas.dat", personas);
     }
 
 
@@ -109,8 +134,8 @@ public class HelloController {
     protected void btnOnInsertPersonaOnAction(ActionEvent event) {
         selectPanelVisible(1);
         clearForm();
-
     }
+
 
     @FXML
     protected void btnBtnOnVerEliminarOnAction(ActionEvent event) {
@@ -135,11 +160,12 @@ public class HelloController {
 
 
 
-    @FXML
-    public void initialize() {
-        selectPanelVisible(0);
 
-    }
+
+
+
+
+
 
 
 
@@ -178,6 +204,10 @@ public class HelloController {
     }
 
 
+
+
+
+
     private void clearForm() {
         nombre.clear();
         apellido.clear();
@@ -189,6 +219,10 @@ public class HelloController {
         correo.clear();
         direccion.clear();
     }
+
+
+
+
 
 
     private boolean validarNombre(String nombre){

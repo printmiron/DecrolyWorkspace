@@ -64,45 +64,107 @@
 
          <GridPane hgap="10" vgap="10">
             <columnConstraints>
-               <ColumnConstraints halignment="RIGHT"/>
-               <ColumnConstraints hgrow="ALWAYS"/>
+               <ColumnConstraints halignment="RIGHT" />
+               <ColumnConstraints hgrow="ALWAYS" />
             </columnConstraints>
 
 
-            <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="nombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="nombre" GridPane.columnIndex="1" GridPane.rowIndex="0">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
 
 
-            <Label text="Apellido:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextField fx:id="apellido" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Apellido:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="apellido" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
 
 
-            <Label text="DNI:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="dni" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="DNI:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="dni" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
 
 
-            <Label text="Edad:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="edad" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Edad:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="edad" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
 
 
-            <Label text="Sexo:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <TextField fx:id="sexo" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Sexo:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="sexo" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
 
 
-            <Label text="Fecha Nacimiento:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <DatePicker fx:id="fechaNacimiento" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="Fecha Nacimiento:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <DatePicker fx:id="fechaNacimiento" prefWidth="511.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
 
-            <Label text="Teléfono:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <TextField fx:id="telefono" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="telefono" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
 
 
-            <Label text="Correo:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
-            <TextField fx:id="correo" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            <Label text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="correo" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
 
 
-            <Label text="Dirección:" GridPane.rowIndex="8" GridPane.columnIndex="0"/>
-            <TextField fx:id="direccion" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
+            <Label text="Dirección:" GridPane.columnIndex="0" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Label>
+            <TextField fx:id="direccion" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
          </GridPane>
 
          <GridPane prefHeight="67.0" prefWidth="640.0">
@@ -146,7 +208,7 @@
                <Insets />
             </opaqueInsets>
          </Label>
-         <ListView fx:id="ListView" prefHeight="293.0" prefWidth="640.0" />
+         <ListView fx:id="ListViewPersonas" prefHeight="293.0" prefWidth="640.0" />
          <GridPane prefHeight="43.0" prefWidth="640.0">
            <columnConstraints>
              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
