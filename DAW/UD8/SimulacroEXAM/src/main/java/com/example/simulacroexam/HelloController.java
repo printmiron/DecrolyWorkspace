@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import Module.SqlBdAccess;
 import Module.Persona;
 import Module.GuardarPersFile;
 import javafx.scene.control.*;
@@ -14,7 +15,9 @@ import java.util.List;
 
 public class HelloController {
 
+    private static SqlBdAccess BD = new SqlBdAccess();
     private Persona persona;
+
     private Persona personaEditada = null;
     private ObservableList<Persona> personas = FXCollections.observableArrayList();
 
@@ -69,10 +72,15 @@ public class HelloController {
         selectPanelVisible(0);
         ListViewPersonas.setItems(personas);
 
-        List<Persona> cargados = GuardarPersFile.readFile("Personas.dat");
-        if (cargados != null) {
-            personas.addAll(cargados);
-        }
+        //Cojer poersoans desde base de datos
+        List<Persona> desdeBD = BD.getPersonas();
+        personas.addAll(desdeBD);
+
+        //Cojer poersoans desde fichero
+//        List<Persona> cargados = GuardarPersFile.readFile("Personas.dat");
+//        if (cargados != null) {
+//            personas.addAll(cargados);
+//        }
 
 
     }
@@ -131,6 +139,7 @@ public class HelloController {
                       fechaNacimiento.getValue(), telefono.getText(),
                       correo.getText(), direccion.getText()
               );
+              BD.registrarPersona(nueva);
               personas.add(nueva);
           }else {
               //Modificar existente
@@ -144,11 +153,12 @@ public class HelloController {
               personaEditada.setCorreo(correo.getText());
               personaEditada.setDireccion(direccion.getText());
 
+              BD.editarPersona(personaEditada, dniOriginal);
               ListViewPersonas.refresh();
               personaEditada = null;
           }
 
-          GuardarPersFile.saveInFile("Personas.dat", personas);
+
 
           clearForm();
           selectPanelVisible(0);
@@ -161,17 +171,21 @@ public class HelloController {
     protected void btnOnEliminarPersonaOnAction(){
         Persona seleccionada = ListViewPersonas.getSelectionModel().getSelectedItem();
         if (seleccionada != null) {
+            BD.eliminarPersona(seleccionada.getDni());
             personas.remove(seleccionada);
+        }else {
+            mostrarAlerta("Eliminar", "No se pudo eliminar el persona seleccionada");
         }
-        GuardarPersFile.saveInFile("Personas.dat", personas);
     }
 
+    private String dniOriginal;
 
     @FXML
     protected void btnOnEditPersonaOnAction(ActionEvent event) {
         Persona seleccionada = ListViewPersonas.getSelectionModel().getSelectedItem();
         if (seleccionada != null) {
             personaEditada = seleccionada;
+            dniOriginal = seleccionada.getDni();
 
             nombre.setText(personaEditada.getNombre());
             apellido.setText(personaEditada.getApellido());

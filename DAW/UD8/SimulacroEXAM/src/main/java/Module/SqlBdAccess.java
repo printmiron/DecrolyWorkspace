@@ -7,6 +7,8 @@ import java.util.List;
 
 public class SqlBdAccess {
 
+    private String dniOriginal;
+
     //acceder a todas las personas
     public List<Persona> getPersonas() {
         List<Persona> personas = new LinkedList<>();
@@ -60,7 +62,54 @@ public class SqlBdAccess {
 
 
         } catch (SQLException e) {
-            System.out.println("Error al registrar pelicula: " + e.getMessage());
+            System.out.println("Error al registrar persona: " + e.getMessage());
+        }
+    }
+
+
+    //editar persona
+    public static void editarPersona(Persona persona, String dniOriginal) {
+
+        String sql = "UPDATE persona SET nombre = ?, apellido = ?, dni = ?, edad = ?, sexo = ?, fechaNacimiento = ?, telefono = ?, correo = ?, direccion = ? WHERE dni = ?";
+
+        try (Connection connection = SqlBdManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, persona.getNombre());
+            statement.setString(2, persona.getApellido());
+            statement.setString(3, persona.getDni());
+            statement.setInt(4, persona.getEdad());
+            statement.setString(5, persona.getSexo());
+            statement.setDate(6, Date.valueOf(persona.getFechaNacimiento())) ;
+            statement.setString(7, persona.getTelefono());
+            statement.setString(8, persona.getCorreo());
+            statement.setString(9, persona.getDireccion());
+            statement.setString(10, dniOriginal);
+            statement.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al editar persona: " + e.getMessage());
+        }
+    }
+
+
+    //editar persona
+    public static void eliminarPersona(String dni) {
+
+        String sql = "DELETE FROM persona WHERE dni = ?";
+
+        try (Connection connection = SqlBdManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, dni);
+            statement.executeUpdate();
+
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar persona: " + e.getMessage());
         }
     }
 
