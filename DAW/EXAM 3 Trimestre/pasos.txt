@@ -1,4 +1,9 @@
 1. Importar la Base de Datos
 2. Configurar SceneBuilder, cambiar todos los fx:id (y en los botones ON Action)
 3. Implementar todos los paramentros en HelloController
-4. 
+4. Clase GuardarFile para la clase que necesito
+5. Asigurarme de que todos los variables de la clase son implemntados, y si hay ENUM también tener en cuenta
+6. Builder del objeto principal!
+7. SQLAccess acceder a todos los datos, insertar, borrar, editar
+
+8. Guardar en fichero, métodos para base de datos, comprobar si llega a la base de datos, comprobar el scene builder si funciona 
