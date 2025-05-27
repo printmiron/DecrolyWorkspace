@@ -17,7 +17,6 @@ import java.util.List;
 public class HelloController {
 
     private static SqlBdAccess BD = new SqlBdAccess();
-    private Persona persona;
 
     private Persona personaEditada = null;
     private ObservableList<Persona> personas = FXCollections.observableArrayList();
@@ -73,7 +72,7 @@ public class HelloController {
         selectPanelVisible(0);
         ListViewPersonas.setItems(personas);
 
-        //Cojer poersoans desde base de datos
+        //Cojer datos desde BD
         List<Persona> desdeBD = BD.getPersonas();
         personas.addAll(desdeBD);
 
@@ -99,13 +98,9 @@ public class HelloController {
         try {
             GuardarPersFile.saveInFile("Personas.dat", personas);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Las personas fueron exportadas correctamente.");
-            alert.showAndWait();
+            mostrarAlertaConfirmation("INFO","Personas exportado exitosamente");
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("No se pudo exportar: " + e.getMessage());
-            alert.showAndWait();
+            mostrarAlertaConfirmation("ERROR",e.getMessage());
         }
     }
 
@@ -138,7 +133,7 @@ public class HelloController {
               personas.add(nueva);
 
           }else {
-            
+
               //Modificar existente
               personaEditada.setNombre(nombre.getText());
               personaEditada.setApellido(apellido.getText());
@@ -171,7 +166,7 @@ public class HelloController {
             BD.eliminarPersona(seleccionada.getDni());
             personas.remove(seleccionada);
         }else {
-            mostrarAlerta("Eliminar", "No se pudo eliminar el persona seleccionada");
+            mostrarAlertaError("Eliminar", "Tienes que seleccionar un persona para eliminar");
         }
     }
 
@@ -196,7 +191,7 @@ public class HelloController {
 
             selectPanelVisible(1);
         }else {
-            mostrarAlerta("Edit", "Debes elecionar una persona antes de editar");
+            mostrarAlertaError("Edit", "Debes elecionar una persona antes de editar");
         }
     }
 
@@ -306,15 +301,23 @@ public class HelloController {
         if (direccion.getText().isEmpty()) errores.append("Dirección no puede estar vacía.\n");
 
         if (errores.length() > 0) {
-            mostrarAlerta("Errores de validación", errores.toString());
+            mostrarAlertaError("Errores de validación", errores.toString());
             return false;
         }
 
         return true;
     }
 
-    private void mostrarAlerta(String titulo, String mensaje) {
+    private void mostrarAlertaError(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
+    private void mostrarAlertaConfirmation(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensaje);

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" styleClass="my-background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simulacroexam.HelloController">
+<AnchorPane maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" styleClass="my-background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pavelmironexamen.HelloController">
 
     <VBox fx:id="mainPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css">
         <children>
@@ -29,25 +29,29 @@
                 </opaqueInsets>
             </Label>
             <Separator prefWidth="200.0" />
-            <Button fx:id="btnOnInsertPersona" mnemonicParsing="false" onAction="#btnOnInsertPersonaOnAction" prefWidth="250.0" styleClass="my-button" stylesheets="@style.css" text="Insertar Persona" textAlignment="CENTER">
+            <Button fx:id="btnOnInsertPersona" mnemonicParsing="false" onAction="#btnOnInsertPersonaOnAction" prefWidth="250.0" styleClass="my-button" text="Insertar Persona" textAlignment="CENTER">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Button>
-            <Button fx:id="btnOnVerEliminar" mnemonicParsing="false" onAction="#btnBtnOnVerEliminarOnAction" prefWidth="250.0" styleClass="my-button" stylesheets="@style.css" text="Ver - Eliminar" textAlignment="CENTER">
+            <Button fx:id="btnOnVerEliminar" mnemonicParsing="false" onAction="#btnBtnOnVerEliminarOnAction" prefWidth="250.0" styleClass="my-button" text="Ver - Eliminar" textAlignment="CENTER">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Button>
-            <Button fx:id="btnOnExportPersonas" mnemonicParsing="false" onAction="#btnOnExportPersonasOnAction" prefWidth="250.0" styleClass="my-button" stylesheets="@style.css" text="Exportar Personas" textAlignment="CENTER">
+            <Button fx:id="btnOnExportPersonas" mnemonicParsing="false" onAction="#btnOnExportPersonasOnAction" prefWidth="250.0" styleClass="my-button" text="Exportar Personas" textAlignment="CENTER">
                 <font>
                     <Font size="15.0" />
                 </font>
             </Button>
-            <Button fx:id="btnOnExitApp" mnemonicParsing="false" onAction="#btnOnExitAppOnAction" prefWidth="250.0" styleClass="my-button" stylesheets="@style.css" text="Salir" textAlignment="CENTER">
+            <Button fx:id="btnOnExitApp" mnemonicParsing="false" onAction="#btnOnExitAppOnAction" prefWidth="250.0" text="Salir" textAlignment="CENTER">
                 <font>
                     <Font size="15.0" />
                 </font>
+            <styleClass>
+               <String fx:value="my-button-cancel" />
+               <String fx:value="my-button" />
+            </styleClass>
             </Button>
         </children></VBox>
 
@@ -175,12 +179,12 @@
                 </rowConstraints>
                 <children>
 
-                    <Button fx:id="btnOnSavePersona" mnemonicParsing="false" onAction="#btnOnSavePersonaOnAction" prefWidth="150.0" styleClass="my-button" stylesheets="@style.css" text="Guardar" textAlignment="CENTER" GridPane.halignment="CENTER">
+                    <Button fx:id="btnOnSavePersona" mnemonicParsing="false" onAction="#btnOnSavePersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Guardar" textAlignment="CENTER" GridPane.halignment="CENTER">
                         <font>
                             <Font size="15.0" />
                         </font>
                     </Button>
-                    <Button fx:id="btnOnExitInsertPersona" mnemonicParsing="false" onAction="#btnOnExitInsertPersonaOnAction" prefWidth="150.0" stylesheets="@style.css" text="Salir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                    <Button fx:id="btnOnExitInsertPersona" mnemonicParsing="false" onAction="#btnOnExitInsertPersonaOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                         <font>
                             <Font size="15.0" />
                         </font>
@@ -215,17 +219,17 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <Button fx:id="btnOnEliminarPersona" mnemonicParsing="false" onAction="#btnOnEliminarPersonaOnAction" prefWidth="150.0" styleClass="my-button" stylesheets="@style.css" text="Eliminar" textAlignment="CENTER" GridPane.halignment="CENTER">
+                    <Button fx:id="btnOnEliminarPersona" mnemonicParsing="false" onAction="#btnOnEliminarPersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Eliminar" textAlignment="CENTER" GridPane.halignment="CENTER">
                         <font>
                             <Font size="15.0" />
                         </font>
                     </Button>
-                    <Button fx:id="btnOnEditPersona1" mnemonicParsing="false" onAction="#btnOnEditPersonaOnAction" prefWidth="150.0" styleClass="my-button" stylesheets="@style.css" text="Edit" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                    <Button fx:id="btnOnEditPersona1" mnemonicParsing="false" onAction="#btnOnEditPersonaOnAction" prefWidth="150.0" styleClass="my-button" text="Edit" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                         <font>
                             <Font size="15.0" />
                         </font>
                     </Button>
-                    <Button fx:id="btnOnExitList" mnemonicParsing="false" onAction="#btnOnExitLisOnAction" prefWidth="150.0" stylesheets="@style.css" text="Salir" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                    <Button fx:id="btnOnExitList" mnemonicParsing="false" onAction="#btnOnExitLisOnAction" prefWidth="150.0" text="Salir" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                         <font>
                             <Font size="15.0" />
                         </font>
