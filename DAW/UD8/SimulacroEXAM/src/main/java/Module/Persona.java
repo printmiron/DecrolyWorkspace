@@ -11,14 +11,14 @@ public class Persona implements Serializable {
     private String apellido;
     private String dni;
     private int edad;
-    private String sexo;
+    private Sexo sexo;
     private LocalDate fechaNacimiento;
     private String telefono;
     private String correo;
     private String direccion;
 
 
-    public Persona(String nombre, String apellido, String dni, int edad, String sexo, LocalDate fechaNacimiento, String telefono, String correo, String direccion) {
+    public Persona(String nombre, String apellido, String dni, int edad, Sexo sexo, LocalDate fechaNacimiento, String telefono, String correo, String direccion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -79,11 +79,11 @@ public class Persona implements Serializable {
         this.edad = edad;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 

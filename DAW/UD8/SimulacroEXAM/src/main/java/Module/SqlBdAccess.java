@@ -7,13 +7,12 @@ import java.util.List;
 
 public class SqlBdAccess {
 
-    private String dniOriginal;
 
     //acceder a todas las personas
     public List<Persona> getPersonas() {
         List<Persona> personas = new LinkedList<>();
 
-        String prod = "SELECT * FROM articulo";
+        String prod = "SELECT * FROM persona";
 
         try (Connection connection = SqlBdManager.getConnection(); Statement statement = connection.createStatement();
              ResultSet dataSet = statement.executeQuery(prod);) {
@@ -23,7 +22,7 @@ public class SqlBdAccess {
                 String apellido = dataSet.getString(2);
                 String dni = dataSet.getString(3);
                 int edad = dataSet.getInt(4);
-                String sexo = dataSet.getString(5);
+                Sexo sexo = Sexo.valueOf(dataSet.getString(5));
                 LocalDate fechaNacimiento = LocalDate.parse(dataSet.getString(6));
                 String telefono = dataSet.getString(7);
                 String correo = dataSet.getString(8);
@@ -52,7 +51,7 @@ public class SqlBdAccess {
             statement.setString(2, persona.getApellido());
             statement.setString(3, persona.getDni());
             statement.setInt(4, persona.getEdad());
-            statement.setString(5, persona.getSexo());
+            statement.setString(5, persona.getSexo().name());
             statement.setDate(6, Date.valueOf(persona.getFechaNacimiento())) ;
             statement.setString(7, persona.getTelefono());
             statement.setString(8, persona.getCorreo());
@@ -79,7 +78,7 @@ public class SqlBdAccess {
             statement.setString(2, persona.getApellido());
             statement.setString(3, persona.getDni());
             statement.setInt(4, persona.getEdad());
-            statement.setString(5, persona.getSexo());
+            statement.setString(5, persona.getSexo().name());
             statement.setDate(6, Date.valueOf(persona.getFechaNacimiento())) ;
             statement.setString(7, persona.getTelefono());
             statement.setString(8, persona.getCorreo());
@@ -95,7 +94,7 @@ public class SqlBdAccess {
     }
 
 
-    //editar persona
+    //borrar persona por dni
     public static void eliminarPersona(String dni) {
 
         String sql = "DELETE FROM persona WHERE dni = ?";

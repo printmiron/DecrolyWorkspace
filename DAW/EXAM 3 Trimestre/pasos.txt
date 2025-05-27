@@ -1,0 +1,4 @@
+1. Importar la Base de Datos
+2. Configurar SceneBuilder, cambiar todos los fx:id (y en los botones ON Action)
+3. Implementar todos los paramentros en HelloController
+4. 

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import Module.SqlBdAccess;
 import Module.Persona;
+import Module.Sexo;
 import Module.GuardarPersFile;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -45,7 +46,7 @@ public class HelloController {
     private TextField edad;
 
     @FXML
-    private TextField sexo;
+    private ComboBox <Sexo> ComboBoxSexo;
 
     @FXML
     private DatePicker fechaNacimiento;
@@ -76,6 +77,11 @@ public class HelloController {
         List<Persona> desdeBD = BD.getPersonas();
         personas.addAll(desdeBD);
 
+        //Para poder seleccionar M o F
+        ComboBoxSexo.setItems(FXCollections.observableArrayList(Sexo.values()));
+
+
+
         //Cojer poersoans desde fichero
 //        List<Persona> cargados = GuardarPersFile.readFile("Personas.dat");
 //        if (cargados != null) {
@@ -104,50 +110,41 @@ public class HelloController {
     }
 
 
-    //Utilizada antes de poder editar
 
-//    @FXML
-//    protected void btnOnSavePersonaOnAction() {
-//        persona = Persona.builder()
-//                .nombre(nombre.getText())
-//                .apellido(apellido.getText())
-//                .dni(dni.getText())
-//                .edad(Integer.parseInt(edad.getText()))
-//                .sexo(sexo.getText())
-//                .fechaNacimiento(fechaNacimiento.getValue())
-//                .telefono(telefono.getText())
-//                .correo(correo.getText())
-//                .direccion(direccion.getText())
-//                .build();
-//
-//        personas.add(persona);
-//
-//
-//        clearForm();
-//        selectPanelVisible(2);
-//    }
+
 
     @FXML
     protected void btnOnSavePersonaOnAction() {
         if (!validarFormulario()) return;
 
-          if (personaEditada == null) {
+        Sexo sexoSeleccionado = ComboBoxSexo.getValue();
+
+
+        if (personaEditada == null) {
               //Crear nueva
-              Persona nueva = new Persona(
-                      nombre.getText(), apellido.getText(), dni.getText(),
-                      Integer.parseInt(edad.getText()), sexo.getText(),
-                      fechaNacimiento.getValue(), telefono.getText(),
-                      correo.getText(), direccion.getText()
-              );
+            Persona nueva = Persona.builder()
+                    .nombre(nombre.getText())
+                    .apellido(apellido.getText())
+                    .dni(dni.getText())
+                    .edad(Integer.parseInt(edad.getText()))
+                    .sexo(sexoSeleccionado)
+                    .fechaNacimiento(fechaNacimiento.getValue())
+                    .telefono(telefono.getText())
+                    .correo(correo.getText())
+                    .direccion(direccion.getText())
+                    .build();
+
               BD.registrarPersona(nueva);
               personas.add(nueva);
+
           }else {
+            
               //Modificar existente
               personaEditada.setNombre(nombre.getText());
               personaEditada.setApellido(apellido.getText());
               personaEditada.setDni(dni.getText());
               personaEditada.setEdad(Integer.parseInt(edad.getText()));
-              personaEditada.setSexo(sexo.getText());
+              personaEditada.setSexo(ComboBoxSexo.getValue());
               personaEditada.setFechaNacimiento(fechaNacimiento.getValue());
               personaEditada.setTelefono(telefono.getText());
               personaEditada.setCorreo(correo.getText());
@@ -169,7 +166,7 @@ public class HelloController {
 
     @FXML
     protected void btnOnEliminarPersonaOnAction(){
-        Persona seleccionada = ListViewPersonas.getSelectionModel().getSelectedItem();
+        Persona seleccionada = ListViewPersonas.getSelectionModel().getSelectedItem(); //Selecionar en la lista
         if (seleccionada != null) {
             BD.eliminarPersona(seleccionada.getDni());
             personas.remove(seleccionada);
@@ -182,16 +179,16 @@ public class HelloController {
 
     @FXML
     protected void btnOnEditPersonaOnAction(ActionEvent event) {
-        Persona seleccionada = ListViewPersonas.getSelectionModel().getSelectedItem();
+        Persona seleccionada = ListViewPersonas.getSelectionModel().getSelectedItem(); //Selecionar en la lista
         if (seleccionada != null) {
             personaEditada = seleccionada;
-            dniOriginal = seleccionada.getDni();
 
+            dniOriginal = seleccionada.getDni();
             nombre.setText(personaEditada.getNombre());
             apellido.setText(personaEditada.getApellido());
             dni.setText(personaEditada.getDni());
             edad.setText(String.valueOf(personaEditada.getEdad()));
-            sexo.setText(personaEditada.getSexo());
+            ComboBoxSexo.setValue(personaEditada.getSexo());
             fechaNacimiento.setValue(personaEditada.getFechaNacimiento());
             telefono.setText(personaEditada.getTelefono());
             correo.setText(personaEditada.getCorreo());
@@ -285,7 +282,7 @@ public class HelloController {
         apellido.clear();
         dni.clear();
         edad.clear();
-        sexo.clear();
+        ComboBoxSexo.setValue(null);
         fechaNacimiento.setValue(null);
         telefono.clear();
         correo.clear();
@@ -302,7 +299,7 @@ public class HelloController {
         if (!validarNombre(apellido.getText())) errores.append("Apellido inválido. Debe iniciar en mayúscula y tener mínimo 3 letras.\n");
         if (!validarDNI(dni.getText())) errores.append("DNI inválido. Ej: 12345678A\n");
         if (!validarEdad(edad.getText())) errores.append("Edad inválida. Debe ser un número entre 1 y 120.\n");
-        if (sexo.getText().isEmpty()) errores.append("Sexo no puede estar vacío.\n");
+        if (ComboBoxSexo.getValue() == null) errores.append("Sexo no puede estar vacío.\n");
         if (fechaNacimiento.getValue() == null) errores.append("Debe seleccionar una fecha de nacimiento.\n");
         if (!validarTelefono(telefono.getText())) errores.append("Teléfono inválido. Debe contener 9 dígitos.\n");
         if (!validarCorreo(correo.getText())) errores.append("Correo electrónico inválido.\n");

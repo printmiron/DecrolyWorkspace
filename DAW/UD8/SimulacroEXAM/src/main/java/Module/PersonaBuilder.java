@@ -8,7 +8,7 @@ public class PersonaBuilder {
     private String apellido;
     private String dni;
     private int edad;
-    private String sexo;
+    private Sexo sexo;
     private LocalDate fechaNacimiento;
     private String telefono;
     private String correo;
@@ -53,11 +53,11 @@ public class PersonaBuilder {
         return this;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public PersonaBuilder sexo(String sexo) {
+    public PersonaBuilder sexo(Sexo sexo) {
         this.sexo = sexo;
         return this;
     }

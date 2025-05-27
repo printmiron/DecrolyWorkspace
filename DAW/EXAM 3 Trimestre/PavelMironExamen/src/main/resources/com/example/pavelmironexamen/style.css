@@ -1,0 +1,27 @@
+.my-button {
+    -fx-background-color: #1495db;
+    -fx-text-fill: white;
+    -fx-padding: 15;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.0, 0, 2);
+    -fx-cursor: hand;
+}
+
+.my-button-cancel {
+    -fx-background-color: #b01a2c;
+    -fx-text-fill: white;
+    -fx-padding: 15, 15, 15 15;
+}
+
+.my-button:hover {
+    -fx-background-color: #35566d;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.0, 0, 3);
+}
+
+.my-button-cancel:hover {
+    -fx-background-color: #642020;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.0, 0, 3);
+}
+
+
+

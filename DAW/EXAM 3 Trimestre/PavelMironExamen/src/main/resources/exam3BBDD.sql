@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS exam3_bbdd;
+CREATE DATABASE IF NOT EXISTS exam3_bbdd;
+USE exam3_bbdd;
+
