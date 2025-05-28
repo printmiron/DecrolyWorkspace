@@ -23,5 +23,9 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.0, 0, 3);
 }
 
+.my-panel{
+    -fx-background-color: #cf9898;
+}
+
 
 
