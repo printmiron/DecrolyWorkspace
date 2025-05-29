@@ -1453,40 +1453,50 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 
 
 -- CREATE	USER	'alan'@'localhost'	IDENTIFIED	BY	'alan';
-
 -- CREATE	USER	'steve'@'localhost'	IDENTIFIED	BY	'wozniak';
 
-create view pobreza
-as select e.first_name, e.last_name, s.salary 
-from employees
-join salaries ON e.emp_no = s.emp_no
-where s.to_date = '9999-01-01'
-order by s.salary
-limit 1;
 
+CREATE VIEW pobreza AS
+SELECT e.first_name, e.last_name, s.salary
+FROM employees e
+JOIN salaries s ON e.emp_no = s.emp_no
+WHERE s.to_date = '9999-01-01'
+ORDER BY s.salary DESC
+LIMIT 1;
 
-
-create view RRHH
-as select e.first_name, e.last_name
-from employees
-join dept_emp de ON e.emp_no = de.emp_no
-join departments ON de.dept_no = d.dept_no
-where departments = 'Human Resources';
-
-
+CREATE VIEW RRHH AS
+SELECT e.first_name, e.last_name
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+WHERE d.dept_name = 'Human Resources';
 
 -- GRANT ALL PRIVILEGES ON pobreza TO 'alan'@'localhost';
 -- GRANT ALL PRIVILEGES ON RRHH TO 'alan'@'localhost';
 
--- GRANT ALL PRIVILEGES ON employees TO 'steve'@'localhost';
+-- GRANT SELECT (emp_no, first_name, last_name, gender, hire_date, birth_date) ON employees TO 'steve'@'localhost';
+-- GRANT UPDATE (last_name) ON employees TO 'steve'@'localhost';
 
 DELIMITER $$
-create function salario_superior(
-	
-	int salario,
+CREATE FUNCTION primer_salario(emp INT) RETURNS INT
+DETERMINISTIC
+BEGIN
+	declare salario INT;
     
-)
-begin
+    -- Obtener el slario mas antiguo
+    
+    SELECT salary INTO salario
+    FROM salaries
+    WHERE emp_no = emp
+    ORDER BY from_date ASC
+    LIMIT 1;
+    
+    IF salario < 100000 THEN
+		SIGNAL SQLSTATE '45000'
+        SET message_text = 'Salario mas de 100.000';
+	END IF;
+    
+    RETURN salario;
+END $$
 
 
-end$$
