@@ -1,0 +1,252 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="26.0.6">
+  <diagram name="Página-1" id="QF5iy-u7Yr_LrmfGwRwX">
+    <mxGraphModel dx="2790" dy="2100" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zVhVhjhVTbUy0921jr-u-85" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="733.4300000000001" y="-575" width="696" height="649.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-69" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="398" y="-543" width="226" height="550" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-49" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=none;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-385" y="-164" width="729" height="448" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-42" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=none;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="457" y="147" width="556" height="218" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-40" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=none;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="425" width="415" height="197" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-38" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://pngimg.com/d/server_PNG29.png;dropTarget=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="245" y="448" width="137" height="137" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-10" value="&lt;h1&gt;&lt;font&gt;ADMINITRACIÓN&lt;/font&gt;&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="628.5" y="315" width="213" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;shadow=1;strokeWidth=3;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-28" target="zVhVhjhVTbUy0921jr-u-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-28" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://pngimg.com/d/server_PNG29.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="329" y="448" width="137" height="137" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;curved=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-35" target="zVhVhjhVTbUy0921jr-u-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="690" y="253" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-35" target="zVhVhjhVTbUy0921jr-u-47">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="681" y="268" />
+              <mxPoint x="681" y="319" />
+              <mxPoint x="905" y="319" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;curved=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-52" target="zVhVhjhVTbUy0921jr-u-50">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="413" y="311.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-77" target="zVhVhjhVTbUy0921jr-u-76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="566" y="201" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="522" y="-28" />
+              <mxPoint x="648" y="-28" />
+              <mxPoint x="648" y="-71" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-91" target="zVhVhjhVTbUy0921jr-u-90">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="163.99749999999966" y="-123" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-35" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.dlink.com/fr/fr/-/media/product-pages/dws/3160-24tc/dws_3160_24_tc_a1_image_front.png;imageBorder=default;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="487" y="201" width="158.09" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-36" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="696.1" y="218" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-39" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://pngimg.com/d/server_PNG29.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="413" y="450" width="137" height="137" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-41" value="&lt;h1&gt;SERVIDORES&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="322.04" y="587" width="156.02" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-47" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="839" y="218" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-50" target="zVhVhjhVTbUy0921jr-u-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-50" target="zVhVhjhVTbUy0921jr-u-55">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-35" y="196" />
+              <mxPoint x="-35" y="36" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-50" target="zVhVhjhVTbUy0921jr-u-56">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-35" y="196" />
+              <mxPoint x="-35" y="36" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-50" target="zVhVhjhVTbUy0921jr-u-57">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-50" target="zVhVhjhVTbUy0921jr-u-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-50" target="zVhVhjhVTbUy0921jr-u-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-50" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.dlink.com/fr/fr/-/media/product-pages/dws/3160-24tc/dws_3160_24_tc_a1_image_front.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-106.99999999999994" y="151" width="158.09" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-53" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-319" y="-45" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-55" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-172" y="-45" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-56" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-25" y="-45" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-57" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="121" y="-45" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-58" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-186.20999999999998" y="51" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-59" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-11.789999999999992" y="51" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-76" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.dlink.com/fr/fr/-/media/product-pages/dws/3160-24tc/dws_3160_24_tc_a1_image_front.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="436.68" y="-116" width="158.09" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-78" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="448" y="-227" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-79" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="446.00000000000006" y="-327" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-81" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="441" y="-513" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-90" target="zVhVhjhVTbUy0921jr-u-92">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-90" target="zVhVhjhVTbUy0921jr-u-93">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1083.43" y="-40.5" />
+              <mxPoint x="1083.43" y="-122.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-90" target="zVhVhjhVTbUy0921jr-u-94">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1167.43" y="-36.5" />
+              <mxPoint x="1083.43" y="-36.5" />
+              <mxPoint x="1083.43" y="-122.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;curved=1;shadow=1;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-90" target="zVhVhjhVTbUy0921jr-u-95">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-90" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.dlink.com/fr/fr/-/media/product-pages/dws/3160-24tc/dws_3160_24_tc_a1_image_front.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1009.4300000000001" y="-84.5" width="158.09" height="89" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-92" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="799.4300000000001" y="-203.5" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-93" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="946.4300000000001" y="-203.5" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-94" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1093.43" y="-203.5" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-95" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1239.43" y="-203.5" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-97" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="797.53" y="-309" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-98" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="944.53" y="-309" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-99" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1091.53" y="-309" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-100" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1237.53" y="-309" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-101" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="802.0800000000002" y="-419" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-102" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="949.0800000000002" y="-419" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-103" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1096.0800000000002" y="-419" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-104" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1242.0800000000002" y="-419" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-105" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="797.53" y="-529" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-106" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="944.53" y="-529" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-107" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1091.53" y="-529" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-108" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="1237.53" y="-529" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-80" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.pngarts.com/files/3/Computer-Desktop-PC-PNG-Download-Image.png;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="446" y="-420" width="132.79" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-110" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;curved=1;shadow=1;strokeWidth=3;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-35" target="zVhVhjhVTbUy0921jr-u-77">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="522" y="201" as="sourcePoint" />
+            <mxPoint x="595" y="-71" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-77" value="&lt;h1&gt;DEP. RECURSOS HUMANOS&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="356" y="18" width="335.45" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-114" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;strokeWidth=3;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-35" target="zVhVhjhVTbUy0921jr-u-91">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="606" y="201" as="sourcePoint" />
+            <mxPoint x="1009" y="-40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-91" value="&lt;h1&gt;EMPLEADOS GENERALES&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="942" y="15" width="335.45" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-115" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;curved=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;shadow=1;strokeWidth=3;" edge="1" parent="1" source="zVhVhjhVTbUy0921jr-u-35" target="zVhVhjhVTbUy0921jr-u-52">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="487" y="246" as="sourcePoint" />
+            <mxPoint x="51" y="218" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zVhVhjhVTbUy0921jr-u-52" value="&lt;h1&gt;DEP. FINANCIERO&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;shadow=1;" vertex="1" parent="1">
+          <mxGeometry x="-132" y="299" width="213" height="44" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
