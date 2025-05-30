@@ -1,0 +1,25 @@
+.btn-account{
+    border: none;
+    margin-right: 25px;
+}
+
+.btn-search{
+    border: none;
+}
+
+.btn-sm{
+    border: 1px black solid;
+}
+
+.btn-sm:hover{
+    background-color: rgba(97, 190, 30, 0.63);
+    color: white;
+}
+
+.footer{
+    background-color: rgba(97, 190, 30, 0.63);
+}
+
+.navbar{
+    background-color: rgba(97, 190, 30, 0.63);
+}
