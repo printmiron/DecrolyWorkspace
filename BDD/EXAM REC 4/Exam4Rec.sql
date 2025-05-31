@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS ex4rec_bbdd;
+CREATE DATABASE IF NOT EXISTS ex4rec_bbdd;
+USE ex4rec_bbdd;
+
