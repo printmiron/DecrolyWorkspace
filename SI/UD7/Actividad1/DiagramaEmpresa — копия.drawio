@@ -1,0 +1,196 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36" version="27.1.1">
+  <diagram name="Page-1" id="0">
+    <mxGraphModel dx="815" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="internet" value="Internet" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;" parent="1" vertex="1">
+          <mxGeometry x="420" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="isp_router" value="Router ISP\nAS12345" style="shape=router;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="440" y="140" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_isp" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="internet" target="isp_router" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="120" as="sourcePoint" />
+            <mxPoint x="480" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="firewall_pair" value="HA Firewall Cluster\nPalo Alto PA-3250\nActive/Passive" style="shape=rectangle;rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;" parent="1" vertex="1">
+          <mxGeometry x="400" y="220" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_fw" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="isp_router" target="firewall_pair" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="200" as="sourcePoint" />
+            <mxPoint x="480" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dmz_zone" value="DMZ Security Zone\n172.16.10.0/24" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;" parent="1" vertex="1">
+          <mxGeometry x="180" y="320" width="240" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="dmz_switch" value="DMZ Switch\nCisco Catalyst 2960X\nHSRP VIP: 172.16.10.1" style="shape=switch;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="250" y="360" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_dmz" style="endArrow=classic;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;dashed=1;" parent="1" source="firewall_pair" target="dmz_switch" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="300" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="web1" value="Web Server 1\nApache/Nginx\n172.16.10.10" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" parent="1" vertex="1">
+          <mxGeometry x="150" y="410" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="web2" value="Web Server 2\nLoad Balancer\n172.16.10.11" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" parent="1" vertex="1">
+          <mxGeometry x="300" y="440" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_web1" style="endArrow=none;html=1;" parent="1" source="dmz_switch" target="web1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="420" as="sourcePoint" />
+            <mxPoint x="240" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_web2" style="endArrow=none;html=1;" parent="1" source="dmz_switch" target="web2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="420" as="sourcePoint" />
+            <mxPoint x="380" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="core_network" value="Core Network\n10.0.0.0/16" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;" parent="1" vertex="1">
+          <mxGeometry x="430" y="310" width="460" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="ad1" value="DC01\nAD/DNS/DHCP\n10.0.100.10" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" parent="core_network" vertex="1">
+          <mxGeometry x="150" y="170" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ad2" value="DC02\nReplica\n10.0.100.11" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" parent="core_network" vertex="1">
+          <mxGeometry x="280" y="130" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fileserver" value="NAS\nEMC Isilon\n10.0.100.20" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" parent="core_network" vertex="1">
+          <mxGeometry x="165" y="260" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="mailserver" value="Exchange 2019\n10.0.100.30" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;" parent="core_network" vertex="1">
+          <mxGeometry x="270" y="245" width="70" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="wlc" value="Wireless Controller\nCisco 5508\n10.0.50.1" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="core_network" vertex="1">
+          <mxGeometry x="30" y="320" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tw8akMHJFOt-fnRWsrSL-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="core_network" source="ad1" target="wlc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="server_vlan" value="Server VLAN 100\n10.0.100.0/24" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;" parent="core_network" vertex="1">
+          <mxGeometry x="300" y="40" width="160" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="core_switch" value="Core Switch Stack\nCisco Catalyst 9300\nVTP Server" style="shape=switch;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_core" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="firewall_pair" target="core_switch" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="300" as="sourcePoint" />
+            <mxPoint x="580" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_servers" style="endArrow=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="core_switch" target="server_vlan" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="420" as="sourcePoint" />
+            <mxPoint x="680" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="access_layer" value="Access Layer" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="180" y="720" width="660" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="vlan10_switch" value="Access Switch 1\nVLAN 10 (Dirección)\n10.0.10.0/24" style="shape=switch;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="220" y="760" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_vlan10_1" value="PC-DIR-01" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="200" y="840" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_vlan10_2" value="PC-DIR-02" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="280" y="840" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_vlan10_1" style="endArrow=none;html=1;" parent="1" source="vlan10_switch" target="pc_vlan10_1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="820" as="sourcePoint" />
+            <mxPoint x="230" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_vlan10_2" style="endArrow=none;html=1;" parent="1" source="vlan10_switch" target="pc_vlan10_2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="820" as="sourcePoint" />
+            <mxPoint x="310" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vlan20_switch" value="Access Switch 2\nVLAN 20 (Admin)\n10.0.20.0/24" style="shape=switch;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="760" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_vlan20_1" value="PC-ADM-01" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="840" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_vlan20_2" value="PC-ADM-02" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="420" y="840" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_vlan20_3" value="PC-ADM-03" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="900" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pc_vlan20_4" value="PC-ADM-04" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="420" y="900" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_vlan20_1" style="endArrow=none;html=1;" parent="1" source="vlan20_switch" target="pc_vlan20_1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="820" as="sourcePoint" />
+            <mxPoint x="370" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_vlan20_2" style="endArrow=none;html=1;" parent="1" source="vlan20_switch" target="pc_vlan20_2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="820" as="sourcePoint" />
+            <mxPoint x="450" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_vlan20_3" style="endArrow=none;html=1;" parent="1" source="vlan20_switch" target="pc_vlan20_3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="880" as="sourcePoint" />
+            <mxPoint x="370" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_vlan20_4" style="endArrow=none;html=1;" parent="1" source="vlan20_switch" target="pc_vlan20_4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="880" as="sourcePoint" />
+            <mxPoint x="450" y="900" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_core_access1" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="core_switch" target="vlan10_switch" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="390" as="sourcePoint" />
+            <mxPoint x="220" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_core_access2" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="core_switch" target="vlan20_switch" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="390" as="sourcePoint" />
+            <mxPoint x="360" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ap1" value="AP-01\nVLAN 50" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="760" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ap2" value="AP-02\nVLAN 50" style="shape=rectangle;rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="820" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_wlc" style="endArrow=none;html=1;" parent="1" source="core_switch" target="wlc" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="420" as="sourcePoint" />
+            <mxPoint x="560" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge_ap1" style="endArrow=none;html=1;" parent="1" source="wlc" target="ap1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="480" as="sourcePoint" />
+            <mxPoint x="530" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="notes" value="• Firewall rules between zones\n• VLANs routed via Core L3 switch\n• HSRP for default gateways\n• 802.1Q trunking between switches\n• Port security on access ports" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="600" y="720" width="200" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
