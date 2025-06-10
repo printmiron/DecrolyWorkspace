@@ -1809,11 +1809,14 @@ DELIMITER ;
 
 
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 -- Posibles en el examen 
 
 -- EXAMEN DE RECUPERACIÓN
@@ -1987,6 +1990,7 @@ DELIMITER ;
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -1995,6 +1999,8 @@ DELIMITER ;
 
 
 
+=======
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 -- Posible examen 2 
 -- EXAMEN DE RECUPERACIÓN 2
 
@@ -2141,6 +2147,7 @@ DELIMITER ;
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -2149,6 +2156,10 @@ DELIMITER ;
 
 
 -- Posible exman3
+=======
+-- Examn posibel rec 3
+
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 -- Pregunta 1 – Usuarios, Vistas y Privilegios
 
 -- 1.1 Crear usuarios
@@ -2188,6 +2199,10 @@ GRANT SELECT (emp_no, first_name, last_name, birth_date, gender) ON employees TO
 GRANT UPDATE (birth_date) ON employees TO 'miguel'@'localhost';
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 -- 2.1 FUNCIÓN: Retorna el número de cargos distintos que ha tenido un empleado.
 DELIMITER $$
 CREATE FUNCTION contar_titulos(emp INT) RETURNS INT
@@ -2269,7 +2284,10 @@ END $$
 DELIMITER ;
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 -- Tabla de registro
 CREATE TABLE IF NOT EXISTS log_manager_nuevo (
   emp_no INT,
@@ -2314,6 +2332,7 @@ DELIMITER ;
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -2326,6 +2345,9 @@ DELIMITER ;
 
 -- Posible examen5
 
+=======
+-- Posible exam 4 
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 -- 🔹 PREGUNTA 1: Usuarios, Vistas y Privilegios
 
 -- 1.1 Crear usuarios
@@ -2442,6 +2464,10 @@ DELIMITER ;
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 -- Crear tabla para registrar cambios de título
 CREATE TABLE IF NOT EXISTS historial_titulos (
   emp_no INT,
@@ -2479,6 +2505,7 @@ DELIMITER ;
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -2498,6 +2525,9 @@ DELIMITER ;
 
 -- Posible exman6
 
+=======
+-- Posible exam 4
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
 
 -- 🔹 PREGUNTA 1: Crear usuarios, vistas y privilegios
 
@@ -2635,3 +2665,704 @@ DELIMITER ;
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+-- Posible 5
+
+-- 🔹 PREGUNTA 1: Crear usuarios, vistas y privilegios
+
+-- 1.1 Crear usuarios
+CREATE USER 'lucas'@'localhost' IDENTIFIED BY 'skywalker';
+CREATE USER 'sofia'@'localhost' IDENTIFIED BY 'secret123';
+
+-- 1.2 Crear vistas
+
+-- Vista: proximos_a_jubilarse → empleados que tienen entre 59 y 64 años
+CREATE VIEW proximos_a_jubilarse AS
+SELECT emp_no, first_name, last_name, birth_date
+FROM employees
+WHERE TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) BETWEEN 59 AND 64;
+
+-- Vista: lideres → muestra empleados con el título actual que contiene "Lead"
+CREATE VIEW lideres AS
+SELECT e.emp_no, e.first_name, e.last_name, t.title
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01' AND t.title LIKE '%Lead%';
+
+-- 1.3 Otorgar privilegios
+
+-- lucas: todos los privilegios sobre ambas vistas
+GRANT ALL PRIVILEGES ON proximos_a_jubilarse TO 'lucas'@'localhost';
+GRANT ALL PRIVILEGES ON lideres TO 'lucas'@'localhost';
+
+-- sofia: solo puede ver emp_no, first_name, gender y actualizar hire_date
+GRANT SELECT (emp_no, first_name, gender) ON employees TO 'sofia'@'localhost';
+GRANT UPDATE (hire_date) ON employees TO 'sofia'@'localhost';
+
+-- 🔹 PREGUNTA 2: Elegir 3 scripts de 5 (ejercicios completamente distintos)
+
+-- 2.1 FUNCIÓN: Verifica si un empleado ha tenido más de 3 cargos distintos
+DELIMITER $$
+CREATE FUNCTION muchos_titulos(emp INT) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+  DECLARE cantidad INT;
+
+  SELECT COUNT(DISTINCT title) INTO cantidad
+  FROM titles
+  WHERE emp_no = emp;
+
+  RETURN cantidad > 3;
+END $$
+DELIMITER ;
+
+-- 2.2 PROCEDIMIENTO: Lista empleados contratados en años pares
+DELIMITER $$
+CREATE PROCEDURE empleados_pares()
+BEGIN
+  SELECT emp_no, first_name, hire_date
+  FROM employees
+  WHERE MOD(YEAR(hire_date), 2) = 0;
+END $$
+DELIMITER ;
+
+-- 2.3 TRIGGER: Impide que un salario actual supere $300,000
+DELIMITER $$
+CREATE TRIGGER tope_salarial
+BEFORE INSERT ON salaries
+FOR EACH ROW
+BEGIN
+  IF NEW.to_date = '9999-01-01' AND NEW.salary > 300000 THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'El salario excede el máximo permitido de $300,000';
+  END IF;
+END $$
+DELIMITER ;
+
+-- 2.4 PROCEDIMIENTO: Lista empleados hombres contratados antes del año 2000
+DELIMITER $$
+CREATE PROCEDURE veteranos_hombres()
+BEGIN
+  SELECT emp_no, first_name, last_name, hire_date
+  FROM employees
+  WHERE gender = 'M' AND hire_date < '2000-01-01';
+END $$
+DELIMITER ;
+
+-- 2.5 TRIGGER: Impide cambiar el título de un empleado más de una vez en un año
+DELIMITER $$
+CREATE TRIGGER limitar_cambios_titulo
+BEFORE INSERT ON titles
+FOR EACH ROW
+BEGIN
+  DECLARE cambios INT;
+
+  SELECT COUNT(*) INTO cambios
+  FROM titles
+  WHERE emp_no = NEW.emp_no
+    AND YEAR(from_date) = YEAR(NEW.from_date);
+
+  IF cambios >= 1 THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'No se permite más de un cambio de título por año.';
+  END IF;
+END $$
+DELIMITER ;
+
+-- 🔹 PREGUNTA 3: Registrar cambios en título actual con anterior título
+
+-- Crear tabla para guardar historial de cambios de título
+CREATE TABLE IF NOT EXISTS historial_titulos (
+  emp_no INT,
+  fecha_cambio DATE,
+  titulo_anterior VARCHAR(50),
+  titulo_nuevo VARCHAR(50)
+);
+
+-- Trigger para registrar los cambios de título actual
+DELIMITER $$
+CREATE TRIGGER registrar_cambio_titulo
+AFTER INSERT ON titles
+FOR EACH ROW
+BEGIN
+  DECLARE anterior_titulo VARCHAR(50);
+
+  SELECT title INTO anterior_titulo
+  FROM titles
+  WHERE emp_no = NEW.emp_no AND to_date < NEW.from_date
+  ORDER BY to_date DESC
+  LIMIT 1;
+
+  INSERT INTO historial_titulos (emp_no, fecha_cambio, titulo_anterior, titulo_nuevo)
+  VALUES (NEW.emp_no, NEW.from_date, anterior_titulo, NEW.title);
+END $$
+DELIMITER ;
+
+
+
+
+
+-- Posibel 6
+
+-- 🔹 PREGUNTA 1: Crear usuarios, vistas y privilegios
+
+-- 1.1 Crear usuarios
+CREATE USER 'maria'@'localhost' IDENTIFIED BY 'clave123';
+CREATE USER 'david'@'localhost' IDENTIFIED BY 'davidpass';
+
+-- 1.2 Crear vistas
+
+-- Vista: recien_contratados → empleados contratados en el último año
+CREATE VIEW recien_contratados AS
+SELECT emp_no, first_name, last_name, hire_date
+FROM employees
+WHERE hire_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
+
+-- Vista: tecnicos → empleados con título actual que contiene la palabra "Technician"
+CREATE VIEW tecnicos AS
+SELECT e.emp_no, e.first_name, e.last_name, t.title
+FROM employees e
+JOIN titles t ON e.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01' AND t.title LIKE '%Technician%';
+
+-- 1.3 Otorgar privilegios
+
+-- maria: todos los privilegios sobre ambas vistas
+GRANT ALL PRIVILEGES ON recien_contratados TO 'maria'@'localhost';
+GRANT ALL PRIVILEGES ON tecnicos TO 'maria'@'localhost';
+
+-- david: sólo puede consultar emp_no, last_name, birth_date y actualizar gender
+GRANT SELECT (emp_no, last_name, birth_date) ON employees TO 'david'@'localhost';
+GRANT UPDATE (gender) ON employees TO 'david'@'localhost';
+
+-- 🔹 PREGUNTA 2: Elige 3 scripts (todos son distintos de exámenes anteriores)
+
+-- 2.1 FUNCIÓN: Verifica si un empleado ha cambiado de departamento más de 2 veces
+DELIMITER $$
+CREATE FUNCTION cambios_departamento(emp INT) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+  DECLARE cantidad INT;
+
+  SELECT COUNT(*) INTO cantidad
+  FROM dept_emp
+  WHERE emp_no = emp;
+
+  RETURN cantidad > 2;
+END $$
+DELIMITER ;
+
+-- 2.2 PROCEDIMIENTO: Lista empleados con salarios entre dos valores dados
+DELIMITER $$
+CREATE PROCEDURE empleados_por_rango(IN min_salario INT, IN max_salario INT)
+BEGIN
+  SELECT e.emp_no, e.first_name, e.last_name, s.salary
+  FROM employees e
+  JOIN salaries s ON e.emp_no = s.emp_no
+  WHERE s.to_date = '9999-01-01'
+    AND s.salary BETWEEN min_salario AND max_salario;
+END $$
+DELIMITER ;
+
+-- 2.3 TRIGGER: Impide insertar empleados nacidos después del año 2005
+DELIMITER $$
+CREATE TRIGGER validar_fecha_nacimiento
+BEFORE INSERT ON employees
+FOR EACH ROW
+BEGIN
+  IF NEW.birth_date > '2005-01-01' THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'La fecha de nacimiento no puede ser posterior al 1 de enero de 2005';
+  END IF;
+END $$
+DELIMITER ;
+
+-- 2.4 PROCEDIMIENTO: Lista empleadas que aún no tienen asignado ningún título
+DELIMITER $$
+CREATE PROCEDURE mujeres_sin_titulo()
+BEGIN
+  SELECT e.emp_no, e.first_name, e.last_name
+  FROM employees e
+  LEFT JOIN titles t ON e.emp_no = t.emp_no
+  WHERE t.emp_no IS NULL AND e.gender = 'F';
+END $$
+DELIMITER ;
+
+-- 2.5 TRIGGER: Impide asignar el mismo título dos veces seguidas al mismo empleado
+DELIMITER $$
+CREATE TRIGGER evitar_titulo_duplicado
+BEFORE INSERT ON titles
+FOR EACH ROW
+BEGIN
+  DECLARE ultimo_titulo VARCHAR(50);
+
+  SELECT title INTO ultimo_titulo
+  FROM titles
+  WHERE emp_no = NEW.emp_no
+  ORDER BY from_date DESC
+  LIMIT 1;
+
+  IF NEW.title = ultimo_titulo THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'El empleado ya tiene asignado ese mismo título recientemente';
+  END IF;
+END $$
+DELIMITER ;
+
+-- 🔹 PREGUNTA 3: Registrar inserciones en salaries en tabla auxiliar
+
+-- Crear tabla para registrar salarios asignados
+CREATE TABLE IF NOT EXISTS historial_salarios (
+  emp_no INT,
+  fecha_registro DATE,
+  salario INT,
+  usuario_actual VARCHAR(50)
+);
+
+-- Trigger para registrar inserciones en salaries
+DELIMITER $$
+CREATE TRIGGER log_sueldo
+AFTER INSERT ON salaries
+FOR EACH ROW
+BEGIN
+  INSERT INTO historial_salarios (emp_no, fecha_registro, salario, usuario_actual)
+  VALUES (NEW.emp_no, CURDATE(), NEW.salary, CURRENT_USER());
+END $$
+DELIMITER ;
+ 
+
+
+
+
+
+
+
+
+
+
+-- Posible 7
+-- 🔹 PREGUNTA 1: Crear usuarios, vistas y privilegios
+
+-- 1.1 Crear usuarios
+CREATE USER 'lucas'@'localhost' IDENTIFIED BY 'lucas123';
+CREATE USER 'ana'@'localhost' IDENTIFIED BY 'ana456';
+
+-- 1.2 Crear vistas
+
+-- Vista: proximos_jubilados → empleados mayores de 60 años
+CREATE VIEW proximos_jubilados AS
+SELECT emp_no, first_name, last_name, birth_date
+FROM employees
+WHERE birth_date <= DATE_SUB(CURDATE(), INTERVAL 60 YEAR);
+
+-- Vista: managers_actuales → muestra empleados que actualmente son jefes de departamento
+CREATE VIEW managers_actuales AS
+SELECT e.emp_no, e.first_name, e.last_name, d.dept_name
+FROM employees e
+JOIN dept_manager dm ON e.emp_no = dm.emp_no
+JOIN departments d ON dm.dept_no = d.dept_no
+WHERE dm.to_date = '9999-01-01';
+
+-- 1.3 Otorgar privilegios
+
+-- lucas: todos los privilegios sobre ambas vistas
+GRANT ALL PRIVILEGES ON proximos_jubilados TO 'lucas'@'localhost';
+GRANT ALL PRIVILEGES ON managers_actuales TO 'lucas'@'localhost';
+
+-- ana: puede ver los nombres y fechas de nacimiento de employees, y actualizar hire_date
+GRANT SELECT (first_name, last_name, birth_date) ON employees TO 'ana'@'localhost';
+GRANT UPDATE (hire_date) ON employees TO 'ana'@'localhost';
+
+-- 🔹 PREGUNTA 2: Elige 3 scripts (ejercicios diferentes a todo lo anterior)
+
+-- 2.1 FUNCIÓN: Verifica si el empleado tiene más de un título actual activo
+DELIMITER $$
+CREATE FUNCTION titulos_activos(emp INT) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+  DECLARE cantidad INT;
+  SELECT COUNT(*) INTO cantidad
+  FROM titles
+  WHERE emp_no = emp AND to_date = '9999-01-01';
+
+  RETURN cantidad > 1;
+END $$
+DELIMITER ;
+
+-- 2.2 PROCEDIMIENTO: Lista empleados con más de 10 años en la empresa
+DELIMITER $$
+CREATE PROCEDURE veteranos()
+BEGIN
+  SELECT emp_no, first_name, last_name, hire_date
+  FROM employees
+  WHERE hire_date <= DATE_SUB(CURDATE(), INTERVAL 10 YEAR);
+END $$
+DELIMITER ;
+
+-- 2.3 TRIGGER: Impide actualizar el salario a menos que sea superior al actual
+DELIMITER $$
+CREATE TRIGGER evitar_reduccion_sueldo
+BEFORE UPDATE ON salaries
+FOR EACH ROW
+BEGIN
+  IF NEW.salary < OLD.salary THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'No se puede reducir el salario actual';
+  END IF;
+END $$
+DELIMITER ;
+
+-- 2.4 FUNCIÓN: Determina si el empleado es jefe de al menos un departamento
+DELIMITER $$
+CREATE FUNCTION es_manager(emp INT) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+  DECLARE cantidad INT;
+  SELECT COUNT(*) INTO cantidad
+  FROM dept_manager
+  WHERE emp_no = emp AND to_date = '9999-01-01';
+  RETURN cantidad > 0;
+END $$
+DELIMITER ;
+
+-- 2.5 PROCEDIMIENTO: Muestra los hombres que aún no han sido asignados a ningún departamento
+DELIMITER $$
+CREATE PROCEDURE hombres_sin_departamento()
+BEGIN
+  SELECT e.emp_no, e.first_name, e.last_name
+  FROM employees e
+  LEFT JOIN dept_emp d ON e.emp_no = d.emp_no
+  WHERE d.emp_no IS NULL AND e.gender = 'M';
+END $$
+DELIMITER ;
+
+-- 🔹 PREGUNTA 3: Registrar inserciones en la tabla de títulos en tabla de auditoría
+
+-- Crear tabla auxiliar para registrar nombramientos
+CREATE TABLE IF NOT EXISTS historial_titulos (
+  emp_no INT,
+  titulo VARCHAR(50),
+  fecha_asignacion DATE,
+  usuario VARCHAR(50)
+);
+
+-- Trigger para registrar inserciones en titles
+DELIMITER $$
+CREATE TRIGGER log_titulo_asignado
+AFTER INSERT ON titles
+FOR EACH ROW
+BEGIN
+  INSERT INTO historial_titulos (emp_no, titulo, fecha_asignacion, usuario)
+  VALUES (NEW.emp_no, NEW.title, NEW.from_date, CURRENT_USER());
+END $$
+DELIMITER ;
+
+
+
+
+
+
+
+-- Psoible 8 
+-- 🔹 PREGUNTA 1: Crear usuarios, vistas y privilegios
+
+-- 1.1 Crear usuarios
+CREATE USER 'mario'@'localhost' IDENTIFIED BY 'luigi123';
+CREATE USER 'peach'@'localhost' IDENTIFIED BY 'castle456';
+
+-- 1.2 Crear vistas
+
+-- Vista: recien_contratados → empleados contratados hace menos de 1 año
+CREATE VIEW recien_contratados AS
+SELECT emp_no, first_name, last_name, hire_date
+FROM employees
+WHERE hire_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
+
+-- Vista: sin_salario_actual → empleados que no tienen salario con to_date = '9999-01-01'
+CREATE VIEW sin_salario_actual AS
+SELECT e.emp_no, e.first_name, e.last_name
+FROM employees e
+LEFT JOIN salaries s ON e.emp_no = s.emp_no AND s.to_date = '9999-01-01'
+WHERE s.emp_no IS NULL;
+
+-- 1.3 Otorgar privilegios
+
+-- mario: todos los privilegios sobre ambas vistas
+GRANT ALL PRIVILEGES ON recien_contratados TO 'mario'@'localhost';
+GRANT ALL PRIVILEGES ON sin_salario_actual TO 'mario'@'localhost';
+
+-- peach: puede ver apellidos y géneros, y modificar birth_date
+GRANT SELECT (last_name, gender) ON employees TO 'peach'@'localhost';
+GRANT UPDATE (birth_date) ON employees TO 'peach'@'localhost';
+
+-- 🔹 PREGUNTA 2: Elige 3 scripts (todos diferentes)
+
+-- 2.1 FUNCIÓN: Verifica si el título actual del empleado incluye "Staff"
+DELIMITER $$
+CREATE FUNCTION es_staff(emp INT) RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+  DECLARE resultado BOOLEAN DEFAULT FALSE;
+  IF EXISTS (
+    SELECT 1 FROM titles
+    WHERE emp_no = emp AND title LIKE '%Staff%' AND to_date = '9999-01-01'
+  ) THEN
+    SET resultado = TRUE;
+  END IF;
+  RETURN resultado;
+END $$
+DELIMITER ;
+
+-- 2.2 TRIGGER: Evita eliminar un manager activo
+DELIMITER $$
+CREATE TRIGGER evitar_borrar_manager
+BEFORE DELETE ON dept_manager
+FOR EACH ROW
+BEGIN
+  IF OLD.to_date = '9999-01-01' THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'No se puede eliminar un manager activo';
+  END IF;
+END $$
+DELIMITER ;
+
+-- 2.3 PROCEDIMIENTO: Muestra empleados que tienen más de un salario registrado
+DELIMITER $$
+CREATE PROCEDURE empleados_con_salarios_multiples()
+BEGIN
+  SELECT emp_no, COUNT(*) AS cantidad_salarios
+  FROM salaries
+  GROUP BY emp_no
+  HAVING cantidad_salarios > 1;
+END $$
+DELIMITER ;
+
+-- 2.4 FUNCIÓN: Devuelve la antigüedad (en años) de un empleado
+DELIMITER $$
+CREATE FUNCTION antiguedad(emp INT) RETURNS INT
+DETERMINISTIC
+BEGIN
+  DECLARE años INT;
+  SELECT TIMESTAMPDIFF(YEAR, hire_date, CURDATE()) INTO años
+  FROM employees
+  WHERE emp_no = emp;
+  RETURN años;
+END $$
+DELIMITER ;
+
+-- 2.5 TRIGGER: Impide insertar salario mayor a 300000
+DELIMITER $$
+CREATE TRIGGER maximo_salario
+BEFORE INSERT ON salaries
+FOR EACH ROW
+BEGIN
+  IF NEW.salary > 300000 THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'El salario no puede superar los 300000';
+  END IF;
+END $$
+DELIMITER ;
+
+-- 🔹 PREGUNTA 3: Registrar cambios de departamento en tabla historial_departamento
+
+-- Crear tabla auxiliar
+CREATE TABLE IF NOT EXISTS historial_departamento (
+  emp_no INT,
+  dept_no_anterior CHAR(4),
+  dept_no_nuevo CHAR(4),
+  fecha_cambio DATE
+);
+
+-- Trigger para registrar cambios de departamento
+DELIMITER $$
+CREATE TRIGGER log_cambio_departamento
+AFTER UPDATE ON dept_emp
+FOR EACH ROW
+BEGIN
+  IF OLD.dept_no <> NEW.dept_no THEN
+    INSERT INTO historial_departamento (emp_no, dept_no_anterior, dept_no_nuevo, fecha_cambio)
+    VALUES (OLD.emp_no, OLD.dept_no, NEW.dept_no, CURDATE());
+  END IF;
+END $$
+DELIMITER ;
+
+
+
+
+
+
+-- Ejemplo 1
+-- Pregunta:
+-- Cada vez que un empleado cambie su salario, se debe registrar en una tabla llamada cambios_salario el emp_no, el salario antiguo, el nuevo salario y la fecha del cambio. ¿Qué herramienta usarías y por qué?
+-- Además, desarrolla la funcionalidad solicitada.
+
+-- Respuesta esperada:
+
+-- Herramienta: Trigger (AFTER UPDATE en tabla salaries)
+
+-- Justificación: Porque queremos que el registro ocurra automáticamente cada vez que se actualice un salario, sin intervención manual.
+
+-- Desarrollo: Crear un trigger AFTER UPDATE que inserte en cambios_salario los datos solicitados cuando cambie el salario.
+
+-- Ejemplo 2
+-- Pregunta:
+-- Se quiere que al insertar un nuevo empleado en la tabla employees, automáticamente se asigne un registro inicial en la tabla beneficios con los beneficios por defecto para ese empleado. ¿Qué herramienta usarías y por qué?
+-- Además, desarrolla la funcionalidad solicitada.
+
+-- Respuesta esperada:
+
+-- Herramienta: Trigger (AFTER INSERT en tabla employees)
+
+-- Justificación: Para automatizar la asignación de beneficios sin requerir una acción manual posterior.
+
+-- Desarrollo: Crear un trigger AFTER INSERT que inserte el registro de beneficios con valores por defecto para el nuevo emp_no.
+
+-- Ejemplo 3
+-- Pregunta:
+-- Cada vez que un empleado es asignado como manager en la tabla dept_manager, se debe actualizar el campo is_manager en la tabla employees para marcarlo como gerente. ¿Qué herramienta usarías y por qué?
+-- Además, desarrolla la funcionalidad solicitada.
+
+-- Respuesta esperada:
+
+-- Herramienta: Trigger (AFTER INSERT en dept_manager)
+
+-- Justificación: Para mantener la coherencia de los datos en las tablas relacionadas automáticamente.
+
+-- Desarrollo: Crear un trigger que actualice el campo is_manager a TRUE para el emp_no asignado como manager.
+
+-- Ejemplo 4
+-- Pregunta:
+-- Se desea un procedimiento que reciba un dept_no y devuelva el número de empleados que han trabajado en ese departamento por más de 3 años. ¿Qué herramienta usarías y por qué?
+-- Además, desarrolla la funcionalidad solicitada.
+
+-- Respuesta esperada:
+
+-- Herramienta: Procedimiento almacenado
+
+-- Justificación: Porque es un proceso parametrizado que realiza un conteo basado en condiciones y debe ser reutilizable.
+
+-- Desarrollo: Crear un procedimiento que reciba dept_no, haga la consulta con fechas y devuelva el número de empleados.
+
+-- Ejemplo 5
+-- Pregunta:
+-- Se debe crear una función que reciba un emp_no y devuelva el título actual del empleado. Si no tiene título asignado, debe devolver un mensaje de error personalizado. ¿Qué herramienta usarías y por qué?
+-- Además, desarrolla la funcionalidad solicitada.
+
+-- Respuesta esperada:
+
+-- Herramienta: Función
+
+-- Justificación: Porque devuelve un valor (el título) basado en un parámetro y puede ser utilizada en consultas.
+
+-- Desarrollo: Crear una función que consulte la tabla titles y retorne el título más reciente o lance un error si no existe.
+
+
+
+-- Ejemplo 1: Trigger para registrar cambios de salario
+DELIMITER $$
+
+CREATE TABLE IF NOT EXISTS cambios_salario (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  emp_no INT,
+  salario_anterior INT,
+  salario_nuevo INT,
+  fecha_cambio DATE
+) ENGINE=InnoDB;
+
+CREATE TRIGGER trg_cambios_salario
+AFTER UPDATE ON salaries
+FOR EACH ROW
+BEGIN
+  IF NEW.salary <> OLD.salary THEN
+    INSERT INTO cambios_salario (emp_no, salario_anterior, salario_nuevo, fecha_cambio)
+    VALUES (NEW.emp_no, OLD.salary, NEW.salary, CURDATE());
+  END IF;
+END $$
+
+DELIMITER ;
+
+
+-- Ejemplo 2: Trigger para asignar beneficios por defecto al insertar empleado
+DELIMITER $$
+
+CREATE TABLE IF NOT EXISTS beneficios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  emp_no INT,
+  beneficio VARCHAR(100),
+  fecha_asignacion DATE
+) ENGINE=InnoDB;
+
+CREATE TRIGGER trg_asignar_beneficios
+AFTER INSERT ON employees
+FOR EACH ROW
+BEGIN
+  INSERT INTO beneficios (emp_no, beneficio, fecha_asignacion)
+  VALUES (NEW.emp_no, 'Beneficio básico', CURDATE());
+END $$
+
+DELIMITER ;
+
+
+-- Ejemplo 3: Trigger para actualizar campo is_manager al asignar manager
+DELIMITER $$
+
+ALTER TABLE employees ADD COLUMN IF NOT EXISTS is_manager BOOLEAN DEFAULT FALSE;
+
+CREATE TRIGGER trg_actualizar_is_manager
+AFTER INSERT ON dept_manager
+FOR EACH ROW
+BEGIN
+  UPDATE employees
+  SET is_manager = TRUE
+  WHERE emp_no = NEW.emp_no;
+END $$
+
+DELIMITER ;
+
+
+-- Ejemplo 4: Procedimiento para contar empleados con más de 3 años en departamento
+DELIMITER $$
+
+CREATE PROCEDURE contar_empleados_antiguedad(IN dept CHAR(4), OUT total INT)
+BEGIN
+  SELECT COUNT(*) INTO total
+  FROM dept_emp
+  WHERE dept_no = dept
+    AND DATEDIFF(to_date, from_date) >= 365*3;
+END $$
+
+DELIMITER ;
+
+
+-- Ejemplo 5: Función para obtener título actual o error si no existe
+DELIMITER $$
+
+CREATE FUNCTION titulo_actual(emp INT) RETURNS VARCHAR(100)
+DETERMINISTIC
+BEGIN
+  DECLARE titulo VARCHAR(100);
+
+  SELECT title INTO titulo
+  FROM titles
+  WHERE emp_no = emp AND to_date = '9999-01-01'
+  LIMIT 1;
+
+  IF titulo IS NULL THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Empleado sin título actual';
+  END IF;
+
+  RETURN titulo;
+END $$
+
+DELIMITER ;
+>>>>>>> dd9f5550f74a3e88ce3db3c00299d5fb79dcfba2
