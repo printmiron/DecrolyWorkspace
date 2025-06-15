@@ -155,3 +155,5 @@ INSERT INTO Consulta (Fecha, Duracion, Observaciones, Mascota_Pasaporte, Mascota
 ('2024-05-10 17:00:00', 20, 'Control peso', 'P00000008', '12345678H'),
 ('2024-05-15 12:00:00', 45, 'Análisis sangre', 'P00000009', '12345678I'),
 ('2024-05-25 15:10:00', 30, 'Chequeo anual', 'P00000010', '12345678J');
+
+

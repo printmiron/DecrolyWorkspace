@@ -13,7 +13,11 @@ import Module.SqlBdAccess;
 import Module.GuardarFile;
 import Module.Propietario;
 import Module.Consulta;
+import Module.SqlBdManager;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -69,7 +73,7 @@ public class HelloController {
     private DatePicker fechaNacimiento;
 
     @FXML
-    private TextField proprietarioDNI;
+    private ComboBox<Propietario> ComboBoxDniProprietario;
 
     @FXML
     private ComboBox<Tipo> ComboBoxTipo;
@@ -107,10 +111,10 @@ public class HelloController {
     private TextField observaciones;
 
     @FXML
-    private TextField pasaporteConsulta;
+    private ComboBox<Mascota> ComboBoxMascotaPassConsulta;
 
     @FXML
-    private TextField dniConsulta;
+    private ComboBox<Propietario> ComboBoxProprietarioDniConsulta;
 
 
 
@@ -128,19 +132,48 @@ public class HelloController {
     @FXML
     public void initialize() {
         selectPanelVisible(0);
+
+        
+
+        configurarListViewMascotas();
+
+        List<Mascota> lista = BD.getMascotas();
+        mascotas = FXCollections.observableArrayList(lista);
         ListViewMascota.setItems(mascotas);
 
-        ListViewProprietarios.setItems(propietarios);
+        try (Connection connection = SqlBdManager.getConnection()) {
+            // Cargar datos desde BD y llenar listas internas
+            Tipo.cargarTiposDesdeBD(connection);
+            Propietario.cargarPropietariosDesdeBD(connection);
+            Mascota.cargarMascotasDesdeBD(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        //Cojer datos desde BD
-        List<Mascota> desdeBD = BD.getMascotas();
-        mascotas.addAll(desdeBD);
+        // Asociar listas cargadas a ListViews
+        ListViewMascota.setItems(FXCollections.observableArrayList(Mascota.getMascotas()));
 
-        //Para poder seleccionar el tipo de la mascota
-        ComboBoxTipo.setItems(FXCollections.observableArrayList(Tipo.values()));
+        ListViewProprietarios.setItems(FXCollections.observableArrayList(Propietario.getPropietarios()));
+
+        // Cargar tipos de mascota al ComboBox
+        ComboBoxTipo.setItems(FXCollections.observableArrayList(Tipo.getTipos()));
+
+        // Cargar propietarios al ComboBox de crear mascota
+        ComboBoxDniProprietario.getItems().clear();
+        ComboBoxDniProprietario.setItems(FXCollections.observableArrayList(Propietario.getPropietarios()));
+
+        // Cargar propietarios al ComboBox de crear consulta
+        ComboBoxProprietarioDniConsulta.getItems().clear();
+        ComboBoxProprietarioDniConsulta.setItems(FXCollections.observableArrayList(Propietario.getPropietarios()));
+
+        // Cargar mascotas al ComboBox
+        ComboBoxMascotaPassConsulta.setItems(FXCollections.observableArrayList(Mascota.getMascotas()));
 
 
 
+
+
+    // ---------------------------------------------------------------------------------------------
         //Cojer datos desde fichero
 //        List<Mascotas> cargados = GuardarPersFile.readFile("Mascotas.dat");
 //        if (cargados != null) {
@@ -149,10 +182,10 @@ public class HelloController {
 
         // Mascotas o Proprietarios
 
-                List<Propietario> cargados = GuardarFile.readFile("Propriotarios.dat");
-        if (cargados != null) {
-            propietarios.addAll(cargados);
-        }
+//        List<Propietario> cargados = GuardarFile.readFile("Propriotarios.dat");
+//        if (cargados != null) {
+//            propietarios.addAll(cargados);
+//        }
 
 
     }
@@ -170,6 +203,7 @@ public class HelloController {
         if (!validarFormularioMascota()) return;
 
         Tipo tipoSelecionado = ComboBoxTipo.getValue();
+        Propietario propietarioSelecionado = ComboBoxDniProprietario.getValue();
 
         if (mascotaEditada == null) {
             //Crear nueva mascota
@@ -179,7 +213,7 @@ public class HelloController {
                     .fechaNacimiento(fechaNacimiento.getValue().atStartOfDay())
                     .peso(Double.valueOf(peso.getText()))
                     .tipo(tipoSelecionado)
-.propietario(proprietarioDNI.getText())
+                    .propietario(propietarioSelecionado)
                     .build();
 
                 BD.registrarMascota(nueva);
@@ -188,12 +222,8 @@ public class HelloController {
         } else {
 
         //modificar existente
-        mascotaEditada.setPasaporte(pasaporte.getText());
-        mascotaEditada.setNombre(nombreMascota.getText());
-        mascotaEditada.setFechaNacimiento(fechaNacimiento.getValue().atStartOfDay());
-        mascotaEditada.setPeso(Double.valueOf(peso.getText()));
-        mascotaEditada.setTipo(tipoSelecionado);
-//     tengo complicado esta parte del coidgo ->   mascotaEditada.setPropietario();
+            mascotaEditada.setNombre(nombreMascota.getText());
+            mascotaEditada.setPeso(Double.valueOf(peso.getText()));
 
         BD.editarMascota(mascotaEditada, pasaporteOriginal);
 
@@ -257,13 +287,15 @@ public class HelloController {
 
         //crear nueva consulta
 
+        Mascota mascotaPassSelecionada = ComboBoxMascotaPassConsulta.getValue();
+        Propietario propietarioDniSelecionado = ComboBoxProprietarioDniConsulta.getValue();
+
         Consulta nueva = Consulta.builder()
-                .id(Integer.parseInt(idMascota.getText()))
                 .fechaConsulta(fechaConsulta.getValue().atStartOfDay())
                 .duracion(Integer.parseInt(duracion.getText()))
                 .observaciones(observaciones.getText())
-//      ERROR  ->        .pasaporteConsulta(pasaporteConsulta.getText())
-//       ERROR  ->      .dniConsulta(dniConsulta.getText())
+                .pasaporteConsulta(mascotaPassSelecionada)
+                .dniConsulta(propietarioDniSelecionado)
                 .build();
 
 
@@ -316,6 +348,7 @@ public class HelloController {
 
     @FXML
     public void btnOnEditMascotaOnAction(ActionEvent event){
+        modoEdicion = true;
         Mascota seleccionada = ListViewMascota.getSelectionModel().getSelectedItem(); //Selecionar en la lista
         if (seleccionada != null) {
             mascotaEditada = seleccionada;
@@ -324,6 +357,11 @@ public class HelloController {
             pasaporteOriginal = mascotaEditada.getPasaporte();
             nombreMascota.setText(mascotaEditada.getNombre());
             peso.setText(Double.toString(mascotaEditada.getPeso()));
+
+            pasaporte.setDisable(true);
+            fechaNacimiento.setDisable(true);
+            ComboBoxDniProprietario.setDisable(true);
+            ComboBoxTipo.setDisable(true);
 
             selectPanelVisible(1);
         }else {
@@ -385,7 +423,17 @@ public class HelloController {
     //Entrar en los paneles reg.Mascota, reg,Proprietario, reg.Consulta, y buscar.Mascotas
     @FXML
     public void btnOnRegistrarMascotaOnAction(ActionEvent event){
+        modoEdicion = false;
+
         selectPanelVisible(1);
+
+        pasaporte.setDisable(false);
+        nombreMascota.setDisable(false);
+        peso.setDisable(false);
+        fechaNacimiento.setDisable(false);
+        ComboBoxDniProprietario.setDisable(false);
+        ComboBoxTipo.setDisable(false);
+
         clearFormMascota();
     }
 
@@ -448,7 +496,7 @@ public class HelloController {
     @FXML
     public void btnOnExportarDatosOnAction(ActionEvent event){
         try {
-            GuardarFile.saveInFile("Propriotarios.dat", propietarios);
+            GuardarFile.saveInFile("Propriotarios.dat", mascotas);
 
             mostrarAlertaConfirmation("INFO","Propriotarios exportado exitosamente");
         } catch (Exception e) {
@@ -539,7 +587,7 @@ public class HelloController {
         nombreMascota.clear();
         peso.clear();
         fechaNacimiento.setValue(null);
-        proprietarioDNI.clear();
+        ComboBoxDniProprietario.setValue(null);
         ComboBoxTipo.setValue(null);
 
 
@@ -558,19 +606,35 @@ public class HelloController {
         fechaConsulta.setValue(null);
         duracion.clear();
         observaciones.clear();
-        pasaporteConsulta.clear();
-        dniConsulta.clear();
+        ComboBoxMascotaPassConsulta.setValue(null);
+        ComboBoxProprietarioDniConsulta.setValue(null);
     }
 
+    private boolean modoEdicion = false;
 
     private boolean validarFormularioMascota() {
+        // Si estás en modo edición, no validar (o validar solo nombre y peso si querés)
+        if (modoEdicion) {
+            // Validar solo nombre y peso si querés
+            StringBuilder errores = new StringBuilder();
+
+            if (nombreMascota.getText().isEmpty()) errores.append("Nombre invalido, no puede ser vacio\n");
+            if (peso.getText().isEmpty()) errores.append("Peso invalido, no puede ser vacio\n");
+
+            if (errores.length() > 0) {
+                mostrarAlertaError("Errores de validación", errores.toString());
+                return false;
+            }
+            return true;
+        }
+
+        // Validación completa SOLO para registrar
         StringBuilder errores = new StringBuilder();
 
-        if (!validarPasaporte(pasaporte.getText())) errores.append("Pasaporte invalido, debes insertar 7 digitos y 2 letras\n");
+        if (!validarPasaporte(pasaporte.getText())) errores.append("Pasaporte invalido, debes insertar una letra y 8 digitos\n");
         if (nombreMascota.getText().isEmpty()) errores.append("Nombre invalido, no puede ser vacio\n");
         if (peso.getText().isEmpty()) errores.append("Peso invalido, no puede ser vacio\n");
         if (fechaNacimiento.getValue() == null) errores.append("Fecha invalido, no puede ser vacio\n");
-        if (!validarDNI(dni.getText())) errores.append("DNI invalido, 8 digitos y una letra\n");
         if (ComboBoxTipo.getValue() == null) errores.append("Tipo invalido, no puede ser vacio\n");
 
         if (errores.length() > 0) {
@@ -580,6 +644,7 @@ public class HelloController {
 
         return true;
     }
+
 
 
 
@@ -608,8 +673,6 @@ public class HelloController {
         if (fechaConsulta.getValue() == null) errores.append("Fecha invalido, no puede ser vacio\n");
         if (duracion.getText().isEmpty()) errores.append("Duracion invalido, no puede ser vacio\n");
         if (observaciones.getText().isEmpty()) errores.append("Observaciones invalido, no puede ser vacio\n");
-        if (!validarPasaporte(pasaporte.getText())) errores.append("Pasaporte invalido, debes insertar 7 digitos y 2 letras\n");
-        if (!validarDNI(dniConsulta.getText())) errores.append("DNI invalido, 8 digitos y una letra\n");
 
         if (errores.length() > 0) {
             mostrarAlertaError("Errores de validación", errores.toString());
@@ -663,7 +726,36 @@ public class HelloController {
     }
 
     private boolean validarPasaporte(String dni){
-        return dni != null && dni.matches("[0-9]{7}[A-Za-z][A-Za-z]");
+        return dni != null && dni.matches("[A-Za-z]\\d{8}");
     }
+
+
+
+    private void configurarListViewMascotas() {
+        ListViewMascota.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Mascota mascota, boolean empty) {
+                super.updateItem(mascota, empty);
+                if (empty || mascota == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    String texto = String.format(
+                            "🐾 %s\n📜 Pasaporte: %s | 📅 Nacimiento: %s\n⚖ Peso: %.2f kg | 🧬 Tipo: %s\n👤 Propietario: %s %s",
+                            mascota.getNombre(),
+                            mascota.getPasaporte(),
+                            mascota.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                            mascota.getPeso(),
+                            mascota.getTipo().getTipo(),
+                            mascota.getPropietario().getNombre(),
+                            mascota.getPropietario().getApellido()
+                    );
+                    setText(texto);
+                    setStyle("-fx-padding: 10px; -fx-font-size: 13px; -fx-font-family: 'Segoe UI';");
+                }
+            }
+        });
+    }
+
 
 }

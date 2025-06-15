@@ -1,7 +1,13 @@
 package Module;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mascota implements Serializable {
     private static final long serialVersionUID = 3L;
@@ -11,7 +17,7 @@ public class Mascota implements Serializable {
     private LocalDateTime fechaNacimiento;
     private Double peso;
     private Tipo tipo;
-    private Propietario propietario;//Por esta linea sa comoplica para mi por guardar las consultas lo mismo como con Consultas, pero fui intentos
+    private Propietario propietario;
 
     public Mascota(String pasaporte, String nombre, LocalDateTime fechaNacimiento, Double peso, Tipo tipo, Propietario propietario) {
         this.pasaporte = pasaporte;
@@ -85,17 +91,47 @@ public class Mascota implements Serializable {
 
     @Override
     public String toString() {
-        return "Mascota{" +
-                "pasaporte='" + pasaporte + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", fechaNacimiento=" + fechaNacimiento +
-                ", peso=" + peso +
-                ", tipo='" + tipo + '\'' +
-                ", propietario=" + propietario +
-                '}';
+        return nombre + " - " + pasaporte;
     }
 
-public static MascotaBuilder builder() {
+
+
+
+    public static MascotaBuilder builder() {
         return new MascotaBuilder();
 }
+
+
+    private static List<Mascota> mascotas = new ArrayList<>();
+
+    public static void cargarMascotasDesdeBD(Connection connection) throws SQLException {
+        String sql = "SELECT Pasaporte, Nombre, FechaNacimiento, Peso, Tipo_idTipo, Propietario_dni FROM Mascota";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+            mascotas.clear();
+            while (rs.next()) {
+                String pasaporte = rs.getString("Pasaporte");
+                String nombre = rs.getString("Nombre");
+                LocalDateTime fechaNacimiento = rs.getTimestamp("FechaNacimiento").toLocalDateTime();
+                double peso = rs.getDouble("Peso");
+                int tipoId = rs.getInt("Tipo_idTipo");
+                String propietarioDni = rs.getString("Propietario_dni");
+
+                // Obtener objetos Tipo y Propietario a partir de sus IDs
+                Tipo tipo = Tipo.getPorId(tipoId);
+                Propietario propietario = Propietario.getPorDni(propietarioDni);
+
+                Mascota mascota = new Mascota(pasaporte, nombre, fechaNacimiento, peso, tipo, propietario);
+                mascotas.add(mascota);
+            }
+        }
+    }
+
+    public static List<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+
+
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class SqlBdAccess {
 
+
     //acceder a todas las mascotas
     public List<Mascota> getMascotas() {
         List<Mascota> mascotas = new LinkedList<>();
@@ -22,11 +23,17 @@ public class SqlBdAccess {
                 String nombre = dataSet.getString(2);
                 LocalDateTime fechaNacimiento = LocalDateTime.parse(dataSet.getString(3));
                 Double peso = dataSet.getDouble(4);
-                Propietario propietario = dataSet.getObject(5, Propietario.class);
-                Tipo tipo = Tipo.valueOf(dataSet.getString(6));
+
+                String dniProrietario = dataSet.getString(5);
+                Propietario propietario = Propietario.obtenerPropietarioPorDni(dniProrietario);
+
+
+                int idTipo = dataSet.getInt(6);
+                Tipo tipo = Tipo.getPorId(idTipo);
 
 
                 Mascota mascota = new Mascota(pasaporte, nombre, fechaNacimiento, peso, tipo, propietario);
+                mascotas.add(mascota);
             }
 
         } catch (Exception e) {
@@ -47,9 +54,9 @@ public class SqlBdAccess {
             statement.setString(1, mascota.getPasaporte());
             statement.setString(2, mascota.getNombre());
             statement.setDouble(3, mascota.getPeso());
-            statement.setDate(4, Date.valueOf(String.valueOf(mascota.getFechaNacimiento())));
+            statement.setTimestamp(4, java.sql.Timestamp.valueOf(mascota.getFechaNacimiento()));
             statement.setString(5, mascota.getPropietario().getDni());
-            statement.setString(6, mascota.getTipo().name());
+            statement.setInt(6, mascota.getTipo().getIdTipo());
             statement.execute();
 
 
@@ -64,18 +71,15 @@ public class SqlBdAccess {
     //editar mascota
     public static void editarMascota(Mascota mascota, String pasaporte) {
 
-        String sql = "UPDATE Mascota SET Pasaporte = ?, Nombre = ?, Peso = ?, FechaNacimiento = ?, Propietario_dni = ?, Tipo_idTipo = ? WHERE Pasaporte = ?";
+        String sql = "UPDATE Mascota SET Nombre = ?, Peso = ? WHERE Pasaporte = ?";
 
         try (Connection connection = SqlBdManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-           statement.setString(1, mascota.getPasaporte());
-           statement.setString(2, mascota.getNombre());
-           statement.setDouble(3, mascota.getPeso());
-           statement.setDate(4, Date.valueOf(String.valueOf(mascota.getFechaNacimiento())));
-           statement.setString(5, mascota.getPropietario().getDni());
-           statement.setString(6, mascota.getTipo().name());
-            statement.executeUpdate();
+           statement.setString(1, mascota.getNombre());
+           statement.setDouble(2, mascota.getPeso());
+           statement.setString(3, pasaporte);
+           statement.executeUpdate();
 
 
 
@@ -146,6 +150,7 @@ public class SqlBdAccess {
 
 
                 Propietario propietario = new Propietario(dni, nombre, apellido, telefono, direccion, email);
+                propietarios.add(propietario);
             }
 
         } catch (Exception e) {
@@ -205,6 +210,17 @@ public class SqlBdAccess {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
     //insertar una consulta
     public static void registrarConsulta(Consulta consulta) {
 
@@ -217,8 +233,8 @@ public class SqlBdAccess {
             statement.setString(2, consulta.getFechaConsulta().toString());
             statement.setDouble(3, consulta.getDuracion());
             statement.setString(4, consulta.getObservaciones());
-            statement.setString(5, consulta.getPasaporteConsulta().toString());
-            statement.setString(6, consulta.getDniConsulta().toString());
+            statement.setString(5, consulta.getPasaporteConsulta().getPasaporte());
+            statement.setString(6, consulta.getDniConsulta().getDni());
 
             statement.execute();
 

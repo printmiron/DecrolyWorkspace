@@ -2,6 +2,12 @@ package Module;
 
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Propietario implements Serializable {
@@ -86,18 +92,73 @@ public class Propietario implements Serializable {
 
     @Override
     public String toString() {
-        return "Propietario{" +
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", dni='" + dni + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        return dni + " - " + nombre + " " + apellido;
     }
 
 
     public static ProprietarioBuilder builder() {
         return new ProprietarioBuilder();
     }
+
+    private static List<Propietario> propietarios = new ArrayList<>();
+
+    public static void cargarPropietariosDesdeBD(Connection connection) throws SQLException {
+        String sql = "SELECT dni, Nombre, Apellido, Telefono, Direcion, Email FROM Propietario";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+            propietarios.clear();
+            while (rs.next()) {
+                Propietario p = new Propietario(
+                        rs.getString("Nombre"),
+                        rs.getString("Apellido"),
+                        rs.getString("dni"),
+                        rs.getString("Telefono"),
+                        rs.getString("Direcion"),
+                        rs.getString("Email")
+                );
+                propietarios.add(p);
+            }
+        }
+    }
+
+    public static List<Propietario> getPropietarios() {
+        return propietarios;
+    }
+
+    public static Propietario getPorDni(String dni) {
+        return propietarios.stream().filter(p -> p.getDni().equals(dni)).findFirst().orElse(null);
+    }
+
+
+
+
+    public static Propietario obtenerPropietarioPorDni(String dni) {
+        String sql = "SELECT * FROM Propietario WHERE dni = ?";
+        try (Connection conn = SqlBdManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, dni);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String nombre = rs.getString("nombre");
+                    String apellido = rs.getString("apellido");
+                    String telefono = rs.getString("telefono");
+                    String direccion = rs.getString("direccion");
+                    String email = rs.getString("email");
+
+                    // Otros campos si existen
+                    return new Propietario( nombre, apellido, dni, telefono, direccion, email);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error al obtener propietario por DNI: " + e.getMessage());
+        }
+        return null;
+    }
+
+
+
+
+
 }

@@ -1,7 +1,13 @@
 package Module;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Consulta implements Serializable {
     private static final long serialVersionUID = 2L;
@@ -11,7 +17,7 @@ public class Consulta implements Serializable {
     private int duracion;
     private String observaciones;
     private Mascota pasaporteConsulta;
-    private Propietario dniConsulta; //Por esta linea sa comoplica para mi por guardar las consultas lo mismo como con Mascotas
+    private Propietario dniConsulta;
 
     public Consulta(int id, LocalDateTime fechaConsulta, int duracion, String observaciones, Mascota pasaporteConsulta, Propietario dniConsulta) {
         this.id = id;
@@ -99,4 +105,12 @@ public class Consulta implements Serializable {
     public static ConsultaBuilder builder() {
         return new ConsultaBuilder();
     }
+
+
+
+
+
+
+
+
 }

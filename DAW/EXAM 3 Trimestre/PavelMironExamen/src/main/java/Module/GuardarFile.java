@@ -8,13 +8,13 @@ public class GuardarFile {
 
 
     //Como tengo errores y problemas con mascotas, voy a guardar los prorprietarios como ejemplo
-    public static void saveInFile(String fileName, List<Propietario> propietarios) {
+    public static void saveInFile(String fileName, List<Mascota> mascotas) {
 
         try (FileOutputStream file = new FileOutputStream("src\\main\\resources\\"+fileName, false);
              ObjectOutputStream buffer = new ObjectOutputStream(file)){
 
-            for (Propietario propietario : propietarios) {
-                buffer.writeObject(propietario);
+            for (Mascota mascota : mascotas) {
+                buffer.writeObject(mascota);
             }
 
         } catch (IOException e) {
@@ -22,15 +22,15 @@ public class GuardarFile {
         }
     }
 
-    public static List<Propietario> readFile(String fileName) {
-        List<Propietario> propietarios = new LinkedList<>();
+    public static List<Mascota> readFile(String fileName) {
+        List<Mascota> mascotas = new LinkedList<>();
         //Lectura del objeto
         boolean eof = false;
         try (FileInputStream file = new FileInputStream("src\\main\\resources\\"+fileName);
              ObjectInputStream reader = new ObjectInputStream(file)) {
             while (!eof) {
-                Propietario p = (Propietario) reader.readObject();
-                propietarios.add(p);
+                Mascota m = (Mascota) reader.readObject();
+                mascotas.add(m);
             }
         } catch (EOFException e) {
             eof = true;
@@ -41,7 +41,7 @@ public class GuardarFile {
             System.out.println("Se ha producido un error: " + e.getMessage());
         }
 
-        return propietarios;
+        return mascotas;
     }
 
 

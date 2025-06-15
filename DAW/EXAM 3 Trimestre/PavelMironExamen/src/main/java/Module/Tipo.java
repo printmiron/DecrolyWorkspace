@@ -1,21 +1,20 @@
 package Module;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tipo {
 
-    private int id;
+    private int idTipo;
     private String tipo;
 
-    public Tipo(int id, String tipo) {
-        this.id = id;
+    public Tipo(int idTipo, String tipo) {
+        this.idTipo = idTipo;
         this.tipo = tipo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTipo() {
@@ -26,11 +25,40 @@ public class Tipo {
         this.tipo = tipo;
     }
 
+    public int getIdTipo() {
+        return idTipo;
+    }
+
+    public void setIdTipo(int idTipo) {
+        this.idTipo = idTipo;
+    }
+
+    //cargar los tipos desde base de datos
+    private static List<Tipo> tipos = new ArrayList<>();
+
+    public static void cargarTiposDesdeBD(Connection connection) throws SQLException {
+
+        String sql = "SELECT idTipo, Tipo FROM Tipo";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+            tipos.clear();
+            while (rs.next()) {
+                tipos.add(new Tipo(rs.getInt("idTipo"), rs.getString("Tipo")));
+            }
+        }
+    }
+
+    public static List<Tipo> getTipos() {
+        return tipos;
+    }
+
+    public static Tipo getPorId(int id) {
+        return tipos.stream().filter(t -> t.getIdTipo() == id).findFirst().orElse(null);
+    }
+
     @Override
     public String toString() {
-        return "Tipo{" +
-                "id=" + id +
-                ", tipo='" + tipo + '\'' +
-                '}';
+        return this.tipo;
     }
 }
