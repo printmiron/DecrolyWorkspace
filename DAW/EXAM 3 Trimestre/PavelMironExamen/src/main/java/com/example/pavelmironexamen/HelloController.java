@@ -179,7 +179,7 @@ public class HelloController {
                     .fechaNacimiento(fechaNacimiento.getValue().atStartOfDay())
                     .peso(Double.valueOf(peso.getText()))
                     .tipo(tipoSelecionado)
-//   no se como implementar bien esta liena  -> .propietario(proprietarioDNI.getText())
+.propietario(proprietarioDNI.getText())
                     .build();
 
                 BD.registrarMascota(nueva);

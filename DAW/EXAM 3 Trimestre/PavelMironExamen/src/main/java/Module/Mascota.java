@@ -1,8 +1,11 @@
 package Module;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Mascota {
+public class Mascota implements Serializable {
+    private static final long serialVersionUID = 3L;
+
     private String pasaporte;
     private String nombre;
     private LocalDateTime fechaNacimiento;

@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" styleClass="my-background" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pavelmironexamen.HelloController">
+<AnchorPane maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" styleClass="my-background" stylesheets="@../../../../../../../../Examen 3 Completo/VetDaw/src/main/resources/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pavelmironexamen.HelloController">
 
-    <VBox fx:id="mainPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+    <VBox fx:id="mainPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../../../../../../Examen 3 Completo/VetDaw/src/main/resources/style.css" visible="false">
         <children>
             <Label fx:id="welcomeText" alignment="CENTER" contentDisplay="BOTTOM" text="Bienvenido!" textAlignment="CENTER">
                 <font>
@@ -78,7 +78,7 @@
          </GridPane>
         </children></VBox>
 
-    <VBox fx:id="registrarMascotaPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+    <VBox fx:id="registrarMascotaPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../../../../../../Examen 3 Completo/VetDaw/src/main/resources/style.css" visible="false">
         <children>
             <Label fx:id="InsertPersonaText" alignment="CENTER" contentDisplay="BOTTOM" text="Registrar Mascota" textAlignment="CENTER">
                 <font>
@@ -206,7 +206,7 @@
 
         </children>
     </VBox>
-   <VBox fx:id="registrarProprietarioPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css">
+   <VBox fx:id="registrarProprietarioPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../../../../../../Examen 3 Completo/VetDaw/src/main/resources/style.css">
       <children>
          <Label fx:id="InsertPersonaText1" alignment="CENTER" contentDisplay="BOTTOM" text="Registrar Propietario" textAlignment="CENTER">
             <font>
@@ -325,7 +325,7 @@
          </GridPane>
       </children>
    </VBox>
-   <VBox fx:id="registrarConsultaPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+   <VBox fx:id="registrarConsultaPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../../../../../../Examen 3 Completo/VetDaw/src/main/resources/style.css" visible="false">
       <children>
          <Label fx:id="InsertPersonaText11" alignment="CENTER" contentDisplay="BOTTOM" text="Registrar Consulta" textAlignment="CENTER">
             <font>
@@ -427,7 +427,7 @@
          </GridPane>
       </children>
    </VBox>
-    <VBox fx:id="buscarMascotaPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+    <VBox fx:id="buscarMascotaPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../../../../../../Examen 3 Completo/VetDaw/src/main/resources/style.css" visible="false">
         <children>
             <Label fx:id="VerEliminarText" alignment="CENTER" contentDisplay="BOTTOM" text="Buscar Mascota" textAlignment="CENTER">
                 <font>
@@ -471,7 +471,7 @@
             </GridPane>
         </children>
     </VBox>
-   <VBox fx:id="verProprietariosPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../style.css" visible="false">
+   <VBox fx:id="verProprietariosPanel" alignment="CENTER" maxHeight="480.0" maxWidth="640.0" minHeight="480.0" minWidth="640.0" prefHeight="480.0" prefWidth="640.0" spacing="20.0" styleClass="my-background" stylesheets="@../../../../../../../../Examen 3 Completo/VetDaw/src/main/resources/style.css" visible="false">
       <children>
          <Label fx:id="VerEliminarText1" alignment="CENTER" contentDisplay="BOTTOM" text="Ver Proprietarios" textAlignment="CENTER">
             <font>

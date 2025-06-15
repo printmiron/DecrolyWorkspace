@@ -1,14 +1,36 @@
 package Module;
 
-public enum Tipo {
+public class Tipo {
 
-    GRANDE,
-    MEDIO,
-    PEQUENO;
+    private int id;
+    private String tipo;
+
+    public Tipo(int id, String tipo) {
+        this.id = id;
+        this.tipo = tipo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     @Override
     public String toString() {
-        return name().charAt(0) + name().substring(1).toLowerCase();
+        return "Tipo{" +
+                "id=" + id +
+                ", tipo='" + tipo + '\'' +
+                '}';
     }
-
 }
