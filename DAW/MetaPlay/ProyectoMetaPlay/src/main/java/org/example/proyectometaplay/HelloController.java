@@ -199,7 +199,7 @@ public class HelloController implements Initializable {
             ListView_ValoracionesUsuario.setItems(FXCollections.observableArrayList(valoraciones));
 
             // Configurar el formato de celdas para mostrar las valoraciones de forma legible
-            ListView_ValoracionesUsuario.setCellFactory(listView -> new ListCell<Valoracion_Usuario>() {
+            ListView_ValoracionesUsuario.setCellFactory(listView -> new ListCell<>() {
                 @Override
                 protected void updateItem(Valoracion_Usuario valoracion, boolean empty) {
                     super.updateItem(valoracion, empty);
@@ -207,20 +207,35 @@ public class HelloController implements Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        // Obtener el nombre del videojuego para mostrarlo
+                        // Obtener nombre del juego según ID
                         String nombreJuego = obtenerNombreVideojuego(valoracion.getIdVideojuego());
 
                         String texto = String.format(
-                                "Juego: %s | Puntuación: %d/100 | Comentario: %s | Fecha: %s",
+                                "🎮 %s\n⭐ %d / 100\n💬 \"%s\"\n📅 %s",
                                 nombreJuego,
                                 valoracion.getPuntuacion(),
                                 valoracion.getComentario(),
-                                valoracion.getFechaValoracion().toString()
+                                valoracion.getFechaValoracion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+
                         );
+
                         setText(texto);
+                        setStyle("""
+                -fx-background-color: #ffffff;
+                -fx-padding: 18px;
+                -fx-font-size: 15px;
+                -fx-font-family: 'Segoe UI', sans-serif;
+                -fx-border-radius: 15px;
+                -fx-background-radius: 15px;
+                -fx-background-color: linear-gradient(to bottom, #ffcfcf, #ffe6e6);
+                -fx-border-width: 1.2px;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2);
+                -fx-text-fill: #333333;
+            """);
                     }
                 }
             });
+
         }
     }
 
@@ -237,6 +252,10 @@ public class HelloController implements Initializable {
 //METODO INICIALIZADOR
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
+
     selectPanelVisible(0);
 
     //Validaciones de los campos de texto
@@ -261,49 +280,81 @@ public class HelloController implements Initializable {
 
     TextField_RegistroNacimiento.setPromptText("dd/MM/yyyy");
 
-    //Le damos un formato de celdas al listview Para que salga bien los mejores valorados
-        ListView_MejorValorados.setCellFactory(listView -> new ListCell<>() {
-            @Override
-            protected void updateItem(VideoJuego videojuego, boolean empty) {
-                super.updateItem(videojuego, empty);
-                if (empty || videojuego == null) {
-                    setText(null);
-                    setGraphic(null); // Limpiar gráficos si los hay
-                } else {
-                    setText(String.format("ID: %d | Nombre: %s | Puntuación Global: %.2f",
-                            videojuego.getId(),
-                            videojuego.getNombre(),
-                            videojuego.getPuntuacionGlobal()));
-                }
-            }
-        });
 
-        //Le damos un formato de celdas al listview Para que salga bien con las valoraciones
-        ListView_JuegosFiltrados.setCellFactory(lv -> new ListCell<VideoJuego>() {
+        ListView_JuegosFiltrados.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(VideoJuego videojuego, boolean empty) {
                 super.updateItem(videojuego, empty);
                 if (empty || videojuego == null) {
                     setText(null);
-                    setGraphic(null); // Limpiar gráficos si los hay
+                    setGraphic(null);
                 } else {
-                    // Formatear el texto con los datos del videojuego
                     String texto = String.format(
-                            "ID: %d | Nombre: %s | Género: %s | Consola: %s | Precio: %.2f | Desarrollador: %s | Puntuación Global: %.2f",
-                            videojuego.getId(),
+                            "🎮 %s\n📦 Consola: %s   |   🧬 Género: %s\n💰 Precio: %.2f €   |   🧑‍💻 Dev: %s\n⭐ Puntuación Global: %.1f",
                             videojuego.getNombre(),
-                            videojuego.getGenero(),
                             videojuego.getNombre_Consola(),
+                            videojuego.getGenero(),
                             videojuego.getPrecio(),
                             videojuego.getDesarrollador(),
                             videojuego.getPuntuacionGlobal()
                     );
                     setText(texto);
+                    setStyle("""
+                -fx-background-color: white;
+                -fx-padding: 20px;
+                -fx-font-size: 15px;
+                -fx-font-family: 'Segoe UI', sans-serif;
+                -fx-border-radius: 15px;
+                -fx-background-radius: 15px;
+                -fx-background-color: linear-gradient(to bottom, #ffcfcf, #ffe6e6);
+                -fx-border-width: 1.2px;
+                -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 8, 0, 0, 2);
+                -fx-text-fill: #222;
+            """);
                 }
             }
         });
 
-    //Listview para los mejores valorados
+
+
+
+
+        ListView_MejorValorados.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(VideoJuego videojuego, boolean empty) {
+                super.updateItem(videojuego, empty);
+                if (empty || videojuego == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    String texto = String.format(
+                            "🏆 %s\n⭐ %.2f / 100\n🆔 ID: %d   |   Consola: %s",
+                            videojuego.getNombre(),
+                            videojuego.getPuntuacionGlobal(),
+                            videojuego.getId(),
+                            videojuego.getNombre_Consola()
+                    );
+                    setText(texto);
+                    setStyle("""
+                -fx-background-color: white;
+                -fx-padding: 20px;
+                -fx-font-size: 15px;
+                -fx-font-family: 'Segoe UI Semibold', sans-serif;
+                -fx-border-radius: 15px;
+                -fx-background-radius: 15px;
+                -fx-background-color: linear-gradient(to bottom, #ffcfcf, #ffe6e6);
+                -fx-border-width: 1.5px;
+                -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0, 0, 2);
+                -fx-text-fill: #2e2e2e;
+            """);
+                }
+            }
+        });
+
+
+
+
+        //Listview para los mejores valorados
         try {
             ListView_MejorValorados.setItems(FXCollections.observableList(miData.obtenerMejoresVideojuegos()));
         } catch (SQLException e) {
@@ -423,8 +474,65 @@ public class HelloController implements Initializable {
     private void onbtn_NuevaValoracion(){
         selectPanelVisible(7);
         ListViewVidValo.setItems(FXCollections.observableArrayList(miData.getVideojuegos()));
+
+        // Configuración personalizada de las celdas para ListViewVidValo
+        ListViewVidValo.setCellFactory(lv -> new ListCell<VideoJuego>() {
+            {
+                // Listener para cambiar el estilo cuando la celda está seleccionada o no
+                selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
+                    if (isNowSelected) {
+                        setStyle("""
+                        -fx-background-color: #ffe6e6;
+                        -fx-padding: 18px;
+                        -fx-font-size: 15px;
+                        -fx-font-family: 'Segoe UI', sans-serif;
+                        -fx-border-radius: 15px;
+                        -fx-background-radius: 15px;
+                        -fx-border-width: 1.5px;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 8, 0, 0, 3);
+                        -fx-text-fill: #000000;
+                    """);
+                    } else {
+                        setStyle("""
+                        -fx-background-color: #ffcfcf;
+                        -fx-padding: 18px;
+                        -fx-font-size: 15px;
+                        -fx-font-family: 'Segoe UI', sans-serif;
+                        -fx-border-radius: 15px;
+                        -fx-background-radius: 15px;
+                        -fx-border-color: #e0e0e0;
+                        -fx-border-width: 1.2px;
+                        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2);
+                        -fx-text-fill: #000000;
+                    """);
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(VideoJuego videojuego, boolean empty) {
+                super.updateItem(videojuego, empty);
+
+                if (empty || videojuego == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    String texto = String.format(
+                            "🎮 %s\n📺 Consola: %s | 🎭 Género: %s\n💲 Precio: %.2f | 🏢 Dev: %s",
+                            videojuego.getNombre(),
+                            videojuego.getNombre_Consola(),
+                            videojuego.getGenero(),
+                            videojuego.getPrecio(),
+                            videojuego.getDesarrollador()
+                    );
+                    setText(texto);
+                }
+            }
+        });
+
         puntuacionVa.setPromptText("1-100");
     }
+
 
     //Boton guardar nueva consulta
     @FXML
@@ -604,4 +712,15 @@ public class HelloController implements Initializable {
                 return null;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 }//

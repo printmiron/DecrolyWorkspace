@@ -20,526 +20,327 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectometaplay.HelloController">
+<AnchorPane maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyectometaplay.HelloController">
    <children>
 
-      <VBox fx:id="VBox_MenuPrincipal" alignment="CENTER" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" spacing="20.0" style="-fx-background-color: e8e8e8;" visible="false">
+      <VBox fx:id="VBox_MenuPrincipal" alignment="CENTER" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" spacing="30.0" style="-fx-background-color: f2f2f2;" visible="false">
          <children>
-            <VBox alignment="CENTER" prefHeight="584.0" prefWidth="581.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="108.0" prefWidth="1188.0" text="MetaPlay">
-                     <font>
-                        <Font name="Lucida Console" size="52.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-                     <children>
-                        <Button fx:id="btn_MostrarJuegos" maxHeight="74.0" maxWidth="191.0" minHeight="60.0" minWidth="140.0" mnemonicParsing="false" onMouseClicked="#onBtn_MostrarJuegos" prefHeight="74.0" prefWidth="191.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="    Ver Juegos&#10;Mejor Valorados">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="btn_filtrarConsola" maxHeight="74.0" maxWidth="191.0" minHeight="60.0" minWidth="140.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarConsolaButton" prefHeight="71.0" prefWidth="191.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;  por consola">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="btn_filtrarGenero" maxHeight="74.0" maxWidth="191.0" minHeight="60.0" minWidth="140.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarGeneroButton" prefHeight="60.0" prefWidth="191.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;   por genero&#10;">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="60.0" top="30.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Button fx:id="Btn_IniciarSesion" minHeight="50.0" minWidth="300.0" mnemonicParsing="false" onMouseClicked="#onBtn_IniciarSesion" styleClass="btn-inicioSesion" stylesheets="@../../../style.css" text="Iniciar Sesión" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-         </children>
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </VBox>
-      <VBox fx:id="Vbox_Registro" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;">
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffe700;">
-               <children>
-                  <ImageView fitHeight="20.0" fitWidth="20.0">
+            <Label alignment="CENTER" prefHeight="131.0" prefWidth="551.0" style="-fx-background-color: ff3f3f; -fx-background-radius: 15; -fx-border-radius: 15;" text="MetaPlay">
+               <font>
+                  <Font name="Onyx" size="96.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="106.0" fitWidth="114.0">
                      <image>
-                        <Image url="@../../../img/atras.png" />
+                        <Image url="@../../../img/videojuego.png" />
                      </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
                   </ImageView>
-                  <Button fx:id="btn_atras_Registrarse" mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: #ffe700;">
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label text="MetaPlay | Tu espacio definitivo para descubrir y valorar videojuegos">
+               <font>
+                  <Font name="System Italic" size="19.0" />
+               </font></Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btn_MostrarJuegos" maxHeight="74.0" maxWidth="206.0" minHeight="60.0" minWidth="140.0" mnemonicParsing="false" onMouseClicked="#onBtn_MostrarJuegos" prefHeight="74.0" prefWidth="206.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="    Ver Juegos&#10;Mejor Valorados">
+                     <font>
+                        <Font name="Maiandra GD" size="15.0" />
+                     </font>
                      <HBox.margin>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets right="20.0" />
                      </HBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label text="Registrarse">
-                     <font>
-                        <Font name="Lucida Console" size="52.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
+                  <Button fx:id="btn_filtrarConsola" maxHeight="74.0" maxWidth="206.0" minHeight="60.0" minWidth="140.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarConsolaButton" prefHeight="71.0" prefWidth="206.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;  por consola">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_filtrarGenero" maxHeight="74.0" maxWidth="206.0" minHeight="60.0" minWidth="140.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarGeneroButton" prefHeight="60.0" prefWidth="206.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;   por genero&#10;">
                      <HBox.margin>
-                        <Insets top="25.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
-                  </Label>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </HBox>
-            <HBox prefHeight="289.0" prefWidth="640.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="297.0" prefWidth="252.0">
+                  <Button fx:id="Btn_IniciarSesion" mnemonicParsing="false" onMouseClicked="#onBtn_IniciarSesion" prefHeight="44.0" prefWidth="283.0" styleClass="btn-inicioSesion" stylesheets="@../../../style.css" text="Iniciar Sesion">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="Vbox_Registro" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ff3f3f;">
+               <children>
+                  <GridPane prefHeight="98.0" prefWidth="241.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="37.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="436.0" minWidth="10.0" prefWidth="204.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label text="Regsitrar Usuario" textFill="#fffa00">
+                        <Label prefHeight="95.0" prefWidth="197.0" text="Registrarse" GridPane.columnIndex="1">
                            <font>
-                              <Font name="Berlin Sans FB" size="20.0" />
+                              <Font name="Onyx" size="66.0" />
                            </font>
-                           <VBox.margin>
-                              <Insets left="50.0" top="20.0" />
-                           </VBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </Label>
-                        <HBox prefHeight="78.0" prefWidth="193.0">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="111.0" text="Nombre" textFill="#fffa00">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="TextField_RegistroNombre" promptText="Nombre">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
+                        <Button fx:id="btn_atras_Registrarse" mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: ff3f3f;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../../../img/atras.png" />
+                                 </image>
                                  <cursor>
-                                    <Cursor fx:constant="TEXT" />
+                                    <Cursor fx:constant="HAND" />
                                  </cursor>
-                              </TextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="32.0" prefHeight="78.0" prefWidth="193.0">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="116.0" text="Apellidos" textFill="#fffa00">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="TextField_RegistroApellidos" maxHeight="25.0" maxWidth="145.0" minHeight="25.0" minWidth="145.0" prefHeight="25.0" prefWidth="145.0" promptText="Apellidos">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor></TextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="71.0" prefHeight="78.0" prefWidth="193.0">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="97.0" text="Usuario" textFill="#fffa00">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="TextField_RegistroUsuario" maxHeight="25.0" maxWidth="145.0" minHeight="25.0" minWidth="145.0" prefHeight="25.0" prefWidth="145.0" promptText="Usuario">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="84.0" prefHeight="78.0" prefWidth="193.0">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="156.0" text="Contraseña" textFill="#fffa00">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="TextField_RegistroContraseña" maxHeight="25.0" maxWidth="145.0" minHeight="25.0" minWidth="145.0" prefHeight="25.0" prefWidth="145.0" promptText="Contraseña">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor></TextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="107.0" prefHeight="78.0" prefWidth="193.0">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="91.0" text="Correo" textFill="#fffa00">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="TextField_RegistroCorreo" maxHeight="25.0" maxWidth="145.0" minHeight="25.0" minWidth="145.0" prefHeight="25.0" prefWidth="145.0" promptText="Correo">
-                                 <HBox.margin>
-                                    <Insets left="15.0" />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="132.0" minHeight="30.0" prefHeight="30.0" prefWidth="252.0">
-                           <children>
-                              <Label prefHeight="60.0" prefWidth="182.0" text="Nacimiento" textFill="#fffa00">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <TextField fx:id="TextField_RegistroNacimiento" maxHeight="25.0" maxWidth="145.0" minHeight="25.0" minWidth="145.0" prefHeight="25.0" prefWidth="145.0">
-                                 <HBox.margin>
-                                    <Insets top="2.0" />
-                                 </HBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                           </children>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Separator prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Separator>
-                        <Button fx:id="Btn_RegistrarUsuario" mnemonicParsing="false" onMouseClicked="#onBtn_RegistrarUsuario" styleClass="btn-principal" stylesheets="@../../../style.css" text="Registrar Usuario">
-                           <VBox.margin>
-                              <Insets bottom="1.0" left="60.0" top="10.0" />
-                           </VBox.margin>
+                              </ImageView>
+                           </graphic>
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
                      </children>
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <Separator orientation="VERTICAL" prefHeight="344.0" prefWidth="6.0">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <HBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </HBox.margin>
-                  </Separator>
-                  <VBox prefHeight="297.0" prefWidth="252.0">
+                  </GridPane>
+               </children>
+            </HBox>
+            <GridPane prefHeight="584.0" prefWidth="800.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="566.0" minWidth="10.0" prefWidth="481.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="319.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="255.0" minWidth="10.0" prefWidth="217.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="264.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <HBox maxHeight="30.0" maxWidth="252.0" minHeight="30.0" minWidth="193.0" prefHeight="30.0" prefWidth="193.0">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="32.0" prefHeight="30.0" prefWidth="252.0">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="110.0" prefHeight="30.0" prefWidth="252.0">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="110.0" maxHeight="30.0" maxWidth="252.0" prefHeight="30.0" prefWidth="252.0">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <Label prefHeight="146.0" prefWidth="252.0" style="-fx-background-color: #d8c4c4;" text="&#9;        Al crear un usuario accedes a poder &#10;   realizar valoraciones para el publico ademas&#10; de tener un historial de valoraciones personal">
-                           <VBox.margin>
-                              <Insets bottom="150.0" top="5.0" />
-                           </VBox.margin>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Regsitrar Usuario" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
                         </Label>
+                        <Label text="Nombre" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label text="Apellidos" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label text="Usuario" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label text="Contraseña" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label text="Correo" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label text="Nacimiento" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="Btn_RegistrarUsuario" mnemonicParsing="false" onMouseClicked="#onBtn_RegistrarUsuario" styleClass="btn-principal" stylesheets="@../../../style.css" text="Registrar Usuario" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <TextField fx:id="TextField_RegistroNombre" promptText="Nombre" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <TextField fx:id="TextField_RegistroApellidos" promptText="Apellidos" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <TextField fx:id="TextField_RegistroUsuario" promptText="Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <TextField fx:id="TextField_RegistroContraseña" promptText="Contraseña" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <TextField fx:id="TextField_RegistroCorreo" promptText="Correo" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <TextField fx:id="TextField_RegistroNacimiento" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
                      </children>
-                  </VBox>
+                  </GridPane>
+                  <Label prefHeight="146.0" prefWidth="252.0" style="-fx-background-color: b9b9b9;" text="&#9;        Al crear un usuario accedes a poder &#10;   realizar valoraciones para el publico ademas&#10; de tener un historial de valoraciones personal" GridPane.columnIndex="1" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <VBox fx:id="Vbox_MenuDeUsuario" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
+         <children>
+            <HBox prefHeight="98.0" prefWidth="800.0" style="-fx-background-color: ff3f3f;">
+               <children>
+                  <GridPane prefHeight="98.0" prefWidth="821.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="99.0" prefWidth="216.0" text="Menu Usuario" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Onyx" size="67.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#onBtn_CerrarSesion" prefHeight="56.0" prefWidth="144.0" styleClass="btn-cerrarSesion" stylesheets="@../../../style.css" text="Cerrar Sesion" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                     </children>
+                  </GridPane>
                </children>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </HBox>
-         </children>
-      </VBox>
-      <VBox maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff700;">
+            <GridPane prefHeight="154.0" prefWidth="800.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0">
-                     <image>
-                        <Image url="@../../../img/usuario.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="30.0" top="30.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Menu de Empresa">
+                  <Label prefHeight="82.0" prefWidth="218.0" text="Ver Juegos" GridPane.halignment="CENTER">
                      <font>
-                        <Font name="Magneto Bold" size="52.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-            <VBox maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="100.0">
-               <children>
-                  <Label text="Ver Juegos" textFill="#fff700">
-                     <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
                   </Label>
-                  <Separator maxWidth="150.0" prefWidth="50.0">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin></Separator>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="btn_MostrarJuegos1" maxHeight="70.0" maxWidth="140.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" onMouseClicked="#onBtn_MostrarJuegos" prefHeight="70.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="    Ver Juegos&#10;Mejor Valorados">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets left="90.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="btn_MostrarJuegos11" layoutX="10.0" layoutY="10.0" maxHeight="60.0" maxWidth="140.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="    Ver Juegos&#10;Mejor Valorados">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="btn_MostrarJuegos111" maxHeight="60.0" maxWidth="140.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="    Ver Juegos&#10;Mejor Valorados">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </HBox>
                </children>
-            </VBox>
-            <VBox layoutX="10.0" layoutY="113.0" maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="100.0">
+            </GridPane>
+            <GridPane prefHeight="105.0" prefWidth="800.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Label text="Valoraciones" textFill="#fff700">
-                     <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </VBox.margin>
+                  <Button fx:id="btn_MostrarJuegos2" maxHeight="60.0" maxWidth="140.0" minHeight="70.0" minWidth="190.0" mnemonicParsing="false" onMouseClicked="#onBtn_MostrarJuegos" prefHeight="60.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="    Ver Juegos&#10;Mejor Valorados" GridPane.halignment="CENTER">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font name="Maiandra GD" size="15.0" />
                      </font>
-                  </Label>
-                  <Separator maxWidth="150.0" prefWidth="50.0">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="btn_MostrarJuegos22" maxHeight="60.0" maxWidth="140.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="   Nueva &#10;valoracion">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets left="170.0" />
-                           </HBox.margin>
-                        </Button>
-                        <Button fx:id="btn_MostrarJuegos222" layoutX="10.0" layoutY="10.0" maxHeight="60.0" maxWidth="140.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="   Ver mis&#10;valoraciones">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </VBox>
-         </children>
-      </VBox>
-      <VBox fx:id="Vbox_MenuDeUsuario" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
-         <children>
-            <HBox alignment="CENTER" prefHeight="114.0" prefWidth="640.0" style="-fx-background-color: ba1616;">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0">
-                     <image>
-                        <Image url="@../../../img/usuario.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="40.0" top="34.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Menu Usuario">
-                     <font>
-                        <Font size="52.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="20.0" top="30.0" />
-                     </HBox.margin></Label>
-                  <Button mnemonicParsing="false" onAction="#onBtn_CerrarSesion" styleClass="btn-inicioSesion" stylesheets="@../../../style.css" text="Cerrar Sesion">
-                     <HBox.margin>
-                        <Insets left="40.0" top="30.0" />
-                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_filtrarConsola1" maxHeight="60.0" maxWidth="140.0" minHeight="70.0" minWidth="190.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarConsolaButton" prefHeight="60.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;  por consola" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="btn_filtrarGenero1" maxHeight="60.0" maxWidth="140.0" minHeight="70.0" minWidth="190.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarGeneroButton" prefHeight="60.0" prefWidth="140.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;   por genero&#10;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <VBox alignment="CENTER" prefHeight="243.0" prefWidth="800.0">
+            </GridPane>
+            <GridPane prefHeight="143.0" prefWidth="800.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Label text="Ver Juegos">
+                  <Label alignment="CENTER" text="Valoraciones" GridPane.halignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="31.0" />
+                        <Font name="System Bold" size="40.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </VBox.margin>
                   </Label>
-                  <Separator maxWidth="150.0" prefWidth="200.0" visible="false">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="btn_MostrarJuegos2" maxHeight="70.0" maxWidth="205.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" onMouseClicked="#onBtn_MostrarJuegos" prefHeight="70.0" prefWidth="205.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="    Ver Juegos&#10;Mejor Valorados">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="btn_filtrarConsola1" maxHeight="60.0" maxWidth="205.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarConsolaButton" prefHeight="60.0" prefWidth="205.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;  por consola">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="btn_filtrarGenero1" maxHeight="60.0" maxWidth="205.0" minHeight="70.0" minWidth="150.0" mnemonicParsing="false" onAction="#onEntrarMenuFiltrarGeneroButton" prefHeight="60.0" prefWidth="205.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar juegos &#10;   por genero&#10;">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </HBox>
                </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            </GridPane>
+            <GridPane prefHeight="93.0" prefWidth="800.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="113.0" minHeight="10.0" prefHeight="101.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Label alignment="CENTER" text="Valoraciones">
+                  <Button fx:id="btn_NuevaValoracion" maxHeight="70.0" maxWidth="202.0" minHeight="70.0" minWidth="160.0" mnemonicParsing="false" onMouseClicked="#onbtn_NuevaValoracion" prefHeight="70.0" prefWidth="202.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Nueva valoracion" GridPane.halignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="31.0" />
+                        <Font name="Maiandra GD" size="15.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Separator maxWidth="150.0" prefWidth="200.0" visible="false">
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </Separator>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="btn_NuevaValoracion" maxHeight="70.0" maxWidth="205.0" minHeight="70.0" minWidth="160.0" mnemonicParsing="false" onMouseClicked="#onbtn_NuevaValoracion" prefHeight="70.0" prefWidth="205.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Nueva valoracion">
-                           <font>
-                              <Font name="Maiandra GD" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="20.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button maxHeight="60.0" maxWidth="205.0" minHeight="70.0" minWidth="160.0" mnemonicParsing="false" onAction="#onVerValoraciones" prefHeight="60.0" prefWidth="205.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="   Ver mis&#10;valoraciones">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </HBox>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button maxHeight="60.0" maxWidth="202.0" minHeight="70.0" minWidth="160.0" mnemonicParsing="false" onAction="#onVerValoraciones" prefHeight="60.0" prefWidth="202.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="   Ver mis&#10;valoraciones" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
-            </VBox>
+            </GridPane>
          </children>
       </VBox>
-      <VBox fx:id="Vbox_SeleccionJuego" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
+      <VBox fx:id="Vbox_SeleccionJuego" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -590,24 +391,16 @@
             </HBox>
          </children>
       </VBox>
-      <VBox fx:id="AddValoracion" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
+      <VBox fx:id="AddValoracion" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff700;">
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ff3f3f;">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0">
-                     <image>
-                        <Image url="@../../../img/iconoValoracion.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="20.0" top="25.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Añadir Valoracion">
+                  <Label prefHeight="102.0" prefWidth="263.0" text="Añadir Valoracion">
                      <font>
-                        <Font name="Lucida Console" size="52.0" />
+                        <Font name="Onyx" size="62.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="10.0" top="25.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -615,60 +408,60 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <GridPane prefHeight="269.0" prefWidth="640.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="172.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="481.0" minWidth="10.0" prefWidth="468.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="118.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="114.0" minHeight="0.0" prefHeight="114.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="31.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <GridPane prefHeight="539.0" prefWidth="800.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="10.0" prefWidth="209.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="591.0" minWidth="10.0" prefWidth="591.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="197.0" minHeight="10.0" prefHeight="103.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="302.0" minHeight="0.0" prefHeight="268.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="101.0" minHeight="0.0" prefHeight="98.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Puntuacion" textFill="#fff700">
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Puntuacion" GridPane.halignment="CENTER">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font size="30.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Comentario" textFill="#fff700" GridPane.rowIndex="1">
+                  <Label text="Comentario" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font size="30.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextArea fx:id="ComentarioValo" maxWidth="-Infinity" prefHeight="89.0" prefWidth="441.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextArea fx:id="ComentarioValo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="84.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets right="40.0" />
+                        <Insets />
                      </GridPane.margin>
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextArea>
-                  <Button fx:id="SaveValoracion" mnemonicParsing="false" onMouseClicked="#onSaveValoracion" prefHeight="58.0" prefWidth="100.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Button fx:id="SaveValoracion" mnemonicParsing="false" onMouseClicked="#onSaveValoracion" prefHeight="58.0" prefWidth="165.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Guardar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
-                        <Insets top="40.0" />
+                        <Insets />
                      </GridPane.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="46.0" text="VideoJuego" textFill="#fff700" GridPane.rowIndex="2">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="46.0" text="VideoJuego" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold Italic" size="20.0" />
+                        <Font size="30.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </Label>
-                  <ListView fx:id="ListViewVidValo" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="80.0" prefWidth="430.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="puntuacionVa" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="20.0" prefWidth="50.0" GridPane.columnIndex="1" />
+                  <ListView fx:id="ListViewVidValo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="528.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <TextField fx:id="puntuacionVa" maxHeight="-Infinity" maxWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
                <VBox.margin>
                   <Insets top="40.0" />
@@ -676,338 +469,312 @@
             </GridPane>
          </children>
       </VBox>
-      <VBox fx:id="Vbox_MejorValorados" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
+      <VBox fx:id="Vbox_MejorValorados" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
          <children>
-            <HBox maxHeight="103.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff700;">
-               <children>
-                  <Button fx:id="btn_atras_MejorValorados" mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: #fff700;">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0">
-                           <image>
-                              <Image url="@../../../img/atras.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" translateX="-20.0">
-                     <image>
-                        <Image url="@../../../img/icon-valoracion.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="40.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Mejor Valorados" translateX="-20.0">
-                     <font>
-                        <Font name="Lucida Console" size="49.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" top="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
+            <HBox maxHeight="103.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ff3f3f;">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <children>
+                  <GridPane prefHeight="100.0" prefWidth="272.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="43.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="490.0" minWidth="10.0" prefWidth="229.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="btn_atras_MejorValorados" mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: ff3f3f;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../../../img/atras.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label prefHeight="82.0" prefWidth="218.0" text="Mejor Valorados" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Onyx" size="57.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
             </HBox>
-            <ListView fx:id="ListView_MejorValorados" maxWidth="600.0" minWidth="180.0" prefHeight="337.0" prefWidth="600.0">
+            <ListView fx:id="ListView_MejorValorados" maxWidth="763.0" minWidth="180.0" prefHeight="538.0" prefWidth="763.0">
                <VBox.margin>
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </ListView>
          </children>
       </VBox>
-      <VBox fx:id="VBox_InicioSesion" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
+      <VBox fx:id="VBox_InicioSesion" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff700;">
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ff3f3f;">
                <children>
-                  <Button fx:id="Btn_atras_InicioSesion" mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: #fff700;" translateX="-30.0">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0">
-                           <image>
-                              <Image url="@../../../img/atras.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Button>
-                  <ImageView fitHeight="74.0" fitWidth="76.0" translateX="-10.0">
-                     <image>
-                        <Image url="@../../../img/videojuego.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" top="20.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Iniciar sesión" translateX="-10.0">
-                     <font>
-                        <Font name="Lucida Console" size="41.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="5.0" top="25.0" />
-                     </HBox.margin>
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                  </Label>
-
-                  <Button fx:id="Btn_Registrarse" mnemonicParsing="false" onMouseClicked="#onBtn_Registrarse" styleClass="btn-inicioSesion" stylesheets="@../../../style.css" text="Registrarse" translateX="-10.0">
-
-                     <HBox.margin>
-                        <Insets left="10.0" top="15.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </HBox>
-            <VBox prefHeight="106.0" prefWidth="830.0" translateX="70.0">
-               <children>
-                  <HBox prefHeight="36.0" prefWidth="600.0">
+                  <GridPane prefHeight="100.0" prefWidth="772.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="253.0" minWidth="10.0" prefWidth="96.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="419.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label text="Usuario" textFill="#fff700" translateX="12.0">
+                        <Button fx:id="Btn_atras_InicioSesion" mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: ff3f3f;">
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../../../img/atras.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Label text="Iniciar sesión" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <font>
-                              <Font size="22.0" />
+                              <Font name="Onyx" size="72.0" />
                            </font>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
                         </Label>
-                        <TextField fx:id="TextField_InicioSesionUsuario" promptText="Usuario" translateX="12.0" translateY="4.0">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="TEXT" />
-                           </cursor>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets left="13.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Contrseña" textFill="#fff700">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="TextField_InicioSesionContraseña" promptText="Contraseña">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </PasswordField>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="100.0" top="50.0" />
-               </VBox.margin>
-            </VBox>
-            <HBox prefHeight="83.0" prefWidth="626.0" style="-fx-background-color: BLACK;" translateY="-40.0">
-               <children>
-                  <Button fx:id="Btn_Acceder" mnemonicParsing="false" onMouseClicked="#onBtn_Acceder" prefHeight="44.0" prefWidth="101.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Acceder">
-                     <HBox.margin>
-                        <Insets left="250.0" top="20.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox fx:id="VboxFiltrarJuego" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff700;">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: #fff700;">
-                     <graphic>
-                        <ImageView fx:id="btn_atras_Filtrar" fitHeight="20.0" fitWidth="20.0">
-                           <image>
-                              <Image url="@../../../img/atras.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                     </HBox.margin>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <ImageView fitHeight="50.0" fitWidth="50.0">
-                     <image>
-                        <Image url="@../../../img/filtrar.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="140.0" top="27.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Filtrar">
-                     <font>
-                        <Font name="Lucida Console" size="52.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="10.0" top="25.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox prefHeight="300.0" prefWidth="300.0">
-                     <children>
-                        <Label contentDisplay="CENTER" text="Seleccione opcion" textFill="#fff700">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="5.0" top="30.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ChoiceBox fx:id="SeleccionFiltro" prefWidth="150.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></ChoiceBox>
-                        <Button fx:id="Btn_Filtrar" mnemonicParsing="false" onAction="#onFiltrarButton" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar">
-                           <VBox.margin>
-                              <Insets left="40.0" top="10.0" />
-                           </VBox.margin>
+      
+                        <Button fx:id="Btn_Registrarse" mnemonicParsing="false" onMouseClicked="#onBtn_Registrarse" styleClass="btn-inicioSesion" stylesheets="@../../../style.css" text="Registrarse" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
                      </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <GridPane alignment="CENTER" prefHeight="580.0" prefWidth="800.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="241.0" prefWidth="800.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="417.0" minWidth="10.0" prefWidth="381.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="583.0" minWidth="10.0" prefWidth="419.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Usuario" GridPane.halignment="CENTER">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label text="Contrseña" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="TextField_InicioSesionUsuario" maxHeight="-Infinity" maxWidth="200.0" prefHeight="25.0" prefWidth="249.0" promptText="Usuario" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <PasswordField fx:id="TextField_InicioSesionContraseña" maxHeight="-Infinity" maxWidth="200.0" prefHeight="25.0" prefWidth="236.0" promptText="Contraseña" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+                        <Button fx:id="Btn_Acceder" maxWidth="200.0" mnemonicParsing="false" onMouseClicked="#onBtn_Acceder" prefHeight="47.0" prefWidth="200.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Acceder" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <VBox fx:id="VboxFiltrarJuego" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ff3f3f;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <GridPane prefHeight="100.0" prefWidth="173.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="350.0" minWidth="10.0" prefWidth="38.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="634.0" minWidth="10.0" prefWidth="135.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: ff3f3f;">
+                           <graphic>
+                              <ImageView fx:id="btn_atras_Filtrar" fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../../../img/atras.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label prefHeight="105.0" prefWidth="127.0" text="Filtrar" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Onyx" size="77.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="300.0" prefWidth="300.0">
                      <HBox.margin>
                         <Insets left="240.0" top="40.0" />
                      </HBox.margin>
                   </VBox>
                </children>
             </HBox>
-         </children>
-      </VBox>
-      <VBox fx:id="Vbox_BusquedaFiltrada" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff700;">
+            <GridPane prefHeight="316.0" prefWidth="800.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="184.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="113.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="86.0" minHeight="0.0" prefHeight="86.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: #fff700;">
-                     <graphic>
-                        <ImageView fx:id="btn_atras_BusquedaFiltrada" fitHeight="20.0" fitWidth="20.0">
-                           <image>
-                              <Image url="@../../../img/atras.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                     </HBox.margin>
+                  <Label contentDisplay="CENTER" text="Seleccione opción" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="SeleccionFiltro" prefHeight="49.0" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ChoiceBox>
+                  <Button fx:id="Btn_Filtrar" mnemonicParsing="false" onAction="#onFiltrarButton" prefHeight="47.0" prefWidth="132.0" styleClass="btn-principal" stylesheets="@../../../style.css" text="Filtrar" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <ImageView fitHeight="50.0" fitWidth="50.0">
-                     <image>
-                        <Image url="@../../../img/filtrar.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" top="25.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Busqueda Filtrada">
-                     <font>
-                        <Font name="Lucida Console" size="49.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="5.0" top="22.0" />
-                     </HBox.margin>
-                  </Label>
                </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <VBox fx:id="Vbox_BusquedaFiltrada" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ff3f3f;">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <children>
+                  <GridPane prefHeight="100.0" prefWidth="798.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="10.0" prefWidth="37.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="761.0" minWidth="10.0" prefWidth="761.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: ff3f3f;">
+                           <graphic>
+                              <ImageView fx:id="btn_atras_BusquedaFiltrada" fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../../../img/atras.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label prefHeight="100.0" prefWidth="270.0" text="Busqueda Filtrada" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Onyx" size="62.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
             </HBox>
-            <ListView fx:id="ListView_JuegosFiltrados" maxWidth="600.0" minHeight="300.0" minWidth="180.0" prefHeight="350.0" prefWidth="600.0">
+            <ListView fx:id="ListView_JuegosFiltrados" maxWidth="762.0" minHeight="300.0" minWidth="180.0" prefHeight="554.0" prefWidth="762.0">
                <VBox.margin>
                   <Insets left="20.0" top="13.0" />
                </VBox.margin>
             </ListView>
          </children>
       </VBox>
-      <VBox fx:id="MisValoraciones" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: e8e8e8;" visible="false">
+      <VBox fx:id="MisValoraciones" maxHeight="680.0" maxWidth="800.0" minHeight="680.0" minWidth="800.0" prefHeight="680.0" prefWidth="800.0" style="-fx-background-color: f2f2f2;" visible="false">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fff700;">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: #fff700;">
-                     <graphic>
-                        <ImageView fx:id="btn_atras_BusquedaFiltrada1" fitHeight="20.0" fitWidth="20.0">
-                           <image>
-                              <Image url="@../../../img/atras.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                     </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label text="Mis valoraciones">
-                     <font>
-                        <Font name="Lucida Console" size="49.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="40.0" top="22.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ff3f3f;">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="38.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="762.0" minWidth="10.0" prefWidth="762.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onInicioButton" style="-fx-background-color: ff3f3f;">
+                           <graphic>
+                              <ImageView fx:id="btn_atras_BusquedaFiltrada1" fitHeight="20.0" fitWidth="20.0">
+                                 <image>
+                                    <Image url="@../../../img/atras.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label prefHeight="104.0" prefWidth="224.0" text="Mis valoraciones" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="Onyx" size="56.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
             </HBox>
-            <ListView fx:id="ListView_ValoracionesUsuario" maxWidth="600.0" minHeight="300.0" minWidth="180.0" prefHeight="350.0" prefWidth="600.0">
+            <ListView fx:id="ListView_ValoracionesUsuario" maxWidth="761.0" minHeight="300.0" minWidth="180.0" prefHeight="555.0" prefWidth="761.0">
                <VBox.margin>
                   <Insets left="20.0" top="13.0" />
                </VBox.margin>

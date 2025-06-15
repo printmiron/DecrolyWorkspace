@@ -1,16 +1,12 @@
+/* Modern Style for MetaPlay App */
 
-
-
+/* Root styling */
 .root {
     -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
     -fx-background-color: #f8f9fa;
-    -fx-background-image: url("/img/fondo.jpg");
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
-    -fx-background-position: center center;
 }
 
-
+/* Main background containers */
 .main-container {
     -fx-background-color: rgb(102, 126, 234);
     -fx-background-radius: 0;
@@ -23,40 +19,40 @@
     -fx-padding: 32;
 }
 
-
+/* Botón azul moderno y vibrante */
 .btn-principal {
-    -fx-background-color: linear-gradient(to bottom right, #ff4e50, #f00000);
+    -fx-background-color: linear-gradient(to bottom, #00b6ff, #005fbd);
     -fx-background-radius: 14;
     -fx-border-radius: 14;
-    -fx-border-color: rgba(255, 0, 0, 0.4);
-    -fx-border-width: 1.5;
-    -fx-text-fill: #fff;
+    -fx-border-width: 0;
+    -fx-text-fill: white;
     -fx-font-family: "Segoe UI", "Roboto", sans-serif;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-padding: 14 26;
+    -fx-font-weight: 700;
+    -fx-font-size: 16px;
+    -fx-padding: 14 28 14 28;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(255, 50, 50, 0.4), 14, 0.3, 0, 4);
-    -fx-transition: all 0.3s ease;
+    -fx-effect: dropshadow(gaussian, rgba(0, 102, 204, 0.6), 14, 0, 0, 6);
+    -fx-transition: all 0.25s ease;
 }
 
-/* Hover: efecto glow potente */
+/* Hover: aclarar y crecer suavemente */
 .btn-principal:hover {
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-    -fx-background-color: linear-gradient(to bottom right, #ff6a6a, #d00000);
-    -fx-effect: dropshadow(gaussian, rgba(255, 80, 80, 0.6), 20, 0.4, 0, 5);
+    -fx-background-color: linear-gradient(to bottom, #3ec6ff, #2c83e9);
+    -fx-scale-x: 1.06;
+    -fx-scale-y: 1.06;
+    -fx-effect: dropshadow(gaussian, rgba(62, 198, 255, 0.8), 20, 0, 0, 10);
 }
 
-/* Presionado: efecto de pulsación */
+/* Presionado: encoger y oscurecer */
 .btn-principal:pressed {
-    -fx-scale-x: 0.97;
-    -fx-scale-y: 0.97;
-    -fx-effect: dropshadow(gaussian, rgba(255, 40, 40, 0.3), 10, 0.2, 0, 2);
+    -fx-background-color: linear-gradient(to bottom, #004a8f, #003161);
+    -fx-scale-x: 0.94;
+    -fx-scale-y: 0.94;
+    -fx-effect: dropshadow(gaussian, rgba(0, 49, 97, 0.7), 10, 0, 0, 4);
 }
 
 
-
+/* Secondary button - Clean and minimal */
 .btn-secundario {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12;
@@ -79,57 +75,68 @@
     -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.15), 12, 0, 0, 4);
 }
 
-
+/* Botón gris oscuro moderno */
 .btn-inicioSesion {
-    -fx-background-color: linear-gradient(to bottom right, #2e2e2e, #1c1c1c);
-    -fx-background-radius: 30;
-    -fx-border-color: #444;
-    -fx-border-width: 1;
-    -fx-border-radius: 30;
-    -fx-text-fill: #f1f1f1;
-    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(to bottom, #343a40, #2a2e35);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 0;
+    -fx-text-fill: #f0f0f0;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-font-weight: 600;
     -fx-font-size: 14px;
-    -fx-padding: 10 24;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 8, 0, 0, 4);
+    -fx-padding: 10 20 10 20;
     -fx-cursor: hand;
-    -fx-transition: all 0.3s ease;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 3);
+    -fx-transition: all 0.25s ease;
 }
-
 
 .btn-inicioSesion:hover {
-    -fx-background-color: linear-gradient(to bottom right, #444, #222);
-    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.2), 8, 0.2, 0, 2);
-    -fx-scale-x: 1.03;
-    -fx-scale-y: 1.03;
+    -fx-background-color: linear-gradient(to bottom, #495057, #3c4149);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(73, 80, 87, 0.8), 14, 0, 0, 6);
 }
-
 
 .btn-inicioSesion:pressed {
-    -fx-background-color: linear-gradient(to bottom right, #1a1a1a, #000);
-    -fx-scale-x: 0.97;
-    -fx-scale-y: 0.97;
-    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.1), 4, 0.1, 0, 1);
+    -fx-background-color: linear-gradient(to bottom, #2a2e35, #1f2227);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-effect: dropshadow(gaussian, rgba(20, 22, 26, 0.7), 8, 0, 0, 2);
 }
 
-
+/* Botón cerrar sesión con rojo oscuro más suave, mismo estilo */
 .btn-cerrarSesion {
-    -fx-background-color: #984343;
+    -fx-background-color: linear-gradient(to bottom, #984343, #7a3535);
     -fx-background-radius: 20;
+    -fx-border-radius: 20;
     -fx-border-width: 0;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #f0f0f0;
     -fx-font-family: "Segoe UI", "Roboto", sans-serif;
-    -fx-font-weight: 500;
-    -fx-font-size: 12px;
-    -fx-padding: 8 16 8 16;
+    -fx-font-weight: 600;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(152, 67, 67, 0.6), 10, 0, 0, 3);
+    -fx-transition: all 0.25s ease;
 }
 
 .btn-cerrarSesion:hover {
-    -fx-background-color: #495057;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);
+    -fx-background-color: linear-gradient(to bottom, #b14b4b, #8c3b3b);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(177, 75, 75, 0.85), 14, 0, 0, 6);
+}
+
+.btn-cerrarSesion:pressed {
+    -fx-background-color: linear-gradient(to bottom, #7a3535, #5e2a2a);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-effect: dropshadow(gaussian, rgba(93, 43, 43, 0.7), 8, 0, 0, 2);
 }
 
 
+/* Modern text field styling */
 .text-field {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
@@ -149,7 +156,7 @@
     -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.15), 8, 0, 0, 2);
 }
 
-
+/* Password field */
 .password-field {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
@@ -169,7 +176,7 @@
     -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.15), 8, 0, 0, 2);
 }
 
-
+/* Text area styling */
 .text-area {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
@@ -193,7 +200,7 @@
     -fx-background-color: transparent;
 }
 
-
+/* Choice box modern styling */
 .choice-box {
     -fx-background-color: #ffffff;
     -fx-background-radius: 8;
@@ -213,6 +220,7 @@
     -fx-effect: dropshadow(gaussian, rgba(102, 126, 234, 0.1), 6, 0, 0, 2);
 }
 
+/* List view modern styling */
 .list-view {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12;
@@ -241,7 +249,7 @@
     -fx-text-fill: #667eea;
 }
 
-
+/* Modern labels */
 .title-label {
     -fx-font-family: "Segoe UI", "Roboto", sans-serif;
     -fx-font-weight: 700;
@@ -278,7 +286,7 @@
     -fx-border-radius: 8;
 }
 
-
+/* Modern separators */
 .separator:horizontal .line {
     -fx-border-color: #e9ecef;
     -fx-border-width: 1px;
@@ -289,13 +297,13 @@
     -fx-border-width: 1px;
 }
 
-
+/* Header styling */
 .header-container {
     -fx-padding: 24 32 24 32;
     -fx-background-radius: 16 16 0 0;
 }
 
-
+/* Card styling for content sections */
 .card {
     -fx-background-color: #ffffff;
     -fx-background-radius: 12;
@@ -306,7 +314,7 @@
     -fx-border-radius: 12;
 }
 
-
+/* Navigation buttons */
 .btn-navigation {
     -fx-background-color: transparent;
     -fx-background-radius: 50;
@@ -321,7 +329,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0, 0, 4);
 }
 
-
+/* Success/Accent button */
 .btn-success {
     -fx-background-radius: 12;
     -fx-border-width: 0;
@@ -338,7 +346,7 @@
     -fx-effect: dropshadow(gaussian, rgba(78, 205, 196, 0.4), 16, 0, 0, 6);
 }
 
-
+/* Danger button */
 .btn-danger {
     -fx-background-radius: 12;
     -fx-border-width: 0;
@@ -355,7 +363,7 @@
     -fx-effect: dropshadow(gaussian, rgba(255, 107, 107, 0.4), 16, 0, 0, 6);
 }
 
-
+/* Modern scrollbar styling */
 .scroll-bar:vertical {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
@@ -378,7 +386,7 @@
     -fx-background-color: #a8b4ba;
 }
 
-
+/* Responsive adjustments */
 @media (max-width: 800px) {
     .btn-principal {
         -fx-font-size: 12px;
@@ -389,3 +397,5 @@
         -fx-font-size: 36px;
     }
 }
+
+
