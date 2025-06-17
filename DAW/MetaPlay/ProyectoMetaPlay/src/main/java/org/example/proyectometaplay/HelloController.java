@@ -225,8 +225,6 @@ public class HelloController implements Initializable {
                 -fx-padding: 18px;
                 -fx-font-size: 15px;
                 -fx-font-family: 'Segoe UI', sans-serif;
-                -fx-border-radius: 15px;
-                -fx-background-radius: 15px;
                 -fx-background-color: linear-gradient(to bottom, #ffcfcf, #ffe6e6);
                 -fx-border-width: 1.2px;
                 -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2);
@@ -304,8 +302,6 @@ public class HelloController implements Initializable {
                 -fx-padding: 20px;
                 -fx-font-size: 15px;
                 -fx-font-family: 'Segoe UI', sans-serif;
-                -fx-border-radius: 15px;
-                -fx-background-radius: 15px;
                 -fx-background-color: linear-gradient(to bottom, #ffcfcf, #ffe6e6);
                 -fx-border-width: 1.2px;
                 -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 8, 0, 0, 2);
@@ -340,8 +336,6 @@ public class HelloController implements Initializable {
                 -fx-padding: 20px;
                 -fx-font-size: 15px;
                 -fx-font-family: 'Segoe UI Semibold', sans-serif;
-                -fx-border-radius: 15px;
-                -fx-background-radius: 15px;
                 -fx-background-color: linear-gradient(to bottom, #ffcfcf, #ffe6e6);
                 -fx-border-width: 1.5px;
                 -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 8, 0, 0, 2);
@@ -486,8 +480,6 @@ public class HelloController implements Initializable {
                         -fx-padding: 18px;
                         -fx-font-size: 15px;
                         -fx-font-family: 'Segoe UI', sans-serif;
-                        -fx-border-radius: 15px;
-                        -fx-background-radius: 15px;
                         -fx-border-width: 1.5px;
                         -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 8, 0, 0, 3);
                         -fx-text-fill: #000000;
@@ -498,7 +490,6 @@ public class HelloController implements Initializable {
                         -fx-padding: 18px;
                         -fx-font-size: 15px;
                         -fx-font-family: 'Segoe UI', sans-serif;
-                        -fx-border-radius: 15px;
                         -fx-background-radius: 15px;
                         -fx-border-color: #e0e0e0;
                         -fx-border-width: 1.2px;
