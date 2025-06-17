@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+
 import Module.Mascota;
 import Module.Tipo;
 import Module.SqlBdAccess;
@@ -18,7 +19,7 @@ import Module.SqlBdManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+
 
 
 public class HelloController {
@@ -31,6 +32,7 @@ public class HelloController {
     private ObservableList<Mascota> mascotas = FXCollections.observableArrayList();
     private ObservableList<Propietario> propietarios = FXCollections.observableArrayList();
     private ObservableList<Consulta> consultas = FXCollections.observableArrayList();
+    private ObservableList<Tipo> tipos = FXCollections.observableArrayList();
 
     private Propietario propietario;
 
@@ -129,45 +131,39 @@ public class HelloController {
     private ListView<Propietario> ListViewProprietarios;
 
 
+
+
     @FXML
     public void initialize() {
         selectPanelVisible(0);
-
-        
-
         configurarListViewMascotas();
+        configurarListViewPropietario();
 
-        List<Mascota> lista = BD.getMascotas();
-        mascotas = FXCollections.observableArrayList(lista);
+        // Inicializa las listas observables
+        propietarios = FXCollections.observableArrayList();
+        mascotas = FXCollections.observableArrayList();
+        tipos = FXCollections.observableArrayList();
+
         ListViewMascota.setItems(mascotas);
+        ListViewProprietarios.setItems(propietarios);
+        ComboBoxDniProprietario.setItems(propietarios);
+        ComboBoxProprietarioDniConsulta.setItems(propietarios);
+        ComboBoxMascotaPassConsulta.setItems(mascotas);
+        ComboBoxTipo.setItems(tipos);
 
         try (Connection connection = SqlBdManager.getConnection()) {
-            // Cargar datos desde BD y llenar listas internas
             Tipo.cargarTiposDesdeBD(connection);
+            tipos.setAll(Tipo.getTipos());
+
             Propietario.cargarPropietariosDesdeBD(connection);
+            propietarios.setAll(Propietario.getPropietarios());
+
             Mascota.cargarMascotasDesdeBD(connection);
+            mascotas.setAll(Mascota.getMascotas());
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Asociar listas cargadas a ListViews
-        ListViewMascota.setItems(FXCollections.observableArrayList(Mascota.getMascotas()));
-
-        ListViewProprietarios.setItems(FXCollections.observableArrayList(Propietario.getPropietarios()));
-
-        // Cargar tipos de mascota al ComboBox
-        ComboBoxTipo.setItems(FXCollections.observableArrayList(Tipo.getTipos()));
-
-        // Cargar propietarios al ComboBox de crear mascota
-        ComboBoxDniProprietario.getItems().clear();
-        ComboBoxDniProprietario.setItems(FXCollections.observableArrayList(Propietario.getPropietarios()));
-
-        // Cargar propietarios al ComboBox de crear consulta
-        ComboBoxProprietarioDniConsulta.getItems().clear();
-        ComboBoxProprietarioDniConsulta.setItems(FXCollections.observableArrayList(Propietario.getPropietarios()));
-
-        // Cargar mascotas al ComboBox
-        ComboBoxMascotaPassConsulta.setItems(FXCollections.observableArrayList(Mascota.getMascotas()));
 
 
 
@@ -202,6 +198,11 @@ public class HelloController {
     public void btnOnSaveMascotaOnAction(ActionEvent event) {
         if (!validarFormularioMascota()) return;
 
+        if (mascotaEditada == null && BD.existePasaporte(pasaporte.getText())){
+            mostrarAlertaError("Passaporte", "El pasaporte ya existe");
+            return;
+        }
+
         Tipo tipoSelecionado = ComboBoxTipo.getValue();
         Propietario propietarioSelecionado = ComboBoxDniProprietario.getValue();
 
@@ -229,6 +230,8 @@ public class HelloController {
 
         }
 
+
+
         clearFormMascota();
         selectPanelVisible(0);
 
@@ -243,6 +246,11 @@ public class HelloController {
     @FXML
     public void btnOnSavePropietarioOnAction(ActionEvent event) {
         if (!validarFormularioProprietario()) return;
+
+        if (proprietarioEditado == null && BD.existeDNI(dni.getText())){
+            mostrarAlertaError("Dni", "El dni ya existe");
+            return;
+        }
 
         if (proprietarioEditado == null) {
             //Crear nueva mascota
@@ -326,7 +334,7 @@ public class HelloController {
     @FXML
     public void btnOnEliminarMascotaOnAction(ActionEvent event){
         Mascota seleccionada = ListViewMascota.getSelectionModel().getSelectedItem(); //Selecionar en la lista
-        if (seleccionada == null) {
+        if (seleccionada != null) {
             BD.borrarMascota(seleccionada.getPasaporte());
             mascotas.remove(seleccionada);
         }else {
@@ -613,9 +621,8 @@ public class HelloController {
     private boolean modoEdicion = false;
 
     private boolean validarFormularioMascota() {
-        // Si estás en modo edición, no validar (o validar solo nombre y peso si querés)
+
         if (modoEdicion) {
-            // Validar solo nombre y peso si querés
             StringBuilder errores = new StringBuilder();
 
             if (nombreMascota.getText().isEmpty()) errores.append("Nombre invalido, no puede ser vacio\n");
@@ -741,7 +748,7 @@ public class HelloController {
                     setGraphic(null);
                 } else {
                     String texto = String.format(
-                            "🐾 %s\n📜 Pasaporte: %s | 📅 Nacimiento: %s\n⚖ Peso: %.2f kg | 🧬 Tipo: %s\n👤 Propietario: %s %s",
+                            "Nombre: %s\nPasaporte: %s | Nacimiento: %s\nPeso: %.2f kg | Tipo: %s\nPropietario: %s %s",
                             mascota.getNombre(),
                             mascota.getPasaporte(),
                             mascota.getFechaNacimiento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
@@ -749,6 +756,30 @@ public class HelloController {
                             mascota.getTipo().getTipo(),
                             mascota.getPropietario().getNombre(),
                             mascota.getPropietario().getApellido()
+                    );
+                    setText(texto);
+                    setStyle("-fx-padding: 10px; -fx-font-size: 13px; -fx-font-family: 'Segoe UI';");
+                }
+            }
+        });
+    }
+
+
+    private void configurarListViewPropietario() {
+        ListViewProprietarios.setCellFactory(lv -> new ListCell<Propietario>() {
+            @Override
+            protected void updateItem(Propietario propietario, boolean empty) {
+                super.updateItem(propietario, empty);
+                if (empty || propietario == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    String texto = String.format(
+                            "Dni: %s\nNombre Apellido: %s %s" ,
+                            propietario.getDni(),
+                            propietario.getNombre(),
+                            propietario.getApellido()
+
                     );
                     setText(texto);
                     setStyle("-fx-padding: 10px; -fx-font-size: 13px; -fx-font-family: 'Segoe UI';");

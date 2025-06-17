@@ -3,10 +3,13 @@ package Module;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class SqlBdAccess {
+
+
 
 
     //acceder a todas las mascotas
@@ -40,6 +43,23 @@ public class SqlBdAccess {
             System.out.println(e.getMessage());
         }
         return mascotas;
+    }
+
+    //metodo directo desde BD para comprobar si se repiten los pasaporte
+    public static boolean existePasaporte(String pasaporte) {
+        String sql = "SELECT COUNT(*) FROM Mascota WHERE Pasaporte = ?";
+        try (Connection connection = SqlBdManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, pasaporte);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al verificar pasaporte: " + e.getMessage());
+        }
+        return false;
     }
 
 
@@ -93,16 +113,20 @@ public class SqlBdAccess {
 
     //borrar una mascota
     public static void borrarMascota(String pasaporte) {
+        try (Connection connection = SqlBdManager.getConnection()) {
+            // Primero eliminar las consultas asociadas
+            String borrarConsultas = "DELETE FROM Consulta WHERE Mascota_Pasaporte = ?";
+            try (PreparedStatement stmt = connection.prepareStatement(borrarConsultas)) {
+                stmt.setString(1, pasaporte);
+                stmt.executeUpdate();
+            }
 
-        String sql = "DELETE FROM Mascota WHERE Pasaporte = ?";
-
-        try (Connection connection = SqlBdManager.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, pasaporte);
-            statement.execute();
-
-
+            // Ahora eliminar la mascota
+            String sql = "DELETE FROM Mascota WHERE Pasaporte = ?";
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setString(1, pasaporte);
+                stmt.executeUpdate();
+            }
 
         } catch (SQLException e) {
             System.out.println("Error al eliminar mascota: " + e.getMessage());
@@ -164,6 +188,22 @@ public class SqlBdAccess {
 
 
 
+    //metodo directo desde BD para comprobar si se repiten los pasaporte
+    public static boolean existeDNI(String dni) {
+        String sql = "SELECT COUNT(*) FROM Propietario WHERE dni = ?";
+        try (Connection connection = SqlBdManager.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, dni);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al verificar dni: " + e.getMessage());
+        }
+        return false;
+    }
 
     //insertar un proprietario
     public static void registrarProprietario(Propietario propietario) {
