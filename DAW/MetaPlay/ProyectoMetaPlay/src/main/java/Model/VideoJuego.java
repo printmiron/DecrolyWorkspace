@@ -10,6 +10,7 @@ public class VideoJuego {
     private double precio;
     private double puntuacionGlobal;
 
+
     public VideoJuego(int id, String nombre_consola, String nombre, GeneroV genero, String desarrollador, double precio) {
         this.id = id;
         this.nombre_consola = nombre_consola;

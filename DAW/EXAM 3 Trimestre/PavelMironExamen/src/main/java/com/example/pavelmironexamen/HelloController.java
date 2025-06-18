@@ -34,8 +34,6 @@ public class HelloController {
     private ObservableList<Consulta> consultas = FXCollections.observableArrayList();
     private ObservableList<Tipo> tipos = FXCollections.observableArrayList();
 
-    private Propietario propietario;
-
 
 
     //VBox`s
@@ -333,14 +331,29 @@ public class HelloController {
 
     @FXML
     public void btnOnEliminarMascotaOnAction(ActionEvent event){
-        Mascota seleccionada = ListViewMascota.getSelectionModel().getSelectedItem(); //Selecionar en la lista
+        Mascota seleccionada = ListViewMascota.getSelectionModel().getSelectedItem();
+
         if (seleccionada != null) {
-            BD.borrarMascota(seleccionada.getPasaporte());
-            mascotas.remove(seleccionada);
-        }else {
-            mostrarAlertaError("ELIMINAR!", "Tienes que seleccionar un mascota para eliminar");
+            try (Connection connection = SqlBdManager.getConnection()) {
+                BD.borrarMascota(seleccionada.getPasaporte());
+
+                mostrarAlertaError("Mascota eliminada", "La mascota se eliminó correctamente.");
+
+                // Recargar mascotas desde la BD
+                Mascota.cargarMascotasDesdeBD(connection);
+                mascotas.setAll(Mascota.getMascotas());
+
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                mostrarAlertaError("Error", "No se pudo eliminar la mascota.");
+            }
+        } else {
+            mostrarAlertaError("ELIMINAR", "Tienes que seleccionar una mascota para eliminar");
         }
     }
+
 
 
 
@@ -397,6 +410,7 @@ public class HelloController {
 
 
             dniOriginal = seleccionado.getDni();
+            dni.setText(seleccionado.getDni());
             nombrePropietario.setText(proprietarioEditado.getNombre());
             apellido.setText(proprietarioEditado.getApellido());
             telefono.setText(proprietarioEditado.getTelefono());
@@ -635,7 +649,7 @@ public class HelloController {
             return true;
         }
 
-        // Validación completa SOLO para registrar
+        // Validacion completa SOLO para registrar
         StringBuilder errores = new StringBuilder();
 
         if (!validarPasaporte(pasaporte.getText())) errores.append("Pasaporte invalido, debes insertar una letra y 8 digitos\n");
