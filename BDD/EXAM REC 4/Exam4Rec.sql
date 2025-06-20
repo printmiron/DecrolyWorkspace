@@ -1528,9 +1528,9 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 -- END $$
 -- DELIMITER ;
 
--- DELIMITER $$
--- CREATE PROCEDURE nombre_apellido_jefe(dept_no INT)
--- BEGIN
+DELIMITER $$
+CREATE PROCEDURE nombre_apellido_jefe(dept_no INT)
+BEGIN
 
 	SELECT e.first_name, e.last_name
 	FROM employees e
@@ -1539,9 +1539,9 @@ INSERT INTO `salaries` VALUES (10001,60117,'1986-06-26','1987-06-26'),
 	JOIN departments d ON de.dept_no = d.dept_no
 	WHERE dept_no = dm.emp_no;
     
--- 	END $$
---     
--- DELIMITER ;
+	END $$
+    
+DELIMITER ;
 
 
 

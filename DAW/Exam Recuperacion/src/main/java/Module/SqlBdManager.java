@@ -17,7 +17,7 @@ public class SqlBdManager {
     public static Connection getConnection() {
         Connection con = null;
 
-        try (FileReader file = new FileReader("src/main/resources/SaveObjects.dat"); BufferedReader reader = new BufferedReader(file);) {
+        try (FileReader file = new FileReader("src/main/resources/application.dat"); BufferedReader reader = new BufferedReader(file);) {
             String linea = reader.readLine();
             while (linea != null) {
 
