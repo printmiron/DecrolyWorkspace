@@ -17,17 +17,16 @@
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-white border-bottom">
+        <div class="container-fluid mt-2 mb-2">
 
-            <a class="navbar-brand" href="#">Navbar</a>
+            <div class="col-9">
+                <a class="navbar-brand" href="#">Tienda</a>
+            </div>
+
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Tienda</a>
-                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">Tienda</a>
@@ -39,7 +38,7 @@
                         <a class="nav-link" href="#">Soporte</a>
                     </li>
 
-                    <button type="button" class="btn btn-light">Light</button>
+                    <button type="button" class="btn btn-light">Contactar</button>
 
                 </ul>
             </div>
@@ -47,6 +46,7 @@
         </div>
     </nav>
 
+    <!-- OFERTA -->
     <div class="container mt-4 mb-5">
         <div class="container">
             <div class="row">
@@ -83,15 +83,15 @@
                     <div class="container mt-4">
                         <div class="row">
                             <div class="col d-flex">
-                                <i class="bi bi-send-fill p-2"></i>
+                                <i class="bi bi-send-fill p-2 h3"></i>
                                 <p>Envio rapido, gratuito y sin contacto</p>
                             </div>
                             <div class="col d-flex">
-                                <i class="bi bi-wrench p-2"></i>
+                                <i class="bi bi-wrench p-2 h3"></i>
                                 <p>Devoluciones faciles y gratuitas</p>
                             </div>
                             <div class="col d-flex">
-                                <i class="bi bi-piggy-bank-fill p-2"></i>
+                                <i class="bi bi-piggy-bank-fill p-2 h3"></i>
                                 <p>Posibilidad de pago a plazos</p>
                             </div>
                         </div>
@@ -103,57 +103,58 @@
 
         </div>
 
+
+        <!-- ACCESORIOS -->
         <div class="mt-4 mb-5">
             <h1>Accesorios recomendados</h1>
         </div>
-        
-
-
 
         <div class="container">
             <div class="row">
 
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
+                <div class="col-md-3 mb-4 d-flex justify-content-center ">
+                    <div class="card h-100" style="width: 18rem;">
                         <img src="img/IMG2.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Cargador</h5>
-                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen
+                                book.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col-md-3 mb-4 d-flex justify-content-center">
                     <div class="card" style="width: 18rem;">
                         <img src="img/IMG3.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Carga Inalambrica</h5>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting 
+                            <a href="#" class="btn btn-danger">Oferta</a>
+                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting
                                 industry.</p>
-                            
+
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-md-3 mb-4 d-flex justify-content-center">
                     <div class="card" style="width: 18rem;">
                         <img src="img/IMG4.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Funda piel</h5>
-                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting 
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-md-3 mb-4 d-flex justify-content-center">
                     <div class="card" style="width: 18rem;">
                         <img src="img/IMG5.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Cable</h5>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting 
+                            <a href="#" class="btn btn-primary">Nuevo</a>
+                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting
                                 industry.</p>
                         </div>
                     </div>
@@ -165,33 +166,45 @@
 
 
     <!-- FORMULARIO -->
-    <!-- <div class="container mt-4 mb-5">
-        <h2 class="text-center mb-4">Contacta con nosotros</h2>
-
-        <form class="row g-3">
+    <div class="container mt-4 mb-4 bg-primary  bg-opacity-25">
+        <div class="row p-4">
 
             <div class="col-md-6">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" required>
+                <h1>Participa en un sorteo de ASUS ROG Phone 9 Pro</h1>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s <br>
+                    <br>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                </p>
             </div>
 
             <div class="col-md-6">
+                <form>
 
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" required>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Email</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+
+                </form>
             </div>
 
-            <div class="col-12">
-                <label for="mensaje" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="mensaje" rows="3" required></textarea>
-            </div>
+        </div>
+    </div>
 
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-            </div>
+    <div class="border-top">
+        <div class="container d-flex justify-content-center mt-3 mb-3">
+            <h4 class="">Tienda</h4>
+        </div>
+    </div>
 
-        </form>
-    </div> -->
 
 
 </body>
