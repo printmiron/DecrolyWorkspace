@@ -1,0 +1,11 @@
+
+
+.image-container{
+    position: relative;
+    display: inline-block;
+}
+
+ .badgeContainer {
+    position: absolute;
+    left: 0;
+}
