@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+//Ejercicio 1
+$num1 = "3";
+$num2 = "7";
+
+echo "La suma de dos numeros: 3+7 es: " + $num1 + $num2 . "<br>";
+
+
+//Ejercicio2
+$num1 = 5;
+$num2 = 10;
+
+if ($num1 > $num2) {
+	echo "Numero ($num1) es mayor!" . "<br>";
+} elseif ($num1 < $num2) {
+	echo "Numero ($num2) es mayor!" . "<br>";
+} else {
+	echo "Son iguales!" . "<br>";
+}
+
+//Ejercicio 3
+$texto1 = "Pavel";
+$texto2 = "Miron";
+
+$textoCompleto = $texto1 . " " . $texto2;
+
+echo "El texto completo es: " . $textoCompleto . "<br>";
+
+//Ejercicio4
+$frutas = ["manzana", "banana", "cereza", "fresa", "limon"];
+
+echo $frutas[2] . "<br>"; 
+
+//Ejercicio5
+for ($i = 1; $i <= 5; $i++) {
+  echo $i . "<br>";
+}
+
+
+//Ejercicio6
+$num = 9;
+
+if ($num % 2 == 0){
+	echo "El numero " . $num . " es par" . "<br>";
+} else {
+	echo "El numero " . $num . " es impar" . "<br>";
+}
+
+
+//Ejercicio7
+$cadena = "Hola, bienvenido!";
+
+$longitudCadena = strlen ($cadena);
+
+echo "Cadena es: " . $cadena . "  ";
+echo "La longitud es: " . $longitudCadena . "<br>";
+
+
+
+//Ejercicio8
+$numeros = [1,2,3,4,5];
+
+$result_mult = 1;
+
+foreach ($numeros as $num) {
+  $result_mult *= $num;
+}
+
+echo "Multiplicacion de todos los numeros del array es: " . $result_mult . "<br>";
+
+//Ejercicio9
+
+function factorial($num) {
+  $result = 1;
+  for ($i = 1; $i <= $num; $i++){
+  	$result *= $i;
+  }
+  return $result;
+}
+
+echo "El factorial de 5 es: " . factorial(5) . "<br>";
+
+
+//Ejercicio10
+$cadena = "hola soy pavel miron";
+
+$arrayPalabras = explode(" ", $cadena);
+
+sort($arrayPalabras);
+
+echo "Array ordenado alfabeticamente: ";
+print_r($arrayPalabras);
+
+//Ejercicio11
+$numeros = [1,6,9,3,5];
+
+function promedio($arr){
+	$suma = 0;
+    $cantidad = count($arr);
+	
+}
+
+
+
+
+
+?>
+
+</body>
+</html>
