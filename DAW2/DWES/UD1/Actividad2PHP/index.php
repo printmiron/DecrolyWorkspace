@@ -17,17 +17,17 @@ function contarCaracteresTotales($nombres) {
 
 echo "Total de caracteres: " . contarCaracteresTotales($nombres) . "<br>";
 
-// 3 funcion para contar cuantas veces aparece una letra
-function contarOcurrenciasDeLetra($nombres, $letra) {
+// 3 funcion para contar cuantas veces aparece un caracter
+function contarOcurrenciasDelCaracter($nombres, $cracter) {
     $total = 0;
     foreach ($nombres as $nombre) {
-        $total += substr_count(strtolower($nombre), strtolower($letra));
+        $total += substr_count(strtolower($nombre), strtolower($cracter));
     }
     return $total;
 }
 
-$letra = "a";
-echo "La letra $letra aparece: " . contarOcurrenciasDeLetra($nombres, $letra) . "\n" . "<br>";
+$cracter = "a";
+echo "El caracter '$cracter' aparece: " . contarOcurrenciasDelCaracter($nombres, $cracter) . "<br>";
 
 // 4 funcion para contar vocales y consonantes
 function contarVocalesYConsonantes($nombres) {
