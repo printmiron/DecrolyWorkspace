@@ -1,5 +1,3 @@
-import {data} from "js/data.js";
-
 export default class Carrito{
     constructor(productos){
            this.productos = [];

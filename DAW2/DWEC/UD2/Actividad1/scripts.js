@@ -1,6 +1,11 @@
-import {Carrito} from "js/Carrito.js";
+import { data } from "./js/data.js";
+import Carrito from "./js/Carrito.js";
 
 const carrito = new Carrito();
+
+data.products.forEach(producto => {
+    carrito.productos.push({ ...producto, unidades: 0 }); // agregamos unidades iniciales
+});
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -8,9 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const bodyProduct = document.getElementById("bodyProduct");
     const totalCarrito = document.getElementById("totalFinal");
 
+    bodyProduct.innerHTML = data.products.map(function (x) {
 
-    bodyProduct.innerHTML = data.products.map(function(x) {
-        
         return `<tr>
             <th scope="row">
                 <h3>${x.title}</h3>
@@ -18,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </th>
             <td>
                 <button class="border-0">-</button>
-                <input type="text" value="${x.unidades}" readonly>
+                <input type="text" value="${x.unidades || 0}" readonly>
                 <button class="border-0">+</button>
             </td>
             <td>${x.price}€</td>
@@ -26,41 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
         </tr>`;
     }).join('');
 
-    
-
-
-        //añadimos funccion a los butones
-        butonMas.addEventListener("click", function () {
-            producto.unidades++;
-            input.value = producto.unidades;
-            tdPrecioTotalProd.textContent = (producto.unidades * producto.price).toFixed(2) + "€";
-        });
-
-
-        butonMenos.addEventListener("click", function () {
-            if (unidades.value > 0) {
-                producto.unidades--;
-                input.value = producto.unidades;
-                tdPrecioTotalProd.textContent = (producto.unidades / producto.price).toFixed(2) + "€";
-            }
-        });
-
-        
-        const totalFinal = document.getElementById("totalFinal");
-
-       
 
 
 
+    //asignar eventos despues de crear el HTML
 
-
-
-
-
-
-        
-
-    });
-
+      
+});
 
 
