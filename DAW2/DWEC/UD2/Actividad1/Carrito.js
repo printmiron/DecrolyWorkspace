@@ -21,4 +21,8 @@ export default class Carrito{
     obtenerCarrito(){
         return this.productos; //devuelve el array del carrito
     }
+
+
+
 }
+
