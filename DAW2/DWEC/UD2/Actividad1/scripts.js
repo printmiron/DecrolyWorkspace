@@ -2,9 +2,9 @@ import Carrito from "./Carrito.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    const bodyProduct = document.getElementById("bodyProduct");
-    const totalPrice = document.getElementById("totalFinal");
-    const headTotal = document.getElementById("headTotal");
+    const bodyProduct = document.getElementById("bodyProduct");//contendor donde cramos las filas de los productos
+    const totalPrice = document.getElementById("totalFinal");//span del total de todos los productos
+    const headTotal = document.getElementById("headTotal");//contenedor donde aparecen todos los productos añadidos 
 
     const carrito = new Carrito();
     let currency = "€"; //valor por defecto
@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //crear fila producto
     function crearFilaProducto(producto) {
+
+
+        //=========== parte izquierda =============
         const tr = document.createElement("tr");
 
         // columna 1
@@ -93,10 +96,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    //añadir los productos al contenedor total 
-    function productosContTotal() {
+
+
+
+
+        // =========== parte derecha ===========
+        const trD = document.createElement("tr");
+
+        // columna 1
+        const titleD = document.createElement("p");
+        titleD.textContent = producto.title;
+
+        trD.append(titleD);
+
+        // columna 2
+        const tdTotalD = document.createElement("td");
+        tdTotalD.classList.add("price-total-prod");
+        
+        trD.append(tdTotalD);
+
+        // agregar fila al thead
+        headTotal.append(trD);
+
+
+
+
+        
+
+        //actualizar los totales individuales de cada producto y de todos los productos juntos
+        function actualizarTotales() {
+
+            const totalProd = producto.unidades * producto.price;
+
+            //total de cada producto
+            tdTotal.textContent = totalProd.toFixed(2) + currency;
+            tdTotalD.textContent = totalProd.toFixed(2) + currency;
+
+            //total de todos los productos
+            const total = carrito.obtenerCarrito().reduce(
+                (acc, prod) => acc + (prod.unidades * prod.price),
+                0
+            );
+
+            totalPrice.textContent = total.toFixed(2) + currency;
+
+
 
         }
+
 
 
 
@@ -111,6 +158,8 @@ document.addEventListener("DOMContentLoaded", function () {
             input.value = producto.unidades;
             carrito.actualizarUnidades(producto.SKU, producto.unidades);
             actualizarTotales();
+
+
         });
 
         btnMenos.addEventListener("click", () => {
@@ -119,6 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 input.value = producto.unidades;
                 carrito.actualizarUnidades(producto.SKU, producto.unidades);
                 actualizarTotales();
+
             }
         });
 
@@ -129,19 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-        //actualizar los totales individuales de cada producto y de todos los productos juntos
-        function actualizarTotales() {
-            //total de cada producto
-            tdTotal.textContent = (producto.unidades * producto.price).toFixed(2) + currency;
 
-            //total de todos los productos
-            const total = carrito.obtenerCarrito().reduce(
-                (acc, prod) => acc + (prod.unidades * prod.price),
-                0
-            );
-
-            totalPrice.textContent = total.toFixed(2) + currency;
-        }
     }
 
 
