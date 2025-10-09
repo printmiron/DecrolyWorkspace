@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BackCarritoApplication<BackCarrito>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.decroly.backcarrito.BackCarritoApplication",
+            "projectName": "BackCarrito",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

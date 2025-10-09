@@ -9,28 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const carrito = new Carrito();
     let currency = "€"; //valor por defecto
 
-    async function obtenerProductos() {
-        try {
-            const respuesta = await fetch("./data.json"); //hacer o ralizar solicitudas al api
-            const data = await respuesta.json();
 
-            //guardar moneda
-            currency = data.currency;
 
-            //
-            carrito.productos = data.productos.map(p => ({
-                ...p,
-                price: parseFloat(p.price), //convertir el precio en numero porque se trae como texto
-                unidades: 0 //como no se trae la cantidad de los unidades los definimos como "0"
-            }));
-
-            //creamos las filas de la tabla para los productos traidos
-            carrito.productos.forEach(prod => crearFilaProducto(prod));
-
-        } catch (error) {
-            console.log("Error al obtener los productos: ", error);
-        }
-    }
 
     //crear fila producto
     function crearFilaProducto(producto) {
@@ -112,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // columna 2
         const tdTotalD = document.createElement("td");
         tdTotalD.classList.add("price-total-prod");
-        
+
         trD.append(tdTotalD);
 
         // agregar fila al thead
@@ -121,14 +101,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-        
+
+
+
+
+
 
         //actualizar los totales individuales de cada producto y de todos los productos juntos
         function actualizarTotales() {
 
             const totalProd = producto.unidades * producto.price;
 
-            //total de cada producto
+            //total de cada producto, en parete izquierda y derecha
             tdTotal.textContent = totalProd.toFixed(2) + currency;
             tdTotalD.textContent = totalProd.toFixed(2) + currency;
 
@@ -158,8 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
             input.value = producto.unidades;
             carrito.actualizarUnidades(producto.SKU, producto.unidades);
             actualizarTotales();
-
-
         });
 
         btnMenos.addEventListener("click", () => {
@@ -187,11 +169,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+    //cargar productos del carrito
+
+    try {
+        fetch('http://localhost:8080/api/carrito')
+            .then(response => response.json())
+            .then(data => {
+                //guardamos la moneda desde api
+                currency = data.currency;
+                //for para recorrer los productos
+                data.products.forEach(producto => {
+                    producto.unidades = 0; //inicializamos las unidades a 0
+                    carrito.productos.push(producto); //añadimos el producto al carrito
+                    crearFilaProducto(producto); //creamos la fila del producto
+                });
+            });
+    } catch {
+        console.log("Error al cargar los productos del carrito");
+    }
 
 
 
-    //cargamos los productos   
-    obtenerProductos();
 
 });
 
