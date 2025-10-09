@@ -9,6 +9,26 @@
             "projectName": "BackCarrito",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AlmacenlibrosApplication<almacenlibros>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "AlmacenLibros.AlmacenlibrosApplication",
+            "projectName": "almacenlibros",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AlmacenLibrosApplication<almacenlibros>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.almacenlibros.almacenlibros.AlmacenLibrosApplication",
+            "projectName": "almacenlibros",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
