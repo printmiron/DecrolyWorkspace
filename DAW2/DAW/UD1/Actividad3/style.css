@@ -1,0 +1,18 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.img1{
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+.navbar{
+    background-color: #ffffff;
+}
+
+.container-pres{
+   padding-left: 100px;
+   padding-right: 100px;
+}
