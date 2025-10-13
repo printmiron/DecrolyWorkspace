@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // =========== parte derecha ===========
         const trD = document.createElement("tr");
+        trD.style.display = "none"; // oculto al principio
 
         // columna 1
         const titleD = document.createElement("p");
@@ -109,23 +110,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //actualizar los totales individuales de cada producto y de todos los productos juntos
         function actualizarTotales() {
-
             const totalProd = producto.unidades * producto.price;
 
-            //total de cada producto, en parete izquierda y derecha
+            // mostrar / ocultar en parte derecha
+            if (producto.unidades > 0) {
+                trD.style.display = ""; // mostrar
+                tdTotalD.textContent = `${totalProd.toFixed(2)}${currency}`;
+            } else {
+                trD.style.display = "none"; // ocultar si 0
+            }
+
+            // actualizar totales individuales
             tdTotal.textContent = totalProd.toFixed(2) + currency;
-            tdTotalD.textContent = totalProd.toFixed(2) + currency;
 
-            //total de todos los productos
-            const total = carrito.obtenerCarrito().reduce(
-                (acc, prod) => acc + (prod.unidades * prod.price),
-                0
-            );
-
+            // calcular total global
+            let total = 0;
+            carrito.obtenerCarrito().forEach(p => {
+                total += p.unidades * p.price;
+            });
             totalPrice.textContent = total.toFixed(2) + currency;
-
-
-
         }
 
 
@@ -177,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 //guardamos la moneda desde api
                 currency = data.currency;
-                //for para recorrer los productos
+                //forEach para recorrer los productos
                 data.products.forEach(producto => {
                     producto.unidades = 0; //inicializamos las unidades a 0
                     carrito.productos.push(producto); //añadimos el producto al carrito

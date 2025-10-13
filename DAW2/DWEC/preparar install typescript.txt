@@ -1,0 +1,14 @@
+npm install -g npm
+npm install -g ts-node para instalar java fuera de la web
+npm install -g typescript 
+
+npm -v
+tsc -v
+
+instalar angular
+npm install -g @angular/cli
+ng version 
+
+ng new "Proyecto nombre"
+
+cd Documents/DecrolyWorkspace/DAW2/DWEC/UD3
