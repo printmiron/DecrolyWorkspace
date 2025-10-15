@@ -1,0 +1,277 @@
+<?php
+// ==========================================================
+//            EXAMEN DE PHP - NIVEL BÁSICO / MEDIO
+// ==========================================================
+
+
+// =============================
+//  🔹 PRIMERA PARTE (básico)
+// =============================
+
+// Ejercicio 1: Calcular el área de un triángulo
+$base = 10;
+$altura = 5;
+$area = ($base * $altura) / 2;
+echo "1️⃣ El área del triángulo es: $area<br><br>";
+
+// Ejercicio 2: Comparar dos números y mostrar el mayor
+$a = 15;
+$b = 22;
+echo "2️⃣ El número mayor es: " . (($a > $b) ? $a : $b) . "<br><br>";
+
+// Ejercicio 3: Mostrar los números pares entre 1 y 20
+echo "3️⃣ Números pares entre 1 y 20: ";
+for ($i = 1; $i <= 20; $i++) {
+    if ($i % 2 == 0) echo "$i ";
+}
+echo "<br><br>";
+
+// Ejercicio 4: Contar las letras de una palabra
+$palabra = "Programacion";
+echo "4️⃣ La palabra '$palabra' tiene " . strlen($palabra) . " letras.<br><br>";
+
+// Ejercicio 5: Crear un array de edades y calcular el promedio
+$edades = [18, 21, 25, 30, 27];
+$promedio = array_sum($edades) / count($edades);
+echo "5️⃣ Promedio de edades: $promedio<br><br>";
+
+
+// =============================
+//  🔹 SEGUNDA PARTE (intermedio)
+// =============================
+
+// Ejercicio 6: Función para contar vocales en una frase
+function contarVocales($texto) {
+    $vocales = "aeiou";
+    $contador = 0;
+    $texto = strtolower($texto);
+    for ($i = 0; $i < strlen($texto); $i++) {
+        if (strpos($vocales, $texto[$i]) !== false) {
+            $contador++;
+        }
+    }
+    return $contador;
+}
+$frase = "El lenguaje PHP es muy útil";
+echo "6️⃣ La frase tiene " . contarVocales($frase) . " vocales.<br><br>";
+
+// Ejercicio 7: Mostrar los nombres ordenados alfabéticamente
+$nombres = ["Carlos", "Ana", "Beatriz", "Diego"];
+sort($nombres);
+echo "7️⃣ Nombres ordenados: ";
+print_r($nombres);
+echo "<br><br>";
+
+// Ejercicio 8: Crear tabla HTML de productos con sus precios y total
+$productos = [
+    ["nombre" => "Ratón", "precio" => 15.5],
+    ["nombre" => "Teclado", "precio" => 25],
+    ["nombre" => "Pantalla", "precio" => 130],
+];
+$total = 0;
+echo "8️⃣ <table border='1' cellpadding='5'>";
+echo "<tr><th>Producto</th><th>Precio (€)</th></tr>";
+foreach ($productos as $p) {
+    echo "<tr><td>{$p['nombre']}</td><td>{$p['precio']}</td></tr>";
+    $total += $p['precio'];
+}
+echo "<tr><td><strong>Total</strong></td><td><strong>$total</strong></td></tr>";
+echo "</table><br><br>";
+
+// Ejercicio 9: Validar si una dirección web es correcta
+$url = "https://www.openai.com";
+if (filter_var($url, FILTER_VALIDATE_URL)) {
+    echo "9️⃣ La URL ($url) es válida.<br><br>";
+} else {
+    echo "9️⃣ La URL ($url) no es válida.<br><br>";
+}
+
+
+// =============================
+//  🔹 TERCERA PARTE (proyecto)
+// =============================
+// 🎮 Simulación: “Adivina el número secreto”
+// PHP genera un número aleatorio entre 1 y 50
+// El usuario tiene 5 intentos simulados (automáticos) para adivinar
+
+echo "🎯 <strong>JUEGO: Adivina el número secreto</strong><br>";
+
+$numeroSecreto = rand(1, 50);
+$intentos = 5;
+$ganador = false;
+
+for ($i = 1; $i <= $intentos; $i++) {
+    $intento = rand(1, 50); // simulación del intento del jugador
+    echo "Intento $i: el jugador dice $intento... ";
+
+    if ($intento == $numeroSecreto) {
+        echo "✅ ¡Correcto! Has adivinado el número secreto ($numeroSecreto) en el intento $i.<br>";
+        $ganador = true;
+        break;
+    } elseif ($intento < $numeroSecreto) {
+        echo "El número secreto es mayor.<br>";
+    } else {
+        echo "El número secreto es menor.<br>";
+    }
+}
+
+if (!$ganador) {
+    echo "❌ No adivinaste el número. El número secreto era $numeroSecreto.<br>";
+}
+
+echo "<br><br>Fin del examen 🧾";
+?>
+
+
+
+
+<?php
+// ===========================================================
+//          EXAMEN DE PHP - MODELO 2 (NIVEL BÁSICO / MEDIO)
+// ===========================================================
+
+
+// =============================
+//  🔹 PRIMERA PARTE (básico)
+// =============================
+
+// Ejercicio 1: Calcular el perímetro y el área de un rectángulo
+$ancho = 8;
+$alto = 5;
+$perimetro = 2 * ($ancho + $alto);
+$area = $ancho * $alto;
+echo "1️⃣ Perímetro: $perimetro, Área: $area<br><br>";
+
+// Ejercicio 2: Determinar si un número es múltiplo de otro
+$num1 = 20;
+$num2 = 5;
+if ($num1 % $num2 == 0) {
+    echo "2️⃣ $num1 es múltiplo de $num2.<br><br>";
+} else {
+    echo "2️⃣ $num1 no es múltiplo de $num2.<br><br>";
+}
+
+// Ejercicio 3: Mostrar la tabla del 7
+echo "3️⃣ Tabla del 7:<br>";
+for ($i = 1; $i <= 10; $i++) {
+    echo "7 x $i = " . (7 * $i) . "<br>";
+}
+echo "<br>";
+
+// Ejercicio 4: Mostrar la palabra más larga en una frase
+$frase = "El desarrollo web con PHP es muy interesante";
+$palabras = explode(" ", $frase);
+$masLarga = "";
+foreach ($palabras as $p) {
+    if (strlen($p) > strlen($masLarga)) {
+        $masLarga = $p;
+    }
+}
+echo "4️⃣ La palabra más larga es: '$masLarga'<br><br>";
+
+// Ejercicio 5: Crear un array con números y mostrar el mayor y el menor
+$numeros = [3, 9, 2, 15, 7];
+echo "5️⃣ Número mayor: " . max($numeros) . ", menor: " . min($numeros) . "<br><br>";
+
+
+// =============================
+//  🔹 SEGUNDA PARTE (intermedio)
+// =============================
+
+// Ejercicio 6: Función para invertir un texto manualmente
+function invertirTexto($texto) {
+    $invertido = "";
+    for ($i = strlen($texto) - 1; $i >= 0; $i--) {
+        $invertido .= $texto[$i];
+    }
+    return $invertido;
+}
+$texto = "PHP es divertido";
+echo "6️⃣ Texto original: $texto<br>";
+echo "Texto invertido: " . invertirTexto($texto) . "<br><br>";
+
+// Ejercicio 7: Calcular cuántos números son pares en un array
+$valores = [4, 11, 8, 23, 16, 5];
+$pares = 0;
+foreach ($valores as $v) {
+    if ($v % 2 == 0) $pares++;
+}
+echo "7️⃣ Hay $pares números pares en el array.<br><br>";
+
+// Ejercicio 8: Crear matriz 3x3 y mostrar suma de filas y columnas
+$matriz = [
+    [2, 4, 6],
+    [1, 3, 5],
+    [7, 8, 9]
+];
+echo "8️⃣ Matriz y sumas:<br>";
+for ($i = 0; $i < 3; $i++) {
+    $sumaFila = array_sum($matriz[$i]);
+    echo "Fila $i suma: $sumaFila<br>";
+}
+for ($j = 0; $j < 3; $j++) {
+    $sumaCol = 0;
+    for ($i = 0; $i < 3; $i++) $sumaCol += $matriz[$i][$j];
+    echo "Columna $j suma: $sumaCol<br>";
+}
+echo "<br>";
+
+// Ejercicio 9: Validar una contraseña segura
+$contraseña = "Clave123!";
+if (strlen($contraseña) >= 8 && preg_match('/[A-Z]/', $contraseña) && preg_match('/[0-9]/', $contraseña)) {
+    echo "9️⃣ La contraseña '$contraseña' es segura.<br><br>";
+} else {
+    echo "9️⃣ La contraseña '$contraseña' no cumple los requisitos.<br><br>";
+}
+
+
+// =============================
+//  🔹 TERCERA PARTE (proyecto)
+// =============================
+// 🎯 Proyecto: “Simulación de lanzamiento de dados”
+//
+// Se lanzan 2 dados durante 10 rondas.
+// Se muestra el resultado de cada ronda y se determina quién gana más.
+
+echo "🎲 <strong>JUEGO: Lanzamiento de dados</strong><br>";
+
+$resultados = [
+    "Jugador 1" => 0,
+    "Jugador 2" => 0,
+    "Empates" => 0
+];
+
+$rondas = 10;
+
+for ($r = 1; $r <= $rondas; $r++) {
+    $dado1 = rand(1, 6);
+    $dado2 = rand(1, 6);
+    echo "Ronda $r: Jugador 1 = $dado1, Jugador 2 = $dado2 → ";
+
+    if ($dado1 > $dado2) {
+        echo "Gana Jugador 1<br>";
+        $resultados["Jugador 1"]++;
+    } elseif ($dado2 > $dado1) {
+        echo "Gana Jugador 2<br>";
+        $resultados["Jugador 2"]++;
+    } else {
+        echo "Empate<br>";
+        $resultados["Empates"]++;
+    }
+}
+
+echo "<br>Resultados finales:<br>";
+echo "Jugador 1: {$resultados['Jugador 1']} rondas ganadas<br>";
+echo "Jugador 2: {$resultados['Jugador 2']} rondas ganadas<br>";
+echo "Empates: {$resultados['Empates']}<br>";
+
+if ($resultados["Jugador 1"] > $resultados["Jugador 2"]) {
+    echo "<br>🏆 El ganador final es el Jugador 1!<br>";
+} elseif ($resultados["Jugador 2"] > $resultados["Jugador 1"]) {
+    echo "<br>🏆 El ganador final es el Jugador 2!<br>";
+} else {
+    echo "<br>🤝 Empate general!<br>";
+}
+
+echo "<br><br>Fin del examen 🧾";
+?>
