@@ -11,7 +11,7 @@
 // Ejercicio 1: Calcular el área de un triángulo
 $base = 10;
 $altura = 5;
-$area = ($base * $altura) / 2;
+$area = ($base * $altura) / 2;		
 echo "1️⃣ El área del triángulo es: $area<br><br>";
 
 // Ejercicio 2: Comparar dos números y mostrar el mayor
