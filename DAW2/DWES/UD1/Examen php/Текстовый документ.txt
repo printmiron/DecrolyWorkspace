@@ -275,3 +275,138 @@ if ($resultados["Jugador 1"] > $resultados["Jugador 2"]) {
 
 echo "<br><br>Fin del examen 🧾";
 ?>
+
+
+<?php
+// ==========================================================
+//          EXAMEN DE PHP - MODELO 3 (FINAL DE PRÁCTICA)
+// ==========================================================
+
+
+// =============================
+//  🔹 PRIMERA PARTE (básico)
+// =============================
+
+// Ejercicio 1: Calcular el doble y el triple de un número
+$numero = 9;
+echo "1️⃣ El doble de $numero es " . ($numero * 2) . " y el triple es " . ($numero * 3) . "<br><br>";
+
+// Ejercicio 2: Mostrar si un año es bisiesto
+$anio = 2024;
+if (($anio % 4 == 0 && $anio % 100 != 0) || $anio % 400 == 0) {
+    echo "2️⃣ El año $anio es bisiesto.<br><br>";
+} else {
+    echo "2️⃣ El año $anio no es bisiesto.<br><br>";
+}
+
+// Ejercicio 3: Mostrar los primeros 10 números de la serie Fibonacci
+echo "3️⃣ Serie Fibonacci: ";
+$a = 0; 
+$b = 1;
+for ($i = 0; $i < 10; $i++) {
+    echo $a . " ";
+    $siguiente = $a + $b;
+    $a = $b;
+    $b = $siguiente;
+}
+echo "<br><br>";
+
+// Ejercicio 4: Convertir grados Celsius a Fahrenheit
+$celsius = 25;
+$fahrenheit = ($celsius * 9/5) + 32;
+echo "4️⃣ $celsius °C son $fahrenheit °F<br><br>";
+
+// Ejercicio 5: Calcular el total con IVA incluido
+$precio = 100;
+$iva = 0.21;
+$total = $precio + ($precio * $iva);
+echo "5️⃣ El total con IVA del $precio€ es: $total€<br><br>";
+
+
+// =============================
+//  🔹 SEGUNDA PARTE (intermedio)
+// =============================
+
+// Ejercicio 6: Función que devuelve la palabra más corta de una frase
+function palabraMasCorta($frase) {
+    $palabras = explode(" ", $frase);
+    $masCorta = $palabras[0];
+    foreach ($palabras as $palabra) {
+        if (strlen($palabra) < strlen($masCorta)) {
+            $masCorta = $palabra;
+        }
+    }
+    return $masCorta;
+}
+$texto = "Aprender PHP mejora tus habilidades de programación";
+echo "6️⃣ La palabra más corta es: '" . palabraMasCorta($texto) . "'<br><br>";
+
+// Ejercicio 7: Calcular el salario semanal (40h base, extras al 50%)
+$horas = 45;
+$tarifa = 10;
+$salario = ($horas <= 40) ? ($horas * $tarifa) : (40 * $tarifa + ($horas - 40) * ($tarifa * 1.5));
+echo "7️⃣ El salario por $horas horas trabajadas es: $salario€<br><br>";
+
+// Ejercicio 8: Array de alumnos con notas y calcular promedio general
+$alumnos = [
+    ["nombre" => "Pavel", "nota" => 7.5],
+    ["nombre" => "Ana", "nota" => 8.2],
+    ["nombre" => "Carlos", "nota" => 6.9],
+    ["nombre" => "Lucía", "nota" => 9.1]
+];
+$suma = 0;
+foreach ($alumnos as $a) $suma += $a["nota"];
+$promedio = $suma / count($alumnos);
+echo "8️⃣ Promedio general de notas: " . round($promedio, 2) . "<br><br>";
+
+// Ejercicio 9: Validar un número de teléfono (9 dígitos)
+$telefono = "654123789";
+if (preg_match('/^[0-9]{9}$/', $telefono)) {
+    echo "9️⃣ El número $telefono es válido.<br><br>";
+} else {
+    echo "9️⃣ El número $telefono NO es válido.<br><br>";
+}
+
+
+// =============================
+//  🔹 TERCERA PARTE (proyecto)
+// =============================
+// 🚗 Proyecto: “Simulador de carreras”
+//
+// 3 coches compiten en 5 vueltas. Cada vuelta se genera un tiempo aleatorio.
+// Gana el coche con menor tiempo total.
+
+echo "🏁 <strong>SIMULADOR DE CARRERA DE COCHES</strong><br><br>";
+
+$coches = [
+    "Coche A" => [],
+    "Coche B" => [],
+    "Coche C" => []
+];
+
+$vueltas = 5;
+
+// Generar tiempos aleatorios
+foreach ($coches as $nombre => &$tiempos) {
+    for ($i = 1; $i <= $vueltas; $i++) {
+        $tiempos[$i] = rand(50, 120); // tiempo entre 50 y 120 segundos
+    }
+}
+unset($tiempos); // buena práctica para evitar referencias activas
+
+// Mostrar tiempos y calcular total
+$resultados = [];
+foreach ($coches as $nombre => $tiempos) {
+    $total = array_sum($tiempos);
+    $resultados[$nombre] = $total;
+    echo "<strong>$nombre</strong>: ";
+    echo implode("s, ", $tiempos) . "s → Total: {$total}s<br>";
+}
+
+// Determinar el ganador
+$ganador = array_keys($resultados, min($resultados))[0];
+echo "<br>🏆 El ganador de la carrera es: <strong>$ganador</strong> con " . min($resultados) . " segundos.<br>";
+
+echo "<br><br>Fin del examen 🧾";
+?>
+
