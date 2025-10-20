@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pistas de Pádel</title>
+</head>
+
+<body>
+    <h1>Gestión de Pistas de Pádel</h1>
+    <!-- Formulario para añadir una nueva pista -->
+    <h2>Añadir Nueva Pista</h2>
+    <form action="/addPista" method="post">
+        <label for="nombrePista">Nombre de la pista:</label>
+        <input type="text" id="nombrePista" name="nombrePista" required><br><br>
+        <!-- Campo para las horas disponibles -->
+        <label for="horas">Horas disponibles (separadas por comas):</label>
+        <input type="text" id="horas" name="horas" required><br><br>
+        <button type="submit">Añadir Pista</button>
+    </form>
+    <!-- Listado de pistas disponibles -->
+    <h2>Pistas Disponibles</h2>
+    <ul id="listaPistas">
+        <!-- Aquí se mostrarán las pistas disponibles -->
+    </ul>
+</body>
+
+</html>
