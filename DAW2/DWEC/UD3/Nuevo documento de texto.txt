@@ -11,7 +11,7 @@ ng version
 
 ng new "Proyecto nombre"
 
-cd Documents/DecrolyWorkspace/DAW2/DWEC/UD3
+cd /c/Users/daw2/Documents/DecrolyWorkspace/DAW2/DWEC/UD3/
 
 ------------------
 ng new NombreProyecto --skip-test
