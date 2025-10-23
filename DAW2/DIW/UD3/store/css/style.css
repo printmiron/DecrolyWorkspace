@@ -1,3 +1,109 @@
+
+/*----------------------LOGIN------------------------*/
+#login{
+    display: none;/*Ocultar el contenedor por defecto*/
+    position: fixed; /*Mantener el contenedor en la misma posicion al hacer scroll*/
+    z-index: 1; /*Asegurarse que el contenedor este por encima de otros elementos*/
+    left: 0;
+    top: 0;
+    width: 100%; /*Ancho completo*/
+    height: 100%; /*Alto completo*/
+    overflow: auto; /*Habilitar scroll si es necesario*/
+    background-color: rgba(0, 0, 0, 0.7); /*Color de fondo negro con opacidad*/
+}
+
+
+.modal .container{
+    color: white;
+    font-family:'Staatliches', cursive;
+    border-radius: 15px;
+    background-color: #9C27B0; /*Color fondo*/
+    margin: 15% auto;
+    padding: 20px; /*Padding y margin para centrar el contenedor de login*/
+    width: 350px;
+  
+}
+
+.boton-cerrar{
+    display: flex;
+    justify-content: flex-end; /*Mover el boton de cerrar a la derecha*/
+}
+
+.cerrar{
+
+    border: 0;
+    background-color: #947600;
+    border-radius: 5px;
+}
+
+.cerrar:hover{
+    background-color: #ffcc00;
+}
+
+.datos-usuario{
+    
+}
+
+.login, .contrasena{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login_style, .contrasena_style{
+    margin-top: 10px;
+    border: none;
+    background-color: rgb(206, 206, 206);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.login_style:focus, .contrasena_style:focus{
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+/*Animacion para el login*/
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+.boton-crear{
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.crear{
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #947600;
+    border-bottom: 1px ;
+}
+
+.crear:hover{
+   background-color: #ffcc00;
+}
+
+
+
+/*----------------------PAGINA WEB------------------------*/
+
 :root {
     --primario: #9C27B0;
     --primarioOscuro: #89119D;

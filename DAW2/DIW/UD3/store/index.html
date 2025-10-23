@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header class="header">
         <a href="index.html">
@@ -14,34 +16,53 @@
     </header>
 
     <nav class="navegacion">
-        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
-        <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+        <!-- Creamos los enlaces de la navegacion, he metido aparte los enlaces del boton login -->
+        <div class="navegacion__enlaces">
+            <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
+            <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+        </div>
 
-        
+
+
         <!-- Creamos el boton que si lo pulsamos nos sale el contenedor con id: login  -->
         <button onclick="document.getElementById('login').style.display='block'">Login</button>
 
         <!-- Contenedor despues de pulsar el boton -->
         <div id="login" class="modal">
-            <button onClick="document.getElementById('login').style.display='none'" class="cerrar" title="Cerrar Login">X</button>
 
-            <!-- Contenido del contenedor (el forum) -->
-             <form action="modal-content animate">
-                <div class="container">
+            <!-- Contenido del contenedor (el forum), el boton cerrar, datos de usuario y boton crear tienen sus contenedores -->
+            <form action="index.html">
 
-                    <div class="login">
-                        <label for="login" >Usuario</label>
-                        <input type="text" placeholder="Introduce el usuario" name="login" required>
+                <div class="container animate">
+
+                    <div class="boton-cerrar">
+                        <!-- Boton para cerrar el contenedor -->
+                        <button onClick="document.getElementById('login').style.display='none'" class="cerrar"
+                            title="Cerrar Login">✕</button>
                     </div>
 
-                    <div class="contrasena">
-                        <label for="contrasena">Contraseña</label>
-                        <input type="password" placeholder="Introduce la contraseña" name="contrasena" required>
+                    <div class="datos-usuario">
+
+                        <div class="login">
+                            <label for="login">Usuario</label>
+                            <input class="login_style" type="text" placeholder="Introduce el usuario" name="login" required>
+                        </div>
+
+                        <div class="contrasena">
+                            <label for="contrasena">Contraseña</label>
+                            <input class="contrasena_style" type="password" placeholder="Introduce la contraseña" name="contrasena" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </div>
+
                     </div>
 
-                    <button type="submit">Crear</button>
+                    <div class="boton-crear">
+                        <button class="crear" type="submit">Iniciar sesión</button>
+                    </div>
+                    
+
                 </div>
-             </form>
+            </form>
 
         </div>
 
@@ -59,7 +80,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/2.jpg" alt="imagen camisa">
@@ -68,7 +89,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/3.jpg" alt="imagen camisa">
@@ -77,7 +98,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/4.jpg" alt="imagen camisa">
@@ -86,7 +107,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/5.jpg" alt="imagen camisa">
@@ -95,7 +116,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/6.jpg" alt="imagen camisa">
@@ -104,7 +125,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/7.jpg" alt="imagen camisa">
@@ -113,7 +134,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/8.jpg" alt="imagen camisa">
@@ -122,7 +143,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/9.jpg" alt="imagen camisa">
@@ -131,7 +152,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/10.jpg" alt="imagen camisa">
@@ -140,7 +161,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/11.jpg" alt="imagen camisa">
@@ -149,7 +170,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/12.jpg" alt="imagen camisa">
@@ -158,7 +179,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/13.jpg" alt="imagen camisa">
@@ -167,7 +188,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
             <div class="producto">
                 <a href="producto.html">
                     <img class="producto__imagen" src="img/14.jpg" alt="imagen camisa">
@@ -176,7 +197,7 @@
                         <p class="producto__precio">$25</p>
                     </div>
                 </a>
-            </div>  <!--.producto-->
+            </div> <!--.producto-->
 
             <div class="grafico grafico--camisas"></div>
             <div class="grafico grafico--node"></div>
@@ -185,6 +206,7 @@
 
     <footer class="footer">
         <p class="footer__texto">Todos los derechos Reservados 2024.</p>
-    </footer>    
+    </footer>
 </body>
+
 </html>
