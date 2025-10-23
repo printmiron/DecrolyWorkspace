@@ -25,14 +25,15 @@ public class addPista {
     }
 
     @PostMapping("/addPista")
-    public String addPista (@RequestParam ("nombrePista") @RequestParam("horas")) {
+    public String addPista (@RequestParam ("nombrePista") String nombrePistas, @RequestParam("horas") String horas) {
         
+        List<String> 
         
-        return entity;
+        return "/";
     }
     
 
-   
+
     
     
 
