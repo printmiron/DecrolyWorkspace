@@ -23,6 +23,12 @@
     <h2>Pistas Disponibles</h2>
     <ul id="listaPistas">
         <!-- Aquí se mostrarán las pistas disponibles -->
+         <ul>
+            <li th:each = "pista: ${pistas}" >
+                <h3 th:text = "${pista.nombrePista}"></h3>
+                <p th:text = "${pista.horasDisponibles}"></p>
+            </li>
+         </ul>
     </ul>
 </body>
 

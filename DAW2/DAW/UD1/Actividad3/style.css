@@ -4,15 +4,36 @@
 
 .img1{
     width: 100%;
-    height: auto;
     border-radius: 15px;
 }
 
 .navbar{
-    background-color: #ffffff;
+    background-color: #000000;
+}
+
+.nav-item:hover{
+    background-color: #2486ff;
+    border-radius: 10px;
+}
+
+.container-fluid{
+    background-color: black;
 }
 
 .container-pres{
    padding-left: 100px;
    padding-right: 100px;
 }
+
+
+.sobre{
+    display: flex;
+    justify-content: center;
+    padding-left: 20%;
+    padding-right: 20%; 
+}
+
+.text-copy{
+    color: white;
+}
+

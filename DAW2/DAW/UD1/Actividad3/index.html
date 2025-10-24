@@ -8,13 +8,14 @@
     <title>GameDev Academy</title>
 
     <link rel="stylesheet" href="style.css">
+    
     <!-- BOOTSTRAP CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- BOOTSTRAP ICONS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 </head>
-    
+
 <header>
     <nav class="navbar navbar-expand-lg">
 
@@ -23,22 +24,22 @@
             <a class="navbar-brand" href="#">
                 <img src="img/logo.png" alt="Logo" width="70" height=auto>
             </a>
-            
+
             <div class="collapse navbar-collapse d-felex justify-content-center " id="navbarNav">
                 <ul class="navbar-nav">
-                    
+
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
+                        <a class="nav-link text-white" href="index.html">Inicio</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="cursos.html">Cursos</a>
+                        <a class="nav-link text-white" href="cursos.html">Cursos</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="inscripcion.html">Inscripciones</a>
+                        <a class="nav-link text-white" href="inscripcion.html">Inscripciones</a>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>
@@ -47,31 +48,84 @@
 
 <body>
     <div class="container-pres pt-5">
-       <div class="row">
+        <div class="row">
 
-        <div class="col-7">
-            <img class="img1" src="img/img1.png">
+            <div class="col-7">
+                <img class="img1" src="img/img1.png">
+            </div>
+
+            <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+                <h1>GameDev Academy</h1>
+                <p>Bienvenido a GameDev Academy, donde aprenderás a crear tus propios videojuegos!</p>
+            </div>
+
         </div>
-
-        <div class="col-3 d-felex justify-content-center align-items-center flex-column">
-            <h1>GameDev Academy</h1>
-            <p>Bienvenido a GameDev Academy, donde aprenderás a crear tus propios videojuegos!</p>
-        </div>
-
-       </div>   
     </div>
 
-    <div class="container-sobre d-felex justify-content-center ">
+    <div class="container-sobre mt-5 d-flex justify-content-center">
         <h1>Sobre bosotros</h1>
     </div>
 
+
+    <div class="sobre mt-4 text-center">
+
+        <p class="text-sobre">
+            En GameDev Academy creemos que cualquiera puede crear videojuegos si cuenta con las herramientas y el
+            acompañamiento adecuado. Somos una academia dedicada a la formación en el desarrollo de videojuegos,
+            combinando creatividad, programación y diseño. <br>
+            <br>
+            Nuestro objetivo es guiar a estudiantes desde los primeros pasos hasta la creación de proyectos completos,
+            utilizando motores profesionales como Unity, Unreal Engine y herramientas de arte digital. <br>
+            Nuestros cursos están diseñados para ser prácticos, accesibles y orientados a resultados, permitiendo
+            aprender haciendo. <br>
+            <br>
+            Contamos con instructores experimentados en la industria, apasionados por enseñar y compartir conocimiento
+            para ayudar a nuevos desarrolladores a construir su futuro en el mundo del gaming. <br>
+            <br>
+            Tu historia en el desarrollo de videojuegos comienza aquí.<br>
+            <br>
+            ¿Listo para crear tu propio juego? 🎮
+        </p>
+
+    </div>
+
+
+
     <div class="container">
-        <div></div>
+        <div>
+
+        </div>
     </div>
 </body>
 
 <footer>
 
+    <div class="text-white p-3" style="background-color: #000;">
+
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- redes sociales (izquierda) -->
+            <section>
+                <a class="btn text-white btn-floating m-1" style="background-color:#2486ff;" href="#"><i class="bi bi-facebook"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color:#2486ff;" href="#"><i class="bi bi-twitter"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color:#2486ff;" href="#"><i class="bi bi-google"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color:#2486ff;" href="#"><i class="bi bi-instagram"></i></a>
+                <a class="btn text-white btn-floating m-1" style="background-color:#2486ff;" href="#"><i class="bi bi-github"></i></a>
+            </section>
+
+            <!-- texto en el centro -->
+            <p class="m-0 text-center flex-grow-1">
+                © 2025 Gamedev Academy
+            </p>
+
+            <!-- espacio vacío derecha (para mantener balance) -->
+            <div style="width: 275px;"></div>
+
+        </div>
+    </div>
+
 </footer>
+
+
 
 </html>

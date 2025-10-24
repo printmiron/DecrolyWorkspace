@@ -1,8 +1,6 @@
 package com.gestion.gestionpistas;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 
-public class addPista {
+public class ControllerPista {
     
     private ArrayList<Pista> listaPistas = new ArrayList<>();
     
@@ -25,11 +23,13 @@ public class addPista {
     }
 
     @PostMapping("/addPista")
-    public String addPista (@RequestParam ("nombrePista") String nombrePistas, @RequestParam("horas") String horas) {
+    public String addPista (@RequestParam ("nombrePista") String nombrePistas, 
+                            @RequestParam("horas") String horasDisponibles) {
         
-        List<String> 
+        Pista newPista = new Pista(nombrePistas, horasDisponibles);
+        listaPistas.add(newPista);
         
-        return "/";
+        return "index.html";
     }
     
 
