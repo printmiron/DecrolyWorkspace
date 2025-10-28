@@ -29,7 +29,7 @@ public class ControllerPista {
         Pista newPista = new Pista(nombrePistas, horasDisponibles);
         listaPistas.add(newPista);
         
-        return "index.html";
+        return "redirect:/";
     }
     
 
