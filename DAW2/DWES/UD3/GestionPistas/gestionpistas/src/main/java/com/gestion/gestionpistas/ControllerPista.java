@@ -14,22 +14,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public class ControllerPista {
     
-    private ArrayList<Pista> listaPistas = new ArrayList<>();
+    private ArrayList<Pista> pistas = new ArrayList<>();
     
     @GetMapping ("/")
     public String formularioPista(Model model) {
-        model.addAttribute("pistas", listaPistas);
+        model.addAttribute("pistas", pistas);
         return "index";
     }
 
     @PostMapping("/addPista")
     public String addPista (@RequestParam ("nombrePista") String nombrePistas, 
-                            @RequestParam("horas") String horasDisponibles) {
-        
+                            @RequestParam("horas") String horasDisponibles,
+                            Model model) {
         Pista newPista = new Pista(nombrePistas, horasDisponibles);
-        listaPistas.add(newPista);
+        pistas.add(newPista);
+        model.addAttribute("pistas", pistas);
         
-        return "redirect:/";
+        return "index";
     }
     
 
