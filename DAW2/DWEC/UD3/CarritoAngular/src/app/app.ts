@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
+import { PorductCard } from "./cards/porduct-card/porduct-card";
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [PorductCard],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
