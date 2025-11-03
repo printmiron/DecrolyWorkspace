@@ -5,7 +5,32 @@
   "projects": {
     "CarritoAngular": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,10 +49,9 @@
                 "input": "public"
               }
             ],
-             "styles": [
-              "src/styles.css", "node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js"]
+            "styles": [
+              "src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,8 +113,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "8cf3cce1-3be5-416e-9c02-7e7d8b46871f"
   }
 }

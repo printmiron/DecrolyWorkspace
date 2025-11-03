@@ -9,7 +9,7 @@ instalar angular
 npm install -g @angular/cli
 ng version 
 
-ng new "Proyecto nombre"
+ng new "Proyecto nombre" --skip-tests
 
 cd /c/Users/daw2/Documents/DecrolyWorkspace/DAW2/DWEC/UD3/
 
