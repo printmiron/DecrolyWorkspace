@@ -11,7 +11,10 @@ ng version
 
 ng new "Proyecto nombre" --skip-tests
 
+ng g c "ruta/nombre" --skip-tests
+
 cd /c/Users/daw2/Documents/DecrolyWorkspace/DAW2/DWEC/UD3/
+/c/Users/cloud/Documents/DecrolyWorkspace/DAW2/DWEC/UD3/
 
 ------------------
 ng new NombreProyecto --skip-test

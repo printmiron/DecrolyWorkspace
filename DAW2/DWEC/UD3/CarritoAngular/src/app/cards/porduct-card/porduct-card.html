@@ -1,1 +1,31 @@
-<p>porduct-card works!</p>
+
+
+<div class="prod-card" *ngFor="let producto of productos">
+
+    <div class="product-name">
+        <h2>{{ productos.nombre }}</h2>
+        <p>{{ productos.ref }}</p>
+    </div>
+
+    <div class="product-input">
+
+        <button class="boton-cant" (click)="disminuirCantidad">-</button>
+
+        <input  class="input-cant" 
+                type="number" 
+                [value]="cantidad" 
+                (input)="onCambiarCantidad">
+
+        <button class="boton-cant" (click)="aumentarCantidad">+</button>
+
+    </div>
+    
+    <div class="product-unidad">
+        <p>1</p>
+    </div>
+
+    <div class="product-total">
+        <p>1</p>
+    </div>
+
+</div>

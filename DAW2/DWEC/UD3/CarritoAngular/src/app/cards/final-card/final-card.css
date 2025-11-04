@@ -1,0 +1,17 @@
+.final-card{
+    background-color: var(--white-color);
+    border: solid 1px var(--black-color);
+    border-radius: 5px;
+
+    padding: 10px 10px;
+}
+
+.total{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.total-final{
+    display: grid;
+    justify-content: end;
+}
