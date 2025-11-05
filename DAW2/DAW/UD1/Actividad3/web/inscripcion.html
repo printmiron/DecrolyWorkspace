@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscripciones</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Inscripción a cursos</h1>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="sobre.html">Sobre Nosotros</a>
+    <a href="inscripcion.html">Inscripciones</a>
+  </nav>
+</header>
+
+<main>
+  <form action="http://localhost:3000/inscribirse" method="POST">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Curso:</label>
+    <select name="curso">
+      <option>Unity</option>
+      <option>Unreal Engine</option>
+      <option>Desarrollo 2D</option>
+    </select>
+
+    <button type="submit">Enviar inscripción</button>
+  </form>
+</main>
+
+<footer>© 2025 Academia GameDev</footer>
+</body>
+</html>
