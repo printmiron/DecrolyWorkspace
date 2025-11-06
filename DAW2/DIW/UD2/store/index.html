@@ -20,12 +20,15 @@
         <div class="navegacion__enlaces">
             <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
             <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+
+            <!-- Creamos el boton que si lo pulsamos nos sale el contenedor con id: login  -->
+            <a class="navegacion__enlace" onclick="document.getElementById('login').style.display='block'">Iniciar
+                sesión</a>
         </div>
 
 
 
-        <!-- Creamos el boton que si lo pulsamos nos sale el contenedor con id: login  -->
-        <button onclick="document.getElementById('login').style.display='block'">Login</button>
+
 
         <!-- Contenedor despues de pulsar el boton -->
         <div id="login" class="modal">
@@ -45,12 +48,14 @@
 
                         <div class="login">
                             <label for="login">Usuario</label>
-                            <input class="login_style" type="text" placeholder="Introduce el usuario" name="login" required>
+                            <input class="login_style" type="text" placeholder="Introduce el usuario" name="login"
+                                required>
                         </div>
 
                         <div class="contrasena">
                             <label for="contrasena">Contraseña</label>
-                            <input class="contrasena_style" type="password" placeholder="Introduce la contraseña" name="contrasena" required>
+                            <input class="contrasena_style" type="password" placeholder="Introduce la contraseña"
+                                name="contrasena" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
 
@@ -59,7 +64,7 @@
                     <div class="boton-crear">
                         <button class="crear" type="submit">Iniciar sesión</button>
                     </div>
-                    
+
 
                 </div>
             </form>
@@ -208,5 +213,7 @@
         <p class="footer__texto">Todos los derechos Reservados 2024.</p>
     </footer>
 </body>
+
+<script type="text/javascript" src="scripts/scripts.js"></script>
 
 </html>

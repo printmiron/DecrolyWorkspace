@@ -1,15 +1,15 @@
 
 /*----------------------LOGIN------------------------*/
 #login{
-    display: none;/*Ocultar el contenedor por defecto*/
-    position: fixed; /*Mantener el contenedor en la misma posicion al hacer scroll*/
-    z-index: 1; /*Asegurarse que el contenedor este por encima de otros elementos*/
+    display: none;/*ocultar el contenedor por defecto*/
+    position: fixed; /*mantener el contenedor en la misma posicion al hacer scroll*/
+    z-index: 1; /*asegurarse que el contenedor este por encima de otros elementos*/
     left: 0;
     top: 0;
-    width: 100%; /*Ancho completo*/
-    height: 100%; /*Alto completo*/
-    overflow: auto; /*Habilitar scroll si es necesario*/
-    background-color: rgba(0, 0, 0, 0.7); /*Color de fondo negro con opacidad*/
+    width: 100%; /*ancho completo*/
+    height: 100%; /*alto completo*/
+    overflow: auto; /*habilitar scroll*/
+    background-color: rgba(0, 0, 0, 0.7); /*color de fondo negro con opacidad*/
 }
 
 
@@ -17,9 +17,9 @@
     color: white;
     font-family:'Staatliches', cursive;
     border-radius: 15px;
-    background-color: #9C27B0; /*Color fondo*/
+    background-color: #9C27B0; /*color fondo*/
     margin: 15% auto;
-    padding: 20px; /*Padding y margin para centrar el contenedor de login*/
+    padding: 20px; /*padding y margin para centrar el contenedor de login*/
     width: 350px;
   
 }
