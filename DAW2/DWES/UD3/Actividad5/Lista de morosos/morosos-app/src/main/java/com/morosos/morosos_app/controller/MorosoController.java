@@ -50,30 +50,35 @@ public class MorosoController {
     //metodo responde a peticiones "POST"
     @PostMapping
     //recibe datos JSON enviados desde "postman -> cliente"
-    public ResponseEntity<?> create(@RequestBody Moroso moroso){
+    public ResponseEntity<?> create(@RequestBody LinkedList<Moroso> moroso){
+
+
+        for (Moroso m : moroso) {
+
 
         //hacemos que el nombre sea obligatorio, si no envia el "nombre" devulve 400 BAD REQUEST
-        if (moroso.getNombre() == null || moroso.getNombre().isEmpty()) {
+        if (m.getNombre() == null || m.getNombre().isEmpty()) {
             return ResponseEntity.badRequest().body("El nombre es obligatorio");
         }
 
 
         //si no envia un importe se pone por defecto a 0
-        if (moroso.getImporte() == null) {
-            moroso.setImporte(BigDecimal.ZERO);
+        if (m.getImporte() == null) {
+            m.setImporte(BigDecimal.ZERO);
         }
 
         //no permitir ingersos negativos, menos de 0
-        if (moroso.getImporte().compareTo(BigDecimal.ZERO) < 0) {
+        if (m.getImporte().compareTo(BigDecimal.ZERO) < 0) {
             return ResponseEntity.badRequest().body("El importe no puede ser negativo");
         }
 
         //agignar una id automaticamente al moroso
-        moroso.setId(ID_GENERATOR.getAndIncrement());
+        m.setId(ID_GENERATOR.getAndIncrement());
 
         //añadirle al final de la lista
-        lista.addLast(moroso);
+        lista.addLast(m);
 
+        }
 
         //deveulve codigo 201, que significa que se a creado bien
         return ResponseEntity.status(HttpStatus.CREATED).body(moroso);
@@ -89,17 +94,19 @@ public class MorosoController {
     //borra un moroso por id del URL
     @DeleteMapping("/{id}")
     //pathVariable: extrae el id de la ruta
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<String> delete(@PathVariable Long id){
 
         //si encuantra el moroso -> 204 No Content. y si no existe -> 404 Not Found
         for (Moroso moroso : lista) {
             if (moroso.getId().equals(id)) {
                 lista.remove(moroso);
-                return ResponseEntity.noContent().build();
+                return ResponseEntity.ok("El moroso con id:" + id + " ha sido eliminado");
             }
         }
 
         return ResponseEntity.notFound().build();
+
+       
 
     }
 
