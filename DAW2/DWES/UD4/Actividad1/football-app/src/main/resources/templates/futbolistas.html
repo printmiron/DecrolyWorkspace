@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Futbolistas</title>
+</head>
+<body>
+    <h1>Lista de Futbolistas</h1>
+    <ul>
+        <li th:each="futbolista : ${futbolistas}">
+            <span th:text="${futbolista.nombre}"></span>
+            <span th:text="${futbolista.posicion}"></span>
+            <span th:text="${futbolista.equipo.nombre}"></span>
+        </li>
+    </ul>
+</body>
+</html>
