@@ -1,0 +1,180 @@
+🧭 ESTRUCTURA BÁSICA DE UNA APLICACIÓN ANGULAR
+
+Piensa en tu aplicación como una empresa 🏢:
+Cada parte tiene una función clara y trabaja en equipo.
+
+🧩 1. Interface → el plano o molde de los datos
+
+📘 Qué es:
+Define cómo deben ser los datos que usaremos.
+(No hace nada por sí misma, solo dice “esto tiene que tener nombre, precio, etc.”)
+
+💡 Ejemplo:
+Como si tuvieras una ficha de producto con casillas:
+
+Nombre
+
+Precio
+
+Código
+
+Así Angular sabe qué tipo de información esperar y evita errores.
+
+📌 Piensa en la interface como el “molde” o “formato” que deben tener tus datos.
+
+🎨 2. Components (componentes) → la parte visible (la cara de la app)
+
+📘 Qué es:
+Cada componente es una pieza visual de la aplicación.
+Tiene su propia vista (HTML) y su propia lógica (TS).
+
+💡 Ejemplo:
+
+Un componente puede ser una tarjeta de producto,
+
+Otro puede ser la lista de productos,
+
+Otro puede ser el botón de añadir al carrito.
+
+📌 Piensa en los componentes como las “piezas” o “bloques” que forman tu aplicación.
+
+🔸 En su archivo .ts va la lógica: qué hace el componente (por ejemplo, mostrar o filtrar productos).
+🔸 En su archivo .html va la vista: cómo se ve.
+🔸 En su archivo .css va el diseño: los colores, tamaños, etc.
+
+⚙️ 3. Services (servicios) → la parte que trabaja detrás
+
+📘 Qué es:
+Los servicios manejan la lógica de negocio y los datos (como leer, guardar o buscar información).
+No tienen parte visual.
+
+💡 Ejemplo:
+
+Un servicio puede traer los productos desde una base de datos,
+
+O calcular el total del carrito,
+
+O guardar los usuarios registrados.
+
+📌 Piensa en los servicios como los “empleados invisibles” que hacen el trabajo detrás de la pantalla.
+
+Los componentes “piden ayuda” a los servicios para obtener datos o hacer tareas.
+Esto se llama inyección de dependencias, y es como decir:
+
+“Oye servicio, pásame la lista de productos”.
+
+🧱 4. Database o mock (si no hay backend aún)
+
+📘 Qué es:
+A veces, antes de tener una base de datos real, se usan datos falsos o simulados (mock data) en un archivo .ts.
+
+💡 Ejemplo:
+Un archivo con una lista de 3 productos inventados, solo para probar que la app funciona.
+
+📌 Piensa en esto como una base de datos “de mentira” para practicar.
+
+🧩 5. Módulos (modules) → organizan todo
+
+📘 Qué es:
+Son como carpetas o departamentos que agrupan componentes, servicios, etc.
+Angular los usa para saber qué pertenece a qué parte de la aplicación.
+
+💡 Ejemplo:
+
+Módulo de productos
+
+Módulo de usuarios
+
+Módulo del carrito
+
+📌 Piensa en los módulos como los “departamentos” de tu empresa Angular.
+
+🔄 Cómo trabajan juntos
+
+Imagina el recorrido de un dato (por ejemplo, mostrar un producto en pantalla):
+
+🧠 Service → busca los datos (ej: lista de productos).
+
+📤 Component → recibe esos datos del servicio.
+
+🖥️ HTML (vista) → muestra esos datos en la pantalla.
+
+🧩 Interface → asegura que los datos tienen el formato correcto.
+
+
+                  🟢 main.ts
+                     │
+                     ▼
+             🚀 Inicia la aplicación
+                     │
+                     ▼
+             🧩 AppModule (módulo raíz)
+           ┌─────────────────────────────┐
+           │ Agrupa componentes, servicios│
+           │ y define el punto de arranque│
+           └─────────────────────────────┘
+                     │
+                     ▼
+        ╔════════════════════════════╗
+        ║     🧱 COMPONENTES (UI)     ║
+        ╚════════════════════════════╝
+        │
+        ├─ 📄 HTML → Qué se ve (vista)
+        ├─ 🧠 TS   → Qué hace (lógica del componente)
+        └─ 🎨 CSS  → Cómo se ve (estilo)
+        │
+        ▼
+     Ejemplo: 
+       🧱 ProductListComponent → muestra lista de productos
+       🧱 CardComponent → muestra un producto individual
+        │
+        ▼
+ ┌─────────────────────────────┐
+ │       @Input / @Output      │
+ │Comunican componentes entre sí│
+ └─────────────────────────────┘
+        │
+        ▼
+ ╔════════════════════════════╗
+ ║   ⚙️ SERVICES (servicios)   ║
+ ╚════════════════════════════╝
+        │
+        ├─ Contienen la lógica de negocio
+        ├─ Obtienen datos (API o mock)
+        ├─ Se inyectan en los componentes
+        │
+        ▼
+     Ejemplo:
+       ProductService → devuelve la lista de productos
+        │
+        ▼
+ ╔════════════════════════════╗
+ ║  💾 DATABASE / MOCK DATA   ║
+ ╚════════════════════════════╝
+        │
+        ├─ Datos simulados (PRODUCTOS)
+        └─ Fuente temporal mientras no hay backend
+        │
+        ▼
+ ╔════════════════════════════╗
+ ║  📘 INTERFACE (molde)       ║
+ ╚════════════════════════════╝
+        │
+        ├─ Define la forma de los datos
+        └─ Ejemplo: Producto { nombre, precio, sku }
+        │
+        ▼
+ ╔════════════════════════════╗
+ ║ 🔁 FLUJO DE INFORMACIÓN     ║
+ ╚════════════════════════════╝
+        │
+        ▼
+ 1️⃣ Service busca datos en mock o API  
+ 2️⃣ Componente recibe los datos  
+ 3️⃣ HTML los muestra  
+ 4️⃣ Interface asegura la estructura correcta  
+
+
+
+
+
