@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PoroductInterface } from '../../interface/poroduct-interface';
-import { CURRENCY } from '../../database/productos-db';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -13,7 +13,7 @@ export class CardComponent {
   //pedimos al interface la estructura de datos que va a recibir el componente, PoroductInterface como padre, tambien guardamos la modena -
   // - para reutilizarla despues en html
   @Input() producto!: PoroductInterface;
-  currency = CURRENCY;
+  currency = "CURRENCY!";
 
   cantidad: number;
   total: number;
@@ -38,7 +38,7 @@ export class CardComponent {
 
   //sumar total de un producto
   sumarTotalProd(){
-    this.total = this.cantidad * this.producto.precio;
+    this.total = this.cantidad * this.producto.price;
   }
 
 

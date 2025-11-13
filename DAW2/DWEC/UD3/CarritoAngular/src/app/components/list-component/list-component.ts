@@ -13,15 +13,15 @@ export class ListComponent {
 
   ProductServices = inject(ProductServices);
 
-  arrayProductos: PoroductInterface[];
+  productos: PoroductInterface[] = [];
 
-  constructor() {
+  constructor() {}
 
-    this.arrayProductos = [];
-  }
-
+  //!!!!
   ngOnInit(): void {
-    this.arrayProductos = this.ProductServices.getAllProd();
+    this.ProductServices.getAllProd().subscribe({
+      next: (data) => this.productos = data
+    });
   }
 
 }

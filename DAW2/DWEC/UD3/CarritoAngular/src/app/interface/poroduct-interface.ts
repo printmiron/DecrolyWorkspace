@@ -1,5 +1,5 @@
 export interface PoroductInterface {
-    nombre: string;
+    title: string;
+    price: number;
     sku: string;
-    precio: number;
 }

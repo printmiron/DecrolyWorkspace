@@ -1,28 +1,36 @@
 import { Injectable } from '@angular/core';
 import { PoroductInterface } from '../interface/poroduct-interface';
-import { PRODUCTOS } from '../database/productos-db';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class ProductServices {
-  private arrayProductos: PoroductInterface[];
+  
   
 
-  constructor() {
+  constructor(private httpClient:HttpClient) {}
 
-    this.arrayProductos = PRODUCTOS;
-    
+  //obtener productos
+  getAllProd(): Observable<PoroductInterface[]> {
+    return this.httpClient.get<PoroductInterface[]>('http://localhost:8080/api/carrito').pipe(
+      map(response => response.products)
+    );
   }
 
-  getAllProd(): PoroductInterface[]{
-    return this.arrayProductos;
+  //obtener moneda
+  getCurrency(): Observable<string> {
+    return this.httpClient.get<>
   }
 
-  getProdByRef(sku: string): PoroductInterface | undefined{
-    return this.arrayProductos.find( producto => producto.sku == sku);
-  }
+
+
+  // getProdByRef(sku: string): PoroductInterface | undefined{
+  //   return this.httpClient.get<PoroductInterface>('http://localhost:8080/api/carrito/sku');
+  // }
 
   actualizarProductoCarrito(producto: PoroductInterface, cantidad: number){
     

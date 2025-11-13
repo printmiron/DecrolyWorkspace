@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CURRENCY } from '../../database/productos-db';
+
 import { CardComponent } from '../card-component/card-component';
 import { ProductServices } from '../../services/product-services';
 
@@ -15,7 +15,7 @@ export class TotalComponent {
   @Input() producto!: CardComponent;
 
   totalCarrito: number;
-  currency = CURRENCY;
+  currency = "CURRENCY!";
 
   constructor(){
     
