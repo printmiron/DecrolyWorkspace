@@ -14,6 +14,7 @@ export class ProductServices {
 
   constructor(private httpClient:HttpClient) {}
 
+  //!!!
   //obtener productos
   getAllProd(): Observable<PoroductInterface[]> {
     return this.httpClient.get<PoroductInterface[]>('http://localhost:8080/api/carrito').pipe(
