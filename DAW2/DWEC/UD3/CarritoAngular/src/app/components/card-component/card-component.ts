@@ -12,8 +12,8 @@ import { FormsModule } from '@angular/forms';
 export class CardComponent {
   //pedimos al interface la estructura de datos que va a recibir el componente, PoroductInterface como padre, tambien guardamos la modena -
   // - para reutilizarla despues en html
-  @Input() producto!: PoroductInterface;
-  currency = "CURRENCY!";
+  @Input() producto!: PoroductInterface["products"][number];
+  @Input() currency!: string;
 
   cantidad: number;
   total: number;

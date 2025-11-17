@@ -1,5 +1,10 @@
 export interface PoroductInterface {
-    title: string;
-    price: number;
-    sku: string;
+    //repetimos la estructura del JSON para que recoge bien los datos
+    currency: string;
+    products: {
+        title: string;
+        price: number;
+        sku: string;
+    }[];
+
 }

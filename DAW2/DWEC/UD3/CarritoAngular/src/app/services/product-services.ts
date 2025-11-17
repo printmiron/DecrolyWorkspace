@@ -9,25 +9,14 @@ import { map, Observable } from 'rxjs';
 })
 
 export class ProductServices {
-  
-  
 
   constructor(private httpClient:HttpClient) {}
 
   //!!!
   //obtener productos
-  getAllProd(): Observable<PoroductInterface[]> {
-    return this.httpClient.get<PoroductInterface[]>('http://localhost:8080/api/carrito').pipe(
-      map(response => response.products)
-    );
+  getAllProd(): Observable<PoroductInterface> {
+    return this.httpClient.get<PoroductInterface>('http://localhost:8080/api/carrito');
   }
-
-  //obtener moneda
-  getCurrency(): Observable<string> {
-    return this.httpClient.get<>
-  }
-
-
 
   // getProdByRef(sku: string): PoroductInterface | undefined{
   //   return this.httpClient.get<PoroductInterface>('http://localhost:8080/api/carrito/sku');

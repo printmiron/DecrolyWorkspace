@@ -13,14 +13,25 @@ export class ListComponent {
 
   ProductServices = inject(ProductServices);
 
-  productos: PoroductInterface[] = [];
+  productos: PoroductInterface["products"] = [];
+  currency: string = '';
 
-  constructor() {}
+  constructor(private productServices: ProductServices) {}
 
   //!!!!
+  //extare desde back los productos y la moneda
   ngOnInit(): void {
+    
     this.ProductServices.getAllProd().subscribe({
-      next: (data) => this.productos = data
+
+      next: (data) => {
+
+        this.productos = data.products;
+        this.currency = data.currency;
+      },
+
+      error: error => console.error("Error al cargar los productos o moneda")
+      
     });
   }
 

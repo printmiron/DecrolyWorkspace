@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-import { CardComponent } from '../card-component/card-component';
-import { ProductServices } from '../../services/product-services';
+import { PoroductInterface } from '../../interface/poroduct-interface';
 
 @Component({
   selector: 'app-total-component',
@@ -12,10 +10,12 @@ import { ProductServices } from '../../services/product-services';
 
 export class TotalComponent {
   
-  @Input() producto!: CardComponent;
+  currency: string = '';
+    
 
   totalCarrito: number;
-  currency = "CURRENCY!";
+  ProductServices: any;
+  
 
   constructor(){
     
@@ -25,5 +25,8 @@ export class TotalComponent {
   actualizarTotalCarrito(){
    
   }
+
+
+
 
 }

@@ -1,9 +1,9 @@
 <div class="container">
     <!-- recorremos el contenedor dependiendo de cuantos productos se reciben, se reciben por referecnia(sku) -->
     @for (producto of productos; track $index) {
-        <div class="col">
+        <div class="col" >
             <!-- monstramos el card de producto y pasamos el objeto/dato del producto desde padre -->
-            <app-card-component [producto]="producto"></app-card-component>
+            <app-card-component [producto]="producto" [currency]="currency"></app-card-component>
         </div>
     }
 </div>
