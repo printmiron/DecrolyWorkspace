@@ -13,7 +13,7 @@ export class CardComponent {
   //pedimos al interface la estructura de datos que va a recibir el componente, PoroductInterface como padre, tambien guardamos la modena -
   // - para reutilizarla despues en html
   @Input() miProducto!: PoroductInterface["products"][number];
-                 //el tipo de elemento "productos" | [number] cualquier posicion en el array [0], [1], etc.
+                  //el tipo de elemento "productos" | [number] cualquier posicion en el array [0], [1], etc.
   currency: string;
 
   //injectamos el servicio para pedir la moneda, y insertarla al inicializar
