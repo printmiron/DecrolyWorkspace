@@ -1,32 +1,35 @@
-import { Component, Input } from '@angular/core';
-import { PoroductInterface } from '../../interface/poroduct-interface';
+import { Component, inject, Input } from '@angular/core';
+import { ProductServices } from '../../services/product-services';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-total-component',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './total-component.html',
   styleUrl: './total-component.css',
 })
 
 export class TotalComponent {
   
-  currency: string = '';
-    
+  currency: string;
+
+  //injectamos el servicio
+  productServices = inject(ProductServices);
+
 
   totalCarrito: number;
-  ProductServices: any;
-  
-
   constructor(){
-    
     this.totalCarrito = 0;
+    this.currency = "" ;
   }
 
-  actualizarTotalCarrito(){
-   
+  //al inicializar cojemos la moneda
+  ngOnInit(): void {
+    this.currency = this.productServices.getCurrency();
   }
 
-
+  //findIndex
+  //array.splice
 
 
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { CardComponent } from "../card-component/card-component";
 import { ProductServices } from '../../services/product-services';
 import { PoroductInterface } from '../../interface/poroduct-interface';
@@ -11,28 +11,21 @@ import { PoroductInterface } from '../../interface/poroduct-interface';
 })
 export class ListComponent {
 
+  //injectamos el servicio
   ProductServices = inject(ProductServices);
 
-  productos: PoroductInterface["products"] = [];
-  currency: string = '';
+  arrProductos: PoroductInterface["products"];
 
-  constructor(private productServices: ProductServices) {}
+  constructor() {
+    this.arrProductos = [];
+  }
 
   //!!!!
-  //extare desde back los productos y la moneda
+  //al inicializar rellenamos el array con productos desdel servicio
   ngOnInit(): void {
+
+    this.arrProductos = this.ProductServices.getAllProd();
     
-    this.ProductServices.getAllProd().subscribe({
-
-      next: (data) => {
-
-        this.productos = data.products;
-        this.currency = data.currency;
-      },
-
-      error: error => console.error("Error al cargar los productos o moneda")
-      
-    });
   }
 
 }

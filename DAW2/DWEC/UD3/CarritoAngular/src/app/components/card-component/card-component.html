@@ -3,8 +3,8 @@
     <div class="row  align-items-center">
 
         <div class="col">
-            <h1>{{ producto.title }}</h1>
-            <p>{{ producto.sku }}</p>
+            <h1>{{ miProducto.title }}</h1>
+            <p>{{ miProducto.sku }}</p>
         </div>
 
         <div class="col d-flex justify-content-around">
@@ -15,11 +15,12 @@
         </div>
 
         <div class="col">
-            <p>{{ producto.price }} {{ currency }}</p>
+            <p>{{ miProducto.price }} {{ currency }}</p>
         </div>
 
         <div class="col">
-            <p>{{ total }} {{ currency }}</p>
+            <!-- toFixed -> la convierte en una cadena de texto con dos decimales  -->
+            <p>{{ total.toFixed(2) }} {{ currency }}</p>
         </div>
         
         
