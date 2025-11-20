@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PoroductInterface } from '../interface/poroduct-interface'
-import { BehaviorSubject, Subject } from 'rxjs';
+
+
 
 
 @Injectable({
@@ -8,11 +9,6 @@ import { BehaviorSubject, Subject } from 'rxjs';
 })
 
 export class ProductServices {
-
-  //!!!!
-  //calculamos el total de todo el carrito en servicio y despues lo recojemos en el componente "total"
-  //de esta manera es mas facil que mandar datos/info entre componentes
-  private totalCarrito = new BehaviorSubject<number>(0);
 
   //----------------------PEDIR DATOS------------------------
   //lo que hago aqui es acceder directamente al array de porductos asi como tenemos el currency tenemos que especializar
@@ -38,7 +34,6 @@ export class ProductServices {
 
   
   //----------------------OBTENER DATOS------------------------
-  //!!!
   //obtener productos
   getAllProd(): PoroductInterface["products"] {
     return this.productos;
@@ -49,6 +44,10 @@ export class ProductServices {
     return this.currency;
   }
 
+  //!metodo para calcular el total del carrito utilizando el total que hemos hecho en card-component
+  getTotalCarrito(){
+    return this.productos.reduce((total, producto) => total + producto.price, 0)
+  }
 
 
 
