@@ -1,4 +1,4 @@
-import { Component, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { PoroductInterface } from '../../interface/poroduct-interface';
 import { FormsModule } from '@angular/forms';
 import { ProductServices } from '../../services/product-services';
@@ -15,7 +15,6 @@ export class CardComponent {
  
   @Input() miProducto!: PoroductInterface["products"][number];
                   //el tipo de elemento "productos" | [number] cualquier posicion en el array [0], [1], etc.
-  
 
   //injectamos el servicio para pedir la moneda, y insertarla al inicializar
   productServices = inject(ProductServices);
@@ -23,19 +22,14 @@ export class CardComponent {
   cantidad: number;
   total:  number;
   currency: string;
-
-
-  allProductsTotal: number;
   
   
 
   constructor() {
     this.cantidad = 0;
     this.total = 0;
-
-    this.allProductsTotal = 0;
-
     this.currency = "";
+    
   }
 
   //al inicializar cojemos la moneda
@@ -64,14 +58,14 @@ export class CardComponent {
   //sumar total de un producto
   sumarTotalProd() {
     this.total = this.cantidad * this.miProducto.price;
+
+    //actualizar el servicio para que llege total-comp
+    this.productServices.actualizarPorducto(this.miProducto, this.cantidad);
   }
 
 
   
-  //!enviar el total al servicio
-  enviarTotalCalculado(){
-    this.total = this.productServices.getTotalCarrito();
-  }
+  
 
 
 }

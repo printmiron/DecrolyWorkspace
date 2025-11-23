@@ -1,6 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { ProductServices } from '../../services/product-services';
 import { FormsModule } from '@angular/forms';
+import { PoroductInterface } from '../../interface/poroduct-interface';
 
 
 @Component({
@@ -10,36 +11,51 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './total-component.css',
 })
 
-export class TotalComponent {
+export class TotalComponent{
 
-  //moneda
-  currency: string;
+  
 
   //injectamos el servicio
   productServices = inject(ProductServices);
 
-  totalCarrito: number;
 
+  //moneda
+  currency: string;
+  totalCarrito: number;
+  productosCarrito: any[];
 
 
 
   constructor() {
     this.totalCarrito = 0;
     this.currency = "";
+    this.productosCarrito = [];
 
    
   }
 
 
   ngOnInit(): void {
-    //al inicializar cojemos la moneda
-    this.currency = this.productServices.getCurrency();
-    //!cojemos el total carrito desde el service
-    this.totalCarrito = this.productServices.getTotalCarrito();
+    
+    //!!!!!!!!!!!!!!!!
+    this.productServices.carrito$.subscribe(() => {
+      //al inicializar cojemos la moneda
+      this.currency = this.productServices.getCurrency();
+      this.actualizar();
+    });
+
+    this.actualizar();
   }
 
   
+  actualizar(){
+    
+    //!cojemos el total carrito desde el service
+    this.totalCarrito = this.productServices.getTotalCarrito();
 
+    //cojemos los productos con cantidad mayor a 0
+    this.productosCarrito = this.productServices.getProdCarrito();
+  }
   
 
   //findIndex

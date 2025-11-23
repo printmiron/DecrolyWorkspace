@@ -2,7 +2,9 @@
 
 <div class="container-prod">
     <div class="col">
-        
+         @for (producto of productosCarrito; track $index) {
+            {{ producto.title }} {{ producto.cantidad }} -> {{ producto.price * producto.cantidad }} {{ currency }}
+         }
     </div>
 </div>
 
@@ -16,7 +18,7 @@
         </div>
 
         <div class="col">
-            {{ totalCarrito }} {{ currency }}
+            {{ totalCarrito.toFixed(2) }} {{ currency }}
         </div>
 
     </div>

@@ -1,7 +1,8 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, ViewChild } from '@angular/core';
 import { CardComponent } from "../card-component/card-component";
 import { ProductServices } from '../../services/product-services';
 import { PoroductInterface } from '../../interface/poroduct-interface';
+
 
 @Component({
   selector: 'app-list-component',
@@ -16,6 +17,8 @@ export class ListComponent {
 
   arrProductos: PoroductInterface["products"];
 
+
+
   constructor() {
     this.arrProductos = [];
   }
@@ -23,9 +26,10 @@ export class ListComponent {
   //!!!!
   //al inicializar rellenamos el array con productos desdel servicio
   ngOnInit(): void {
-
     this.arrProductos = this.ProductServices.getAllProd();
     
   }
+
+  
 
 }
