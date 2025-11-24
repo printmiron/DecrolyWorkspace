@@ -3,7 +3,18 @@
 <div class="container-prod">
     <div class="col">
          @for (producto of productosCarrito; track $index) {
-            {{ producto.title }} {{ producto.cantidad }} -> {{ producto.price * producto.cantidad }} {{ currency }}
+            <div class="container">
+                <div class="row py-4">
+
+                    <div class="col border-end">{{ producto.title }}</div>
+                    
+
+                    <div class="col border-end">{{ producto.cantidad }}</div>
+
+                    <div class="col">{{ producto.price * producto.cantidad }} {{ currency }}</div>
+
+                </div>
+            </div>
          }
     </div>
 </div>

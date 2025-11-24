@@ -16,9 +16,9 @@ export class ProductServices {
 
 
   //----------------------PEDIR DATOS------------------------
-  //lo que hago aqui es acceder directamente al array de porductos asi como tenemos el currency tenemos que especializar
+  //lo que hago aqui es acceder directamente al array de porductos, asi como tenemos el currency, tenemos que especializar "["products"]"
   //lo de cantidad es añadir una propriedad mas al pedir los productos ademas de sku, title y precio nosotros aqui añadimos cantidad para poder
-  //ñiego utilizarle en total-componente
+  //luego utilizarle en componentes
   private productos: (PoroductInterface["products"][number] & { cantidad: number }) [];
   private currency: PoroductInterface["currency"] = ""; 
 
