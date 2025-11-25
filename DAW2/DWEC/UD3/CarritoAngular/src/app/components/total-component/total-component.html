@@ -11,7 +11,7 @@
 
                     <div class="col border-end">{{ producto.cantidad }}</div>
 
-                    <div class="col">{{ producto.price * producto.cantidad }} {{ currency }}</div>
+                    <div class="col">{{ (producto.price * producto.cantidad).toFixed(2) }} {{ currency }}</div>
 
                 </div>
             </div>

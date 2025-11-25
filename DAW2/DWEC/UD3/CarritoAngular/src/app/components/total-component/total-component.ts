@@ -11,9 +11,9 @@ import { PoroductInterface } from '../../interface/poroduct-interface';
   styleUrl: './total-component.css',
 })
 
-export class TotalComponent{
+export class TotalComponent {
 
-  
+
 
   //injectamos el servicio
   productServices = inject(ProductServices);
@@ -31,32 +31,29 @@ export class TotalComponent{
     this.currency = "";
     this.productosCarrito = [];
 
-   
+
   }
 
 
   ngOnInit(): void {
-    
-    //!!!!!!!!!!!!!!!!
+
+    //!aqui el componete total se sbscribe al objeto "carrito$" que esta en servico
     this.productServices.carrito$.subscribe(() => {
+
       //al inicializar cojemos la moneda
       this.currency = this.productServices.getCurrency();
-      this.actualizar();
+
+      //!cojemos el total carrito desde el service
+      this.totalCarrito = this.productServices.getTotalCarrito();
+
+      //cojemos los productos con cantidad mayor a 0 desdel service
+      this.productosCarrito = this.productServices.getProdCarrito();
+      
     });
 
-    this.actualizar();
   }
 
-  
-  actualizar(){
-    
-    //!cojemos el total carrito desde el service
-    this.totalCarrito = this.productServices.getTotalCarrito();
 
-    //cojemos los productos con cantidad mayor a 0
-    this.productosCarrito = this.productServices.getProdCarrito();
-  }
-  
 
   //findIndex
   //array.splice
