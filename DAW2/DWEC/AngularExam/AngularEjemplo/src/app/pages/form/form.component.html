@@ -1,0 +1,22 @@
+<form [formGroup]="modelForm" (ngSubmit)="getDataFormulario()">
+
+    <div class="form-group">
+        <label for="title">Titulo</label>
+
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" placeholder="Titulo corto" formControlName="title">
+        @if(Control('title','required')){
+            <p lass="error">Campo requirido</p>
+        }
+    </div>
+
+   <div class="form-group">
+        <label for="subtitle">Sub titulo</label>
+        
+        <input type="text" class="form-control" name="subtitle" id="subtitle" aria-describedby="emailHelp" placeholder="Titulo mas detallado" formControlName="subtitle">
+        @if(Control('subtitle','required')){
+            <p class="error">Campo requirido</p>
+        }
+    </div>
+
+    <input type="submit" value="Publicar" class="btn btn-secondary mt-5" [disabled]="!modelForm.valid">
+</form>
