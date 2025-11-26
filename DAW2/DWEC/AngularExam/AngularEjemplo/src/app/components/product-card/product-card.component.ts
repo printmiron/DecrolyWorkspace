@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ProductoI } from '../../interface/producto-i.interface';
+import { ProductoSService } from '../../service/producto-s.service';
 
 
 @Component({
@@ -9,7 +10,15 @@ import { ProductoI } from '../../interface/producto-i.interface';
   styleUrl: './product-card.component.css',
 })
 export class ProductCardComponent {
+
+  productoService = inject (ProductoSService);
+
   @Input() miProductos!: ProductoI;
+
+  //!!!
+  removeProducto(producto: ProductoI){
+    this.productoService.removeProductoById(producto);
+  }
 }
 
 

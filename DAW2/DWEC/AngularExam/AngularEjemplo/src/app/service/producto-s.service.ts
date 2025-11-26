@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductoI } from '../interface/producto-i.interface';
-import { ProductosDBDatabase } from '../database/productos-db.database';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,24 +11,35 @@ export class ProductoSService {
 
   private id: number;
 
-  
-  constructor(){
-    this.arrPorductos = ProductosDBDatabase;
-    this.id = ProductosDBDatabase.length + 1;
+
+  constructor() {
+    this.arrPorductos = [];
+    this.id = 1;
+    //!!!!
+    //pedimos desdel api los productos y lo rellenamos en array
+    fetch('http://localhost:8080/api/productos')
+      .then(respuesta => respuesta.json())
+      .then(data => {
+        data.forEach((element: any) => {
+          let producto = element as ProductoI;
+          this.arrPorductos.push(producto);
+        });
+      });
+
   }
 
   //coger todos los porductos del array
-  getAllProductos(){
+  getAllProductos() {
     return this.arrPorductos;
   }
 
   //coger producto por id
-  getById(id: number){
+  getById(id: number) {
     return this.arrPorductos.find(prod => prod.id === id);
   }
 
   //añadir el producto
-  addProducto(producto: ProductoI){
+  addProducto(producto: ProductoI) {
     if (!this.arrPorductos.includes(producto)) {
       producto.id = this.id;
       this.arrPorductos.push(producto);
@@ -37,7 +48,7 @@ export class ProductoSService {
   }
 
   //borrar el producto
-  removeProductoById(removeProducto: ProductoI){
+  removeProductoById(removeProducto: ProductoI) {
     this.arrPorductos = this.arrPorductos.filter(prod => prod.id !== removeProducto.id);
   }
 

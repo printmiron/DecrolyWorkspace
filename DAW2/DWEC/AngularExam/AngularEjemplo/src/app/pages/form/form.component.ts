@@ -48,4 +48,6 @@ export class FormComponent {
     this.registerProducto.reset();
   }
 
+  
+
 }
