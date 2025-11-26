@@ -1,11 +1,12 @@
 import { Component, inject, Input } from '@angular/core';
 import { ProductoI } from '../../interface/producto-i.interface';
 import { ProductoSService } from '../../service/producto-s.service';
+import { RouterLink } from "@angular/router";
 
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
 })
@@ -17,7 +18,7 @@ export class ProductCardComponent {
 
   //!!!
   removeProducto(producto: ProductoI){
-    this.productoService.removeProductoById(producto);
+    this.productoService.removeProductoById(producto.id!);
   }
 }
 

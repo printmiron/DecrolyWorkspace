@@ -6,7 +6,6 @@ export interface ProductoI {
     title: string;
     subtitle: string;
     descripcion: string;
-    url: string;
     image: string;
 
 

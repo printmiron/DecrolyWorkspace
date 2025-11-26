@@ -8,7 +8,7 @@ public class Shop {
   
     private List<Product> products;
 
-    public Shop(String currency) {
+    public Shop() {
         
         this.products = new ArrayList<>();
 

@@ -5,6 +5,8 @@
             <div class="col">
         <app-product-card [miProductos]="producto"></app-product-card>
         </div>
+        }@empty {
+            <h2 class="text-primary text-center">No tenemos productos!</h2>
         }
 
     

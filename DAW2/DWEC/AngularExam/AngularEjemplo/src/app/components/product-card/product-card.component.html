@@ -15,11 +15,11 @@
         <div class="row d-flex  align-items-center">
 
             <div class="col d-flex justify-content-center">
-                <a class="btn btn-primary" href="">Ver detalles</a>
+                <a class="btn btn-primary" [routerLink]="[miProductos.id]">Ver detalles</a>
             </div>
 
             <div class="col d-flex justify-content-center">
-                <button class="btn btn-danger">x</button>
+                <button class="btn btn-danger" (click)="removeProducto(miProductos)">x</button>
             </div>
 
         </div>

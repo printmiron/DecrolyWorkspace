@@ -14,7 +14,7 @@ export class ProductoSService {
 
   constructor() {
     this.arrPorductos = [];
-    this.id = 1;
+    this.id = 10;
     //!!!!
     //pedimos desdel api los productos y lo rellenamos en array
     fetch('http://localhost:8080/api/productos')
@@ -33,23 +33,51 @@ export class ProductoSService {
     return this.arrPorductos;
   }
 
+
+
+  //!!!!!!!!!!!!
   //coger producto por id
-  getById(id: number) {
-    return this.arrPorductos.find(prod => prod.id === id);
+  getById(miId: number): ProductoI {
+    let productos: ProductoI;
+    let respuesta = this.arrPorductos.find(prod => prod.id == miId);
+    if (respuesta != undefined) {
+      productos = respuesta;
+      
+    }
+    else {
+      productos = {
+        title: "Producto no encontrado",
+        subtitle: "Error",
+        descripcion: "",
+        image: "",
+      }
+    }
+    return productos;
   }
 
   //añadir el producto
   addProducto(producto: ProductoI) {
     if (!this.arrPorductos.includes(producto)) {
+
       producto.id = this.id;
       this.arrPorductos.push(producto);
       this.id++;
+
     }
   }
 
   //borrar el producto
-  removeProductoById(removeProducto: ProductoI) {
-    this.arrPorductos = this.arrPorductos.filter(prod => prod.id !== removeProducto.id);
+  removeProductoById(id: number): void {
+    let i = this.arrPorductos.findIndex(producto => producto.id == id);
+
+    if (i != -1 && i >= 0 && i < this.arrPorductos.length) {
+      this.arrPorductos.splice(i, 1);
+    }
   }
 
+
+
+
 }
+
+
