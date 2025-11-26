@@ -1,22 +1,57 @@
-<form [formGroup]="modelForm" (ngSubmit)="getDataFormulario()">
+<div class="d-flex justify-content-center align-items-center py-5">
 
-    <div class="form-group">
-        <label for="title">Titulo</label>
 
-        <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" placeholder="Titulo corto" formControlName="title">
-        @if(Control('title','required')){
-            <p lass="error">Campo requirido</p>
-        }
-    </div>
+    <form [formGroup]="registerProducto" (ngSubmit)="getDataFormulario()" class="w-50 border p-5 shadow rounded">
 
-   <div class="form-group">
-        <label for="subtitle">Sub titulo</label>
-        
-        <input type="text" class="form-control" name="subtitle" id="subtitle" aria-describedby="emailHelp" placeholder="Titulo mas detallado" formControlName="subtitle">
-        @if(Control('subtitle','required')){
+        <div class="mb-3">
+            <label for="title">Titulo</label>
+
+            <input type="text" class="form-control" name="title" id="title" placeholder="Titulo corto"
+                formControlName="title">
+            @if(Control('title','required')){
             <p class="error">Campo requirido</p>
-        }
-    </div>
+            }
 
-    <input type="submit" value="Publicar" class="btn btn-secondary mt-5" [disabled]="!modelForm.valid">
-</form>
+            @if(Control('title','minlength')){
+            <p class="error">El nombre no puede ser menos de 4 simbolos</p>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="subtitle">Subtitulo</label>
+
+            <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Titulo mas detallado"
+                formControlName="subtitle">
+            @if(Control('subtitle','required')){
+            <p class="error">Campo requirido</p>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="descripcion">Descripción</label>
+
+            <textarea type="text" class="form-control" name="descripcion" id="descripcion"
+                placeholder="Descripcion del producto" formControlName="descripcion"></textarea>
+            @if(Control('descripcion','required')){
+            <p class="error">Campo requirido</p>
+            }
+        </div>
+
+        <div class="">
+            <label for="image">Imagen</label>
+
+            <input type="text" class="form-control" name="image" id="image" placeholder="Introduce la URL del imagen"
+                formControlName="image">
+            @if(Control('image','required')){
+            <p class="error">Campo requirido</p>
+            }
+
+            @if(Control('image','pattern')){
+            <p class="error">URL no valido</p>
+            }
+        </div>
+
+        <input type="submit" value="Publicar" class="btn btn-primary mt-3 " [disabled]="!registerProducto.valid">
+    </form>
+
+</div>
