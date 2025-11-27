@@ -1,6 +1,6 @@
 <div class="card h-100 border shadow rounded">
 
-    <img [src]="miProductos.image" />
+    <img class="rounded-1" [src]="miProductos.image" />
 
     <div class="card-body">
 
@@ -12,14 +12,18 @@
 
     <div class="container pb-3">
 
-        <div class="row d-flex  align-items-center">
+        <div class="row d-flex align-items-center space-beetwen">
 
-            <div class="col d-flex justify-content-center">
-                <a class="btn btn-primary" [routerLink]="[miProductos.id]">Ver detalles</a>
+            <div class="col d-flex ">
+                <a class="btn btn-dark" [routerLink]="['/producto',miProductos.id]">Ver más</a>
             </div>
 
-            <div class="col d-flex justify-content-center">
-                <button class="btn btn-danger" (click)="removeProducto(miProductos)">x</button>
+            <div class="col d-flex ">
+                <button class="btn btn-danger" (click)="removeProducto(miProductos)">Borrar</button>
+            </div>
+
+            <div class="col d-flex ">
+                <button class="btn btn-warning" [routerLink]="['/form']">Editar</button>
             </div>
 
         </div>

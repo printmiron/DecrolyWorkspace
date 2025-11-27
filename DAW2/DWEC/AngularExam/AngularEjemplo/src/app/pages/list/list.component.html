@@ -1,14 +1,13 @@
-<div class="row row-cols-1 row-cols-md-4 g-2 p-5">
+<div class="container">
 
-   
+    <div class="row row-cols-1 row-cols-md-3 g-2 p-5">
         @for (producto of arrProductosList; track producto.id) {
-            <div class="col">
-        <app-product-card [miProductos]="producto"></app-product-card>
+        <div class="col">
+            <app-product-card [miProductos]="producto"></app-product-card>
         </div>
         }@empty {
-            <h2 class="text-primary text-center">No tenemos productos!</h2>
+        <h2 class="text-primary text-center">No tenemos productos!</h2>
         }
-
+    </div>
     
-
 </div>

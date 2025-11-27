@@ -5,57 +5,56 @@ import java.util.List;
 
 public class Shop {
 
-  
-    private List<Product> products;
+        private List<Product> products;
 
-    public Shop() {
-        
-        this.products = new ArrayList<>();
+        public Shop() {
 
-        // Inserto productos en la tienda
-        this.products.add(new Product(1, "Cámara Fotográfica Pro", "Resolución 4K UHD", "Cámara profesional con estabilización óptica y grabación en 4K, ideal para fotografía y video.", "camara-pro", "https://picsum.photos/seed/camara/600/400"));
+                this.products = new ArrayList<>();
 
-        this.products.add(new Product(
-                2,
-                "Cámara Deportiva ActionX",
-                "Video 4K y fotos 20MP",
-                "Cámara deportiva resistente al agua con gran angular y estabilización avanzada, ideal para actividades extremas.",
-                "camara-actionx",
-                "https://picsum.photos/seed/actionx/600/400"
-        ));
+                // Inserto productos en la tienda
+                this.products.add(new Product(
+                                1,
+                                "Auriculares Inalámbricos SoundWave Pro",
+                                "Cancelación Activa de Ruido (ANC)",
+                                "Auriculares premium con cancelación activa de ruido, modo transparencia y 30 horas de batería. Sonido envolvente y carga rápida USB-C.",
+                                "auriculares-soundwave-pro",
+                                "https://images.pexels.com/photos/4523027/pexels-photo-4523027.jpeg"));
 
-        this.products.add(new Product(
-                3,
-                "Cámara Mirrorless AlphaLite",
-                "Sensor APS-C 24MP",
-                "Cámara mirrorless ligera con enfoque automático rápido y grabación en 4K, perfecta para creadores de contenido.",
-                "camara-alphalite",
-                "https://picsum.photos/seed/alphalite/600/400"
-        ));
+                this.products.add(new Product(
+                                2,
+                                "Smartwatch FitPulse X",
+                                "Monitorización 24/7",
+                                "Reloj inteligente con seguimiento de ritmo cardíaco, sueño, oxígeno en sangre y GPS integrado. Compatible con Android y iOS.",
+                                "smartwatch-fitpulse-x",
+                                "https://images.pexels.com/photos/1682821/pexels-photo-1682821.jpeg"));
 
-        this.products.add(new Product(
-                4,
-                "Cámara Compacta TravelShot",
-                "Zoom óptico 30x",
-                "Cámara compacta ideal para viajes, con zoom potente, WiFi integrado y captura nocturna mejorada.",
-                "camara-travelshot",
-                "https://picsum.photos/seed/travelshot/600/400"
-        ));
+                this.products.add(new Product(
+                                3,
+                                "Tablet UltraTab 10.5",
+                                "Pantalla Full HD+ 10.5\"",
+                                "Tablet ligera con procesador octa-core, 6GB de RAM, 128GB de almacenamiento y batería de larga duración.",
+                                "tablet-ultratab-105",
+                                "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg"));
 
-        this.products.add(new Product(
-                5,
-                "Cámara Profesional StudioMax",
-                "Sensor Full Frame 45MP",
-                "Cámara profesional de alto rendimiento con rango dinámico ampliado y grabación en 8K para producción audiovisual.",
-                "camara-studiomax",
-                "https://picsum.photos/seed/studiomax/600/400"
-        ));
+                this.products.add(new Product(
+                                4,
+                                "Auricular Bluetooth Gamer G-Pulse",
+                                "Sonido Envolvente RGB",
+                                "Auriculares gamer con iluminación RGB, micrófono desmontable y sonido envolvente 7.1 para experiencia competitiva.",
+                                "gamer-gpulse",
+                                "https://images.pexels.com/photos/7046709/pexels-photo-7046709.jpeg"));
 
-    }
+                this.products.add(new Product(
+                                5,
+                                "Altavoz Inteligente HomeSound Mini",
+                                "Control por Voz",
+                                "Altavoz inteligente compacto compatible con asistentes virtuales, ideal para controlar dispositivos del hogar y reproducir música.",
+                                "altavoz-homesound-mini",
+                                "https://images.pexels.com/photos/2651794/pexels-photo-2651794.jpeg"));
 
-   
+        }
 
-    public List<Product> getProducts() {
-        return products;
-    }
+        public List<Product> getProducts() {
+                return products;
+        }
 }

@@ -1,1 +1,38 @@
-<p>Bienvenido</p>
+<div class="container-fluid p-0">
+    <div id="carouselExample" class="carousel slide" style="height: 50vh;">
+        <div class="carousel-inner h-100">
+
+            <div class="carousel-item active h-100">
+                <img src="https://images.pexels.com/photos/34877292/pexels-photo-34877292.jpeg"
+                    class="d-block w-100 h-100" style="object-fit: cover;" />
+            </div>
+
+            <div class="carousel-item h-100">
+                <img src="https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg"
+                    class="d-block w-100 h-100" style="object-fit: cover;" />
+            </div>
+
+            <div class="carousel-item h-100">
+                <img src="https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg"
+                    class="d-block w-100 h-100" style="object-fit: cover;" />
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+
+    </div>
+
+    <div class="container d-flex flex-column justify-content-center align-items-center mt-5">
+        <h2>Bienvenido!</h2>
+        <p>En esta página encontrarás un espacio dedicado a la innovación, donde cada producto cuenta una historia y cada detalle está pensado para inspirarte. Explora nuestro catálogo, 
+            descubre tecnología creada para facilitar tu día a día y sumérgete en una experiencia diseñada para sorprenderte desde el primer clic.</p>
+        <button class="btn btn-dark mt-1" [routerLink]="['/form']">Formulario</button>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import { ProductoI } from '../interface/producto-i.interface';
   providedIn: 'root',
 })
 export class ProductoSService {
+  
 
   arrPorductos: ProductoI[];
 
@@ -75,7 +76,10 @@ export class ProductoSService {
     }
   }
 
-
+  //!actualizar producto
+  updatePorducto(producto: ProductoI) {
+    
+  }
 
 
 }
