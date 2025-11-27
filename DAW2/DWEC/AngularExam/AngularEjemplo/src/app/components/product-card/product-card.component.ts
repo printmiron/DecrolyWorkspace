@@ -1,7 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { ProductoI } from '../../interface/producto-i.interface';
 import { ProductoSService } from '../../service/producto-s.service';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
+import { routes } from '../../app.routes';
 
 
 @Component({
@@ -20,6 +21,9 @@ export class ProductCardComponent {
   removeProducto(producto: ProductoI){
     this.productoService.removeProductoById(producto.id!);
   }
+
+  
+
 }
 
 

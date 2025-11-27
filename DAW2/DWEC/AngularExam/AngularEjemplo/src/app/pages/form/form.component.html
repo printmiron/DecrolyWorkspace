@@ -1,5 +1,9 @@
-<div class="d-flex justify-content-center align-items-center py-5">
+<div class="d-flex flex-column justify-content-center align-items-center py-5">
 
+   
+    <h1 class="text-center">Insertar nueva serie</h1>
+    
+    
 
     <form [formGroup]="registerProducto" (ngSubmit)="getDataFormulario()" class="w-50 border p-5 shadow rounded">
 
@@ -51,7 +55,9 @@
             }
         </div>
 
-        <input type="submit" value="Publicar" class="btn btn-dark mt-3" id="liveToastBtn" [disabled]="!registerProducto.valid">
+        <input type="submit" value="Publicar" class="btn btn-dark mt-3 me-3" id="liveToastBtn"
+            [disabled]="!registerProducto.valid && nuevoProducto">
+        <button class="btn btn-dark mt-3 " [routerLink]="['/list']">Atras</button>
 
     </form>
 

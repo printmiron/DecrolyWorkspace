@@ -2,11 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductoI } from '../../interface/producto-i.interface';
 import { ProductoSService } from '../../service/producto-s.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css',
 })
@@ -26,7 +26,7 @@ export class FormComponent {
     this.nuevoProducto = true;
 
     this.registerProducto = new FormGroup({
-
+      
       id: new FormControl(-1),
       title: new FormControl(null, [Validators.required, Validators.minLength(4)]),
       subtitle: new FormControl(null, [Validators.required]),
@@ -53,17 +53,17 @@ export class FormComponent {
 
     if (this.nuevoProducto) {
       //insertamos uno nuevo
+      producto.id = -1;
       this.productoService.addProducto(producto);
     }else{
       //!!
       //actualizamos ya existente
       this.productoService.updatePorducto(producto);
     }
-    
-
-
+  
 
     this.registerProducto.reset();
+    this.router.navigate(['/list']);
   }
 
 
@@ -74,7 +74,7 @@ export class FormComponent {
 
       if (miId != undefined) {
 
-        let miProducto = this.productoService.getById(miId);
+        let miProducto = this.productoService.getById1(miId);
 
         if (miProducto != undefined) {
           this.nuevoProducto = false;

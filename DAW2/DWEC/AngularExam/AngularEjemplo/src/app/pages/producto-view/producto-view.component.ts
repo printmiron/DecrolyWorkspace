@@ -23,7 +23,7 @@ export class ProductoViewComponent {
 
       if (miId != undefined) {
         
-        let respuesta = this.servicePorducto.getById(miId);
+        let respuesta = this.servicePorducto.getById1(miId);
 
         if (respuesta != undefined) {
           this.miProducto = respuesta;

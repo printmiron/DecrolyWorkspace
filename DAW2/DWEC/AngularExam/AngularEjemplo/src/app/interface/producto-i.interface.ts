@@ -6,7 +6,7 @@ export interface ProductoI {
     title: string;
     subtitle: string;
     descripcion: string;
-    image: string;
+    image?: string;
 
 
 }

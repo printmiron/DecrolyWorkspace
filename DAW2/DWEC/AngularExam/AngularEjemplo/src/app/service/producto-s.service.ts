@@ -6,13 +6,14 @@ import { ProductoI } from '../interface/producto-i.interface';
   providedIn: 'root',
 })
 export class ProductoSService {
-  
+
 
   arrPorductos: ProductoI[];
 
   private id: number;
 
 
+  
   constructor() {
     this.arrPorductos = [];
     this.id = 10;
@@ -29,6 +30,9 @@ export class ProductoSService {
 
   }
 
+
+
+
   //coger todos los porductos del array
   getAllProductos() {
     return this.arrPorductos;
@@ -38,22 +42,27 @@ export class ProductoSService {
 
   //!!!!!!!!!!!!
   //coger producto por id
-  getById(miId: number): ProductoI {
+  getById1(miId: number): ProductoI {
     let productos: ProductoI;
     let respuesta = this.arrPorductos.find(prod => prod.id == miId);
     if (respuesta != undefined) {
       productos = respuesta;
-      
+
     }
     else {
       productos = {
         title: "Producto no encontrado",
         subtitle: "Error",
         descripcion: "",
-        image: "",
       }
     }
     return productos;
+  }
+
+   getById2(miId: number): void {
+   
+     this.arrPorductos.find(prod => prod.id == miId);
+    
   }
 
   //añadir el producto
@@ -77,8 +86,17 @@ export class ProductoSService {
   }
 
   //!actualizar producto
-  updatePorducto(producto: ProductoI) {
-    
+  updatePorducto(producto: ProductoI): void {
+    let i = this.arrPorductos.findIndex(prod => prod.id != null);
+
+    producto.id = this.arrPorductos[i].id;
+
+    if (i != -1 && i >= 0 && i < this.arrPorductos.length) {
+      this.arrPorductos.splice(i, 1);
+    }
+
+    this.arrPorductos.push(producto);
+
   }
 
 

@@ -17,6 +17,8 @@ export const routes: Routes = [
     //aceder al los detalles de los productos
     { path : 'producto/:id', component: ProductoViewComponent },
 
+    { path : 'form/:id', component: FormComponent },
+
     //si no ecuntra la ruta va a home
     { path : '**', redirectTo: 'home' },
 
