@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie-Star</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar bg-danger">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="#">
+                    <img src="imgs/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Movi-Star
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <div class="container-fluid p-0 position-relative">
+
+            <!-- filter: brightness(70%); -> hcemos la imagen las oscura para que se vea el texto bien -->
+            <img src="imgs/bgpromocion.jpg" class="img-fluid w-100 object-fit-cover"
+                style="height: 60vh; filter: brightness(70%);" alt="">
+
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+                <h1 class="display-4 fw-bold">Promoción cine clásico Movie-Star Navidad</h1>
+                <p class="lead">Con una oferta a 4.99€/mes durante 6 meses, válida si te suscribes en diciembre</p>
+                <button class="btn btn-danger">Subscribirse</button>
+            </div>
+
+        </div>
+
+
+
+        <!-- LIBROS -->
+        <div class="mt-5">
+            <h2 class="text-center"> Catálogo </h2>
+        </div>
+        <div class="container pt-5 d-flex justify-content-center">
+
+            <div class="row row-cols-1 row-cols-md-2 g-3 h-50 w-50">
+
+                <div class="col d-flex justify-content-center">
+                    <div class="card  border shadow">
+
+                        <a href="img">
+                            <img src="imgs/Movie1.png" class="img-fluid image-zoom" alt="...">
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to
+                                additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col d-flex justify-content-center ">
+                    <div class="card  border shadow">
+
+                        <a href="img">
+                            <img src="imgs/Movie2.jpg" class="img-fluid image-zoom" alt="...">
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to
+                                additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col d-flex justify-content-center ">
+                    <div class="card  border shadow">
+
+                        <a href="img">
+                            <img src="imgs/Movie3.png" class="img-fluid image-zoom" alt="...">
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to
+                                additional content.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col d-flex justify-content-center ">
+                    <div class="card  border shadow">
+
+                        <a href="img">
+                            <img src="imgs/Movie4.jpg" class="img-fluid image-zoom" alt="...">
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
+                                to
+                                additional content. This content is a little bit longer.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-danger">
+        <p class="text-white text-center">© 2024 Movie-Star.</p>
+    </footer>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
