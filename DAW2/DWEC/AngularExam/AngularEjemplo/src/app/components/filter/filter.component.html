@@ -1,0 +1,24 @@
+<div class="mt-3 ms-5">
+
+    <form #filterProd="ngForm" (ngSubmit)="getDataFilter(filterProd)">
+
+        <select class="form-select w-25" id="categoria" name="categoria" ngModel>
+            <option value="" disabled selected>Elige una categoría</option>
+
+            <option value="">Todos los productos</option>
+
+            @for (categoria of productoService.getAllCategorias(); track $index) {
+            <option [value]="categoria.title">{{categoria.title}}</option>
+            }
+
+        </select>
+
+        <div class="mt-3">
+            <input type="submit" value="Filtrar" class="btn btn-dark">
+        </div>
+        
+
+    </form>
+
+
+</div>

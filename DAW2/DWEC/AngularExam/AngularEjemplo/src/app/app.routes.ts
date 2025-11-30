@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormComponent } from './pages/form/form.component';
 import { ListComponent } from './pages/list/list.component';
 import { ProductoViewComponent } from './pages/producto-view/producto-view.component';
+import { Page404Component } from './pages/page404/page404.component';
 
 export const routes: Routes = [
 
@@ -20,7 +21,7 @@ export const routes: Routes = [
     { path : 'form/:id', component: FormComponent },
 
     //si no ecuntra la ruta va a home
-    { path : '**', redirectTo: 'home' },
+    { path : '**', component: Page404Component },
 
 
 ];
