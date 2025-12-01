@@ -12,3 +12,7 @@ ng version
 ng new "Proyecto nombre"
 
 cd Documents/DecrolyWorkspace/DAW2/DWEC/UD3
+
+ng g c components/nombre --type=component
+i
+npm i bootstrap@5.3.8
