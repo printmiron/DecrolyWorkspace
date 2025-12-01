@@ -14,12 +14,19 @@ import { routes } from '../../app.routes';
 export class ProductCardComponent {
 
   productoService = inject (ProductoSService);
+  currency = "€";
 
   @Input() miProductos!: ProductoI;
+  router = inject(Router);
 
   //!!!
   removeProducto(producto: ProductoI){
     this.productoService.removeProductoById(producto.id!);
+  }
+
+  anadirCarrito(){
+    this.productoService.addProductoCarrito(this.miProductos);
+    this.router.navigate(['/carrito']);
   }
 
   

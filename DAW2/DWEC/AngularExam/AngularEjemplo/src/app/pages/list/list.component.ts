@@ -14,29 +14,35 @@ import { FilterComponent } from "../../components/filter/filter.component";
 })
 export class ListComponent {
 
-  
 
-  serviceProducto = inject (ProductoSService);
+
+  serviceProducto = inject(ProductoSService);
 
   arrProductos: ProductoI[];
-  
+ 
 
-  constructor(){
+
+
+
+  constructor() {
     this.arrProductos = [];
   
+
 
   }
 
   ngOnInit(): void {
     this.arrProductos = this.serviceProducto.getAllProductos();
+    //copia el array principal
     
-    
+
   }
 
-  getCategorias($event: string){
+  getCategorias($event: string) {
     this.arrProductos = this.serviceProducto.getProdByCategorias($event);
   }
 
+  
   
 
 

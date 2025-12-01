@@ -8,6 +8,9 @@ export interface ProductoI {
     descripcion: string;
     image?: string;
     categoria: string;
+    price: string;
+    cantidad?: number;
+    total?: number;
 
 
 }

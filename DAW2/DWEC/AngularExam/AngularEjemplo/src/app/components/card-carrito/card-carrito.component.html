@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="row align-items-center">
+
+        <div class="col">
+            <h2>{{ miProducto.title }}</h2>
+            <button class="btn btn-danger" (click)="eliminarProdCarrito(miProducto)">Eliminar</button>
+            
+        </div>
+
+        <div class="col d-flex justify-content-around">
+            <button class="btn btn-danger " (click)="restarCantidad()">-</button>
+            <!-- (ngModelChange) cada vez que cambia el input se llama el metodo de sumar el total -->
+            <input class="p-2" type="number" style="width: 50px;" [(ngModel)]="cantidad" (ngModelChange)="sumarTotalProd()" disabled>
+            <button class="btn btn-success" (click)="sumarCantidad()">+</button>
+        </div>
+
+        <div class="col">
+            <p>{{ miProducto.price }} {{ currency }}</p>
+        </div>
+
+        <div class="col">
+            <!-- toFixed -> la convierte en una cadena de texto con dos decimales  -->
+            <p>{{ total.toFixed(2) }} {{ currency }}</p>
+            
+        </div>
+        
+        
+        
+    </div>
+
+</div>

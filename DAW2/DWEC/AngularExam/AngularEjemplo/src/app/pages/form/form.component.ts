@@ -36,7 +36,8 @@ export class FormComponent {
       subtitle: new FormControl(null, [Validators.required]),
       descripcion: new FormControl(null, [Validators.required]),
       image: new FormControl(null, [Validators.required, Validators.pattern(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)]),
-      categoria: new FormControl(null, [Validators.required])
+      categoria: new FormControl(null, [Validators.required]),
+      price: new FormControl(null, [Validators.required])
       // edad: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(120)]),
       // email: new FormControl(null, [Validators.required, Validators.pattern(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)]),
 
@@ -95,7 +96,8 @@ export class FormComponent {
             subtitle: new FormControl(miProducto.subtitle, [Validators.required]),
             descripcion: new FormControl(miProducto.descripcion, [Validators.required]),
             image: new FormControl(miProducto.image, [Validators.required, Validators.pattern(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)]),
-            categoria: new FormControl(miProducto.categoria, [Validators.required])
+            categoria: new FormControl(miProducto.categoria, [Validators.required]),
+            price: new FormControl(miProducto.price, [Validators.required])
 
           }, []);
         }

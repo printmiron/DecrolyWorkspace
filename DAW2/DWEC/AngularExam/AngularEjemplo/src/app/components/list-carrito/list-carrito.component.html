@@ -1,0 +1,45 @@
+
+
+<div class="container mt-5">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col">
+                Producto
+            </div>
+
+            <div class="col">
+                Unidad
+            </div>
+
+            <div class="col">
+                Precio
+            </div>
+
+            <div class="col">
+                Total
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <!-- recorremos el contenedor dependiendo de cuantos productos se reciben -->
+    @for (producto of arrProductos; track $index) {
+
+        <div class="col" >
+            <!-- monstramos el card de producto y pasamos el objeto/dato del producto desde padre -->
+            <app-card-carrito [miProducto]="producto"></app-card-carrito>
+        </div>
+
+    }
+    
+
+
+</div>
+
+

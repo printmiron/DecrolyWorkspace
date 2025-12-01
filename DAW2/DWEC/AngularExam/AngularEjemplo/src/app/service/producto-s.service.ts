@@ -13,13 +13,17 @@ export class ProductoSService {
   arrPorductos: ProductoI[];
   arrCategorias: CategoriasI[];
 
+  arrCarrito: ProductoI[];
+
   private id: number;
 
 
-  
+
   constructor() {
     this.arrPorductos = [];
     this.arrCategorias = CATEGORIAS;
+
+    this.arrCarrito = [];
 
 
     this.id = 10;
@@ -37,14 +41,16 @@ export class ProductoSService {
   }
 
 
-
+  getCarrito() {
+    return this.arrCarrito;
+  }
 
   //coger todos los porductos del array
   getAllProductos() {
     return this.arrPorductos;
   }
 
-  getAllCategorias(){
+  getAllCategorias() {
     return this.arrCategorias;
   }
 
@@ -52,7 +58,7 @@ export class ProductoSService {
 
   //!!!!!!!!!!!!
   //coger producto por id
-  getById(miId: number): ProductoI | undefined{
+  getById(miId: number): ProductoI | undefined {
     let productos: ProductoI;
     let respuesta = this.arrPorductos.find(prod => prod.id == miId);
     if (respuesta != undefined) {
@@ -64,7 +70,8 @@ export class ProductoSService {
         title: "Producto no encontrado",
         subtitle: "Error",
         descripcion: "",
-        categoria: ""
+        categoria: "",
+        price: ""
       }
     }
     return productos;
@@ -74,7 +81,7 @@ export class ProductoSService {
   getProdByCategorias(categorias: string): ProductoI[] {
     return this.arrPorductos.filter(prod => prod.categoria.includes(categorias));
   }
-   
+
   //añadir el producto
   addProducto(producto: ProductoI) {
     if (!this.arrPorductos.includes(producto)) {
@@ -86,6 +93,22 @@ export class ProductoSService {
     }
   }
 
+  addProductoCarrito(producto: ProductoI) {
+    const existe = this.arrCarrito.find(p => p.id === producto.id);
+
+    if (!existe) {
+      this.arrCarrito.push({
+        ...producto,
+        cantidad: 1,
+        total: Number(producto.price)
+      });
+    } else {
+      existe.cantidad! += 1;
+      existe.total = existe.cantidad! * Number(existe.price);
+    }
+  }
+
+
   //borrar el producto
   removeProductoById(id: number): void {
     let i = this.arrPorductos.findIndex(producto => producto.id == id);
@@ -95,7 +118,7 @@ export class ProductoSService {
     }
   }
 
-  //!actualizar producto
+  //!actualizar producto por formulario
 
   updatePorducto(producto: ProductoI): void {
     //buscamos en le array por id no por si es distinto de null como antes
@@ -106,9 +129,28 @@ export class ProductoSService {
       this.arrPorductos[i] = producto;
     }
 
-    
-
   }
+
+
+
+  actualizarPorductoCarrito(producto: ProductoI, cantidad: number) {
+    const p = this.arrCarrito.find(p => p.id === producto.id);
+
+    if (p) {
+      p.cantidad = cantidad;
+      p.total = cantidad * Number(p.price);
+    }
+  }
+
+  removeProductoCarrito(id: number) {
+    const index = this.arrCarrito.findIndex(p => p.id === id);
+    if (index !== -1) {
+      this.arrCarrito.splice(index, 1);
+    }
+  }
+
+
+
 
 
 }

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <!-- Si hay productos, mostramos la lista -->
+            @if (arrProductos && arrProductos.length > 0) {
+            <app-list-carrito></app-list-carrito>
+            }
+
+            @if (!arrProductos || arrProductos.length === 0) {
+            <div class="container mt-5">
+                <h3 class="text-center">El carrito está vacio</h3>
+                <p class="text-center">Agrega productos para poder verlos</p>
+            </div>
+
+            }
+
+
+        </div>
+    </div>
+</div>

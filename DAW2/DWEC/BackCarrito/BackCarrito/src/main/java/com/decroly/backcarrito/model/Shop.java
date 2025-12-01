@@ -18,7 +18,8 @@ public class Shop {
             "Auriculares premium con cancelación activa de ruido, modo transparencia y 30 horas de batería.",
             "auriculares-soundwave-pro",
             "https://images.pexels.com/photos/4523027/pexels-photo-4523027.jpeg",
-            "Auriculares"   // ← categoría
+            "Auriculares",
+            "200.25"  // ← categoría
         ));
 
         this.products.add(new Product(
@@ -28,7 +29,8 @@ public class Shop {
             "Reloj inteligente con seguimiento de ritmo cardiaco y GPS integrado.",
             "smartwatch-fitpulse-x",
             "https://images.pexels.com/photos/1682821/pexels-photo-1682821.jpeg",
-            "Smartwatch"
+            "Smartwatch",
+            "250"
         ));
 
         this.products.add(new Product(
@@ -38,7 +40,8 @@ public class Shop {
             "Tablet ligera con procesador octa-core y gran autonomía.",
             "tablet-ultratab-105",
             "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg",
-            "Tablet"
+            "Tablet",
+            "150"
         ));
 
         this.products.add(new Product(
@@ -48,7 +51,8 @@ public class Shop {
             "Auriculares gamer con iluminación RGB.",
             "gamer-gpulse",
             "https://images.pexels.com/photos/7046709/pexels-photo-7046709.jpeg",
-            "Auriculares"
+            "Auriculares",
+            "50"
         ));
 
         this.products.add(new Product(
@@ -58,7 +62,8 @@ public class Shop {
             "Altavoz inteligente compatible con asistentes virtuales.",
             "altavoz-homesound-mini",
             "https://images.pexels.com/photos/2651794/pexels-photo-2651794.jpeg",
-            "Altavoz"
+            "Altavoz",
+            "75"
         ));
     }
 
@@ -66,13 +71,7 @@ public class Shop {
         return products;
     }
 
-    /** NUEVO: obtener categorías únicas */
-    public List<String> getCategorias() {
-        return products.stream()
-            .map(Product::getCategoria)
-            .distinct()
-            .toList();
-    }
+    
 
   
 

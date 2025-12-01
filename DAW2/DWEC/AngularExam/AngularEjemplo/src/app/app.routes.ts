@@ -4,6 +4,7 @@ import { FormComponent } from './pages/form/form.component';
 import { ListComponent } from './pages/list/list.component';
 import { ProductoViewComponent } from './pages/producto-view/producto-view.component';
 import { Page404Component } from './pages/page404/page404.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 export const routes: Routes = [
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
     { path : 'home', component: HomeComponent },
     { path : 'form', component: FormComponent },
     { path : 'list', component: ListComponent },
+    { path : 'carrito', component: CarritoComponent },
 
     //aceder al los detalles de los productos
     { path : 'producto/:id', component: ProductoViewComponent },

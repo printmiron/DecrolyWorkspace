@@ -15,6 +15,8 @@ export class ProductoViewComponent {
   servicePorducto = inject(ProductoSService);
   activatedRoute = inject(ActivatedRoute);
 
+  currency = "€";
+
   //!!!!!!!!!!!!
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: any) => {
