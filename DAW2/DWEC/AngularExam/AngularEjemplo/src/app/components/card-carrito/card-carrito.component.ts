@@ -59,7 +59,6 @@ export class CardCarritoComponent {
   sumarTotalProd() {
     this.total = this.cantidad * Number(this.miProducto.price);
 
-    //actualizar el servicio para que llege total-comp
     this.productServices.actualizarPorductoCarrito(this.miProducto, this.cantidad);
   }
 
