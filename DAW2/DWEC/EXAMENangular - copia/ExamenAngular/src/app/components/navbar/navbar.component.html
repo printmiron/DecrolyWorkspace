@@ -1,0 +1,23 @@
+<nav class="bg-black navbar navbar-expand-lg ">
+  <div class="container-fluid ">
+    <a class="navbar-brand text-white" [routerLink]="['/home']">
+      <!-- logo -->
+      <img style="width: 50px;" src="http://peticiones.online/images/products/image08.png" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLinkActive="active" [routerLink]="['/form']">Formulario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLinkActive="active" [routerLink]="['/list']">Productos</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,41 @@
+<div class="card h-100 border shadow rounded">
+
+    <img class="rounded-1" [src]="miProductos.image" />
+
+    <div class="card-body">
+
+        <h4 class="card-title">{{miProductos.name}}</h4>
+        <p class="card-text">{{miProductos.description}}</p>
+        <figcaption class="blockquote-footer mt-2">
+            Categoría: <cite title="Source Title">{{miProductos.category}}</cite>
+        </figcaption>
+        <h4>Precio: {{miProductos.price}} {{currency}}</h4>
+        
+
+    </div>
+
+    <div class="container pb-3">
+
+        <div class="row">
+
+            <div class="col d-flex  justify-content-center">
+                <a class="btn btn-dark" [routerLink]="['/producto', miProductos.id]">Ver más</a>
+            </div>
+
+            <div class="col d-flex  justify-content-center">
+                <button class="btn btn-danger" (click)="removeProducto(miProductos)">Borrar</button>
+            </div>
+
+            <div class="col d-flex  justify-content-center">
+                <button class="btn btn-warning" [routerLink]="['/form', miProductos.id]">Editar</button>
+            </div>
+
+           
+
+        </div>
+
+    </div>
+
+
+
+</div>

@@ -1,0 +1,109 @@
+<div class="d-flex flex-column justify-content-center align-items-center py-5">
+
+    @if (nuevoProducto) {
+    <h1 class="text-center">Insertar nuevo producto</h1>
+    }@else {
+    <h1 class="text-center">Editar producto</h1>
+    }
+
+
+
+
+    <form [formGroup]="registrarProducto" (ngSubmit)="getDataFormulario()" class="w-75 border p-5 shadow rounded">
+
+        <div class="mb-3">
+            <label for="name">Nombre</label>
+
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre del producto"
+                formControlName="name">
+            @if(Control('name','required')){
+            <p class="error">Campo requirido</p>
+            }
+
+            @if(Control('name','minlength')){
+            <p class="error">El nombre no puede ser menos de 4 simbolos</p>
+            }
+        </div>
+
+
+        <div class="mb-3">
+            <label for="description">Descripción</label>
+
+            <textarea type="text" class="form-control" name="description" id="description"
+                placeholder="description del producto" formControlName="description"></textarea>
+            @if(Control('description','required')){
+            <p class="error">Campo requirido</p>
+            }
+        </div>
+
+
+        <div class="mt-3">
+            <label for="price">Precio</label>
+
+            <input type="text" class="form-control" name="price" id="price" placeholder="Introduce el precio"
+                formControlName="price">
+            @if(Control('price','required')){
+            <p class="error">Campo requirido</p>
+            }
+
+
+        </div>
+
+
+        <div class="mt-3">
+            <label for="category">Categoria</label>
+            <select class="form-select" id="category" formControlName="category">
+                <option value="" disabled selected>Elige una categoría</option>
+                @for (category of productService.getAllCategorias(); track $index) {
+                <option [value]="category.title">{{category.title}}</option>
+                }
+            </select>
+
+            @if(Control("category","required")){
+            <p class="error">Campo requerido</p>
+            }
+        </div>
+
+
+        <div class="mt-3">
+            <label for="image">Imagen</label>
+
+            <input type="text" class="form-control" name="image" id="image" placeholder="Introduce la URL del imagen"
+                formControlName="image">
+            @if(Control('image','required')){
+            <p class="error">Campo requirido</p>
+            }
+
+            @if(Control('image','pattern')){
+            <p class="error">URL no valido</p>
+            }
+        </div>
+
+
+        <!-- !!!!!!!! -->
+
+        <!-- <label for="active">Disponibilidad</label>
+        <select class="form-select" id="active">
+            <option value=""></option>
+            <option [value]="true">Activo</option>
+            <option [value]="false">No Activo</option>
+        </select>
+        @if(Control('active','required')){
+        <p class="active">Campo requirido</p>
+        } -->
+
+
+        <input type="submit" value="Publicar" class="btn btn-dark mt-3 me-3" id="liveToastBtn"
+            [disabled]="!registrarProducto.valid && nuevoProducto">
+
+        <!-- el boton atras solo aparece cundo editamos el producto -->
+        @if (nuevoProducto) {
+
+        }@else{
+        <button class="btn btn-dark mt-3 " [routerLink]="['/list']">Atras</button>
+        }
+
+
+    </form>
+
+</div>
