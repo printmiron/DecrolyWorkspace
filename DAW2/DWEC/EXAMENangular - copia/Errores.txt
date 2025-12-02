@@ -1,7 +1,0 @@
-1. No se puede editar el producto que viene del back, pero al crear uno nuevo ya se 
-puede editar el mismo creado, no se porque creo que es la cosa del activo: boolean no se,
-no puedo encontrar el error.
-
-2. No se puede borrar después de filtrar, si que se borra pero se debe otra vez darle al botón 
-"Filtrar" para que se reinicie el array, pero sin filtrar se borra directamente.
-
