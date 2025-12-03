@@ -1,0 +1,10 @@
+CREATE DATABASE empresa_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+
+
+
+---------------------------------------------
+
+
+INSERT INTO empresas (nombre) VALUES ('Empresa A');
+INSERT INTO empresas (nombre) VALUES ('Empresa B');
