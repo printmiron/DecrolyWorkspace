@@ -41,7 +41,7 @@ public class CiudadService {
     }
 
     // PUT actualizar condición
-    public Ciudad updateCondicion(Long id, String nuevoCondicion) {
+    public Ciudad updateCondicion(String id, String nuevoCondicion) {
         if (nuevoCondicion == null) return null;
 
         String condicionNormal = nuevoCondicion.trim().toUpperCase();
@@ -61,12 +61,12 @@ public class CiudadService {
     }
 
     // Verificar existencia
-    public boolean existsById(Long id) {
+    public boolean existsById(String id) {
         return ciudadRepository.existsById(id);
     }
 
     // DELETE
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         if (ciudadRepository.existsById(id)) {
             ciudadRepository.deleteById(id);
         } else {

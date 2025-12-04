@@ -1,6 +1,7 @@
 package com.example.example_exam.entity;
 
 import java.sql.Date;
+import java.util.UUID;
 
 import com.example.example_exam.Condicion;
 
@@ -9,8 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -21,8 +20,8 @@ import jakarta.persistence.Table;
 public class Ciudad {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    
+    private String id = UUID.randomUUID().toString();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pais_id", nullable = false)
@@ -53,13 +52,7 @@ public class Ciudad {
     @Column(name = "velocidad")
     private int velocidadV;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     public Pais getPais() {
         return pais;
@@ -131,6 +124,14 @@ public class Ciudad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
