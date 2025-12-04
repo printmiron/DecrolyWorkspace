@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS Ciudad (
         ON UPDATE CASCADE
 );
 
+insert into Pais (id, nombre) value (2,"France");
 
 
 
