@@ -10,7 +10,7 @@ import com.example.example_exam.Condicion;
 import com.example.example_exam.entity.Ciudad;
 
 @Repository
-public interface CiudadRepository extends JpaRepository<Ciudad, Long> {
+public interface CiudadRepository extends JpaRepository<Ciudad, String> {
 
     // Método para buscar ciudades por el id del país
     List<Ciudad> findByPaisId(Long paisId);

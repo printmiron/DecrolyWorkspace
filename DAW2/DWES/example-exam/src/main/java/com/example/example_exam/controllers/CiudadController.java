@@ -45,7 +45,7 @@ public class CiudadController {
 
     // 2) GET ciudad por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Ciudad> getCiudadPorId(@PathVariable Long id) {
+    public ResponseEntity<Ciudad> getCiudadPorId(@PathVariable String id) {
         return ciudadRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
@@ -113,7 +113,7 @@ public class CiudadController {
     // 7) PUT para actualizar condición de ciudad
     @PutMapping("/{id}/condicion")
     public ResponseEntity<Ciudad> updateCondicion(
-            @PathVariable Long id,
+            @PathVariable String id,
             @RequestBody String nuevoCondicion) {
 
         Ciudad actualizado = ciudadService.updateCondicion(id, nuevoCondicion);
@@ -127,7 +127,7 @@ public class CiudadController {
 
     // 8) DELETE ciudad por ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable String id) {
         if (!ciudadService.existsById(id)) {
             return ResponseEntity.notFound().build();
         }

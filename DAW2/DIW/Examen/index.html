@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Mascotas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg bg-danger">
+        <div class="container-fluid">
+
+            <!-- Logo -->
+            <a class="navbar-brand text-white" href="#">
+                <img src="img/isotipo.png" alt="Logo" width="40" height="40">
+            </a>
+
+            <!-- Boton Hamburguesa -->
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Mascotas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#" data-bs-toggle="modal"
+                            data-bs-target="#loginModal">Login</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="loginModalLabel">Iniciar Sesion</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo electronico</label>
+                            <input type="email" class="form-control" placeholder="tuemail@example.com">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" placeholder="••••••••">
+                        </div>
+
+                        <button type="submit" class="btn btn-danger w-100">Registrarse</button>
+
+                    </form>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Hero / Banner -->
+    <section class="container-fluid p-0 position-relative">
+        <img src="img/mascotas.jpg" class="img-fluid w-100 object-fit-cover"
+            style="height: 60vh; filter: brightness(70%);" alt="">
+
+        <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+            <h1 class="display-4 fw-bold">Bienvenido</h1>
+            <p class="lead">aaaaaaaaaaaaaaaaaaaaa</p>
+            <button class="btn btn-danger">Mascotas</button>
+        </div>
+    </section>
+
+    <!-- Sección principal -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <img src="img/mapache.jpg" alt="mapache" class="img-fluid w-100 rounded"
+                        style="object-fit: cover; max-height: 300px;">
+                </div>
+
+
+                <div class="col-md-8">
+                    <h2>Medium length features headline <span class="text-danger">titulo + parrafo</span></h2>
+                    <p>Lorem ipsum dolor sit amet et delectus accommodare his consul copiosae legendos at vix ad putent
+                        delectus delicata usu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de tarjetas -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Tarjeta 1 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-img-placeholder">mascota jpeg</div>
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">titulo</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+                            <a href="#" class="btn btn-danger">Adoptar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-img-placeholder">mascota jpeg</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Medium length headline</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+                            <a href="#" class="btn btn-danger">Adoptar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-img-placeholder">mascota jpeg</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Medium length headline</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet.</p>
+                            <a href="#" class="btn btn-danger">Adoptar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer corregido -->
+    <footer class="py-4 bg-danger text-center">
+        <div class="container">
+
+            <div class="fs-4">
+                <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white me-3"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
+            </div>
+
+            <div class="mt-2">
+                <p class="text-white">© 2024 Your Website. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+
+</html>
