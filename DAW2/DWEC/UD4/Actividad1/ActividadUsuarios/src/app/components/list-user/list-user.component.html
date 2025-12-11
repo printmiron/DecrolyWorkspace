@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-5 p-5">
+
+        @for (user of arrUsuarios; track user._id) {
+        <div class="col">
+            <app-card-user [miUser]="user"></app-card-user>
+        </div>
+
+        }@empty {
+        <div class="container">
+            <h2 class="text-dark text-center">No tenemos usuarios!</h2>
+        </div>
+
+        }
+
+    </div>
+</div>
