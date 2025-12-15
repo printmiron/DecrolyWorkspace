@@ -15,22 +15,21 @@ export class UserViewComponent {
   activatedRoute = inject(ActivatedRoute);
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(async (params: any) => {
-      let _id: string = params._id
+    //!!!
+    // this.activatedRoute.params.subscribe(async (params: any) => {
+    //   let _id: string = params._id
 
-      if (_id != undefined) {
-        let respuesta = await this.serviceUser.getUserById(_id);
+    //   if (_id != undefined) {
+    //     let respuesta = await this.serviceUser.getUserById(_id);
 
-        if (respuesta != undefined) {
-          this.miUser = respuesta;
-        }
+    //     if (respuesta != undefined) {
+    //       this.miUser = respuesta;
+    //     }
 
-      }
-
-
-    });
+    //   }
 
 
+    // });
 
   }
 

@@ -14,4 +14,21 @@ export class CardUserComponent {
   serviceUser = inject(UsuarioService);
   router = inject(Router);
   @Input() miUser!: UsuarioI;
+
+
+  async deleteUser(user: UsuarioI) {
+    alert("Usuario borrado");
+
+    const response = await this.serviceUser.deleteById(user._id!);
+
+    if (response._id) {
+
+      alert("Se ha eliminado correcto: " + user.username);
+
+    } else {
+
+      alert("No se ha elimindao correcto: " + user.username);
+    }
+  }
+
 }
