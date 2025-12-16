@@ -16,20 +16,23 @@ export class UserViewComponent {
 
   ngOnInit() {
     //!!!
-    // this.activatedRoute.params.subscribe(async (params: any) => {
-    //   let _id: string = params._id
+    this.activatedRoute.params.subscribe(async (params: any) => {
+      let _id: string = params._id
+      console.log(params)
 
-    //   if (_id != undefined) {
-    //     let respuesta = await this.serviceUser.getUserById(_id);
+      if (_id != undefined) {
+        let respuesta = await this.serviceUser.getUserById(_id);
+        console.log(respuesta)
 
-    //     if (respuesta != undefined) {
-    //       this.miUser = respuesta;
-    //     }
+        if (respuesta != undefined) {
+          this.miUser = respuesta;
+          console.log(this.miUser)
+        }
 
-    //   }
+      }
 
 
-    // });
+    });
 
   }
 
