@@ -20,23 +20,16 @@ export class UsuarioService {
       this.httpClient.get<ApiResponse>(this.baseUrl).pipe(
         //extraer solo la parte de results donde se encunetra los usuarios
         map(respuesta => respuesta.results)
-      )
-    );
+      ));
 
-   
+
   }
 
+  //devuelve el usuario directamente filtrado por id del API 
   getUserById(_id: string): Promise<UsuarioI | undefined> {
-
-    return lastValueFrom(
-      this.httpClient.get<ApiResponse>(this.baseUrl + "/" + _id).pipe(
-        map(respuesta => respuesta.results.find(user => user._id === _id))
-      )
-    );
-  }
-
-  getUserByIdOBS(_id: string): Observable<UsuarioI>{
-    return this.httpClient.get<UsuarioI>(this.baseUrl + "/" + _id);
+    return lastValueFrom(this.httpClient.get<ApiResponse>(this.baseUrl).pipe(
+      map(respuesta => respuesta.results.find(user => user._id === _id))
+    ));
   }
 
   deleteById(_id: string): Promise<UsuarioI> {
