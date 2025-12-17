@@ -40,7 +40,7 @@ export class NuevoUsuarioComponent {
 
     if (this.isNew) {
 
-      const response = await this.serviceUser.insertById(user);
+      const response = await this.serviceUser.insertUser(user);
 
       if (response.id) {
 
@@ -51,7 +51,7 @@ export class NuevoUsuarioComponent {
         const response = await this.serviceUser.updateUser(user);
 
         if (response.id) {
-          alert("Usuario editado bien");
+          alert("Usuario" + user.username + " editado bien");
         }
 
       }
@@ -73,7 +73,7 @@ export class NuevoUsuarioComponent {
 
       if (_id != undefined) {
         let miUser = await this.serviceUser.getUserById(_id);
-
+        
         if (miUser != undefined) {
           this.isNew = false;
           this.userForm = new FormGroup({
@@ -86,6 +86,7 @@ export class NuevoUsuarioComponent {
             image: new FormControl(miUser.image, [Validators.required, Validators.pattern(/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/)]),
             password: new FormControl(miUser.password, [Validators.required]),
           }, []);
+          
         } else {
           alert("No se encuantra el usuario");
         }

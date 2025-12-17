@@ -36,7 +36,7 @@ export class UsuarioService {
     return lastValueFrom(this.httpClient.delete<UsuarioI>(this.baseUrl + "/" + _id));
   }
 
-  insertById(user: UsuarioI): Promise<UsuarioI> {
+  insertUser(user: UsuarioI): Promise<UsuarioI> {
     return lastValueFrom(this.httpClient.post<UsuarioI>(this.baseUrl, user));
   }
 

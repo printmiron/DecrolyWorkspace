@@ -41,3 +41,10 @@ angular.json
 
 
 
+npm install -g firebase-tools
+firebase login
+firebase init
+ng build --configuracion=production
+firebase deply
+
+
