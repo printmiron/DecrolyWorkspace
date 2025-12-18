@@ -2,6 +2,8 @@ import { Component, inject, Input } from '@angular/core';
 import { UsuarioService } from '../../service/usuario.service';
 import { Router, RouterLink } from '@angular/router';
 import { UsuarioI } from '../../interface/usuario.interface';
+import Swal from 'sweetalert2';
+import 'sweetalert2/themes/bootstrap-5.css'
 
 
 @Component({
@@ -17,17 +19,24 @@ export class CardUserComponent {
 
 
   async deleteUser(user: UsuarioI) {
-    alert("Usuario borrado");
 
     const response = await this.serviceUser.deleteById(user._id!);
 
     if (response._id) {
-
-      alert("Se ha eliminado correcto: " + user.username);
+       Swal.fire({
+        icon: "success",
+        text: "Se ha eliminado el usuario: " + user.username,
+        theme: 'bootstrap-5-light'
+      });
+      
 
     } else {
 
-      alert("No se ha elimindao correcto: " + user.username);
+      Swal.fire({
+        icon: "error",
+        text: "No se ha eliminado el usuario: " + user.username,
+        theme: 'bootstrap-5-light'
+      });
     }
   }
 

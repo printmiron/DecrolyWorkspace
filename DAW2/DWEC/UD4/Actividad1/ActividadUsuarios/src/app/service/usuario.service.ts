@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { UsuarioI } from '../interface/usuario.interface';
-import { lastValueFrom, map, Observable } from 'rxjs';
+import { firstValueFrom, lastValueFrom, map, Observable } from 'rxjs';
 import { ApiResponse } from '../interface/api-response.interface';
 
 @Injectable({
@@ -16,14 +16,14 @@ export class UsuarioService {
 
   getAllUsers(): Promise<UsuarioI[]> {
 
-    return lastValueFrom(
-      this.httpClient.get<ApiResponse>(this.baseUrl).pipe(
+    return lastValueFrom(this.httpClient.get<ApiResponse>(this.baseUrl).pipe(
         //extraer solo la parte de results donde se encunetra los usuarios
         map(respuesta => respuesta.results)
       ));
 
 
   }
+
 
   //devuelve el usuario directamente filtrado por id del API 
   getUserById(_id: string): Promise<UsuarioI | undefined> {

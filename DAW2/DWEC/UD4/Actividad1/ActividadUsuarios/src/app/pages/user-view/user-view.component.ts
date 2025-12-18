@@ -3,6 +3,7 @@ import { UsuarioI } from '../../interface/usuario.interface';
 import { UsuarioService } from '../../service/usuario.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-user-view',
   imports: [],
@@ -14,28 +15,30 @@ export class UserViewComponent {
   serviceUser = inject(UsuarioService);
   activatedRoute = inject(ActivatedRoute);
 
-  ngOnInit() {
-    //!!!
+
+  ngOnInit(): void {
+    //Usando el endpoint específico para obtener usuario por id
     this.activatedRoute.params.subscribe(async (params: any) => {
+
       let _id: string = params._id
-      console.log(params)
+      console.log(_id)
 
       if (_id != undefined) {
-        let respuesta = await this.serviceUser.getUserById(_id);
-        console.log(respuesta)
+        let response = await this.serviceUser.getUserById(_id);
+        console.log(response)
 
-        if (respuesta != undefined) {
-          this.miUser = respuesta;
-          console.log(this.miUser)
+        if (response != undefined) {
+          this.miUser = response;
+
         }
 
       }
 
-
     });
-
+    
   }
 
+ 
 
 
 }

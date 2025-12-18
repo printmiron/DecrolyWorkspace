@@ -3,6 +3,8 @@ import { UsuarioService } from '../../service/usuario.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuarioI } from '../../interface/usuario.interface';
+import Swal from 'sweetalert2';
+import 'sweetalert2/themes/bootstrap-5.css'
 
 @Component({
   selector: 'app-nuevo-usuario',
@@ -44,14 +46,23 @@ export class NuevoUsuarioComponent {
 
       if (response.id) {
 
-        alert("El usuario " + user.username + " fui registrado bien");
+        Swal.fire({
+               icon: "success",
+               text: "Se ha registrado el usuario: " + user.username,
+               theme: 'bootstrap-5-light'
+             });
 
       } else {
 
         const response = await this.serviceUser.updateUser(user);
 
         if (response.id) {
-          alert("Usuario" + user.username + " editado bien");
+          
+          Swal.fire({
+               icon: "success",
+               text: "Se ha editado el usuario: " + user.username,
+               theme: 'bootstrap-5-light'
+             });
         }
 
       }
