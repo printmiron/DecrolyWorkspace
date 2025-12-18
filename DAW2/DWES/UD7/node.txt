@@ -1,0 +1,5 @@
+1 crear carpeta -> acceder
+2 npm init -y 
+3 npm install express (node_modules)
+4 npm install --save-dev typescript @types/node @types/express ts-node
+5 carpetas etc.
