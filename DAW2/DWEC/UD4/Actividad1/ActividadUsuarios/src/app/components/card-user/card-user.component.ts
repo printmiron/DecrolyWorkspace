@@ -23,12 +23,31 @@ export class CardUserComponent {
     const response = await this.serviceUser.deleteById(user._id!);
 
     if (response._id) {
-       Swal.fire({
+      Swal.fire({
         icon: "success",
         text: "Se ha eliminado el usuario: " + user.username,
         theme: 'bootstrap-5-light'
       });
-      
+
+      Swal.fire({
+        title: "Eres seguro que quieres eliminar " + user.username + "?",
+        icon: "warning",
+        theme: 'bootstrap-5-light',
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Si, borrar!"
+        
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Borrado!",
+            text: "Se ha eliminado el usuario: " + user.username,
+            icon: "success",
+            theme: 'bootstrap-5-light'
+          });
+        }
+      });
 
     } else {
 

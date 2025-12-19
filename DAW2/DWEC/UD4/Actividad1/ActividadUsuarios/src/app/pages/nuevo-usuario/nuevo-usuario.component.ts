@@ -98,6 +98,7 @@ export class NuevoUsuarioComponent {
             password: new FormControl(miUser.password, [Validators.required]),
           }, []);
           
+          
         } else {
           alert("No se encuantra el usuario");
         }
