@@ -27,7 +27,7 @@ export class UsuarioService {
 
   //devuelve el usuario directamente filtrado por id del API 
   getUserById(_id: string): Promise<UsuarioI> {
-    return lastValueFrom(this.httpClient.get<UsuarioI>(`${this.baseUrl}/${_id}`));
+    return lastValueFrom(this.httpClient.get<UsuarioI>(this.baseUrl + "/" + _id));
   }
 
   deleteById(_id: string): Promise<UsuarioI> {
