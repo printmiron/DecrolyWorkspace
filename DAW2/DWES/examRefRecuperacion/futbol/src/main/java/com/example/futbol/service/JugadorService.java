@@ -32,7 +32,7 @@ public class JugadorService {
     }
 
     // Buscar por nombre de equipo
-    public List<Jugador> findByNombreEquipo(String nombreEquipo) {
-        return jugadorRepository.findByEquipo(nombreEquipo);
-    }
+    public List<Jugador> findByEquipo(String nombre) {
+    return jugadorRepository.findByEquipoNombreEquipo(nombre);
+}
 }

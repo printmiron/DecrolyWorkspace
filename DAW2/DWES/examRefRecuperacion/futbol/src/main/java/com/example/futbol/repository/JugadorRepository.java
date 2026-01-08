@@ -9,10 +9,9 @@ import com.example.futbol.entity.Jugador;
 
 @Repository
 public interface JugadorRepository extends JpaRepository<Jugador, String> {
-
-    // Este método permite filtrar por el campo "equipo" de tu entidad Jugador
-    // Spring Data JPA crea la consulta SQL automáticamente
-    List<Jugador> findByEquipo(String nombre);
     
-
+    // CAMBIA findByEquipo por esto:
+    // Al poner "EquipoNombreEquipo" le decimos a Spring: 
+    // "Busca dentro del objeto Equipo el atributo nombreEquipo que es un String"
+    List<Jugador> findByEquipoNombreEquipo(String nombre);
 }

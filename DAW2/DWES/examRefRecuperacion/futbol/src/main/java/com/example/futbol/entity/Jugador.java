@@ -1,14 +1,13 @@
 package com.example.futbol.entity;
 
-import java.util.UUID;
-
 import com.example.futbol.Posicion;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,7 +18,8 @@ import jakarta.persistence.Table;
 public class Jugador {
 
     @Id
-    private String id = UUID.randomUUID().toString();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @Column(name = "dorsal")
     private Integer Dorsal;
@@ -41,9 +41,7 @@ public class Jugador {
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;
 
-
     // Getters and Setters
-
     public String getId() {
         return id;
     }
@@ -99,8 +97,5 @@ public class Jugador {
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-
-    
-
 
 }

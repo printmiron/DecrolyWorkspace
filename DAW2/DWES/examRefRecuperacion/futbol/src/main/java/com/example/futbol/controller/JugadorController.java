@@ -30,9 +30,9 @@ public class JugadorController {
 
     // 2. Listar jugadores por nombre de equipo
     // Ejemplo: /jugadores/equipo/RealMadrid
-    @GetMapping("/equipo/{nombreEquipo}")
-    public List<Jugador> getByEquipo(@PathVariable String nombreEquipo) {
-        return jugadorService.findByNombreEquipo(nombreEquipo);
+    @GetMapping("/equipo/{nombre}")
+    public List<Jugador> listarPorEquipo(@PathVariable String nombre) {
+        return jugadorService.findByEquipo(nombre);
     }
 
     // 3. Añadir jugadores
