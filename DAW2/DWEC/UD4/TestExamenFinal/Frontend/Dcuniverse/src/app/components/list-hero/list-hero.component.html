@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-5 p-5">
+
+        @for (hero of arrHeros; track hero.id) {
+        <div class="col">
+            <app-card-hero [miHero]="hero"></app-card-hero>
+        </div>
+
+        }@empty {
+        <div class="container">
+            <h2 class="text-dark text-center">No tenemos usuarios!</h2>
+        </div>
+
+        }
+
+    </div>
+</div>
