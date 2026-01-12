@@ -4,6 +4,7 @@ dotenv.config();
 import express from 'express';
 import sequelize from './config/database';
 import pistasRoutes from './routes/pistasRoutes';
+import reservasRoutes from './routes/reservasRoutes';
 
 
 const app = express();
@@ -20,4 +21,4 @@ sequelize
     .catch((error) => console.error('Error al conectar la base de datos:', error));
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
 
-app.use('/api', pistasRoutes);
+app.use('/api', pistasRoutes, reservasRoutes);

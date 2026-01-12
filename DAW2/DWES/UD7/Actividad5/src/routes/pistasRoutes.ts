@@ -4,7 +4,7 @@ import { actualizarPistaPorId, crearPista, eliminarPistaPorId, obtenerPistaPorId
 const router = Router();
 router.post('/pistas', crearPista);
 router.get('/pistas', obtenerPistas);
-router.get('/pistas', obtenerPistaPorId);
-router.put('/pistas', actualizarPistaPorId);
-router.delete('/pistas', eliminarPistaPorId);
+router.get('/pistas/:id', obtenerPistaPorId);
+router.put('/pistas/:id', actualizarPistaPorId);
+router.delete('/pistas/:id', eliminarPistaPorId);
 export default router;

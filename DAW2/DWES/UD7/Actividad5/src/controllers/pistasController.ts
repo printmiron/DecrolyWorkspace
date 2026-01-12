@@ -16,16 +16,19 @@ export const crearPista = async (req: Request, res: Response) => {
 
 export const obtenerPistaPorId = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const pista = await Pista.findByPk(id);
 
-    if (pista) {
-        res.json(pista);
-    } else {
+    try {
+        const pista = await Pista.findByPk(id);
+        if (pista) {
+            res.json(pista);
+        }
+    } catch (error) {
         res.status(404).json({
             msg: `No existe una pista con el id ${id}`
         });
-    }
-};
+
+    };
+}
 
 export const actualizarPistaPorId = async (req: Request, res: Response) => {
     const { id } = req.params;
