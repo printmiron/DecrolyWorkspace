@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +8,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
+  private router = inject(Router);
 
+  logout() {
+    localStorage.removeItem('accessToken');
+    this.router.navigate(['/inicio']);
+
+
+  }
 }
