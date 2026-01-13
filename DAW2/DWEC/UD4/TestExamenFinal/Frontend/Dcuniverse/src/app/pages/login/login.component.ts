@@ -23,25 +23,27 @@ export class LoginComponent {
 
 
   async getUser(loginForm: NgForm) {
+    const loginUser: User = loginForm.value as User;
+    loginUser.expiresInMins = 30;
+
+    //Hay que hacer la petición de login
     try {
-      const loginUser: User = loginForm.value as User;
       let response = await this.userService.login(loginUser);
-
-      console.log('Respuesta del servidor:', response); // Mira la consola del navegador (F12)
-
-      // IMPORTANTE: Cambia response.accessToken por response.token
-      if (response && response.token) {
-        localStorage.setItem("accessToken", response.token);
-        console.log('Token guardado correctamente');
+      
+      if (response.accessToken) {
+        localStorage.setItem("accessToken", response.accessToken);
+        
+        localStorage.setItem("user", JSON.stringify(response.user));
 
         this.router.navigate(['/home']);
         loginForm.reset();
-      } else {
-        console.error('El servidor no envió la propiedad "token"');
       }
+
     } catch (error) {
-      console.error("Error en la petición:", error);
-      alert("Credenciales incorrectas o servidor caído");
+      alert("Credenciales incorrectos");
+      loginForm.reset();
     }
+
   }
+
 }

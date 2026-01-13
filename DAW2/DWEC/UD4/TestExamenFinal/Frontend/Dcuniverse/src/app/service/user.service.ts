@@ -15,4 +15,6 @@ export class UserService {
   login(user: User): Promise<any> {
     return lastValueFrom(this.httpClient.post<any>(this.baseUrl + "login", user));
   }
+
+  
 }

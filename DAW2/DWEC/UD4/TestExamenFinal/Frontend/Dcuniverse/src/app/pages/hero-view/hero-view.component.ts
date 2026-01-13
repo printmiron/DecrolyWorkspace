@@ -16,7 +16,7 @@ export class HeroViewComponent {
   activatedRoute = inject(ActivatedRoute);
 
   ngOnInit(): void {
-    //Usando el endpoint específico para obtener usuario por id
+    //Usando el endpoint específico para obtener heroe por id
     this.activatedRoute.params.subscribe(async (params: any) => {
 
       let id: number = params.id

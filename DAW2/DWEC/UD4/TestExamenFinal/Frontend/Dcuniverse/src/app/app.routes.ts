@@ -5,6 +5,7 @@ import { HeroViewComponent } from './pages/hero-view/hero-view.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { loginGuardGuard } from './guards/login-guard-guard';
+import { ListHeroComponent } from './components/list-hero/list-hero.component';
 
 export const routes: Routes = [
 
@@ -15,6 +16,8 @@ export const routes: Routes = [
 
     {
         path: 'home', component: HomeComponent, canActivate: [loginGuardGuard], children: [
+            
+            { path: '', component: ListHeroComponent },
             { path: 'nuevoHero', component: NuevoHeroComponent },
             { path: 'hero/:id', component: HeroViewComponent },
             { path: 'form/:id', component: NuevoHeroComponent },

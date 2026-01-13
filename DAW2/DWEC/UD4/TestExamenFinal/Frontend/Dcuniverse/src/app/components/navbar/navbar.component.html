@@ -14,22 +14,34 @@
 
             <ul class="navbar-nav ms-auto">
 
+                @if (isToken) {
+
+                
                 <li class="nav-item">
-                    <a class="nav-link text-white" routerLinkActive="active" [routerLink]="['/login']">Login</a>
+                    <a class="nav-link text-white">Hola, <h4>{{miUser?.username}}</h4></a>
                 </li>
+                
 
                 <li class="nav-item">
                     <a class="nav-link text-white" routerLinkActive="active" [routerLink]="['/home']">Home</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" routerLinkActive="active" [routerLink]="['/nuevoHero']">Nuevo
+                    <a class="nav-link text-white" routerLinkActive="active" [routerLink]="['/home/nuevoHero']">Nuevo
                         Hero</a>
                 </li>
 
                 <li class="nav-item">
                     <button class="btn btn-dark me-2" (click)="logout()">Log Out</button>
                 </li>
+
+                }@else {
+
+                <li class="nav-item">
+                    <a class="nav-link text-white" routerLinkActive="active" [routerLink]="['/login']">Login</a>
+                </li>
+
+                }
 
             </ul>
 

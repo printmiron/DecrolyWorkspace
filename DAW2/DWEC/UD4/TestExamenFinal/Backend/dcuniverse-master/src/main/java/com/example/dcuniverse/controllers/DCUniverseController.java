@@ -19,82 +19,81 @@ import java.util.Optional;
 @AllArgsConstructor
 @RequestMapping("/api")
 public class DCUniverseController {
+
     CharacterService characterService;
     PowerStatsService powerStatsService;
 
-
     @GetMapping(value = "/characters")
     public ResponseEntity<List<Characters>> getCharacters(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "100") int size
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "100") int size
     ) {
-        
         return ResponseEntity.ok(characterService.findAll(PageRequest.of(page, size)));
     }
 
     @PostMapping("/characters")
     public Characters createCharacter(@RequestBody Characters character) {
-        
+
         return characterService.save(character);
     }
 
     @PutMapping("/characters")
     public Characters updateCharacter(@RequestBody Characters character) {
-        
+
         return characterService.save(character);
     }
 
     @GetMapping(value = "/characters/{id}")
-    public ResponseEntity<Characters> getCharacterById(@PathVariable Long id) {
-        
+    public ResponseEntity<Characters> getCharacterById(@PathVariable("id") Long id) {
+
         Optional<Characters> characterOptional = characterService.findById(id);
 
         // Verificar si el personaje está presente
         if (characterOptional.isPresent()) {
             return ResponseEntity.ok(characterOptional.get()); // Devolver el personaje encontrado con estado 200 OK
         } else {
-            
+
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Devolver 404 si no se encuentra el personaje
         }
     }
 
     @GetMapping(value = "/characters/name/{heroName}")
-    public ResponseEntity<List<Characters>> getCharacterById(@PathVariable String heroName,
-                                                             @RequestParam(defaultValue = "0") int page,
-                                                             @RequestParam(defaultValue = "100") int size) {
-        
-        List<Characters> charactersList = characterService.findByHeronameContains(heroName, PageRequest.of(page, size));
+    public ResponseEntity<List<Characters>> getCharacterById(
+            @PathVariable("heroName") String heroName, // Añadido "heroName"
+            @RequestParam(name = "page", defaultValue = "0") int page, // Añadido "page"
+            @RequestParam(name = "size", defaultValue = "100") int size) { // Añadido "size"
 
-        // Verificar si el personaje está presente
+        List<Characters> charactersList = characterService.findByHeronameContains(heroName, PageRequest.of(page, size));
         if (!charactersList.isEmpty()) {
-            return ResponseEntity.ok(charactersList); // Devolver el personaje encontrado con estado 200 OK
+            return ResponseEntity.ok(charactersList);
         } else {
-            
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build(); // Devolver 404 si no se encuentra el personaje
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @DeleteMapping("/characters/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCharacter(@PathVariable("id") Long id) {
-        
+
         characterService.deleteById(id);
     }
 
     @GetMapping("/powerstats/power/{value}")
-    public ResponseEntity<List<Powerstats>> getPowerGreaterThan(@PathVariable("value") Double value,
-                                                                @RequestParam(defaultValue = "0") int page,
-                                                                @RequestParam(defaultValue = "100") int size) {
-        
+    public ResponseEntity<List<Powerstats>> getPowerGreaterThan(
+            @PathVariable("value") Double value,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "100") int size) {
+
         return ResponseEntity.ok(powerStatsService.findByPowerGreaterThan(value, PageRequest.of(page, size)));
     }
 
     @GetMapping("/characters/power/{value}")
-    public ResponseEntity<List<Characters>> getCharactersPowerGreaterThan(@PathVariable("value") Double value,
-                                                                          @RequestParam(defaultValue = "0") int page,
-                                                                          @RequestParam(defaultValue = "100") int size) {
-        
-        return ResponseEntity.ok(characterService.findByPowerGreaterThan(value,PageRequest.of(page, size)));
+    public ResponseEntity<List<Characters>> getCharactersPowerGreaterThan(
+            @PathVariable("value") Double value,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "100") int size) {
+
+        return ResponseEntity.ok(characterService.findByPowerGreaterThan(value, PageRequest.of(page, size)));
     }
 
 }
