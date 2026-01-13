@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ListHeroComponent } from "../../components/list-hero/list-hero.component";
+import { HeroI } from '../../interfaces/hero.interface';
 
 @Component({
   selector: 'app-home',
@@ -8,5 +9,6 @@ import { ListHeroComponent } from "../../components/list-hero/list-hero.componen
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+  
 
 }

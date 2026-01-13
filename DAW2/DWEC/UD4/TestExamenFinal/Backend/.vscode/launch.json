@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DcuniverseApplication<dcuniverse-master>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.example.dcuniverse.DcuniverseApplication",
+            "projectName": "dcuniverse-master",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,17 +1,57 @@
 <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-5 p-5">
 
-        @for (hero of arrHeros; track hero.id) {
-        <div class="col">
-            <app-card-hero [miHero]="hero"></app-card-hero>
+    <div>
+
+        <div class="mt-5">
+            <label>Introduce poder mínimo:</label>
+            <input type="number" class="form-control w-25" [(ngModel)]="filtroPorPower" (input)="filtrarDirecto()">
         </div>
 
-        }@empty {
-        <div class="container">
-            <h2 class="text-dark text-center">No tenemos usuarios!</h2>
+        <div class="row row-cols-1 row-cols-md-2 g-4 p-5 "> @for (hero of herosPaginados; track hero.id) {
+            <div class="col">
+                <app-card-hero [miHero]="hero"></app-card-hero>
+            </div>
+            } @empty {
+            <div class="container">
+                <h2 class="text-dark text-center">No tenemos héroes!</h2>
+            </div>
+            }
         </div>
 
-        }
+    </div>
+
+
+
+
+
+
+    <div class="d-flex justify-content-center align-items-center gap-3 mt-4">
+
+        <!-- boton atras -->
+        <button type="button" class="btn btn-danger rounded-5" (click)="cambiarPagina(-1)"
+            [disabled]="currentPage === 0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path
+                    d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z">
+                </path>
+            </svg>
+        </button>
+
+        <!-- contador paginas -->
+        <span class="fw-bold">{{ currentPage + 1 }}</span>
+
+        <!-- boton siguente -->
+        <button type="button" class="btn btn-danger rounded-5" (click)="cambiarPagina(1)"
+            [disabled]="(currentPage + 1) * pageSize >= arrHeros.length">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path
+                    d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z">
+                </path>
+            </svg>
+        </button>
+
 
     </div>
 </div>

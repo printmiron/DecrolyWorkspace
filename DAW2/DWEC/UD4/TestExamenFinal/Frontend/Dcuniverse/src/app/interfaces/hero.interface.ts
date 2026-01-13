@@ -10,5 +10,5 @@ export interface HeroI {
     gender: string;
     race: string;
     alignment: string;
-    powerstats: PowerstatsI[];
+    powerstats: PowerstatsI;
 }

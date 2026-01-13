@@ -1,22 +1,19 @@
-import { Component, inject, Input } from '@angular/core';
-import { HeroService } from '../../service/hero.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HeroI } from '../../interfaces/hero.interface';
+import { HeroService } from '../../service/hero.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-card-hero',
+  selector: 'app-hero-view',
   imports: [RouterLink],
-  templateUrl: './card-hero.component.html',
-  styleUrl: './card-hero.component.css',
+  templateUrl: './hero-view.component.html',
+  styleUrl: './hero-view.component.css',
 })
-export class CardHeroComponent {
+export class HeroViewComponent {
+  miHero !: HeroI;
   serviceHero = inject(HeroService);
-  router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
-  @Input() miHero!: HeroI;
-
-
 
   ngOnInit(): void {
     //Usando el endpoint específico para obtener usuario por id
@@ -39,6 +36,7 @@ export class CardHeroComponent {
     });
 
   }
+
 
   async deleteHero(hero: HeroI) {
     // 1. Primero preguntamos al usuario
@@ -82,4 +80,5 @@ export class CardHeroComponent {
   }
 
 
+  
 }
