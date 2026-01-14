@@ -3,6 +3,6 @@ import { crearReservas, eliminarReservaPorId, obtenerReservasPorPista } from "..
 
 const router = Router();
 router.post('/reservas', crearReservas);
-router.get('/reservas/:id', obtenerReservasPorPista);
+router.get('/reservas', obtenerReservasPorPista);
 router.delete('/reservas/:id', eliminarReservaPorId);
 export default router;
