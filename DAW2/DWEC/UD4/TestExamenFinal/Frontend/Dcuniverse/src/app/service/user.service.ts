@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   private httpClient = inject(HttpClient);
-  private baseUrl: string = 'http://localhost:8080/api/auth/';
+  private baseUrl: string = 'https://dummyjson.com/auth/';
 
   constructor() { }
 
