@@ -35,4 +35,7 @@ app.routes.ts!!!!
 
 !!atento a la base de datos!!
 
+plan de paginación!
+
+
 
