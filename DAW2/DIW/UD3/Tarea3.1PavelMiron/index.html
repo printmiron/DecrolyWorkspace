@@ -11,30 +11,123 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
-    
+
 
 </head>
 
 <body>
-    <!-- contenedor que contiene el logo fondo lista de referencias -->
-    <div class="d-flex flex-column p-3 text-dark vh-100" style="width: 280px; background-color: #f8f8f8;">
-        <a href="#" class="d-flex align-items-center text-dark text-decoration-none">
-            <!-- imagen y el nombre de la pagina -->
-            <img style="width: 100px;" src="img/Isotipo GarageBenz.png" alt="">
-            <span class="fs-4" style="color: rgb(85, 85, 85);">GarageBenz</span>
-        </a>
-        <hr>
-        <!-- lista de todas las referencias con su icono correspondiente al lado izquierdo -->
-        <div class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a id="dash-list" href="#" class="nav-link" aria-current="page"><i class="bi bi-house me-3"></i>Inicio</a>
-                <a id="dash-list" href="#" class="nav-link mt-2" aria-current="page"><i class="bi bi-box-arrow-in-left me-3"></i>Entradas</a>
-                <a id="dash-list" href="#" class="nav-link mt-2" aria-current="page"><i class="bi bi-person me-3"></i>Usuarios</a>
-                <a id="dash-list" href="#" class="nav-link mt-2" aria-current="page"><i class="bi bi-door-open me-3"></i>Salir</a>
-            </li>
+    <div class="d-flex vh-100">
+        <!-- contenedor que contiene el logo fondo lista de referencias -->
+        <div class="d-flex flex-column p-3 text-dark vh-100" style="width: 280px; background-color: #f8f8f8;">
+            <a href="#" class="d-flex align-items-center text-dark text-decoration-none">
+                <!-- lgog y el nombre de la pagina -->
+                <img style="width: 100px;" src="img/Isotipo GarageBenz.png" alt="">
+                <span class="fs-4" style="color: rgb(85, 85, 85);">GarageBenz</span>
+            </a>
+            <hr>
+            <!-- lista de todas las referencias con su icono correspondiente al lado izquierdo -->
+            <div class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a id="dash-list" href="#" class="nav-link" aria-current="page"><i
+                            class="bi bi-house me-3"></i>Inicio</a>
+                    <a id="dash-list" href="#" class="nav-link mt-2" aria-current="page"><i
+                            class="bi bi-box-arrow-in-left me-3"></i>Entradas</a>
+                    <a id="dash-list" href="#" class="nav-link mt-2" aria-current="page"><i
+                            class="bi bi-person me-3"></i>Usuarios</a>
+                    <a id="dash-list" href="#" class="nav-link mt-2" aria-current="page"><i
+                            class="bi bi-door-open me-3"></i>Salir</a>
+                </li>
+            </div>
+
+        </div>
+
+        <!-- contenedor grande de la parte derecha de la pagina -->
+        <div class="flex-grow-1 overflow-auto p-4">
+            <div class="container-fluid">
+
+                <!-- creamos las filas -->
+                <div class="row g-4">
+
+                    <!-- columna de comentarios -->
+                    <div class="col-lg-8">
+                        <h4 class="mb-4">Nueva entrada</h4>
+
+                        <div class="mb-3 bg-white p-3 shadow-sm border">
+
+                            <!-- input con borde solo abajo -->
+                            <input type="text" class="form-control mb-3 border-0 border-bottom"
+                                placeholder="Título de la entrada">
+                            <!-- textarea sin bordes -->
+                            <textarea class="form-control border-0" rows="15" placeholder="Descripcion"></textarea>
+
+                        </div>
+
+                        <div class="text-end">
+                            <!-- boton outline para enviar -->
+                            <button class="btn btn-outline-primary px-4"><i
+                                    class="bi bi-pencil me-2"></i>Enviar</button>
+                        </div>
+
+                    </div>
+
+                    <!-- columna de estadisticas y comentarios-->
+                    <div class="col-lg-4">
+                        <h4 class="mb-4">Estadísticas</h4>
+
+                        <!-- creamos 3 columnas que tienen un texto en h3 y un parrafo pequeño -->
+                        <div style="background-color: #f8f8f8;" class="row mb-3 p-4">
+                            <div class="col-4 ">
+                                <h3 class="text-success">25.000</h3>
+                                <small class="text-muted">visitas</small>
+                            </div>
+                            <div class="col-4 ">
+                                <h3 class="text-primary">500</h3>
+                                <small class="text-muted">registros</small>
+                            </div>
+                            <div class="col-4 ">
+                                <h3 class="text-success">1.000€</h3>
+                                <small class="text-muted">ingresos</small>
+                            </div>
+
+                        </div>
+
+                        <h4 class="mb-3">Comentarios</h4>
+
+                        <div style="background-color: #f8f8f8;" class="p-5">
+                            <!-- un contenedor con el icono, nombre y parrafo, icono fuera del contenedor de nombre -->
+                            <div class="d-flex mb-3">
+                                <i style="color:  #0078d6;" class="bi bi-person-circle fs-1 me-3"></i>
+                                <div>
+                                    <h5 style="color:  #0078d6;">Pavel Miron</h5>
+                                    <small style="color:  #0078d6;" class="fw-bold">¡Gran trabajo!</small>
+                                </div>
+                            </div>
+
+                            <!-- parrafo text-muted para que sea de color gris -->
+                            <p class="text-muted small">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                            <!-- tres botones outline con iconos y su texto correspondiente -->
+                            <div class="d-flex gap-1 mt-3">
+                                <button class="btn btn-outline-success btn-sm"><i class="bi bi-check"></i>
+                                    Aprobar</button>
+                                <button class="btn btn-outline-danger btn-sm"><i class="bi bi-x-circle"></i>
+                                    Eliminar</button>
+                                <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-slash-circle"></i>
+                                    Bloquear</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
     </div>
+
+
+
 
 
     <!-- scripts de bootstrap -->
