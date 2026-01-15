@@ -1,4 +1,5 @@
 export interface PowerstatsI {
+    //!atento al id
     id: string;
     intelligence: number;
     strength: number;

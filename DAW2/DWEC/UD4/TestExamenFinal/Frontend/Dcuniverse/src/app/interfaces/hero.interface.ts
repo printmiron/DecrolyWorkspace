@@ -1,6 +1,7 @@
 import { PowerstatsI } from "./powerstats.interface"
 
 export interface HeroI {
+    //!atento al id
     id: string;
     heroname: string;
     fullname: string;

@@ -13,7 +13,8 @@ app.config.ts
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
-npm i bootstrap-icons
+npm install bootstrap@5.3.8
+npm install bootstrap-icons
 
 ng new "nombre" --skip-tests
 
@@ -36,6 +37,9 @@ app.routes.ts!!!!
 !!atento a la base de datos!!
 
 plan de paginación!
+
+npm install sweetalert2
+
 
 
 

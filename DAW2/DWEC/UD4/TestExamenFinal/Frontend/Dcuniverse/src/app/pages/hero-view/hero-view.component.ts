@@ -18,7 +18,7 @@ export class HeroViewComponent {
   ngOnInit(): void {
     //Usando el endpoint específico para obtener heroe por id
     this.activatedRoute.params.subscribe(async (params: any) => {
-
+      //!atento al string o number
       let id: string = params.id
       console.log(id)
 
@@ -55,6 +55,7 @@ export class HeroViewComponent {
       if (result.isConfirmed) {
         try {
           // Llamamos al borrado
+          //!llamar metodo
           await this.serviceHero.deleteById(hero.id);
 
           // 3. Mostramos el mensaje de éxito

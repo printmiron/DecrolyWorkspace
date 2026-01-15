@@ -48,7 +48,7 @@ export class HeroService {
 
 
 
-//---------------------------------------PLAN B SI NO VA EL PAGINACION
+//---------------------------------------PLAN B SI NO VA LA PAGINACION
 
 
 

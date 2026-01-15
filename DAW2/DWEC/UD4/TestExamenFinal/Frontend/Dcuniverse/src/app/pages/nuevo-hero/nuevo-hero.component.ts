@@ -86,6 +86,7 @@ export class NuevoHeroComponent {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (params: any) => {
+      //!string o number por id
       let id: string = params.id;
 
       if (id != undefined) {

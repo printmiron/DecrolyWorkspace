@@ -35,7 +35,7 @@ export class LoginComponent {
         
         localStorage.setItem("user", JSON.stringify(response.user));
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['/landingPage']);
         loginForm.reset();
       }
 

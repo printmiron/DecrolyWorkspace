@@ -16,12 +16,13 @@ export class CardHeroComponent {
   activatedRoute = inject(ActivatedRoute);
   @Input() miHero!: HeroI;
 
-
+  
 
   ngOnInit(): void {
     //Usando el endpoint específico para obtener usuario por id
     this.activatedRoute.params.subscribe(async (params: any) => {
 
+      //!id: string si uuid numer si id simple
       let id: string = params.id
       console.log(id)
 
@@ -57,6 +58,7 @@ export class CardHeroComponent {
       if (result.isConfirmed) {
         try {
           // Llamamos al borrado
+          //!funccion para borrar
           await this.serviceHero.deleteById(hero.id);
 
           // 3. Mostramos el mensaje de éxito
