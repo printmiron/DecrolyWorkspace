@@ -1,8 +1,13 @@
 <div class="d-flex flex-column justify-content-center align-items-center py-5">
     @if (isNew) {
-    <h1 class="text-center">Insertar nuevo héroe</h1>
+    
+     <div class="bg-dark text-white text-center py-4 rounded-top-4 w-75">
+      <h2 class="fw-bold mb-0">INSERTAR NUEVO <span class="text-danger">HÉROE</span></h2>
+    </div>
     } @else {
-    <h1 class="text-center">Editar héroe</h1>
+      <div class="bg-dark text-white text-center py-4 rounded-top-4 w-75">
+      <h2 class="fw-bold mb-0">EDITAR <span class="text-danger">HÉROE</span></h2>
+    </div>
     }
 
     <form [formGroup]="heroForm" (ngSubmit)="getDataFormulario()" class="w-75 border p-5 shadow rounded bg-light">

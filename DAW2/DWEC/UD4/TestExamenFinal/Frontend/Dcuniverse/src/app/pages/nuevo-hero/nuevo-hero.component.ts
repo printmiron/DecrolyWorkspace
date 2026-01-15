@@ -86,7 +86,7 @@ export class NuevoHeroComponent {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(async (params: any) => {
-      let id: number = params.id;
+      let id: string = params.id;
 
       if (id != undefined) {
         let miHero = await this.serviceHero.getHeroById(id);

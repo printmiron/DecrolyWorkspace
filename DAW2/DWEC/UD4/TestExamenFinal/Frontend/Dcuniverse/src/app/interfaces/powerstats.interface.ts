@@ -1,5 +1,5 @@
 export interface PowerstatsI {
-    id: number;
+    id: string;
     intelligence: number;
     strength: number;
     speed: number;

@@ -46,82 +46,89 @@
                         </div>
 
                         <hr>
-
-                        <div class=" mt-4 bg-white rounded-4 mb-5">
-                            <h3 class="mb-4 pb-2">Estadísticas de Poder</h3>
-
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="fw-bold"><i class="bi bi-brain me-2"></i>Inteligencia</span>
-                                        <span class="badge bg-info text-dark">{{ miHero.powerstats.intelligence
-                                            }}%</span>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-info shadow-sm" role="progressbar"
-                                            [style.width.%]="miHero.powerstats.intelligence"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="fw-bold"><i class="bi bi-lightning-fill me-2"></i>Fuerza</span>
-                                        <span class="badge bg-danger">{{ miHero.powerstats.strength }}%</span>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-danger shadow-sm" role="progressbar"
-                                            [style.width.%]="miHero.powerstats.strength"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="fw-bold"><i class="bi bi-speedometer2 me-2"></i>Velocidad</span>
-                                        <span class="badge bg-warning text-dark">{{ miHero.powerstats.speed }}%</span>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-warning shadow-sm" role="progressbar"
-                                            [style.width.%]="miHero.powerstats.speed"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="fw-bold"><i class="bi bi-shield-shaded me-2"></i>Durabilidad</span>
-                                        <span class="badge bg-success">{{ miHero.powerstats.durability }}%</span>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-success shadow-sm" role="progressbar"
-                                            [style.width.%]="miHero.powerstats.durability"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="fw-bold"><i class="bi bi-shield-shaded me-2"></i>Poder</span>
-                                        <span class="badge bg-primary">{{ miHero.powerstats.power }}%</span>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-primary shadow-sm" role="progressbar"
-                                            [style.width.%]="miHero.powerstats.power"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <div class="d-flex justify-content-between mb-1">
-                                        <span class="fw-bold"><i class="bi bi-shield-shaded me-2"></i>Combat</span>
-                                        <span class="badge bg-secondary">{{ miHero.powerstats.combat }}%</span>
-                                    </div>
-                                    <div class="progress" style="height: 12px;">
-                                        <div class="progress-bar bg-secondary shadow-sm" role="progressbar"
-                                            [style.width.%]="miHero.powerstats.combat"></div>
-                                    </div>
-                                </div>
-
+                        <div class="card p-0 mb-4 rounded-5">
+                            <div class="bg-dark text-white text-center py-4 rounded-top-4">
+                                <h2 class="fw-bold mb-0">ESTADÍSTICAS <span class="text-danger">PODER</span></h2>
                             </div>
+
+                            <div class="card-body mt-4 bg-white rounded-5">
+
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="fw-bold">Inteligencia</span>
+                                            <span class="badge bg-info text-dark">{{ miHero.powerstats.intelligence
+                                                }}%</span>
+                                        </div>
+                                        <div class="progress" style="height: 12px;">
+                                            <div class="progress-bar bg-info shadow-sm" role="progressbar"
+                                                [style.width.%]="miHero.powerstats.intelligence"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="fw-bold">Fuerza</span>
+                                            <span class="badge bg-danger">{{ miHero.powerstats.strength }}%</span>
+                                        </div>
+                                        <div class="progress" style="height: 12px;">
+                                            <div class="progress-bar bg-danger shadow-sm" role="progressbar"
+                                                [style.width.%]="miHero.powerstats.strength"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="fw-bold">Velocidad</span>
+                                            <span class="badge bg-warning text-dark">{{ miHero.powerstats.speed
+                                                }}%</span>
+                                        </div>
+                                        <div class="progress" style="height: 12px;">
+                                            <div class="progress-bar bg-warning shadow-sm" role="progressbar"
+                                                [style.width.%]="miHero.powerstats.speed"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="fw-bold">Durabilidad</span>
+                                            <span class="badge bg-success">{{ miHero.powerstats.durability }}%</span>
+                                        </div>
+                                        <div class="progress" style="height: 12px;">
+                                            <div class="progress-bar bg-success shadow-sm" role="progressbar"
+                                                [style.width.%]="miHero.powerstats.durability"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="fw-bold">Poder</span>
+                                            <span class="badge bg-primary">{{ miHero.powerstats.power }}%</span>
+                                        </div>
+                                        <div class="progress" style="height: 12px;">
+                                            <div class="progress-bar bg-primary shadow-sm" role="progressbar"
+                                                [style.width.%]="miHero.powerstats.power"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <span class="fw-bold">Combat</span>
+                                            <span class="badge bg-secondary">{{ miHero.powerstats.combat }}%</span>
+                                        </div>
+                                        <div class="progress" style="height: 12px;">
+                                            <div class="progress-bar bg-secondary shadow-sm" role="progressbar"
+                                                [style.width.%]="miHero.powerstats.combat"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
 
-                        <hr>
+                        
 
 
                         <div class="col d-flex  justify-content-center mt-2">
@@ -141,7 +148,8 @@
 
                         <div class="col d-flex  justify-content-center mt-2">
 
-                            <button [routerLink]="['/home/form', miHero.id]" type="button" class="btn btn-outline-warning">
+                            <button [routerLink]="['/home/form', miHero.id]" type="button"
+                                class="btn btn-outline-warning">
                                 <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise"
                                     viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"

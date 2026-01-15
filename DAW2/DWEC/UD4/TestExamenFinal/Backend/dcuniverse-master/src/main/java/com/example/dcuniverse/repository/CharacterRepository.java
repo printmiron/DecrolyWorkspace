@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-public interface CharacterRepository extends JpaRepository<Characters, Long> {
+public interface CharacterRepository extends JpaRepository<Characters, String> {
 
     List<Characters> findByHeronameContains(@Param("heroname") String heroname, PageRequest pageable);
 

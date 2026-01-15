@@ -8,22 +8,10 @@ import { User } from '../../interfaces/user.interface';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent {
   private router = inject(Router);
   
 
-  miUser: User | undefined;
-
-  ngOnInit(): void {
-      const userJson = localStorage.getItem('user');
-      if (userJson) {
-        try {
-          this.miUser = JSON.parse(userJson);
-        }catch{
-          console.error("Error");
-        }
-      }
-  }
   
 
   get isToken(): boolean {
@@ -32,7 +20,6 @@ export class NavbarComponent implements OnInit{
 
   logout() {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('user');
     this.router.navigate(['/landingPage']);
   }
 }

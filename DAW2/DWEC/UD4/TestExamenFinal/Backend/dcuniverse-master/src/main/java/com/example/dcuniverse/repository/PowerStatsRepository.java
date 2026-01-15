@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-public interface PowerStatsRepository extends JpaRepository<Powerstats, Long> {
+public interface PowerStatsRepository extends JpaRepository<Powerstats, String> {
 
     List<Powerstats> findByPowerGreaterThan(@Param("value") Double value, Pageable pageable);
 

@@ -56,7 +56,7 @@ public class DCUniverseController {
     }
 
     @GetMapping(value = "/characters/{id}")
-    public ResponseEntity<Characters> getCharacterById(@PathVariable Long id) {
+    public ResponseEntity<Characters> getCharacterById(@PathVariable("id") String id) {
         
         Optional<Characters> characterOptional = characterService.findById(id);
 
@@ -88,7 +88,7 @@ public class DCUniverseController {
 
     @DeleteMapping("/characters/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCharacter(@PathVariable("id") Long id) {
+    public void deleteCharacter(@PathVariable("id") String id) {
         
         characterService.deleteById(id);
     }
@@ -103,8 +103,8 @@ public class DCUniverseController {
 
     @GetMapping("/characters/power/{value}")
     public ResponseEntity<List<Characters>> getCharactersPowerGreaterThan(@PathVariable("value") Double value,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "100") int size) {
+            @RequestParam(name = "page", defaultValue = "0") int page,
+        @RequestParam(name = "size", defaultValue = "100") int size) {
        
         return ResponseEntity.ok(characterService.findByPowerGreaterThan(value, PageRequest.of(page, size)));
     }

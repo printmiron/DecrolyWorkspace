@@ -22,7 +22,7 @@ export class CardHeroComponent {
     //Usando el endpoint específico para obtener usuario por id
     this.activatedRoute.params.subscribe(async (params: any) => {
 
-      let id: number = params.id
+      let id: string = params.id
       console.log(id)
 
       if (id != undefined) {

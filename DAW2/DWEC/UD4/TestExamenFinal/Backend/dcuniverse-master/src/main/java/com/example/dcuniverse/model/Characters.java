@@ -14,9 +14,10 @@ import lombok.Setter;
 public class Characters {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(description = "ID único del personaje. Autoincremental en bbdd. NO requerido en creación", example = "1")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Schema(description = "ID único del personaje (UUID). Generado automáticamente.", 
+            example = "550e8400-e29b-41d4-a716-446655440000")
+    private String id;
     @Column(name = "heroname")
     private String heroname;
     @Column(name = "fullname")
@@ -37,6 +38,5 @@ public class Characters {
     @OneToOne(mappedBy = "characters", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Powerstats powerstats;
-
 
 }

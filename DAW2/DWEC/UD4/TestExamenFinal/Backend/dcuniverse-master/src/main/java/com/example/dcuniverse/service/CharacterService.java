@@ -35,7 +35,7 @@ public class CharacterService {
     }
 
 
-    public Optional<Characters> findById(Long id) {
+    public Optional<Characters> findById(String id) {
 
         return characterRepository.findById(id);
     }
@@ -49,7 +49,7 @@ public class CharacterService {
         return characterRepository.findByAlignment(alignment);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
 
         characterRepository.deleteById(id);
     }

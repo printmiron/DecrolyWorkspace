@@ -1,7 +1,7 @@
 import { PowerstatsI } from "./powerstats.interface"
 
 export interface HeroI {
-    id: number;
+    id: string;
     heroname: string;
     fullname: string;
     image1: string;

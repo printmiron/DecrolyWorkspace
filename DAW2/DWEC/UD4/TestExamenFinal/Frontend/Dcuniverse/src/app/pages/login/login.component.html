@@ -1,23 +1,47 @@
-<form #loginForm="ngForm" (ngSubmit)="getUser(loginForm)">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  
+  <div class="card shadow-lg border-0 rounded-4" style="max-width: 450px; width: 100%;">
+    
+    <div class="bg-dark text-white text-center py-4 rounded-top-4">
+      <h2 class="fw-bold mb-0">ACCESO <span class="text-danger">DC</span></h2>
+      <small class="opacity-75">Introduce tus credenciales</small>
+    </div>
 
-  <div class="form-outline mb-4">
-    <input type="text" name="username" ngModel id="form2Example17" class="form-control form-control-lg" required />
-    <label class="form-label" for="form2Example17">Usuario</label>
+    <div class="card-body p-5">
+      <form #loginForm="ngForm" (ngSubmit)="getUser(loginForm)">
+
+        <div class="mb-4">
+          <label class="form-label fw-bold text-secondary" for="username">Usuario</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-person-fill"></i></span>
+            <input type="text" name="username" ngModel id="username" 
+                   class="form-control form-control-lg border-start-0 bg-light" 
+                   placeholder="Tu usuario" required />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-bold text-secondary" for="password">Contraseña</label>
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-lock-fill"></i></span>
+            <input type="password" name="password" ngModel id="password" 
+                   class="form-control form-control-lg border-start-0 bg-light" 
+                   placeholder="••••••••" required />
+          </div>
+        </div>
+
+        <div class="d-grid gap-3 pt-2">
+          <button class="btn btn-danger btn-lg fw-bold shadow-sm" type="submit">
+            ENTRAR
+          </button>
+          
+          <button class="btn btn-outline-secondary btn-sm border-0" type="button" [routerLink]="['/landingPage']">
+            <i class="bi bi-arrow-left"></i> Volver
+          </button>
+        </div>
+
+      </form>
+    </div>
   </div>
 
-  <div class="form-outline mb-4">
-    <input type="password" name="password" ngModel id="form2Example27" class="form-control form-control-lg" required />
-    <label class="form-label" for="form2Example27">Contraseña</label>
-  </div>
-
-  <div class="pt-1 mb-4 d-flex justify-content-center">
-    <button class="btn btn-dark btn-lg btn-block me-5" type="button" [routerLink]="['/landingPage']">
-      Volver
-    </button>
-
-    <button class="btn btn-dark btn-lg btn-block" type="submit">
-      Login
-    </button>
-  </div>
-
-</form>
+</div>

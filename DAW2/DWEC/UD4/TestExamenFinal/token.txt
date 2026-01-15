@@ -5,4 +5,34 @@ interceptor
 user service
 app.config.ts
 
+ "styles": [
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+npm i bootstrap-icons
+
+ng new "nombre" --skip-tests
+
+ng g c components/"nombre" --types=component
+guards
+interceptors
+interface
+pages
+service
+
+appconfig.ts!
+provideHttpClient(withInterceptors([authInterceptorInterceptor]))
+
+app.routes.ts!!!!
+
+!!!home (<router-outlet></router-outlet>)
+
+
+
+!!atento a la base de datos!!
+
 
