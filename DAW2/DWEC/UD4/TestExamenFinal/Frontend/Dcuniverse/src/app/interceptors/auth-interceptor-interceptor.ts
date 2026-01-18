@@ -1,8 +1,9 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
-    // 1. Obtenemos el token
-    const token = localStorage.getItem("accessToken");
+    // // 1. Obtenemos el token
+    // const token = localStorage.getItem("accessToken");
+    
 
     // 2. Clonamos con los datos correctos
     const cloneRequest = req.clone({
@@ -19,3 +20,11 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
         return next(cloneRequest);
     }
 };
+
+
+// // 2. Si hay token, clonamos la petición y le añadimos el "Bearer "
+//     const cloneRequest = req.clone({
+//         setHeaders: {
+//             'Authorization': `Bearer ${token}` // Estándar de la industria
+//         }
+//     });
