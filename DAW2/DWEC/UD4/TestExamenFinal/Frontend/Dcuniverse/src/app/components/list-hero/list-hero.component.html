@@ -1,10 +1,14 @@
 <div class="container py-5">
+
     <div class="row mb-5 align-items-center bg-dark p-4 rounded-4 shadow-sm text-white">
+
         <div class="col-md-6">
             <h2 class="fw-bold mb-0 text-uppercase"><span class="text-danger">Archivo</span> de Héroes</h2>
             <p class="text-secondary mb-0">Total: {{arrHeros.length}} registros encontrados</p>
         </div>
+
         <div class="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+
             <div class="input-group w-75 shadow-sm">
                 <span class="input-group-text bg-danger border-0 text-white">
                     <i class="bi bi-lightning-fill"></i>
@@ -14,7 +18,28 @@
                     [(ngModel)]="filtroPorPower" (input)="filtrarDirecto()">
                 <span class="input-group-text bg-white border-0 text-muted small">Poder</span>
             </div>
+
         </div>
+
+        <div class="row p-0 m-0">
+
+            <div class="col-md-6">
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+                <div class="input-group w-75 shadow-sm">
+                    <span class="input-group-text bg-danger border-0 text-white">
+                        <i class="bi bi-lightning-fill"></i>
+                    </span>
+                    <!-- !ngModel !import! FormsModule -------- filtrarDirecto funcion -->
+                    <input type="text" class="form-control border-0" [(ngModel)]="filtroPorNombre"
+                        (input)="filtraNombre()">
+                    <span class="input-group-text bg-white border-0 text-muted small">Nombre</span>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <!-- ! -->

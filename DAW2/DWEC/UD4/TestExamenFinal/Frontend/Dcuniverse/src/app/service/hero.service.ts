@@ -28,6 +28,10 @@ export class HeroService {
     return lastValueFrom(this.httpClient.get<HeroI[]>(this.baseUrl + "/power/" + minPower));
   }
 
+  getHeroByName(name: string): Promise<HeroI[]> {
+    return lastValueFrom(this.httpClient.get<HeroI[]>(this.baseUrl + "/name/" + name));
+  }
+
 
   insertHero(hero: HeroI): Promise<HeroI> {
     return lastValueFrom(this.httpClient.post<HeroI>(this.baseUrl, hero));
