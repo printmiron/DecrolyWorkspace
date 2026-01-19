@@ -21,7 +21,7 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
     }
 };
 
-
+// 'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
 // // 2. Si hay token, clonamos la petición y le añadimos el "Bearer "
 //     const cloneRequest = req.clone({
 //         setHeaders: {

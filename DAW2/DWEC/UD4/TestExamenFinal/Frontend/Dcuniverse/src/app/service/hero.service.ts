@@ -57,76 +57,67 @@ export class HeroService {
 
 
 
-// // src/app/service/hero.service.ts
-
-// // Versión "Traer Todo" (Si falla la paginación del Back)
-// async getAllHeroesSinPaginado(): Promise<HeroI[]> {
-//   const url = `${this.baseUrl}`; // URL limpia sin parámetros
-//   // Asumimos que el back ahora devuelve el array directo [{}, {}]
-//   return firstValueFrom(this.httpClient.get<HeroI[]>(url));
+// // HeroService
+// async getAllHerosComoArray(): Promise<HeroI[]> {
+//   const response: any = await lastValueFrom(this.httpClient.get<any>(this.baseUrl));
+  
+//   // Si viene paginado, los héroes están en .content
+//   // Si no viene paginado, la respuesta ya es el array
+//   if (response.content) {
+//     return response.content; 
+//   }
+//   return response;
 // }
-
-
-
-
-// // src/app/components/list-hero/list-hero.component.ts
 
 // export class ListHeroComponent implements OnInit {
 //   private serviceHero = inject(HeroService);
-
-//   arrHerosCompleto: HeroI[] = []; // Aquí guardamos TODO lo que venga del back
+  
+//   arrHerosCompleto: HeroI[] = []; // Almacén total
 //   currentPage: number = 0;
 //   pageSize: number = 4;
-//   filtroPorPower: number = 0;
+//   filtroNombre: string = "";
 
 //   async ngOnInit() {
-//     // Traemos todo de golpe al principio
-//     this.arrHerosCompleto = await this.serviceHero.getAllHeroesSinPaginado();
+//     // 1. Traemos TODOS los héroes al cargar la página
+//     this.arrHerosCompleto = await this.serviceHero.getAllHerosComoArray();
 //   }
 
-//   // SIMULACIÓN DE PAGINACIÓN EN FRONT
-//   // Esta función "corta" el array completo según la página actual
+//   // 2. Esta función "mágica" hace todo el trabajo de filtrado y paginado
 //   get herosAMostrar(): HeroI[] {
-//     // 1. Primero filtramos por poder el array completo
+//     // FILTRADO: Filtramos el almacén completo por nombre
 //     const filtrados = this.arrHerosCompleto.filter(h => 
-//       (h.powerstats?.power || 0) >= this.filtroPorPower
+//       h.heroname.toLowerCase().includes(this.filtroNombre.toLowerCase())
 //     );
 
-//     // 2. Calculamos el total de páginas basado en el filtro
-//     this.totalPages = Math.ceil(filtrados.length / this.pageSize);
-
-//     // 3. Cortamos para mostrar solo 4
+//     // PAGINACIÓN: Cortamos el resultado para mostrar solo 4
 //     const inicio = this.currentPage * this.pageSize;
 //     return filtrados.slice(inicio, inicio + this.pageSize);
 //   }
 
-//   // Variable auxiliar para el HTML
-//   totalPages: number = 0;
+//   // 3. Cálculos auxiliares para el HTML
+//   get totalPages(): number {
+//     const filtrados = this.arrHerosCompleto.filter(h => 
+//       h.heroname.toLowerCase().includes(this.filtroNombre.toLowerCase())
+//     );
+//     return Math.ceil(filtrados.length / this.pageSize);
+//   }
 
 //   cambiarPagina(valor: number) {
 //     this.currentPage += valor;
 //   }
+// }
 
-//   filtrarDirecto() {
-//     this.currentPage = 0; // Reset al filtrar
+// <input type="text" [(ngModel)]="filtroNombre" (input)="currentPage = 0" placeholder="Buscar...">
+
+// <div class="row">
+//   @for (hero of herosAMostrar; track hero.id) {
+//     <app-card-hero [miHero]="hero"></app-card-hero>
 //   }
-// }
-
-
-
-
-
-
-// @for (hero of herosAMostrar; track hero.id) {
-//     <div class="col">
-//         <app-card-hero [miHero]="hero"></app-card-hero>
-//     </div>
-// }
+// </div>
 
 // <button (click)="cambiarPagina(-1)" [disabled]="currentPage === 0">Atrás</button>
 // <span>{{ currentPage + 1 }} de {{ totalPages }}</span>
-// <button (click)="cambiarPagina(1)" [disabled]="currentPage >= totalPages - 1">Sig.</button>
-
+// <button (click)="cambiarPagina(1)" [disabled]="currentPage >= totalPages - 1">Siguiente</button>
 
 
 

@@ -123,93 +123,79 @@ export class ListHeroComponent {
 
 
 
-  // // src/app/service/hero.service.ts
-  // import { inject, Injectable } from '@angular/core';
-  // import { HttpClient } from '@angular/common/http';
-  // import { firstValueFrom } from 'rxjs';
-  // import { PageResponse } from '../interfaces/hero.interface';
+  //   // hero.service.ts
+  // import { PageResponse, HeroI } from '../interfaces/hero.interface'; // Importa ambas
 
-  // @Injectable({ providedIn: 'root' })
-  // export class HeroService {
-  //   private httpClient = inject(HttpClient);
-  //   private baseUrl = 'http://localhost:8080/api/characters';
+  // async getAllHero(): Promise<HeroI[]> {
+  //   // 1. Hacemos el GET esperando la interfaz PageResponse
+  //   const response = await lastValueFrom(this.httpClient.get<PageResponse>(this.baseUrl));
 
-  //   // Obtenemos los datos enviando página y filtro de poder
-  //   async getHeroesPaginados(page: number, power: number): Promise<PageResponse> {
-  //     // Genera algo como: .../characters?page=0&size=4&power=50
-  //     const url = `${this.baseUrl}?page=${page}&size=4&power=${power}`;
-  //     return firstValueFrom(this.httpClient.get<PageResponse>(url));
-  //   }
+  //   // 2. IMPORTANTE: Devolvemos solo la propiedad .content (que es el array de héroes)
+  //   return response.content; 
   // }
 
 
 
 
 
-  // // src/app/components/list-hero/list-hero.component.ts
-  // import { Component, inject, OnInit } from '@angular/core';
-  // import { HeroService } from '../../service/hero.service';
-  // import { HeroI } from '../../interfaces/hero.interface';
-  // import { CardHeroComponent } from "../card-hero/card-hero.component";
-  // import { FormsModule } from '@angular/forms';
-
-  // @Component({
-  //   selector: 'app-list-hero',
-  //   standalone: true,
-  //   imports: [CardHeroComponent, FormsModule],
-  //   templateUrl: './list-hero.component.html',
-  //   styleUrl: './list-hero.component.css'
-  // })
+  //   // list-hero.component.ts
   // export class ListHeroComponent implements OnInit {
   //   private serviceHero = inject(HeroService);
 
-  //   // Variables de estado
-  //   arrHeros: HeroI[] = [];
+  //   arrHeros: HeroI[] = [];         // El array que mostrarás (filtrado/paginado)
+  //   arrHerosCompleto: HeroI[] = []; // La copia de seguridad con TODOS
+
   //   currentPage: number = 0;
-  //   totalPages: number = 0;
-  //   filtroPorPower: number = 0;
+  //   pageSize: number = 4;
+  //   filtroNombre: string = "";
 
   //   async ngOnInit() {
-  //     await this.cargarDatos();
+  //     // Al usar el servicio corregido arriba, esto ya trae el array .content
+  //     this.arrHerosCompleto = await this.serviceHero.getAllHero();
+  //     this.actualizarVista();
   //   }
 
-  //   // MÉTODO PRINCIPAL: Centraliza la llamada al servicio
-  //   async cargarDatos() {
-  //     try {
-  //       const response = await this.serviceHero.getHeroesPaginados(this.currentPage, this.filtroPorPower);
-  //       this.arrHeros = response.content; 
-  //       this.totalPages = response.totalPages;
-  //     } catch (error) {
-  //       console.error("Error al cargar héroes:", error);
-  //     }
+  //   // Función para refrescar lo que se ve en pantalla
+  //   actualizarVista() {
+  //     // Filtramos sobre el total
+  //     const filtrados = this.arrHerosCompleto.filter(h => 
+  //       h.heroname.toLowerCase().includes(this.filtroNombre.toLowerCase())
+  //     );
+
+  //     // Calculamos el total de páginas para los botones
+  //     this.totalPages = Math.ceil(filtrados.length / this.pageSize);
+
+  //     // Cortamos para la paginación de Front
+  //     const inicio = this.currentPage * this.pageSize;
+  //     this.arrHeros = filtrados.slice(inicio, inicio + this.pageSize);
   //   }
 
-  //   // Se ejecuta cada vez que el usuario escribe en el buscador
-  //   async filtrarDirecto() {
-  //     this.currentPage = 0; // REGLA DE ORO: Siempre volver a pág 0 al filtrar
-  //     await this.cargarDatos();
-  //   }
+  //   totalPages: number = 0;
 
-  //   // Se ejecuta en los botones de Atrás/Siguiente
-  //   async cambiarPagina(valor: number) {
+  //   cambiarPagina(valor: number) {
   //     this.currentPage += valor;
-  //     await this.cargarDatos();
+  //     this.actualizarVista();
   //   }
   // }
 
 
 
 
-  // @for (hero of arrHeros; track hero.id) {
-  //     <div class="col">
-  //         <app-card-hero [miHero]="hero"></app-card-hero>
+  //   <input type="text" [(ngModel)]="filtroNombre" (input)="currentPage = 0; actualizarVista()" placeholder="Buscar héroe...">
+
+  // <div class="row">
+  //   @for (hero of arrHeros; track hero.id) {
+  //     <div class="col-md-3">
+  //       <app-card-hero [miHero]="hero"></app-card-hero>
   //     </div>
-  // }
+  //   }
+  // </div>
 
-  // <button [disabled]="currentPage === 0" (click)="cambiarPagina(-1)">Atrás</button>
-  // <span>{{ currentPage + 1 }} de {{ totalPages }}</span>
-  // <button [disabled]="currentPage >= totalPages - 1" (click)="cambiarPagina(1)">Siguiente</button>
-
+  // <div class="pagination-controls">
+  //   <button [disabled]="currentPage === 0" (click)="cambiarPagina(-1)">Anterior</button>
+  //   <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+  //   <button [disabled]="currentPage >= totalPages - 1" (click)="cambiarPagina(1)">Siguiente</button>
+  // </div>
 }
 
 
