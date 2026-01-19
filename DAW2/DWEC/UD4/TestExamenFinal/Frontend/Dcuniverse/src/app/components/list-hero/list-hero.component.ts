@@ -138,64 +138,67 @@ export class ListHeroComponent {
 
 
 
-  //   // list-hero.component.ts
-  // export class ListHeroComponent implements OnInit {
-  //   private serviceHero = inject(HeroService);
+//  export class ListHeroComponent {
+//   serviceHero = inject(HeroService);
+//   arrHeros: HeroI[] = [];
 
-  //   arrHeros: HeroI[] = [];         // El array que mostrarás (filtrado/paginado)
-  //   arrHerosCompleto: HeroI[] = []; // La copia de seguridad con TODOS
+//   currentPage: number = 0;
+//   pageSize: number = 4;
+//   totalPages: number = 0; // <--- NUEVO: El back nos dirá cuántas hay
 
-  //   currentPage: number = 0;
-  //   pageSize: number = 4;
-  //   filtroNombre: string = "";
+//   filtroPorPower: number = 0;
+//   filtroPorNombre: string = "";
 
-  //   async ngOnInit() {
-  //     // Al usar el servicio corregido arriba, esto ya trae el array .content
-  //     this.arrHerosCompleto = await this.serviceHero.getAllHero();
-  //     this.actualizarVista();
-  //   }
+//   async ngOnInit(): Promise<void> {
+//     await this.cargarDatos(); // Centralizamos la carga
+//   }
 
-  //   // Función para refrescar lo que se ve en pantalla
-  //   actualizarVista() {
-  //     // Filtramos sobre el total
-  //     const filtrados = this.arrHerosCompleto.filter(h => 
-  //       h.heroname.toLowerCase().includes(this.filtroNombre.toLowerCase())
-  //     );
+//   // Creamos este método para no repetir código en filtros y ngOnInit
+//   async cargarDatos() {
+//     try {
+//       // 1. Llamamos al servicio (asegúrate de que el servicio devuelva Promise<PageResponse>)
+//       const response: any = await this.serviceHero.getAllHero(this.currentPage, this.pageSize);
+      
+//       // 2. IMPORTANTE: Guardamos solo el array de héroes
+//       this.arrHeros = response.content; 
+      
+//       // 3. Guardamos el total de páginas para el HTML
+//       this.totalPages = response.totalPages;
+//     } catch (error) {
+//       console.log("error al obtener los heros | " + error);
+//     }
+//   }
 
-  //     // Calculamos el total de páginas para los botones
-  //     this.totalPages = Math.ceil(filtrados.length / this.pageSize);
+//   // Ya no usas "get herosPaginados" con slice, 
+//   // porque el back ya te trae solo los 4 que tocan.
+//   // En el HTML deberás usar "arrHeros" directamente.
 
-  //     // Cortamos para la paginación de Front
-  //     const inicio = this.currentPage * this.pageSize;
-  //     this.arrHeros = filtrados.slice(inicio, inicio + this.pageSize);
-  //   }
+//   async cambiarPagina(valor: number) {
+//     this.currentPage += valor;
+//     await this.cargarDatos(); // Pedimos la nueva página al servidor
+//   }
 
-  //   totalPages: number = 0;
+//   async filtrarDirecto() {
+//     this.currentPage = 0; // Siempre reset al filtrar
+//     await this.cargarDatos();
+//   }
 
-  //   cambiarPagina(valor: number) {
-  //     this.currentPage += valor;
-  //     this.actualizarVista();
-  //   }
-  // }
+//   async filtraNombre() {
+//     this.currentPage = 0; // Siempre reset al filtrar
+//     await this.cargarDatos();
+//   }
+// }
 
 
+// @for (hero of arrHeros; track hero.id) {
+//     <app-card-hero [miHero]="hero"></app-card-hero>
+// }
 
+// <button (click)="cambiarPagina(-1)" [disabled]="currentPage === 0">Atrás</button>
 
-  //   <input type="text" [(ngModel)]="filtroNombre" (input)="currentPage = 0; actualizarVista()" placeholder="Buscar héroe...">
+// <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
 
-  // <div class="row">
-  //   @for (hero of arrHeros; track hero.id) {
-  //     <div class="col-md-3">
-  //       <app-card-hero [miHero]="hero"></app-card-hero>
-  //     </div>
-  //   }
-  // </div>
-
-  // <div class="pagination-controls">
-  //   <button [disabled]="currentPage === 0" (click)="cambiarPagina(-1)">Anterior</button>
-  //   <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
-  //   <button [disabled]="currentPage >= totalPages - 1" (click)="cambiarPagina(1)">Siguiente</button>
-  // </div>
+// <button (click)="cambiarPagina(1)" [disabled]="currentPage >= totalPages - 1">Siguiente</button>
 }
 
 
