@@ -1,0 +1,108 @@
+<header class="bg-dark text-white py-5 shadow-lg"
+    style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://wallpaperaccess.com/full/18928.jpg'); background-size: cover; background-position: center;">
+
+    <div class="container py-5 text-center">
+
+        <h1 class="display-1 fw-bold text-uppercase tracking-wider">DC <span class="text-danger">Universe</span></h1>
+
+        <p class="lead mb-4 fs-3">Explora la base de datos definitiva de los héroes y villanos más poderosos de la
+            Tierra.</p>
+
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a [routerLink]="['/login']" class="btn btn-danger btn-lg px-5 gap-3 fw-bold shadow">UNIRSE A LA LIGA</a>
+            <a href="#features" class="btn btn-outline-light btn-lg px-5">Saber más</a>
+        </div>
+
+    </div>
+
+</header>
+
+<section class="py-5 bg-danger text-white">
+
+    <div class="container">
+
+        <div class="row text-center">
+
+            <div class="col-md-4">
+                <h2 class="fw-bold">100+</h2>
+                <p>Héroes Registrados</p>
+            </div>
+
+            <div class="col-md-4">
+                <h2 class="fw-bold">API REST</h2>
+                <p>Spring Boot & JWT</p>
+            </div>
+
+            <div class="col-md-4">
+                <h2 class="fw-bold">Angular</h2>
+                <p>v17+ Signal-Ready</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="features" class="py-5 bg-light text-dark">
+
+    <div class="container px-4 py-5">
+        <h2 class="pb-2 border-bottom border-danger">Características del Proyecto</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-danger text-white p-3 rounded-3 me-3">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold">Seguridad Total</h3>
+                    <p>Autenticación robusta con **JWT** y gestión de sesiones segura para proteger la identidad de
+                        nuestros héroes.</p>
+                </div>
+            </div>
+
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-danger text-white p-3 rounded-3 me-3">
+                    <i class="bi bi-pencil-square"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold">Gestión CRUD</h3>
+                    <p>Añade, edita y elimina personajes de la base de datos de DC en tiempo real con una interfaz
+                        fluida.</p>
+                </div>
+            </div>
+
+            <div class="col d-flex align-items-start">
+                <div class="icon-square bg-danger text-white p-3 rounded-3 me-3">
+                    <i class="bi bi-lightning-fill"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold">Reactividad</h3>
+                    <p>Construido con **Angular**, garantizando una experiencia de usuario rápida, moderna y sin
+                        recargas de página.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<section class="py-5 bg-dark text-white text-center">
+
+    <div class="container">
+
+        <div class="p-5 mb-4 bg-secondary rounded-3 shadow border border-danger">
+
+            <div class="container-fluid py-5">
+                <h2 class="display-5 fw-bold">¿Listo para salvar el mundo?</h2>
+                <p class="col-md-8 fs-4 mx-auto">Inicia sesión para empezar a gestionar la Liga de la Justicia y el
+                    Escuadrón Suicida.</p>
+                <button [routerLink]="['/login']" class="btn btn-danger btn-lg px-4 fw-bold">ACCESO RESTRINGIDO</button>
+            </div>
+            
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,86 @@
+<div class="container py-5">
+
+    <div class="row mb-5 align-items-center bg-dark p-4 rounded-4 shadow-sm text-white">
+
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-0 text-uppercase"><span class="text-danger">Archivo</span> de Héroes</h2>
+            <p class="text-secondary mb-0">Total: {{arrHeros.length}} registros encontrados</p>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+
+            <div class="input-group w-75 shadow-sm">
+                <span class="input-group-text bg-danger border-0 text-white">
+                    <i class="bi bi-lightning-fill"></i>
+                </span>
+                <!-- !ngModel !import! FormsModule -------- filtrarDirecto funcion -->
+                <input type="number" class="form-control border-0" placeholder="Poder mínimo..."
+                    [(ngModel)]="filtroPorPower" (input)="filtrarDirecto()">
+                <span class="input-group-text bg-white border-0 text-muted small">Poder</span>
+            </div>
+
+        </div>
+
+        <div class="row p-0 m-0">
+
+            <div class="col-md-6">
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+                <div class="input-group w-75 shadow-sm">
+                    <span class="input-group-text bg-danger border-0 text-white">
+                        <i class="bi bi-lightning-fill"></i>
+                    </span>
+                    <!-- !ngModel !import! FormsModule -------- filtrarDirecto funcion -->
+                    <input type="text" class="form-control border-0" [(ngModel)]="filtroPorNombre"
+                        (input)="filtraNombre()">
+                    <span class="input-group-text bg-white border-0 text-muted small">Nombre</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ! -->
+    <div class="row row-cols-1 row-cols-md-2 g-5 ">
+
+        @for (hero of herosPaginados; track hero.id) {
+        <div class="col">
+
+            <app-card-hero [miHero]="hero"></app-card-hero>
+
+        </div>
+
+        } @empty {
+
+        <div class="col-12 text-center py-5">
+            <i class="bi bi-search text-secondary display-1"></i>
+            <h2 class="text-secondary mt-3">No hay héroes</h2>
+            <button class="btn btn-outline-danger mt-2" (click)="filtroPorPower = 0; filtrarDirecto()">Ver
+                todos</button>
+        </div>
+
+        }
+
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center gap-4 mt-5 pt-4">
+        <!-- !botones para cambiar -->
+        <button type="button" class="btn btn-dark rounded-circle p-2 d-flex shadow-sm hover-scale"
+            (click)="cambiarPagina(-1)" [disabled]="currentPage === 0">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <div class="text-center">
+            <span class="d-block text-muted small text-uppercase fw-bold">PÁGINA</span>
+            <span class="fs-4 fw-black text-danger">{{ currentPage + 1 }}</span>
+        </div>
+
+        <button type="button" class="btn btn-dark rounded-circle p-2 d-flex shadow-sm hover-scale"
+            (click)="cambiarPagina(1)" [disabled]="(currentPage + 1) * pageSize >= arrHeros.length">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+
+    </div>
+</div>

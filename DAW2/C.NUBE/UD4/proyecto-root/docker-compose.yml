@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: dcuniverse
+      MYSQL_ROOT_PASSWORD: daw12
+    volumes:
+      - data_db:/var/lib/mysql
+
+  backend:
+    build: ./backend-springboot
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend-angular
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  data_db:
