@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* contenedor centrado para el error */
+        .error-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--morado);
+            color: white;
+        }
+        /* diseño y animación de la moneda flotante */
+        .floating-coin {
+            width: 80px;
+            height: 80px;
+            background: var(--dorado);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--morado);
+            font-weight: bold;
+        }
+        /* definición del movimiento de la animación */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="floating-coin">€</div>
+        <h1>error 404</h1>
+        <p>Página no encontrada en el sistema</p>
+        <a href="index.html" class="btn btn-outline-light mt-3">Volverd</a>
+    </div>
+</body>
+</html>
