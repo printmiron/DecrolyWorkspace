@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <!-- he elegido el estilo de animación mas estandar y simple sin gif, imagendes o otros elemntos que puede cargar la pagina, para que  -->
+    <!-- no pese mucho el html, utilizo las herramientas de css para crear una animación simple y sin ruido visual, minimalista -->
     <style>
-        /* contenedor centrado para el error */
+        /* contenedor principal centrado */
         .error-container {
             height: 100vh;
+            /* ocupa todo el alto de la pantalla */
             display: flex;
+            /* activamos el modo caja flexible */
             flex-direction: column;
+            /* apila los elementos uno debajo de otro */
             justify-content: center;
+            /* centra el contenido verticalmente */
             align-items: center;
+            /* centra el contenido horizontalmente */
             background: var(--morado);
+            /* fondo morado*/
             color: white;
+            /* texto blanco para que resalte */
         }
-        /* diseño y animación de la moneda flotante */
-        .floating-coin {
+
+        /* dibujo de la moneda dorada */
+        .floating {
             width: 80px;
+            /* ancho de la moneda */
             height: 80px;
+            /* alto de la moneda */
             background: var(--dorado);
+            /* color dorado */
             border-radius: 50%;
+            /* hace que el cuadrado sea un círculo */
             margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
+            /* separa la moneda del texto */
             display: flex;
+            /* permite centrar el símbolo del euro dentro */
             justify-content: center;
             align-items: center;
             color: var(--morado);
+            /* euro en color morado */
             font-weight: bold;
+            /* vincula la animación: nombre, duración, suavizado y repetición */
+            animation: float 3s ease-in-out infinite;
         }
-        /* definición del movimiento de la animación */
+
+        /* pasos del movimiento/animación */
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+                /* empieza en su posición original */
+            }
+
+            50% {
+                transform: translateY(-20px);
+                /* sube 20px hacia arriba */
+            }
+
+            100% {
+                transform: translateY(0px);
+                /* vuelve abajo para empezar de nuevo */
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="error-container">
-        <div class="floating-coin">€</div>
-        <h1>error 404</h1>
+        <div class="floating">404</div>
+        <h1>ERROR</h1>
         <p>Página no encontrada en el sistema</p>
-        <a href="index.html" class="btn btn-outline-light mt-3">Volverd</a>
+        <a href="index.html" class="btn btn-outline-light mt-3">Volver</a>
     </div>
 </body>
+
 </html>

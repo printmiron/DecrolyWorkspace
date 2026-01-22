@@ -1,7 +1,7 @@
-/* definición de colores corporativos obligatorios */
+/* definicion de colores corporativos obligatorios */
 :root {
-    --morado: #4b0082; 
-    --dorado: #d4af37;    
+    --morado: #4b0082;
+    --dorado: #d4af37;
 }
 
 /* estilos generales del cuerpo */
@@ -16,7 +16,7 @@ body {
     min-height: 100vh;
 }
 
-/* estilos de los enlaces y efecto hover obligatorio */
+/* estilos de los enlaces y efecto hover obligatorios */
 #sidebar .nav-link {
     color: white;
     transition: all 0.3s;
@@ -33,9 +33,17 @@ body {
 /* tarjetas financieras con detalle en dorado */
 .card-financial {
     border: none;
-    border-top: 5px solid var(--dorado);
+    border-top: 3px solid var(--dorado);
+
 }
 
+
+
 /* clases auxiliares de colores */
-.text-gold { color: var(--dorado); }
-.bg-gold { background-color: var(--dorado); }
+.text-gold {
+    color: var(--dorado);
+}
+
+.bg-gold {
+    background-color: var(--dorado);
+}
