@@ -17,7 +17,7 @@ services:
   frontend:
     build: ./frontend-angular
     ports:
-      - "80:80"
+      - "4200:80"
     depends_on:
       - backend
 

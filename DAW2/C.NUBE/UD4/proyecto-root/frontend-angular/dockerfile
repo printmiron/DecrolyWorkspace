@@ -1,13 +1,9 @@
-# Etapa 1: Build
+
 FROM node:latest AS build
 WORKDIR /app
 COPY . .
 RUN npm install && npm run build
 
-# Etapa 2: Producción con Nginx
 FROM nginx:alpine
-# Usamos el asterisco para copiar el contenido de la carpeta que haya dentro de dist
 COPY --from=build /app/dist/*/browser /usr/share/nginx/html
-
-
 EXPOSE 80
