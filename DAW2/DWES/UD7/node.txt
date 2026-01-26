@@ -8,3 +8,6 @@ npm init -y
 npm i express mysql2 dotenv
 npm i -D typescript ts-node-dev @types/express @types/node
 npm run dev
+
+
+npm i express cors dotenv sequelize mysql2 express-validator
