@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg sticky-top shadow-lg py-1"
+    style="background: linear-gradient(90deg, #dc3545 0%, #a71d2a 100%); border-bottom: 2px solid rgba(255,255,255,0.1);">
+    <div class="container-fluid">
+
+        <a class="navbar-brand d-flex align-items-center" [routerLink]="['/landingPage']">
+            <img style="width: 45px;"
+                src="https://cdn.freebiesupply.com/logos/large/2x/dc-comics-logo-png-transparent.png" alt="DC Logo">
+
+        </a>
+
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+
+                @if (isToken) {
+
+                <li class="nav-item mx-1">
+                    <a class="nav-link text-white nav-custom-link" routerLinkActive="active-link"
+                        [routerLink]="['/home']">
+                        <i class="bi bi-house-door me-1"></i> Home
+                    </a>
+                </li>
+
+                <li class="nav-item mx-1">
+                    <a class="nav-link text-white nav-custom-link" routerLinkActive="active-link"
+                        [routerLink]="['/home/nuevoHero']">
+                        <i class="bi bi-plus-circle me-1"></i> Nuevo Hero
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-3">
+                    <button class="btn btn-outline-light btn-sm fw-bold px-3 rounded-pill" (click)="logout()">
+                        Cerrar sesión <i class="bi bi-box-arrow-right ms-1"></i>
+                    </button>
+                </li>
+
+                } @else {
+                <li class="nav-item">
+                    <a class="btn btn-light btn-sm fw-bold px-4 rounded-pill shadow-sm text-danger"
+                        [routerLink]="['/login']">
+                        Login
+                    </a>
+                </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+</nav>

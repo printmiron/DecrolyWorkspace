@@ -1,0 +1,29 @@
+
+.error{
+    color: red;
+    font-size: 85%;
+}
+
+input.ng-invalid.ng-touched {
+    border: 2px solid red;
+}
+
+input.ng-valid.ng-touched {
+    border: 2px solid rgb(0, 182, 0);
+}
+
+textarea.ng-invalid.ng-touched {
+    border: 2px solid red;
+}
+
+textarea.ng-valid.ng-touched {
+    border: 2px solid rgb(0, 182, 0);
+}
+
+select.ng-invalid.ng-touched {
+    border: 2px solid red;
+}
+
+select.ng-valid.ng-touched {
+    border: 2px solid rgb(0, 182, 0);
+}
