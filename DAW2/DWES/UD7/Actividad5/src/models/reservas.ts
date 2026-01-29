@@ -5,6 +5,7 @@ class Reservas extends Model {
 
     public id!: number;
     public pista_id!: number;
+    public usuario_id!: number;
     public fecha!: Date;
     public hora_inicio!: string;
     public hora_fin!: string;
@@ -17,10 +18,16 @@ Reservas.init(
             autoIncrement: true,
             primaryKey: true,
         },
+        //!foren key, relacion con otras tablas por id
         pista_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             field: 'pista_id'
+        },
+        usuario_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            field: 'usuario_id'
         },
         fecha: {
             type: DataTypes.DATEONLY,

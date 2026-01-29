@@ -5,6 +5,7 @@ import express from 'express';
 import sequelize from './config/database';
 import pistasRoutes from './routes/pistasRoutes';
 import reservasRoutes from './routes/reservasRoutes';
+import usuariosRoutes from './routes/usuariosRoutes';
 
 
 const app = express();
@@ -21,4 +22,5 @@ sequelize
     .catch((error) => console.error('Error al conectar la base de datos:', error));
 app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));
 
-app.use('/api', pistasRoutes, reservasRoutes);
+//!!!No olvidar añadir
+app.use('/api', pistasRoutes, reservasRoutes, usuariosRoutes);

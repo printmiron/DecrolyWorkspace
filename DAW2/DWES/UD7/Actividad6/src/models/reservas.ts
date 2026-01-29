@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/database";
-import  {Pista}  from "./pistas";
+import { Pista } from "./pistas";
 export const Reserva = sequelize.define(
     "Reserva",
     {
