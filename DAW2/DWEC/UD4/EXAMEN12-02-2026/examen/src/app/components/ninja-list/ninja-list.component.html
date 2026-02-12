@@ -1,0 +1,84 @@
+<div class="container py-5">
+
+    <div class="row mb-5 align-items-center bg-dark p-4 rounded-4 shadow-sm text-white">
+
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-0 text-uppercase"><span class="text-danger">Archivo</span> de Ninjas</h2>
+            <p class="text-secondary mb-0">Total: {{arrNinjas.length}} registros encontrados</p>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+
+            <div class="input-group w-75 shadow-sm">
+                <span class="input-group-text bg-danger border-0 text-white">
+                    <i class="bi bi-lightning-fill"></i>
+                </span>
+                <input type="text" class="form-control border-0" 
+                    [(ngModel)]="filtroPorAffiliation" (input)="filtrarAffiliation()">
+                <span class="input-group-text bg-white border-0 text-muted small">Affiliation</span>
+            </div>
+
+        </div>
+
+        <div class="row p-0 m-0">
+
+            <div class="col-md-6">
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-md-end mt-3 mt-md-0">
+                <div class="input-group w-75 shadow-sm">
+                    <span class="input-group-text bg-danger border-0 text-white">
+                        <i class="bi bi-lightning-fill"></i>
+                    </span>
+                
+                    <input type="text" class="form-control border-0" [(ngModel)]="filtroPorNombre"
+                        (input)="filtraNombre()">
+                    <span class="input-group-text bg-white border-0 text-muted small">Nombre</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row row-cols-1 row-cols-md-2 g-5 ">
+
+        @for (ninja of ninjasPaginados; track ninja.id) {
+        <div class="col">
+
+            <app-ninja-card [miNinja]="ninja"></app-ninja-card>
+
+        </div>
+
+        } @empty {
+
+        <div class="col-12 text-center py-5">
+            <i class="bi bi-search text-secondary display-1"></i>
+            <h2 class="text-secondary mt-3">No hay ninjas</h2>
+            
+        </div>
+
+        }
+
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center gap-4 mt-5 pt-4">
+
+        <button type="button" class="btn btn-dark rounded-circle p-2 d-flex shadow-sm hover-scale"
+           (click)="cambiarPagina(-1)" [disabled]="currentPage === 0">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+
+        <div class="text-center">
+            <span class="d-block text-muted small text-uppercase fw-bold">PÁGINA</span>
+            <span class="fs-4 fw-black text-danger">{{ currentPage + 1 }}</span>
+        </div>
+
+        <button type="button" class="btn btn-dark rounded-circle p-2 d-flex shadow-sm hover-scale"
+            (click)="cambiarPagina(1)" [disabled]="(currentPage + 1) * pageSize >= arrNinjas.length">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+
+    </div>
+</div>

@@ -33,16 +33,7 @@ export class ListHeroComponent {
     }
   }
 
-  //   async ngOnInit(): Promise<void> {
-  //   try {
-  //     // La respuesta ya no es el array, es el objeto con 'content'
-  //     const response: any = await this.serviceHero.getAllHero(); 
-  //     this.arrHeros = response.content; // <--- Extraemos el array aquí
-  //     this.totalPages = response.totalPages;
-  //   } catch (error) {
-  //     console.log("error", error);
-  //   }
-  // }
+  
 
   //------------------------Paginacion directa en angular
   //funcion para traer solo 4 heroes a la pagina
