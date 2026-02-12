@@ -28,3 +28,41 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
 //             'Authorization': `Bearer ${token}` // Estándar de la industria
 //         }
 //     });
+
+
+
+//------------------------------------
+// // Estructura conceptual del interceptor basada en el PDF [cite: 152]
+// intercept(req: HttpRequest<any>, next: HttpHandler) {
+//   const token = localStorage.getItem("token"); // [cite: 142]
+  
+//   if (token) {
+//     req = req.clone({
+//       setHeaders: {
+//         Authorization: `Bearer ${token}` // 
+//       }
+//     });
+//   }
+//   return next.handle(req);
+// }
+
+//-------------------
+// import { HttpInterceptorFn } from '@angular/common/http';
+
+// export const authInterceptor: HttpInterceptorFn = (req, next) => {
+//   // 1. Buscamos el token en el storage
+//   const token = localStorage.getItem('accessToken');
+
+//   // 2. Si existe, clonamos la petición y le ponemos la cabecera "Authorization"
+//   if (token) {
+//     const cloned = req.clone({
+//       setHeaders: {
+//         Authorization: `Bearer ${token}`
+//       }
+//     });
+//     return next(cloned);
+//   }
+
+//   // 3. Si no hay token, la petición sigue su curso normal
+//   return next(req);
+// };

@@ -47,3 +47,22 @@ export class LoginComponent {
   }
 
 }
+
+
+
+
+// // Dentro de tu login.component.ts
+// onSubmit() {
+//   if (this.loginForm.valid) {
+//     this.authService.login(this.loginForm.value).subscribe({
+//       next: () => {
+//         console.log('Login correcto');
+//         this.router.navigate(['/dashboard']); // Rediriges tras el éxito
+//       },
+//       error: (err) => {
+//         console.error('Error en el login', err);
+//         alert('Usuario o contraseña incorrectos');
+//       }
+//     });
+//   }
+// }
